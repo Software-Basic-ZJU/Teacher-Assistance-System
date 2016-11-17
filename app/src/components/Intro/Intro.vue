@@ -13,6 +13,10 @@
     .el-tabs{
         width:100%;
     }
+    .infoBox{
+        padding:20px;
+        padding-top:10px;
+    }
 </style>
 <script>
     import router from "../../routes";

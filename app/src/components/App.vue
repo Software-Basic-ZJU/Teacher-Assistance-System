@@ -48,6 +48,9 @@
     .mainBox>div{
         position: relative;
     }
+    .fade-enter,
+    .fade-leave,
+    .fade-enter-active,
     .fade-leave-active{
         width:100%;
         position:absolute;

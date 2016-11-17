@@ -34,6 +34,13 @@ export const infoNotice=resolve=>{
     })
 };
 
+export const infoHome=resolve=>{
+    require.ensure(['../components/Info/home/home.vue'],()=>{
+        resolve(require('../components/Info/home/home.vue'))
+    })
+};
+
+
 export const noticeDetail=resolve=>{
     require.ensure(['../components/Info/notices/noticeDetail.vue'],()=>{
         resolve(require('../components/Info/notices/noticeDetail.vue'))

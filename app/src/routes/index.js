@@ -6,6 +6,7 @@ import {
     infoNotice,
     noticeDetail,
     infoArticle,
+    infoHome,
     Intro,
     introCourse,
     Resource,
@@ -26,8 +27,13 @@ const routes=[
                 path:'/info',
                 name:'Info',
                 component:Info,
-                redirect:'/info/notices',
+                redirect:'/info/home',
                 children:[
+                    {
+                        name:'home',
+                        path:'/info/home',
+                        component:infoHome
+                    },
                     {
                         name:'notices',
                         path:'/info/notices',

@@ -1,6 +1,7 @@
 <template>
     <div>
         <el-tabs type="card" @tab-click="handleClick" :active-name="currIndex">
+            <el-tab-pane label="首页"></el-tab-pane>
             <el-tab-pane label="通知"></el-tab-pane>
             <el-tab-pane label="教学文章"></el-tab-pane>
         </el-tabs>
@@ -29,16 +30,20 @@
         created(){
             //initial tabs' active item
             let route=this.$route.path.split('/')[2];
-            if(route=='notices') this.currIndex="1";
-            else if(route=='articles') this.currIndex="2";
+            if(route=='home') this.currIndex="1";
+            else if(route=='notices') this.currIndex="2";
+            else if(route=='articles') this.currIndex="3";
         },
         methods: {
             handleClick(tab) {
                 switch(tab.index){
                     case "1":
-                        router.push({name:'notices'});
+                        router.push({name:'home'});
                         break;
                     case "2":
+                        router.push({name:'notices'});
+                        break;
+                    case "3":
                         router.push({name:'articles'});
                         break;
                     default:break;
