@@ -3,15 +3,15 @@
         <Header></Header>
         <div class="container">
             <div class="menuBox fl">
-                <el-menu :default-active="curr" class="el-menu-vertical-demo" router="true">
-                    <el-menu-item v-for="item in menu" :index="item.path" :class="{'is-active':curr==item.id}">
+                <el-menu :default-active="$route.path" class="el-menu-vertical-demo" router="true">
+                    <el-menu-item v-for="item in menu" :index="item.path">
                         <i :class="item.icon"></i>{{item.linkName}}
                     </el-menu-item>
                 </el-menu>
             </div>
             <div class="mainBox">
                 <div class="main">
-                    <transition>
+                    <transition name="fade">
                         <router-view></router-view>
                     </transition>
                 </div>
@@ -47,6 +47,9 @@
     .mainBox>.main{
         padding:10px;
     }
+    .fade-leave-active{
+        position:absolute;
+    }
 </style>
 <script>
     import Header from "./Header/Header.vue";
@@ -57,61 +60,36 @@
             return{
                 menu:[
                     {
-                        id:1,
                         linkName:"重要信息",
                         path:"/info/notice",
                         icon:"iconfont icon-tongzhi",
                     },
                     {
-                        id:2,
                         linkName:"课程介绍",
-                        path:"/a",
+                        path:"/intro",
                         icon:"iconfont icon-jieshao",
                     },
                     {
-                        id:3,
                         linkName:"课程资源",
-                        path:"/a",
+                        path:"/resource",
                         icon:"iconfont icon-serviceresource",
                     },
                     {
-                        id:4,
                         linkName:"作业列表",
-                        path:"/b",
+                        path:"/homework",
                         icon:"iconfont icon-zuoye",
                     },
                     {
-                        id:5,
                         linkName:"讨论区",
-                        path:"/b",
+                        path:"/forum",
                         icon:"iconfont icon-luntan",
                     }
-                ],
-                curr:1
+                ]
             }
         },
-        beforeRouteLeave(to,from,next){
-            this.curr=this.getCurr(to.path);
-            next();
+        created(){
         },
         methods:{
-            getCurr(path){
-                let route=path.split('/')[1];
-                let currActive;
-                switch(route){
-                    case 'info':
-                        currActive=1;
-                        break;
-                    case 'a':
-                        currActive=2;
-                        break;
-                    default:
-                        currActive=0;
-                        break;
-                }
-                console.log(currActive);
-                return currActive;
-            }
         },
         components:{
             Header

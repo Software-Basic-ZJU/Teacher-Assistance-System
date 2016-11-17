@@ -15,6 +15,18 @@ const Info=resolve=>{
     })
 };
 
+const Intro=resolve=>{
+    require.ensure(['../components/Intro/Intro.vue'],()=>{
+        resolve(require('../components/Intro/Intro.vue'))
+    })
+};
+
+const Resource=resolve=>{
+    require.ensure(['../components/Resource/Resource.vue'],()=>{
+        resolve(require('../components/Resource/Resource.vue'))
+    })
+};
+
 const notices=resolve=>{
     require.ensure(['../components/Info/notices/notices.vue'],()=>{
         resolve(require('../components/Info/notices/notices.vue'))
@@ -42,6 +54,14 @@ const routes=[
                         component:notices
                     }
                 ]
+            },
+            {
+                path:'/intro',
+                component:Intro,
+            },
+            {
+                path:'/resource',
+                component:Resource
             }
         ]
     },

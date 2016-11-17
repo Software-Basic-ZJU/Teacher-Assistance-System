@@ -2,7 +2,7 @@ var webpack=require("webpack");
 
 module.exports={
     entry: {
-        index:'./frontend/index',
+        index:'./src/index',
         vendor:['vue','vuex','vue-router']
     },
     output:{
