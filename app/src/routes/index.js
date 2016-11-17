@@ -1,67 +1,77 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import {
+    App,
+    Info,
+    infoNotice,
+    noticeDetail,
+    infoArticle,
+    Intro,
+    introCourse,
+    Resource,
+    Homework
+} from "./components";
 
 Vue.use(VueRouter);
-
-const App=resolve=>{
-    require.ensure(['../components/App.vue'],()=>{
-        resolve(require('../components/App.vue'))
-    })
-};
-
-const Info=resolve=>{
-    require.ensure(['../components/Info/Info.vue'],()=>{
-        resolve(require('../components/Info/Info.vue'))
-    })
-};
-
-const Intro=resolve=>{
-    require.ensure(['../components/Intro/Intro.vue'],()=>{
-        resolve(require('../components/Intro/Intro.vue'))
-    })
-};
-
-const Resource=resolve=>{
-    require.ensure(['../components/Resource/Resource.vue'],()=>{
-        resolve(require('../components/Resource/Resource.vue'))
-    })
-};
-
-const notices=resolve=>{
-    require.ensure(['../components/Info/notices/notices.vue'],()=>{
-        resolve(require('../components/Info/notices/notices.vue'))
-    })
-}
 
 
 const routes=[
     {
         path:'/',
         component:App,
+        name:'App',
         redirect:'/info',
         children:[
             {
                 path:'/info',
+                name:'Info',
                 component:Info,
-                redirect:'/info/notice',
+                redirect:'/info/notices',
                 children:[
                     {
-                        path:'/info/notice',
-                        component:notices
+                        name:'notices',
+                        path:'/info/notices',
+                        component:infoNotice
                     },
                     {
+                        name:'notice',
+                        path:'/info/notice/:nid',
+                        comiponent:noticeDetail
+                    },
+                    {
+                        name:'articles',
                         path:'/info/articles',
-                        component:notices
+                        component:infoArticle
                     }
                 ]
             },
             {
+                name:'intro',
                 path:'/intro',
                 component:Intro,
+                redirect:'/intro/course',
+                children:[
+                    {
+                        name:'course',
+                        path:'/intro/course',
+                        component:introCourse
+                    },
+                    {
+                        name:'teacher',
+                        path:'/intro/teacher',
+                        component:introCourse
+                    }
+                ]
             },
             {
+                name:'resource',
                 path:'/resource',
                 component:Resource
+            },
+            {
+                name:'homework',
+                path:'/homework',
+                component:Homework
             }
         ]
     },

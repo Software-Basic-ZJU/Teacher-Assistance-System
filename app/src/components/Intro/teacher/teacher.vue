@@ -4,7 +4,6 @@
     </div>
 </template>
 <style>
-    
 </style>
 <script>
     export default{
@@ -12,6 +11,8 @@
             return{
                 msg:'hello vue'
             }
+        },
+        components:{
         }
     }
 </script>
