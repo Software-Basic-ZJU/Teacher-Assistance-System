@@ -11,6 +11,9 @@ import {
     introCourse,
     Resource,
     Homework,
+    hwList,
+    hwDetail,
+    quesDetail,
     Forum,
     forumScetion,
     forumHome,
@@ -81,7 +84,25 @@ const routes=[
             {
                 name:'homework',
                 path:'/homework',
-                component:Homework
+                component:Homework,
+                redirect:'/homework/list/',
+                children:[
+                    {
+                        name:'hwList',
+                        path:'/homework/list/',
+                        component:hwList
+                    },
+                    {
+                        name:'hwDetail',
+                        path:'/homework/:hwId/questions',
+                        component:hwDetail
+                    },
+                    {
+                        name:'quesDetail',
+                        path:'/homework/:hwId/question/:quesId',
+                        component:quesDetail
+                    }
+                ]
             },
             {
                 name:'forum',

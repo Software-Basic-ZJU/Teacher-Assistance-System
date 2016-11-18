@@ -57,7 +57,7 @@
         width:100%;
         position:absolute;
     }
-    .forum .el-breadcrumb{
+    .el-breadcrumb{
         margin-top:5px;
         font-size:18px;
         border-bottom:1px solid #E5E9F2;

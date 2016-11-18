@@ -19,8 +19,7 @@
 </template>
 <style scoped>
     .postItem{
-        margin:10px auto;
-        margin-top:0px;
+        margin:0px auto;
         padding:10px 15px;
         cursor:pointer;
         border-bottom:1px solid #E5E9F2;
@@ -72,13 +71,13 @@
             }
         },
         props:{
-            pid:[String,Number],                 //帖子id
-            author:String,              //帖子作者
-            title:String,               //帖子标题
-            updateTime:String,          //最后更新时间
-            to:String,                  //帖子跳转路径
-            replyNum:[String,Number],            //帖子回复数量
-            starNum:[String,Number]              //帖子点赞数量
+            pid:[String,Number],                    //帖子id
+            author:String,                          //帖子作者
+            title:String,                           //帖子标题
+            updateTime:String,                      //最后更新时间
+            to:String,                              //帖子跳转路径
+            replyNum:[String,Number],               //帖子回复数量
+            starNum:[String,Number]                 //帖子点赞数量
         },
         methods:{
             goPath(name){

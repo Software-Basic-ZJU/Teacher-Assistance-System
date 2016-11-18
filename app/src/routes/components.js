@@ -28,6 +28,24 @@ export const Homework=resolve=>{
     })
 };
 
+export const hwList=resolve=>{
+    require.ensure(['../components/Homework/hw/hwList.vue'],()=>{
+        resolve(require('../components/Homework/hw/hwList.vue'))
+    })
+};
+
+export const hwDetail=resolve=>{
+    require.ensure(['../components/Homework/hw/hwDetail.vue'],()=>{
+        resolve(require('../components/Homework/hw/hwDetail.vue'))
+    })
+};
+
+export const quesDetail=resolve=>{
+    require.ensure(['../components/Homework/question/quesDetail.vue'],()=>{
+        resolve(require('../components/Homework/question/quesDetail.vue'))
+    })
+};
+
 export const infoNotice=resolve=>{
     require.ensure(['../components/Info/notices/notices.vue'],()=>{
         resolve(require('../components/Info/notices/notices.vue'))
