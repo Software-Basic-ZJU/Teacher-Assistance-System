@@ -4,10 +4,11 @@
             <div class="header">
                 <h2>课程资源</h2>
             </div>
-            <el-table :data="hwList" border >
+            <el-table :data="resList" border >
                 <el-table-column
                         prop="title"
                         label="课件名称"
+                        min-width="150"
                 >
                 </el-table-column>
                 <el-table-column
@@ -23,6 +24,7 @@
                 <el-table-column
                         inline-template
                         label="操作"
+                        min-width="100"
                 >
                     <span>
                         <el-button size="small">更新</el-button>
@@ -51,9 +53,9 @@
     export default{
         data(){
             return{
-                hwList:[
+                resList:[
                     {
-                        hwId:1,
+                        resId:1,
                         title:'软工第三章PPT',
                         time:'2016-12-04',
                         uploader:'LowesYang'

@@ -26,7 +26,7 @@
     }
     .container{
         max-width:1400px;
-        min-width:860px;
+        min-width:960px;
         margin:0px auto;
     }
     .menuBox{
@@ -48,6 +48,8 @@
     .mainBox>div{
         position: relative;
     }
+</style>
+<style>
     .fade-enter,
     .fade-leave,
     .fade-enter-active,

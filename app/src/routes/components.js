@@ -58,3 +58,27 @@ export const introCourse=resolve=>{
         resolve(require('../components/Intro/course/course.vue'))
     })
 };
+
+export const Forum=resolve=>{
+    require.ensure(['../components/Forum/Forum.vue'],()=>{
+        resolve(require('../components/Forum/Forum.vue'))
+    })
+};
+
+export const teacherQA=resolve=>{
+    require.ensure(['../components/Forum/teacherQA/teacherQA.vue'],()=>{
+        resolve(require('../components/Forum/teacherQA/teacherQA.vue'))
+    })
+};
+
+export const publicForum=resolve=>{
+    require.ensure(['../components/Forum/publicForum/publicForum.vue'],()=>{
+        resolve(require('../components/Forum/publicForum/publicForum.vue'))
+    })
+};
+
+export const groupForum=resolve=>{
+    require.ensure(['../components/Forum/groupForum/groupForum.vue'],()=>{
+        resolve(require('../components/Forum/groupForum/groupForum.vue'))
+    })
+};

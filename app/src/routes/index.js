@@ -10,7 +10,11 @@ import {
     Intro,
     introCourse,
     Resource,
-    Homework
+    Homework,
+    Forum,
+    teacherQA,
+    publicForum,
+    groupForum
 } from "./components";
 
 Vue.use(VueRouter);
@@ -78,6 +82,28 @@ const routes=[
                 name:'homework',
                 path:'/homework',
                 component:Homework
+            },
+            {
+                name:'forum',
+                path:'/forum',
+                component:Forum,
+                children:[
+                    {
+                        name:'teacherQA',
+                        path:'/forum/teacherQA',
+                        component:teacherQA
+                    },
+                    {
+                        name:'publicForum',
+                        path:'/forum/public',
+                        component:publicForum
+                    },
+                    {
+                        name:'groupForum',
+                        path:'/forum/group',
+                        component:groupForum
+                    }
+                ]
             }
         ]
     },
