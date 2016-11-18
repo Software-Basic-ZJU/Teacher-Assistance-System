@@ -12,9 +12,9 @@ import {
     Resource,
     Homework,
     Forum,
-    teacherQA,
-    publicForum,
-    groupForum
+    forumScetion,
+    forumHome,
+    Posts
 } from "./components";
 
 Vue.use(VueRouter);
@@ -87,21 +87,22 @@ const routes=[
                 name:'forum',
                 path:'/forum',
                 component:Forum,
+                redirect:'/forum/home',
                 children:[
                     {
-                        name:'teacherQA',
-                        path:'/forum/teacherQA',
-                        component:teacherQA
+                        name:'forumHome',
+                        path:'/forum/home',
+                        component:forumHome,
                     },
                     {
-                        name:'publicForum',
-                        path:'/forum/public',
-                        component:publicForum
+                        name:'section',
+                        path:'/forum/:section',
+                        component:forumScetion
                     },
                     {
-                        name:'groupForum',
-                        path:'/forum/group',
-                        component:groupForum
+                        name:'post',
+                        path:'/forum/:section/post/:pid',
+                        component:Posts
                     }
                 ]
             }

@@ -1,3 +1,5 @@
+<!-- 作业模块根组件 -->
+
 <template>
     <div>
         <div class="homework">
@@ -13,8 +15,8 @@
                 <div slot="header" class="clearfix">
                     <span style="line-height: 36px;">{{item.title}}</span>
                     <el-button class="fr" type="primary">前往查看</el-button>
-                    <el-button class="fr" v-if="isTeacher">编辑</el-button>
-                    <el-button class="fr" v-if="isTeacher" type="danger">删除</el-button>
+                    <el-button class="fr" v-if="isTeacher" icon="edit"></el-button>
+                    <el-button class="fr" v-if="isTeacher" type="danger" icon="delete"></el-button>
                 </div>
                 <div class="text item fl">
                     发布时间: &nbsp;&nbsp;{{item.updateTime}}

@@ -57,13 +57,19 @@
         width:100%;
         position:absolute;
     }
+    .forum .el-breadcrumb{
+        margin-top:5px;
+        font-size:18px;
+        border-bottom:1px solid #E5E9F2;
+        height:30px;
+    }
 </style>
 <script>
     import Header from "./Header/Header.vue";
+    import store from "../vuex"
 
     export default{
         data(){
-
             return {
                 menu: [
                     {

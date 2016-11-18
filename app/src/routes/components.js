@@ -65,20 +65,21 @@ export const Forum=resolve=>{
     })
 };
 
-export const teacherQA=resolve=>{
-    require.ensure(['../components/Forum/teacherQA/teacherQA.vue'],()=>{
-        resolve(require('../components/Forum/teacherQA/teacherQA.vue'))
+export const forumHome=resolve=>{
+    require.ensure(['../components/Forum/home/home.vue'],()=>{
+        resolve(require('../components/Forum/home/home.vue'))
     })
 };
 
-export const publicForum=resolve=>{
-    require.ensure(['../components/Forum/publicForum/publicForum.vue'],()=>{
-        resolve(require('../components/Forum/publicForum/publicForum.vue'))
+export const forumScetion=resolve=>{
+    require.ensure(['../components/Forum/section/section.vue'],()=>{
+        resolve(require('../components/Forum/section/section.vue'))
     })
 };
 
-export const groupForum=resolve=>{
-    require.ensure(['../components/Forum/groupForum/groupForum.vue'],()=>{
-        resolve(require('../components/Forum/groupForum/groupForum.vue'))
+
+export const Posts=resolve=>{
+    require.ensure(['../components/Forum/post/posts.vue'],()=>{
+        resolve(require('../components/Forum/post/posts.vue'))
     })
-};
+}
