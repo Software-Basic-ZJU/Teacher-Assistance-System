@@ -5,9 +5,10 @@
                 <el-breadcrumb-item :to="{name:'homework'}">作业列表</el-breadcrumb-item>
                 <el-breadcrumb-item>{{homework.title}}</el-breadcrumb-item>
             </el-breadcrumb>
-            <div class="timeInfo">
+            <div class="infoBox">
                 <span class="publish">发布时间：{{homework.updateTime}}</span>
                 <span class="ddl">截止时间：{{homework.deadline}}</span>
+                <el-button type="success" class="fr" @click="addQues">添加问题</el-button>
             </div>
             <div class="quesList">
                 <ques-item
@@ -34,20 +35,24 @@
         height:25px;
         margin-top:0px;
     }
-    .timeInfo{
+    .infoBox{
         padding:10px 0px;
         font-size:14px;
     }
-    .timeInfo>.publish{
+    .infoBox>.publish{
         color:#8492A6;
     }
-    .timeInfo>.ddl{
+    .infoBox>.ddl{
         color:#FF4949;
         margin-left:30px;
+    }
+    .quesList{
+        padding-top:20px;
     }
 </style>
 <script>
     import quesItem from "../question/quesItem.vue";
+    import router from "../../../routes";
     export default{
         data(){
             return{
@@ -64,6 +69,12 @@
                         haveNum:15
                     }
                 ]
+            }
+        },
+        methods:{
+            addQues(){
+                let hwId=this.$route.params.hwId;
+                router.push({name:'addQues',params:{hwId:hwId}});
             }
         },
         components:{

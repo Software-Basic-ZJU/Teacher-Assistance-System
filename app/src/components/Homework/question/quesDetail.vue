@@ -15,7 +15,8 @@
                         {{question.content}}
                     </div>
                     <div class="submitBox">
-                        <Editor></Editor>
+                        <h3>提交作业</h3>
+                        <Editor method="submitHw" btn-name="提交" :has-title="false"></Editor>
                     </div>
                 </div>
                 <div class="rightBox fl">
@@ -39,11 +40,18 @@
                             >
                             </el-table-column>
                             <el-table-column
+                                    prop="status"
+                                    label="状态"
+                                    min-width="80"
+                                    show-overflow-tooltip="true"
+                            >
+                            </el-table-column>
+                            <el-table-column
                                     inline-template
                                     :context="_self"
                                     fixed="right"
                                     label="操作"
-                                    width="80">
+                                    min-width="80">
                               <span>
                                 <el-button @click="checkHw($index,row)" type="text" size="small">查看作业</el-button>
                               </span>
@@ -94,11 +102,13 @@
                 stuList:[
                     {
                         sid:'111',
-                        name:'LowesYang'
+                        name:'LowesYang',
+                        status:'已交'
                     },
                     {
                         sid:'123',
-                        name:'lalala'
+                        name:'lalala',
+                        status:'未交'
                     }
                 ]
             }

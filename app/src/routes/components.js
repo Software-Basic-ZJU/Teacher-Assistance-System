@@ -46,6 +46,18 @@ export const quesDetail=resolve=>{
     })
 };
 
+export const addQues=resolve=>{
+    require.ensure(['../components/Homework/question/addQues.vue'],()=>{
+        resolve(require('../components/Homework/question/addQues.vue'))
+    })
+};
+
+export const editQues=resolve=>{
+    require.ensure(['../components/Homework/question/editQues.vue'],()=>{
+        resolve(require('../components/Homework/question/editQues.vue'))
+    })
+};
+
 export const infoNotice=resolve=>{
     require.ensure(['../components/Info/notices/notices.vue'],()=>{
         resolve(require('../components/Info/notices/notices.vue'))
@@ -95,9 +107,26 @@ export const forumScetion=resolve=>{
     })
 };
 
+export const Post=resolve=>{
+    require.ensure(['../components/Forum/section/post/post.vue'],()=>{
+        resolve(require('../components/Forum/section/post/post.vue'))
+    })
+};
 
-export const Posts=resolve=>{
-    require.ensure(['../components/Forum/post/posts.vue'],()=>{
-        resolve(require('../components/Forum/post/posts.vue'))
+export const addPost=resolve=>{
+    require.ensure(['../components/Forum/section/post/addPost.vue'],()=>{
+        resolve(require('../components/Forum/section/post/addPost.vue'))
+    })
+};
+
+export const editPost=resolve=>{
+    require.ensure(['../components/Forum/section/post/editPost.vue'],()=>{
+        resolve(require('../components/Forum/section/post/editPost.vue'))
+    })
+};
+
+export const Group=resolve=>{
+    require.ensure(['../components/Group/Group.vue'],()=>{
+        resolve(require('../components/Group/Group.vue'))
     })
 }

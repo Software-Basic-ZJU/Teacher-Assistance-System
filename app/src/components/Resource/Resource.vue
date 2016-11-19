@@ -25,9 +25,15 @@
                 >
                 </el-table-column>
                 <el-table-column
+                        prop="size"
+                        label="文件大小"
+                        show-overflow-tooltip="true"
+                >
+                </el-table-column>
+                <el-table-column
                         inline-template
                         label="操作"
-                        min-width="100"
+                        min-width="120"
                 >
                     <span>
                         <el-button size="small">更新</el-button>
@@ -61,7 +67,8 @@
                         resId:1,
                         title:'软工第三章PPT',
                         time:'2016-12-04',
-                        uploader:'LowesYang'
+                        uploader:'LowesYang',
+                        size:1024
                     }
                 ]
             }

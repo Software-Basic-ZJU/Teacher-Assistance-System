@@ -14,10 +14,15 @@ import {
     hwList,
     hwDetail,
     quesDetail,
+    addQues,
+    editQues,
     Forum,
     forumScetion,
     forumHome,
-    Posts
+    Post,
+    addPost,
+    editPost,
+    Group
 } from "./components";
 
 Vue.use(VueRouter);
@@ -101,6 +106,16 @@ const routes=[
                         name:'quesDetail',
                         path:'/homework/:hwId/question/:quesId',
                         component:quesDetail
+                    },
+                    {
+                        name:'addQues',
+                        path:'/homework/:hwId/question/add',
+                        component:addQues
+                    },
+                    {
+                        name:'editQues',
+                        path:'/homework/:hwId/question/edit/:quesId',
+                        component:editQues
                     }
                 ]
             },
@@ -123,9 +138,24 @@ const routes=[
                     {
                         name:'post',
                         path:'/forum/:section/post/:pid',
-                        component:Posts
+                        component:Post
+                    },
+                    {
+                        name:'addPost',
+                        path:'/forum/:section/add',
+                        component:addPost
+                    },
+                    {
+                        name:'editPost',
+                        path:'/forum/:section/edit/:pid',
+                        component:editPost
                     }
                 ]
+            },
+            {
+                name:'member',
+                path:'/member',
+                component:Group
             }
         ]
     },

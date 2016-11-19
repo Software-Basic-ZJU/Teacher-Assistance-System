@@ -9,10 +9,29 @@
                     :key="item.hwId"
                     :hwId="item.hwId"
                     :title="item.title"
-                    :update-time="item.updateTime"
+                    :publish-time="item.updateTime"
                     :deadline="item.deadline"
                     :identify="identify"
             ></hw-item>
+            <el-button type="success" @click.navtive="showAddPost = true">添加作业</el-button>
+            <el-dialog title="添加作业" v-model="showAddPost" size="tiny">
+                <el-form :model="newHw">
+                    <el-form-item label="作业标题" :label-width="formLabelWidth">
+                        <el-input v-model="newHw.title" auto-complete="off" class="title"></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-date-picker
+                                v-model="newHw.deadline"
+                                type="datetime"
+                                placeholder="选择截止日期"
+                        ></el-date-picker>
+                    </el-form-item>
+                </el-form>
+                <div slot="footer" class="dialog-footer">
+                    <el-button @click.native="showAddPost = false">取消</el-button>
+                    <el-button type="primary" @click.native="addHw">确认添加</el-button>
+                </div>
+            </el-dialog>
         </div>
     </div>
 </template>
@@ -28,6 +47,9 @@
         height:25px;
         margin-top:0px;
     }
+    .el-button--success{
+        margin-top:20px;
+    }
 </style>
 <script>
     import hwItem from "./hwItem.vue";
@@ -38,17 +60,29 @@
                     {
                         hwId:1,
                         title:'第一章作业',
-                        updateTime:"2016-11-03",
+                        publishTime:"2016-11-03",
                         deadline:"2016-12-03"
                     },
                     {
                         hwId:2,
                         title:'第二章作业',
-                        updateTime:"2016-11-03",
+                        publishTime:"2016-11-03",
                         deadline:"2016-12-03"
                     }
                 ],
-                identify:1
+                identify:1,
+                showAddPost:false,
+                newHw:{
+                    title:"",
+                    publishTime:"",
+                    deadline:""
+                }
+            }
+        },
+        methods:{
+            addHw(){
+                //todo add post
+                this.showAddPost=false;
             }
         },
         components:{

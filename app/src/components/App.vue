@@ -96,6 +96,11 @@
                         linkName: "讨论区",
                         path: "/forum",
                         icon: "icon-luntan",
+                    },
+                    {
+                        linkName:"小组名单",
+                        path:"/member",
+                        icon:"icon-group"
                     }
                 ]
             }

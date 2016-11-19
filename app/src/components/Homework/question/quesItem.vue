@@ -11,7 +11,9 @@
                         <div class="shouldNum">应交人数：{{shouldNum}}</div>
                         <div class="haveNum">实交人数：{{haveNum}}</div>
                     </div>
-                    <el-button class="fr" type="primary" @click="goQuesDetail(quesId)">前往查看</el-button>
+                    <el-button class="fr" type="primary" @click="goQuesByName(quesId,'quesDetail')">前往查看</el-button>
+                    <el-button class="fr" @click="goQuesByName(quesId,'editQues')">编辑</el-button>
+                    <el-button class="fr" type="danger">删除</el-button>
                 </div>
             </el-card>
         </div>
@@ -28,6 +30,9 @@
         border-radius:10px;
         color:#475669;
     }
+    .el-button--primary{
+        margin-left:10px;
+    }
 </style>
 <script>
     import router from "../../../routes";
@@ -43,9 +48,9 @@
             haveNum:[String,Number]         //问题已交人数
         },
         methods:{
-            goQuesDetail(quesId){
+            goQuesByName(quesId,name){
                 let hwId=this.$route.params.hwId;
-                router.push({name:'quesDetail',params:{hwId:hwId,quesId:quesId}});
+                router.push({name:name,params:{hwId:hwId,quesId:quesId}});
             }
         }
     }

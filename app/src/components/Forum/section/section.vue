@@ -11,25 +11,28 @@
                         :pid="item.pid"
                         :author="item.author"
                         :title="item.title"
+                        :publish-time="item.publishTime"
                         :update-time="item.updateTime"
                         :reply-num="item.replyNum"
                         :star-num="item.starNum"
                 ></post-item>
             </div>
-            <div class="editor">
-                <editor></editor>
-            </div>
+            <el-button type="success" @click="goAddPost">发布主题</el-button>
+
         </div>
     </div>
 </template>
-<style>
+<style scoped>
+    .el-button--success{
+        margin-top:10px;
+    }
 </style>
 <script>
-    import postItem from "../post/postItem.vue";
-    import editor from "../../Editor/Editor.vue";
+    import postItem from "./post/postItem.vue";
+    import router from "../../../routes";
     export default{
         data(){
-            let section=this.$route.path.split('/')[2];
+            let section=this.$route.params.section;
             switch(section){
             case "teacherQA":
                 section="教师答疑区";
@@ -51,6 +54,7 @@
                         pid:1,
                         title:'Test postTest postTest post',
                         author:'LowesYang',
+                        publishTime:'2016-11-03',
                         updateTime:'2016-11-03',
                         replyNum:10,
                         starNum:5
@@ -59,6 +63,7 @@
                         pid:2,
                         title:'Test postTest postTest post',
                         author:'LowesYang',
+                        publishTime:'2016-11-03',
                         updateTime:'2016-11-03',
                         replyNum:10,
                         starNum:5
@@ -66,9 +71,14 @@
                 ]
             }
         },
+        methods:{
+            goAddPost(){
+                let section=this.$route.params.section;
+                router.push({name:'addPost',params:{section:section}});
+            }
+        },
         components:{
-            postItem,
-            editor
+            postItem
         }
     }
 </script>

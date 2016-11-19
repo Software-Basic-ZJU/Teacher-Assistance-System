@@ -12,7 +12,7 @@ let mutations={
     getPostList(state,info){
         console.log(info);
     },
-    publishPost(state,info){
+    publish(state,info){
         console.log(info)
     }
 };
