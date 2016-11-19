@@ -9,16 +9,19 @@
                         prop="title"
                         label="课件名称"
                         min-width="150"
+                        show-overflow-tooltip="true"
                 >
                 </el-table-column>
                 <el-table-column
                         prop="time"
                         label="上传时间"
+                        show-overflow-tooltip="true"
                 >
                 </el-table-column>
                 <el-table-column
                         prop="uploader"
                         label="上传人"
+                        show-overflow-tooltip="true"
                 >
                 </el-table-column>
                 <el-table-column

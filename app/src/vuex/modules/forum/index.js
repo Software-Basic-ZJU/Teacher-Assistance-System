@@ -1,14 +1,14 @@
 import Vue from 'vue';
 import * as actions from "./actions";
 
-const state={
+let state={
     listLoaded:false,
     postList:[],
     hostPost:{},
     posts:[]
 };
 
-const mutations={
+let mutations={
     getPostList(state,info){
         console.log(info);
     },
