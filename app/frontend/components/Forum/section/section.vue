@@ -1,10 +1,13 @@
 <template>
     <div>
         <div>
-            <el-breadcrumb separator="/">
-                <el-breadcrumb-item :to="{name:'forum'}">讨论区</el-breadcrumb-item>
-                <el-breadcrumb-item>{{secName}}</el-breadcrumb-item>
-            </el-breadcrumb>
+            <div class="header">
+                <el-breadcrumb separator="/">
+                    <el-breadcrumb-item :to="{name:'forum'}">讨论区</el-breadcrumb-item>
+                    <el-breadcrumb-item>{{secName}}</el-breadcrumb-item>
+                </el-breadcrumb>
+                <el-button type="success" class="fr" @click="goAddPost">发布主题</el-button>
+            </div>
             <div class="postList">
                 <post-item
                         v-for="item in postList"
@@ -17,14 +20,16 @@
                         :star-num="item.starNum"
                 ></post-item>
             </div>
-            <el-button type="success" @click="goAddPost">发布主题</el-button>
 
         </div>
     </div>
 </template>
 <style scoped>
+    .header{
+        padding-top:10px;
+    }
     .el-button--success{
-        margin-top:10px;
+        margin-top:-45px;
     }
 </style>
 <script>

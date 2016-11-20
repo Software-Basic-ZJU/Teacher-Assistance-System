@@ -10,7 +10,7 @@
                 </el-menu>
             </div>
             <div class="mainBox">
-                <div>
+                <div v-loading="loading">
                     <transition name="fade">
                         <router-view></router-view>
                     </transition>
@@ -58,7 +58,8 @@
         position:absolute;
     }
     .el-breadcrumb{
-        margin-top:5px;
+        margin-top:0px;
+        padding-bottom:5px;
         font-size:18px;
         border-bottom:1px solid #E5E9F2;
         height:30px;
@@ -103,6 +104,11 @@
                         icon:"icon-group"
                     }
                 ]
+            }
+        },
+        computed:{
+            loading(){
+                return this.$store.getters.loading;
             }
         },
         components:{

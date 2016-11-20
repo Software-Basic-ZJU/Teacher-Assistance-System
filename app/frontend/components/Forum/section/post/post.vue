@@ -6,7 +6,7 @@
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item :to="{name:'forum'}">讨论区</el-breadcrumb-item>
                 <el-breadcrumb-item :to="{path:'/forum/'+$route.params.section}">{{secName}}</el-breadcrumb-item>
-                <el-breadcrumb-item>主题详情</el-breadcrumb-item>
+                <el-breadcrumb-item>帖子详情</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="hostPost">
@@ -39,6 +39,9 @@
     </div>
 </template>
 <style scoped>
+    .el-breadcrumb{
+        margin-top:10px;
+    }
     .hostPost{
         padding:10px 15px;
         border-bottom:1px solid #E5E9F2;

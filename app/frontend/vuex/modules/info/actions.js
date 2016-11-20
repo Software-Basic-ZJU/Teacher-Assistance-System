@@ -1,3 +1,7 @@
-/**
- * Created by asus-pc on 2016/11/18.
- */
+export const toggleAddNotice=({commit})=>{
+    commit('toggleAddNotice');
+}
+
+export const toggleEditNotice=({commit})=>{
+    commit('toggleEditNotice');
+}

@@ -2,7 +2,7 @@ import Vue from 'vue';
 import * as actions from "./actions";
 
 let state={
-    listLoaded:false,
+    loading:false,
     postList:[],
     hostPost:{},
     posts:[]

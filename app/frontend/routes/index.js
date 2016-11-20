@@ -7,9 +7,12 @@ import {
     noticeDetail,
     infoArticle,
     infoHome,
+    articleDetail,
     Intro,
     introCourse,
     Resource,
+    resrcList,
+    addResrc,
     Homework,
     hwList,
     hwDetail,
@@ -52,16 +55,21 @@ const routes=[
                         component:infoNotice
                     },
                     {
-                        name:'notice',
-                        path:'/info/notice/:nid',
-                        comiponent:noticeDetail
-                    },
-                    {
                         name:'articles',
                         path:'/info/articles',
                         component:infoArticle
-                    }
+                    },
                 ]
+            },
+            {
+                name:'notice',
+                path:'/info/notice/:nid',
+                component:noticeDetail
+            },
+            {
+                name:'articleDetail',
+                path:'/info/article/:artId',
+                component:articleDetail
             },
             {
                 name:'intro',
@@ -84,7 +92,20 @@ const routes=[
             {
                 name:'resource',
                 path:'/resource',
-                component:Resource
+                component:Resource,
+                redirect:'/resource/list',
+                children:[
+                    {
+                        name:'resrcList',
+                        path:'/resource/list',
+                        component:resrcList
+                    },
+                    {
+                        name:'addResrc',
+                        path:'/resource/add',
+                        component:addResrc
+                    }
+                ]
             },
             {
                 name:'homework',
@@ -109,7 +130,7 @@ const routes=[
                     },
                     {
                         name:'addQues',
-                        path:'/homework/:hwId/question/add',
+                        path:'/homework/:hwId/addques',
                         component:addQues
                     },
                     {

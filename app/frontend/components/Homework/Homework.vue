@@ -10,9 +10,6 @@
     </div>
 </template>
 <style scoped>
-    .homework>div{
-        position:relative;
-    }
 </style>
 <script>
     export default{

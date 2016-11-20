@@ -22,6 +22,18 @@ export const Resource=resolve=>{
     })
 };
 
+export const resrcList=resolve=>{
+    require.ensure(['../components/Resource/resrcList/resrcList.vue'],()=>{
+        resolve(require('../components/Resource/resrcList/resrcList.vue'))
+    })
+};
+
+export const addResrc=resolve=>{
+    require.ensure(['../components/Resource/resrcAction/addResrc.vue'],()=>{
+        resolve(require('../components/Resource/resrcAction/addResrc.vue'))
+    })
+};
+
 export const Homework=resolve=>{
     require.ensure(['../components/Homework/Homework.vue'],()=>{
         resolve(require('../components/Homework/Homework.vue'))
@@ -80,6 +92,12 @@ export const noticeDetail=resolve=>{
 export const infoArticle=resolve=>{
     require.ensure(['../components/Info/articles/articles.vue'],()=>{
         resolve(require('../components/Info/articles/articles.vue'))
+    })
+};
+
+export const articleDetail=resolve=>{
+    require.ensure(['../components/Info/articles/articleDetail.vue'],()=>{
+        resolve(require('../components/Info/articles/articleDetail.vue'))
     })
 };
 

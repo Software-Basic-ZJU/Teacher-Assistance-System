@@ -3,6 +3,7 @@
         <div class="homework">
             <div class="header">
                 <h2>作业列表</h2>
+                <el-button type="success" class="fr" @click.navtive="showAddPost = true">添加作业</el-button>
             </div>
             <hw-item
                     v-for="item in hwList"
@@ -13,7 +14,6 @@
                     :deadline="item.deadline"
                     :identify="identify"
             ></hw-item>
-            <el-button type="success" @click.navtive="showAddPost = true">添加作业</el-button>
             <el-dialog title="添加作业" v-model="showAddPost" size="tiny">
                 <el-form :model="newHw">
                     <el-form-item label="作业标题" :label-width="formLabelWidth">
@@ -48,7 +48,7 @@
         margin-top:0px;
     }
     .el-button--success{
-        margin-top:20px;
+        margin-top:-45px;
     }
 </style>
 <script>

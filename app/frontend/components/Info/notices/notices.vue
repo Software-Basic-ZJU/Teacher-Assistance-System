@@ -7,6 +7,10 @@
                 <div class="time fr">{{item.time}}</div>
                 <div class="cl"></div>
             </div>
+            <el-button type="success" @click="toggleAdd">添加通知</el-button>
+            <el-dialog title="添加通知" v-model="showAddNotice" @close="toggleAdd">
+                <Editor method="addNotice" btn-name="确认添加"></Editor>
+            </el-dialog>
         </div>
     </div>
 </template>
@@ -45,29 +49,30 @@
 </style>
 <script>
     import router from "../../../routes";
+    import Editor from "../../Editor/Editor.vue"
     export default{
         data(){
             return{
-                noticeList:[
-                    {
-                        nid:"111",
-                        title:'hello',
-                        time:'2016-11-02',
-                        level:1
-                    },
-                    {
-                        nid:"1112",
-                        title:'lowesyang',
-                        time:'2016-11-13',
-                        level:0
-                    }
-                ]
+            }
+        },
+        computed:{
+            noticeList(){
+                return this.$store.state.info.noticeList;
+            },
+            showAddNotice(){
+                return this.$store.state.info.showAddNotice;
             }
         },
         methods:{
             goDetail(nid){
                 router.push({name:'notice',params:{nid:nid}});
+            },
+            toggleAdd(){
+                this.$store.dispatch('toggleAddNotice');
             }
+        },
+        components:{
+            Editor
         }
     }
 </script>

@@ -1,14 +1,16 @@
 <template>
     <div>
         <div class="hwDetail">
-            <el-breadcrumb separator="/">
-                <el-breadcrumb-item :to="{name:'homework'}">作业列表</el-breadcrumb-item>
-                <el-breadcrumb-item>{{homework.title}}</el-breadcrumb-item>
-            </el-breadcrumb>
+            <div class="header">
+                <el-breadcrumb separator="/">
+                    <el-breadcrumb-item :to="{name:'homework'}">作业列表</el-breadcrumb-item>
+                    <el-breadcrumb-item>{{homework.title}}</el-breadcrumb-item>
+                </el-breadcrumb>
+                <el-button type="success" class="fr" @click="addQues">添加问题</el-button>
+            </div>
             <div class="infoBox">
                 <span class="publish">发布时间：{{homework.updateTime}}</span>
                 <span class="ddl">截止时间：{{homework.deadline}}</span>
-                <el-button type="success" class="fr" @click="addQues">添加问题</el-button>
             </div>
             <div class="quesList">
                 <ques-item
@@ -28,15 +30,10 @@
         padding:0px 20px;
     }
     .header{
-        border-bottom:1px solid #D3DCE6;
-    }
-    .header>h2{
-        color:#475669;
-        height:25px;
-        margin-top:0px;
+        padding:10px 0px;
     }
     .infoBox{
-        padding:10px 0px;
+        padding:5px 0px;
         font-size:14px;
     }
     .infoBox>.publish{
@@ -47,7 +44,10 @@
         margin-left:30px;
     }
     .quesList{
-        padding-top:20px;
+        padding-top:10px;
+    }
+    .el-button--success{
+        margin-top:-45px;
     }
 </style>
 <script>

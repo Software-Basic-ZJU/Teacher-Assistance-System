@@ -7,7 +7,7 @@
                 <el-breadcrumb-item>{{question.title}}</el-breadcrumb-item>
             </el-breadcrumb>
             <div class="main" v-loading="loaded">
-                <div class="leftBox fl">
+                <div :class="{'leftBox fl':identify==1,'detailBox':identify==0}">
                     <div class="title">
                         {{question.title}}
                     </div>
@@ -19,7 +19,7 @@
                         <Editor method="submitHw" btn-name="提交" :has-title="false"></Editor>
                     </div>
                 </div>
-                <div class="rightBox fl">
+                <div class="rightBox fl" v-if="identify==1">
                     <div class="stuList">
                         <el-table
                                 :data="stuList"
@@ -77,6 +77,9 @@
         text-align: center;
         font-size:24px;
     }
+    .main>.detailBox{
+        padding:10px 20px;
+    }
     .main .content{
         margin-top:20px;
         font-size:16px;
@@ -86,6 +89,9 @@
     }
     .main>.rightBox>.stuList{
         padding:10px;
+    }
+    .main .submitBox{
+        margin-top:80px;
     }
 </style>
 <script>
@@ -110,7 +116,8 @@
                         name:'lalala',
                         status:'未交'
                     }
-                ]
+                ],
+                identify:0
             }
         },
         methods:{

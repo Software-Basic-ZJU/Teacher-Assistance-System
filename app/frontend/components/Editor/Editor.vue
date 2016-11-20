@@ -1,8 +1,9 @@
 <template>
     <div>
         <div>
-            <el-input v-model="title" placeholder="标题" v-if="hasTitle"></el-input>
+            <el-input v-model="data.title" placeholder="标题" v-if="hasTitle"></el-input>
             <div id="editor" style="height:300px;max-height:500px;">
+                {{data.content}}
             </div>
             <div class="btnGroup">
                 <el-button type="primary" @click="publish">{{btnName}}</el-button>
@@ -44,7 +45,14 @@
                 default:true
             },
             btnName:String,
-            method:String
+            method:String,
+            data:{
+                type:Object,
+                default:{
+                    title:'',
+                    content:''
+                }
+            }
         },
         methods:{
             publish(){

@@ -2,7 +2,7 @@
     <div>
         <div>
             <h3>编辑主题</h3>
-            <Editor method="editPost" btn-name="更新" :has-title="false"></Editor>
+            <Editor method="editPost" btn-name="更新"></Editor>
         </div>
     </div>
 </template>
