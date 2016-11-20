@@ -1,3 +1,7 @@
-/**
- * Created by asus-pc on 2016/11/18.
- */
+export const editCourseInfo=({commit},payload)=>{
+    commit('editCourseInfo');
+};
+
+export const editTeacherInfo=({commit},payload)=>{
+    commit('editTeacherInfo');
+}

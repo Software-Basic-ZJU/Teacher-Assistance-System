@@ -2,8 +2,7 @@
     <div>
         <div>
             <el-input v-model="data.title" placeholder="标题" v-if="hasTitle"></el-input>
-            <div id="editor" style="height:300px;max-height:500px;">
-                {{data.content}}
+            <div id="editor" style="height:300px;max-height:500px;" v-html="data.content">
             </div>
             <div class="btnGroup">
                 <el-button type="primary" @click="publish">{{btnName}}</el-button>
@@ -30,8 +29,7 @@
     export default{
         data(){
             return{
-                editor:null,
-                title:""
+                editor:null
             }
         },
         mounted(){
@@ -40,13 +38,13 @@
             this.editor=editor;
         },
         props:{
-            hasTitle:{
+            hasTitle:{                  //编辑器是否需要含有标题输入框
                 type:Boolean,
                 default:true
             },
-            btnName:String,
-            method:String,
-            data:{
+            btnName:String,             //编辑器的确认按钮内容
+            method:String,              //编辑器的功能
+            data:{                      //编辑器提交的对象
                 type:Object,
                 default:{
                     title:'',
@@ -56,20 +54,19 @@
         },
         methods:{
             publish(){
-                let content=this.editor.$txt.formatText();
+                let content=this.editor.$txt.html();
                 let section=this.$route.params.section;
                 let method=this.method;
-                console.log(method)
-                this.$store.dispatch('publish',{
-                    title:this.title,
+                this.$store.dispatch('editorSubmit',{
+                    method:method,
+                    title:this.data.title,
                     content,
-                    section:section,
-                    method:method
+                    section:section
                 })
             },
             reset(){
                 this.editor.clear();
-                this.title="";
+                this.data.title="";
             }
         }
     }

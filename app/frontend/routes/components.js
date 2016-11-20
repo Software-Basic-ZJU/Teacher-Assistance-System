@@ -82,6 +82,11 @@ export const infoHome=resolve=>{
     })
 };
 
+export const editHome=resolve=>{
+    require.ensure(['../components/Info/home/editHome.vue'],()=>{
+        resolve(require('../components/Info/home/editHome.vue'))
+    })
+};
 
 export const noticeDetail=resolve=>{
     require.ensure(['../components/Info/notices/noticeDetail.vue'],()=>{
@@ -101,9 +106,39 @@ export const articleDetail=resolve=>{
     })
 };
 
+export const addArticle=resolve=>{
+    require.ensure(['../components/Info/articles/addArticle.vue'],()=>{
+        resolve(require('../components/Info/articles/addArticle.vue'))
+    })
+};
+
+export const editArticle=resolve=>{
+    require.ensure(['../components/Info/articles/editArticle.vue'],()=>{
+        resolve(require('../components/Info/articles/editArticle.vue'))
+    })
+};
+
 export const introCourse=resolve=>{
     require.ensure(['../components/Intro/course/course.vue'],()=>{
         resolve(require('../components/Intro/course/course.vue'))
+    })
+};
+
+export const editCourse=resolve=>{
+    require.ensure(['../components/Intro/course/editCourse.vue'],()=>{
+        resolve(require('../components/Intro/course/editCourse.vue'))
+    })
+};
+
+export const introTeacher=resolve=>{
+    require.ensure(['../components/Intro/teacher/teacher.vue'],()=>{
+        resolve(require('../components/Intro/teacher/teacher.vue'))
+    })
+};
+
+export const editTeacher=resolve=>{
+    require.ensure(['../components/Intro/teacher/editTeacher.vue'],()=>{
+        resolve(require('../components/Intro/teacher/editTeacher.vue'))
     })
 };
 

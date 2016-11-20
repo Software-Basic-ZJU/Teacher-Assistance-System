@@ -5,8 +5,11 @@
             <el-tab-pane label="教师介绍"></el-tab-pane>
         </el-tabs>
         <div class="infoBox">
-            <router-view></router-view>
-        </div>
+            <div>
+                <transition name="fade">
+                    <router-view></router-view>
+                </transition>
+            </div>
     </div>
 </template>
 <style scoped>
@@ -14,8 +17,10 @@
         width:100%;
     }
     .infoBox{
-        padding:20px;
-        padding-top:10px;
+        padding:0px 20px;
+    }
+    .infoBox>div{
+        position:relative;
     }
 </style>
 <script>

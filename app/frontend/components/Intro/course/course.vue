@@ -1,22 +1,32 @@
 <template>
     <div>
-        <div>this is template body</div>
+        <div>
+            <el-button type="success" icon="edit" @click="editCourse"></el-button>
+            <div class="info" v-html="courseInfo.content"></div>
+        </div>
     </div>
 </template>
-<style>
-    body{
+<style scoped>
+    .info{
+        margin-top:20px;
     }
 </style>
 <script>
-
+    import router from "../../../routes";
     export default{
         data(){
             return{
-                msg:'hello vue'
             }
         },
-        components:{
-
+        computed:{
+            courseInfo(){
+                return this.$store.state.intro.courseInfo
+            }
+        },
+        methods:{
+            editCourse(){
+                router.push({name:'editCourse'});
+            }
         }
     }
 </script>

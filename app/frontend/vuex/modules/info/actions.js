@@ -5,3 +5,7 @@ export const toggleAddNotice=({commit})=>{
 export const toggleEditNotice=({commit})=>{
     commit('toggleEditNotice');
 }
+
+export const deleteComment=({commit},commentId)=>{
+    commit('deleteComment',commentId);
+}

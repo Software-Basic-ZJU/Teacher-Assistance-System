@@ -21,8 +21,7 @@
         width:100%;
     }
     .infoBox{
-        padding:20px;
-        padding-top:10px;
+        padding:0px 20px;
     }
     .infoBox>div{
         position: relative;

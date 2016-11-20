@@ -7,9 +7,15 @@ import {
     noticeDetail,
     infoArticle,
     infoHome,
+    editHome,
     articleDetail,
+    addArticle,
+    editArticle,
     Intro,
     introCourse,
+    introTeacher,
+    editCourse,
+    editTeacher,
     Resource,
     resrcList,
     addResrc,
@@ -50,6 +56,11 @@ const routes=[
                         component:infoHome
                     },
                     {
+                        name:'editHome',
+                        path:'/info/home/edit',
+                        component:editHome
+                    },
+                    {
                         name:'notices',
                         path:'/info/notices',
                         component:infoNotice
@@ -72,6 +83,16 @@ const routes=[
                 component:articleDetail
             },
             {
+                name:'addArticle',
+                path:'/info/article/add',
+                component:addArticle
+            },
+            {
+                name:'editArticle',
+                path:'/info/article/edit/:artId',
+                component:editArticle
+            },
+            {
                 name:'intro',
                 path:'/intro',
                 component:Intro,
@@ -85,7 +106,17 @@ const routes=[
                     {
                         name:'teacher',
                         path:'/intro/teacher',
-                        component:introCourse
+                        component:introTeacher
+                    },
+                    {
+                        name:'editCourse',
+                        path:'/intro/course/edit',
+                        component:editCourse
+                    },
+                    {
+                        name:'editTeacher',
+                        path:'/intro/teacher/edit',
+                        component:editTeacher
                     }
                 ]
             },

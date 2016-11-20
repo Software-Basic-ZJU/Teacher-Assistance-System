@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import * as getters from "./getters";
+import * as actions from "./actions";
 import info from "./modules/info";
 import intro from "./modules/intro";
 import resource from "./modules/resource";
@@ -11,6 +12,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     getters,
+    actions,
     modules:{
         info,
         intro,
