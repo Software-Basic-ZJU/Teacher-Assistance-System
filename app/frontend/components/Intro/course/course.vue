@@ -1,7 +1,6 @@
 <template>
     <div>
         <div>
-            <el-button type="success" icon="edit" @click="editCourse"></el-button>
             <div class="info" v-html="courseInfo.content"></div>
         </div>
     </div>
@@ -21,11 +20,6 @@
         computed:{
             courseInfo(){
                 return this.$store.state.intro.courseInfo
-            }
-        },
-        methods:{
-            editCourse(){
-                router.push({name:'editCourse'});
             }
         }
     }

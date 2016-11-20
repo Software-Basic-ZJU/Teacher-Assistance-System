@@ -4,6 +4,7 @@
             <el-tab-pane label="课程介绍"></el-tab-pane>
             <el-tab-pane label="教师介绍"></el-tab-pane>
         </el-tabs>
+        <el-button type="success" class="fr" icon="edit" @click="goEdit"></el-button>
         <div class="infoBox">
             <div>
                 <transition name="fade">
@@ -15,6 +16,11 @@
 <style scoped>
     .el-tabs{
         width:100%;
+    }
+    .el-button--success{
+        position:relative;
+        margin-top:-62px;
+        z-index:1;
     }
     .infoBox{
         padding:0px 20px;
@@ -45,6 +51,18 @@
                         break;
                     case "2":
                         router.push({name:'teacher'});
+                        break;
+                    default:break;
+                }
+            },
+            goEdit(){
+                let route=this.$route.path.split('/')[2];
+                switch(route){
+                    case 'course':
+                        router.push({name:'editCourse'});
+                        break;
+                    case 'teacher':
+                        router.push({name:'editTeacher'});
                         break;
                     default:break;
                 }
