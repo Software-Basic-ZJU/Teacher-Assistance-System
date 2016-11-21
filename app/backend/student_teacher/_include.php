@@ -5,7 +5,7 @@
  * Date: 2016/11/20
  * Time: 16:40
  */
-include 'verify_token.php';
+include 'loginCheck.php';
 
 function test_input($data) {
     $data = inject_prevent($data);
