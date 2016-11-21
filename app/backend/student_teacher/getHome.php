@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: Wu
  * Date: 2016/11/21
- * Time: 13:40
+ * Time: 15:51
  */
 header('Content-type: application/json');
 session_start();
@@ -15,23 +15,26 @@ connectDB();
 loginCheck($_POST['token']);
 //Get information
 $class_id = test_input(mysqli_escape_string($conn, $_POST['class_id']));
-$query_result = mysqli_query($conn, "select * from notification 
+//select *, count(distinct name) from table group by name
+//
+$query_result = mysqli_query($conn, "select DISTINCT tname,phone,email,wechat,qq,other_contact from class_teacher JOIN teacher
                                          where class_id ='$class_id'");
 if($fetched = mysqli_fetch_array($query_result)){
-    $notices = array();
-    do{ //Notices[String](notice_id,title,level,time,content)
-        $notices[] = array(
-            "notice_id" => $fetched['notice_id'],
-            "title" => $fetched['title'],
-            "level" => $fetched['level'],
-            "time" => $fetched['time'],
-            "content" => $fetched['content']
+    $infos = array();
+    do{ //tname,phone,email,wechat,qq,other_contact
+        $infos[] = array(
+            "tname" => $fetched['tname'],
+            "phone" => $fetched['phone'],
+            "email" => $fetched['email'],
+            "wechat" => $fetched['wechat'],
+            "qq" => $fetched['qq'],
+            "other_contact" => $fetched['other_contact']
         );
     }while($fetched = mysqli_fetch_array($query_result));
     $result = array(
         "code" => 0,
         "msg" => "查找成功",
-        "res" => $notices
+        "res" => $infos
     );
     echo json_encode($result);
 }
