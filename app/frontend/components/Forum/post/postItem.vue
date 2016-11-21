@@ -6,13 +6,13 @@
             <div class="header">
                 <span class="author">{{author}}</span>
                 <span class="time">最后更新：{{updateTime}}</span>
+                <span class="time">发表于：{{publishTime}}</span>
             </div>
             <div class="main">
                 <div class="brief">{{title}}</div>
             </div>
             <div class="footer">
                 <div><i class="iconfont icon-pinglun"></i> ({{replyNum}})</div>
-                <div><i class="iconfont icon-dianzan1"></i> ({{starNum}})</div>
             </div>
         </div>
     </div>
@@ -74,10 +74,10 @@
             pid:[String,Number],                    //帖子id
             author:String,                          //帖子作者
             title:String,                           //帖子标题
+            publishTime:String,                      //发表时间
             updateTime:String,                      //最后更新时间
             to:String,                              //帖子跳转路径
             replyNum:[String,Number],               //帖子回复数量
-            starNum:[String,Number]                 //帖子点赞数量
         },
         methods:{
             goPath(name){

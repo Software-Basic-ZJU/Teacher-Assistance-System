@@ -17,7 +17,6 @@
                         :publish-time="item.publishTime"
                         :update-time="item.updateTime"
                         :reply-num="item.replyNum"
-                        :star-num="item.starNum"
                 ></post-item>
             </div>
 
@@ -33,7 +32,7 @@
     }
 </style>
 <script>
-    import postItem from "./post/postItem.vue";
+    import postItem from "../post/postItem.vue";
     import router from "../../../routes";
     export default{
         data(){
@@ -54,26 +53,11 @@
             }
             return{
                 secName:section,
-                postList:[
-                    {
-                        pid:1,
-                        title:'Test postTest postTest post',
-                        author:'LowesYang',
-                        publishTime:'2016-11-03',
-                        updateTime:'2016-11-03',
-                        replyNum:10,
-                        starNum:5
-                    },
-                    {
-                        pid:2,
-                        title:'Test postTest postTest post',
-                        author:'LowesYang',
-                        publishTime:'2016-11-03',
-                        updateTime:'2016-11-03',
-                        replyNum:10,
-                        starNum:5
-                    }
-                ]
+            }
+        },
+        computed:{
+            postList(){
+                return this.$store.state.forum.postList;
             }
         },
         methods:{

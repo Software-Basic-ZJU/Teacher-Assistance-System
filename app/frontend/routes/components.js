@@ -161,20 +161,20 @@ export const forumScetion=resolve=>{
 };
 
 export const Post=resolve=>{
-    require.ensure(['../components/Forum/section/post/post.vue'],()=>{
-        resolve(require('../components/Forum/section/post/post.vue'))
+    require.ensure(['../components/Forum/post/post.vue'],()=>{
+        resolve(require('../components/Forum/post/post.vue'))
     })
 };
 
 export const addPost=resolve=>{
-    require.ensure(['../components/Forum/section/post/addPost.vue'],()=>{
-        resolve(require('../components/Forum/section/post/addPost.vue'))
+    require.ensure(['../components/Forum/post/addPost.vue'],()=>{
+        resolve(require('../components/Forum/post/addPost.vue'))
     })
 };
 
 export const editPost=resolve=>{
-    require.ensure(['../components/Forum/section/post/editPost.vue'],()=>{
-        resolve(require('../components/Forum/section/post/editPost.vue'))
+    require.ensure(['../components/Forum/post/editPost.vue'],()=>{
+        resolve(require('../components/Forum/post/editPost.vue'))
     })
 };
 

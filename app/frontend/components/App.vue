@@ -64,6 +64,10 @@
         border-bottom:1px solid #E5E9F2;
         height:30px;
     }
+    .el-form-item:after,
+    .el-form-item__content:after{
+        clear:none;
+    }
 </style>
 <script>
     import Header from "./Header/Header.vue";

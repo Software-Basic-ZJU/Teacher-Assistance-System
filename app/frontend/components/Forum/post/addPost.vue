@@ -1,8 +1,8 @@
 <template>
     <div>
         <div>
-            <h3>添加问题</h3>
-            <Editor btn-name="确认添加" method="addQues" ></Editor>
+            <h3>发布主题</h3>
+            <Editor method="addPost" btn-name="发布"></Editor>
         </div>
     </div>
 </template>
@@ -10,7 +10,7 @@
     
 </style>
 <script>
-    import Editor from "../../Editor/Editor.vue";
+    import Editor from "../../Editor/Editor.vue"
     export default{
         data(){
             return{

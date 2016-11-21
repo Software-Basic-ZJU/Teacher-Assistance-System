@@ -56,7 +56,6 @@
     export default{
         data(){
             return{
-                quesList:[]                 //问题列表
             }
         },
         computed:{
@@ -65,10 +64,12 @@
                 let list=this.$store.state.homework.hwList;
                 for(let i=0;i<list.length;i++){
                     if(list[i].hwId==hwId){
-                        this.quesList=list[i].quesList;
                         return list[i];
                     }
                 }
+            },
+            quesList(){
+                return this.$store.state.homework.quesList
             }
         },
         methods:{

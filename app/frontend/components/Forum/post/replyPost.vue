@@ -10,7 +10,6 @@
             </div>
             <div class="footer">
                 <div><i class="iconfont icon-pinglun"></i> ({{replyNum}})</div>
-                <div><i class="iconfont icon-dianzan1"></i> ({{starNum}})</div>
             </div>
         </div>
     </div>
@@ -62,7 +61,6 @@
             content:String,
             time:String,                         //发表时间
             replyNum:[String,Number],            //评论数量
-            starNum:[String,Number]              //点赞数量
         }
     }
 </script>

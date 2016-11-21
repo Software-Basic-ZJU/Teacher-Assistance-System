@@ -14,7 +14,12 @@
                     <div class="content" v-html="question.content"></div>
                     <div class="submitBox">
                         <h3>提交作业</h3>
-                        <Editor method="submitHw" btn-name="提交" :has-title="false"></Editor>
+                        <Editor
+                                method="submitHw"
+                                btn-name="提交"
+                                :has-title="false"
+                                :has-upload="true"
+                        ></Editor>
                     </div>
                 </div>
                 <div class="rightBox fl" v-if="identify==1">
@@ -64,7 +69,7 @@
 </template>
 <style scoped>
     .quesDetail{
-        padding:0px 20px;
+        padding:10px 20px;
     }
     .main>.leftBox{
         width:54%;
@@ -94,30 +99,36 @@
 </style>
 <script>
     import Editor from "../../Editor/Editor.vue";
-
+    import {mapState} from "vuex";
     export default{
         data(){
             return{
-                hwName:'第一张作业',
-                question:{
-                    title:"Java计算器",
-                    content:"我是我是我是"
-                },
-                stuList:[
-                    {
-                        sid:'111',
-                        name:'LowesYang',
-                        status:'已交'
-                    },
-                    {
-                        sid:'123',
-                        name:'lalala',
-                        status:'未交'
-                    }
-                ],
-                identify:0
+                identify:1
             }
         },
+        computed:mapState({
+            hwName(state){
+                let hwId=this.$route.params.hwId;
+                let list=state.homework.hwList;
+                for(let i=0;i<list.length;i++){
+                    if(list[i].hwId==hwId){
+                        return list[i].title;
+                    }
+                }
+            },
+            question(state){
+                let quesId=this.$route.params.quesId;
+                let list=state.homework.quesList;
+                for(let i=0;i<list.length;i++){
+                    if(list[i].quesId==quesId){
+                        return list[i];
+                    }
+                }
+            },
+            stuList(state){
+                return state.homework.stuList;
+            }
+        }),
         methods:{
             checkHw(index,row){
                 console.log(index,row.sid);

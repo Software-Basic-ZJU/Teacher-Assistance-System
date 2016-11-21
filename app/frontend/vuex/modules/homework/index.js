@@ -9,30 +9,33 @@ const state={
             title:'第一章作业',
             publishTime:"2016-11-03",
             deadline:"2016-12-03",
-            quesList:[              //问题列表
-                {
-                    quesId:1,
-                    title:'Java计算器编写',
-                    content:'hEE',
-                    shouldNum:20,
-                    haveNum:15
-                }
-            ]
         },
         {
             hwId:2,
             title:'第二章作业',
             publishTime:"2016-11-03",
             deadline:"2016-12-03",
-            quesList:[
-                {
-                    quesId:1,
-                    title:'Java算器编写',
-                    content:'fff',
-                    shouldNum:20,
-                    haveNum:15
-                }
-            ]
+        }
+    ],
+    quesList:[
+        {
+            quesId:1,
+            title:'Java计算器编写',
+            content:'hEE',
+            shouldNum:20,
+            haveNum:15
+        }
+    ],
+    stuList:[
+        {
+            sid:'111',
+            name:'LowesYang',
+            status:'已交'
+        },
+        {
+            sid:'123',
+            name:'lalala',
+            status:'未交'
         }
     ],
     showAdd:false,

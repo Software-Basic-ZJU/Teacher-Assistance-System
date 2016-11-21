@@ -6,40 +6,51 @@
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item :to="{name:'forum'}">讨论区</el-breadcrumb-item>
                 <el-breadcrumb-item :to="{path:'/forum/'+$route.params.section}">{{secName}}</el-breadcrumb-item>
-                <el-breadcrumb-item>主题详情</el-breadcrumb-item>
+                <el-breadcrumb-item>帖子详情</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="hostPost">
             <div class="header">
                 <div class="title">主题：{{hostPost.title}}</div>
                 <span class="author">{{hostPost.author}}</span>
-                <span class="time fr">发表于：{{hostPost.updateTime}}</span>
-                <span class="time fr">最后更新：{{hostPost.updateTime}}</span>
             </div>
             <div class="main">
                 <div class="content">{{hostPost.content}}</div>
             </div>
             <div class="footer">
-                <el-button type="primary" size="small">回复</el-button>
-                <div class="fr"><i class="iconfont icon-dianzan1"></i> ({{hostPost.starNum}})</div>
+                <el-button size="small" @click="showReply">{{replyBtn}}</el-button>
+                <el-button type="success" icon="edit" :plain="true" size="small" @click="goEditPost($route.params.pid)"></el-button>
+                <el-button type="danger" icon="delete" :plain="true" size="small" @click="removePost($route.params.pid)"></el-button>
+                <span class="time fr">发表于：{{hostPost.updateTime}}</span>
+                <span class="time fr">最后更新：{{hostPost.updateTime}}</span>
+            </div>
+            <div class="replyForm" v-show="isReplyShow">
+                <el-form :model="newReply">
+                    <el-form-item label="回帖内容">
+                        <el-input type="textarea" v-model="newReply.content"></el-input>
+                    </el-form-item>
+                    <el-button type="primary" >回复</el-button>
+                </el-form>
             </div>
         </div>
         <div class="replyPost">
             <h3>所有回复</h3>
             <reply-post
-                    v-for="item in posts"
+                    v-for="item in repostList"
                     :key="item.rpid"
                     :rpid="item.rpid"
                     :author="item.author"
                     :time="item.time"
                     :content="item.content"
                     :replyNum="item.replyNum"
-                    :starNum="item.starNum"
             ></reply-post>
         </div>
     </div>
 </template>
 <style scoped>
+    .el-breadcrumb{
+        margin-top:10px;
+    }
     .hostPost{
         padding:10px 15px;
         border-bottom:1px solid #E5E9F2;
@@ -55,11 +66,6 @@
     }
     .hostPost>.header>.author{
         color:#1D8CE0;
-    }
-    .hostPost>.header>.time{
-        margin-left: 50px;
-        font-size:12px;
-        color:#8492A6;
     }
     .hostPost>.main{
         padding:10px 0px;
@@ -79,17 +85,28 @@
     .hostPost>.footer i{
         cursor:pointer;
     }
+    .hostPost>.footer>.time{
+        margin-top: 20px;
+        margin-left:50px;
+        font-size:12px;
+        color:#8492A6;
+    }
 
-    .replyPost{
-        margin-top:0px;
+    .replyForm{
+        margin-top:10px;
+    }
+    .replyForm .el-button{
+        margin-top:-10px;
     }
     .replyPost>h3{
         color:#475669;
     }
+
 </style>
 <script>
     import router from "../../../routes";
     import replyPost from "./replyPost.vue";
+    import {mapState} from "vuex";
     export default{
         data(){
             let section=this.$route.params.section;
@@ -109,33 +126,35 @@
             }
             return{
                 secName:section,
-                hostPost:{
-                    pid:1,
-                    author:'LowesYang',
-                    title:'为什么我这么有钱?',
-                    content:'I love you.',
-                    publishTime:'2016-10-02',
-                    updateTime:'2016-11-02',
-                    starNum:12
+                newReply:{
+                    content:''
                 },
-                posts:[
-                    {
-                        rpid:1,
-                        content:'Test postTest postTest hostPost',
-                        author:'LowesYang',
-                        time:'2016-11-03',
-                        replyNum:10,
-                        starNum:5
-                    },
-                    {
-                        rpid:2,
-                        content:'Test postTest postTest hostPost',
-                        author:'LowesYang',
-                        time:'2016-11-03',
-                        replyNum:10,
-                        starNum:5
-                    },
-                ]
+                isReplyShow:false,
+                replyBtn:'回复'
+            }
+        },
+        computed:mapState({
+            hostPost(state){
+                let pid=this.$route.params.pid;
+                let list=state.forum.postList;
+                for(let i=0;i<list.length;i++){
+                    if(list[i].pid==pid){
+                        return list[i];
+                    }
+                }
+            },
+            repostList(state){
+                return state.forum.repostList
+            }
+        }),
+        methods:{
+            goEditPost(pid){
+                let section=this.$route.params.section;
+                router.push({name:'editPost',params:{section:section,pid:pid}})
+            },
+            showReply(){
+                this.isReplyShow=!this.isReplyShow;
+                this.replyBtn=this.isReplyShow?'取消':'回复';
             }
         },
         components:{

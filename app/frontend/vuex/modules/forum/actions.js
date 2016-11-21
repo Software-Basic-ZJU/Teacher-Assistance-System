@@ -1,5 +1,5 @@
 export const getPostList=({commit},info)=>{
-    commit('getPostList',info);
+    commit('updatePostList',info);
 };
 
 export const publish=({commit},info)=>{
