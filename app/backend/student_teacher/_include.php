@@ -18,7 +18,8 @@ function test_input($data) {
 function inject_prevent($Sql_Str) {//自动过滤Sql的注入语句。
     $check=preg_match('/select|insert|update|delete|\'|\\*|\*|\.\.\/|\.\/|union|into|load_file|outfile/i',$Sql_Str);
     if ($check) {
-        strtr($Sql_Str,array('select'=>' ', 'insert'=>' ', 'update'=>' ', 'delete'=>' '));
+        $Sql_Str = strtr($Sql_Str,array("select"=>" ", 'insert'=>' ', 'update'=>' ', 'delete'=>' '));
     }
     return $Sql_Str;
 }
+?>
