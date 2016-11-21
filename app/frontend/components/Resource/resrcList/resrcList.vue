@@ -5,7 +5,7 @@
                 <h2>课程资源</h2>
                 <el-button type="success" class="fr" @click="addResrc">添加资源</el-button>
             </div>
-            <el-table :data="resList" border :row-key="resrcId">
+            <el-table :data="resrcList" border :row-key="resrcId">
                 <el-table-column
                         prop="title"
                         label="课件名称"
@@ -38,11 +38,11 @@
                 >
                     <span>
                         <el-button size="small" @click="showEdit($index,row)">更新</el-button>
-                        <el-button type="primary" size="small">下载</el-button>
+                        <a :download="resrcList[$index].filePath" ><el-button type="primary" size="small">下载</el-button></a>
                     </span>
                 </el-table-column>
             </el-table>
-            <el-dialog title="编辑资源" v-model="showEditResrc">
+            <el-dialog title="编辑资源" v-model="showEditResrc" @close="closeEdit">
                 <el-form :model="editResrc">
                     <el-form-item label="资源名称" :label-width="formLabelWidth">
                         <el-input v-model="editResrc.title" auto-complete="off"></el-input>
@@ -61,8 +61,8 @@
                     </el-upload>
                 </el-form>
                 <div slot="footer" class="dialog-footer">
-                    <el-button @click.native="showEditResrc = false">取消</el-button>
-                    <el-button type="primary" @click.native="showEditResrc = false">确认更新</el-button>
+                    <el-button @click.native="closeEdit">取消</el-button>
+                    <el-button type="primary" @click.native="uploadResrc">确认更新</el-button>
                 </div>
             </el-dialog>
         </div>
@@ -81,27 +81,27 @@
     .el-button--success{
         margin-top:-45px;
     }
+    .el-input{
+        padidng:0px 10px;
+    }
 </style>
 <script>
     import router from "../../../routes";
     export default{
         data(){
             return{
-                resList:[
-                    {
-                        resrcId:1,
-                        title:'软工第三章PPT',
-                        time:'2016-12-04',
-                        uploader:'LowesYang',
-                        filePath:'',
-                        size:1024
-                    }
-                ],
-                showEditResrc:false,
-                editResrc:{
-                    resrcId:"",
-                    title:"",
-                }
+                isUpload:false
+            }
+        },
+        computed:{
+            resrcList(){
+                return this.$store.state.resource.resrcList;
+            },
+            showEditResrc(){
+                return this.$store.state.resource.showEditResrc;
+            },
+            editResrc(){
+                return this.$store.state.resource.editResrc;
             }
         },
         methods:{
@@ -109,9 +109,13 @@
                 router.push({name:'addResrc'});
             },
             showEdit(index,row){
-                this.showEditResrc=true;
-                this.editResrc.resrcId=row.resrcId;
-                this.editResrc.title=row.title;
+                this.$store.dispatch('showEdit',{
+                    index,
+                    row
+                });
+            },
+            closeEdit(){
+                this.$store.dispatch('closeEdit')
             },
             checkUpload(file){
                 if(this.isUpload) {
@@ -131,6 +135,9 @@
                 console.log(fileList);
                 this.isUpload=false;
             },
+            uploadResrc(){
+                this.$store.dispatch('uploadResrc')
+            }
         }
     }
 </script>

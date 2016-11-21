@@ -2,9 +2,9 @@
     <div>
         <div>
             <h3>添加资源</h3>
-            <el-form :model="newResource">
+            <el-form :model="newResrc">
                 <el-form-item label="课件名称">
-                    <el-input v-model="newResource.title"></el-input>
+                    <el-input v-model="newResrc.title"></el-input>
                 </el-form-item>
                 <el-upload
                         action="//jsonplaceholder.typicode.com/posts/"
@@ -21,7 +21,7 @@
                 </el-upload>
                 <el-form-item>
                     <el-button type="primary" @click="submitResrc">确认上传</el-button>
-                    <el-button @click="cancel">取消</el-button>
+                    <el-button @click="cancelAdd">取消</el-button>
                 </el-form-item>
             </el-form>
         </div>
@@ -37,12 +37,16 @@
 </style>
 <script>
     import router from "../../../routes";
+    import {mapActions} from "vuex";
     export default{
         data(){
             return{
-                newResource:{
-                },
                 isUpload:false
+            }
+        },
+        computed:{
+            newResrc(){
+                return this.$store.state.resource.newResrc
             }
         },
         methods:{
@@ -64,9 +68,10 @@
                 console.log(fileList);
                 this.isUpload=false;
             },
-            cancel(){
-                router.go(-1);
-            }
+            ...mapActions([
+                'submitResrc',
+                'cancelAdd'
+            ])
         }
     }
 </script>

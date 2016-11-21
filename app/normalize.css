@@ -419,18 +419,6 @@ textarea {
     font: inherit; /* 2 */
 }
 
-input[type="text"],
-input[type="search"],
-input[type="email"],
-input[type="password"],
-textarea.materialize-textarea{
-    padding:1px;
-}
-
-.fl{float:left;}
-.fr{float:right;}
-.cl{clear:both;}
-
 .fl{float:left;}
 .fr{float:right;}
 .cl{clear:both;}

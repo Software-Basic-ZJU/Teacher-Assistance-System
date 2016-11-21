@@ -39,7 +39,7 @@
         },
         created(){
             //initial tabs' active item
-            let route=this.$route.path.split('/')[2];
+            let route=this.$route.name;
             if(route=='course') this.currIndex="1";
             else if(route=='teacher') this.currIndex="2";
         },
@@ -56,7 +56,7 @@
                 }
             },
             goEdit(){
-                let route=this.$route.path.split('/')[2];
+                let route=this.$route.name;
                 switch(route){
                     case 'course':
                         router.push({name:'editCourse'});
