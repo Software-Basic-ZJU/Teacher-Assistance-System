@@ -2,7 +2,7 @@
     <div>
         <div class="noticeBox">
             <el-button type="success" class="fr" icon="plus" @click="toggleAdd"></el-button>
-            <div class="noteItem" v-for="item in noticeList" :key="$index" @click.stop="goDetail(item.nid)">
+            <div class="noteItem" v-for="item in noticeList" :key="item.nid" @click.stop="goDetail(item.nid)">
                 <i class="iconfont fl" :class="{'icon-tongzhi1':item.level==0,'icon-icon15 serious':item.level==1}"></i>
                 <div class="title fl">{{item.title}}</div>
                 <div class="time fr">{{item.publishTime}}</div>
@@ -52,19 +52,16 @@
 <script>
     import router from "../../../routes";
     import Editor from "../../Editor/Editor.vue"
+    import {mapState} from "vuex";
     export default{
         data(){
             return{
             }
         },
-        computed:{
-            noticeList(){
-                return this.$store.state.info.noticeList;
-            },
-            showAddNotice(){
-                return this.$store.state.info.showAddNotice;
-            }
-        },
+        computed:mapState({
+            noticeList:state=>state.info.noticeList,
+            showAddNotice:state=>state.info.showAddNotice
+        }),
         methods:{
             goDetail(nid){
                 router.push({name:'notice',params:{nid:nid}});

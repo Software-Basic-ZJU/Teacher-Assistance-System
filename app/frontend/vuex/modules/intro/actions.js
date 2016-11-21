@@ -1,7 +1,7 @@
 export const editCourseInfo=({commit},payload)=>{
-    commit('editCourseInfo');
+    commit('updateCourseInfo');
 };
 
 export const editTeacherInfo=({commit},payload)=>{
-    commit('editTeacherInfo');
+    commit('updateTeacherInfo');
 }

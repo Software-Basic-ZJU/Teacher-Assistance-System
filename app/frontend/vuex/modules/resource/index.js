@@ -30,27 +30,26 @@ const state={
             size:1024
         }
     ],
-    showEditResrc:false
+    showEdit:false
 }
 
 const mutations={
-    showEdit(state,payload){
-        state.showEditResrc=true;
+    showEditResrc(state,payload){
+        state.showEdit=true;
         let row=payload.row;
         state.editResrc.resrcId=row.resrcId;
         state.editResrc.title=row.title;
     },
-    closeEdit(state){
-        state.showEditResrc=false;
+    closeEditResrc(state){
+        state.showEdit=false;
         state.editResrc.resrcId="";
         state.editResrc.title="";
     },
     uploadResrc(state){
         //TODO
     },
-    cancelAdd(state){
+    cancelAddResrc(state){
         //TODO clear data.remove file.
-        router.go(-1);
     }
 }
 

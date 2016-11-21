@@ -11,10 +11,10 @@ const state={
 };
 
 const mutations={
-    editCourseInfo(state){
+    updateCourseInfo(state){
 
     },
-    editTeacherInfo(state){
+    updateTeacherInfo(state){
 
     }
 };

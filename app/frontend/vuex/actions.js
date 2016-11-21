@@ -8,6 +8,8 @@ export const editorSubmit=({commit},payload)=>{
         case 'editArticle':break;
         case 'editCourse':break;
         case 'editTeacher':break;
+        case 'addQues':break;
+        case 'editQues':break;
         default:break;
     }
 }

@@ -11,9 +11,7 @@
                     <div class="title">
                         {{question.title}}
                     </div>
-                    <div class="content">
-                        {{question.content}}
-                    </div>
+                    <div class="content" v-html="question.content"></div>
                     <div class="submitBox">
                         <h3>提交作业</h3>
                         <Editor method="submitHw" btn-name="提交" :has-title="false"></Editor>

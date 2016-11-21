@@ -87,35 +87,30 @@
 </style>
 <script>
     import router from "../../../routes";
+    import {mapState} from "vuex";
     export default{
         data(){
             return{
                 isUpload:false
             }
         },
-        computed:{
-            resrcList(){
-                return this.$store.state.resource.resrcList;
-            },
-            showEditResrc(){
-                return this.$store.state.resource.showEditResrc;
-            },
-            editResrc(){
-                return this.$store.state.resource.editResrc;
-            }
-        },
+        computed:mapState({
+            resrcList:state=>state.resource.resrcList,
+            showEditResrc:state=>state.resource.showEdit,
+            editResrc:state=>state.resource.editResrc
+        }),
         methods:{
             addResrc(){
                 router.push({name:'addResrc'});
             },
             showEdit(index,row){
-                this.$store.dispatch('showEdit',{
+                this.$store.dispatch('showEditResrc',{
                     index,
                     row
                 });
             },
             closeEdit(){
-                this.$store.dispatch('closeEdit')
+                this.$store.dispatch('closeEditResrc')
             },
             checkUpload(file){
                 if(this.isUpload) {

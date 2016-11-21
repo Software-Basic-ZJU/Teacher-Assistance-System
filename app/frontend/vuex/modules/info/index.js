@@ -69,7 +69,7 @@ const mutations={
     toggleEditNotice(state){
         state.showEditNotice=!state.showEditNotice;
     },
-    getReplyList(state){
+    updateReplyList(state,payload){
 
     }
 }

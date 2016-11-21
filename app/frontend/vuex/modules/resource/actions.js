@@ -1,9 +1,11 @@
-export const showEdit=({commit},payload)=>{
-    commit('showEdit',payload);
+import router from '../../../routes';
+
+export const showEditResrc=({commit},payload)=>{
+    commit('showEditResrc',payload);
 }
 
-export const closeEdit=({commit},payload)=>{
-    commit('closeEdit');
+export const closeEditResrc=({commit},payload)=>{
+    commit('closeEditResrc');
 }
 
 export const uploadResrc=({commit})=>{
@@ -14,6 +16,7 @@ export const submitResrc=({commit})=>{
     commit('submitResrc');
 }
 
-export const cancelAdd=({commit})=>{
-    commit('cancelAdd')
+export const cancelAddResrc=({commit})=>{
+    commit('cancelAddResrc');
+    router.go(-1);
 }

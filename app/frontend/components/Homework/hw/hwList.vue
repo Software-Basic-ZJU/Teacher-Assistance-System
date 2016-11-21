@@ -3,18 +3,18 @@
         <div class="homework">
             <div class="header">
                 <h2>作业列表</h2>
-                <el-button type="success" class="fr" @click.navtive="showAddPost = true">添加作业</el-button>
+                <el-button type="success" class="fr" @click.navtive="showAddHw">添加作业</el-button>
             </div>
             <hw-item
                     v-for="item in hwList"
                     :key="item.hwId"
-                    :hwId="item.hwId"
+                    :hw-id="item.hwId"
                     :title="item.title"
-                    :publish-time="item.updateTime"
+                    :publish-time="item.publishTime"
                     :deadline="item.deadline"
                     :identify="identify"
             ></hw-item>
-            <el-dialog title="添加作业" v-model="showAddPost" size="tiny">
+            <el-dialog title="添加作业" v-model="showAdd" size="tiny" @close="closeAddHw">
                 <el-form :model="newHw">
                     <el-form-item label="作业标题" :label-width="formLabelWidth">
                         <el-input v-model="newHw.title" auto-complete="off" class="title"></el-input>
@@ -28,7 +28,7 @@
                     </el-form-item>
                 </el-form>
                 <div slot="footer" class="dialog-footer">
-                    <el-button @click.native="showAddPost = false">取消</el-button>
+                    <el-button @click.native="closeAddHw">取消</el-button>
                     <el-button type="primary" @click.native="addHw">确认添加</el-button>
                 </div>
             </el-dialog>
@@ -53,37 +53,29 @@
 </style>
 <script>
     import hwItem from "./hwItem.vue";
+    import {mapActions,mapState} from "vuex";
     export default{
         data(){
             return{
-                hwList:[
-                    {
-                        hwId:1,
-                        title:'第一章作业',
-                        publishTime:"2016-11-03",
-                        deadline:"2016-12-03"
-                    },
-                    {
-                        hwId:2,
-                        title:'第二章作业',
-                        publishTime:"2016-11-03",
-                        deadline:"2016-12-03"
-                    }
-                ],
                 identify:1,
-                showAddPost:false,
                 newHw:{
                     title:"",
-                    publishTime:"",
                     deadline:""
                 }
             }
         },
+        computed:mapState({
+            showAdd:state=>state.homework.showAdd,
+            hwList:state=>state.homework.hwList
+        }),
         methods:{
             addHw(){
-                //todo add post
-                this.showAddPost=false;
-            }
+                this.$store.dispatch('addHw',this.newHw);
+            },
+            ...mapActions([
+                'showAddHw',
+                'closeAddHw'
+            ])
         },
         components:{
             hwItem

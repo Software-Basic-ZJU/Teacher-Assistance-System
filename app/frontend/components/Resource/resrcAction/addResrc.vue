@@ -21,7 +21,7 @@
                 </el-upload>
                 <el-form-item>
                     <el-button type="primary" @click="submitResrc">确认上传</el-button>
-                    <el-button @click="cancelAdd">取消</el-button>
+                    <el-button @click="cancelAddResrc">取消</el-button>
                 </el-form-item>
             </el-form>
         </div>
@@ -70,7 +70,7 @@
             },
             ...mapActions([
                 'submitResrc',
-                'cancelAdd'
+                'cancelAddResrc'
             ])
         }
     }
