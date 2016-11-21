@@ -34,17 +34,26 @@ function decrypt($str) {
     }
     return unserialize($str);
 }
-function verify_token($token){
-    $token_array = explode("-", decrypt($token));
+function loginCheck($token){
+    $token_array = explode("-", decrypt($token));//$token = $id."-".$type."-".time();
     $expireTime = time() + 7200;
     //Check user_name
     global $conn;
     connectDB();
-    $query_result = mysqli_query($conn,
-        "select * from user where user_name='".$token_array[0]."' ");
+    if($token_array[1]==1){//type: 1->student 2->teacher
+        $query_result = mysqli_query($conn,
+            "select * from student where student_id ='".$token_array[0]."' ");
+    }
+    elseif ($token_array[1]==2){
+        $query_result = mysqli_query($conn,
+            "select * from teacher where teacher_id ='".$token_array[0]."' ");
+    }
+    else{
+        $query_result = null;
+    }
     if(!$query_result){
         $result = array(
-            'code' => 233,
+            'code' => -1,
             'msg' => '当前用户名与token中的用户名不一致',
             'res' => array()
         );
@@ -52,7 +61,7 @@ function verify_token($token){
         exit;
     } elseif($token_array[1] > $expireTime){
         $result = array(
-            'code' => 233,
+            'code' => -1,
             'msg' => 'token已过期',
             'res' => array()
         );
@@ -60,9 +69,22 @@ function verify_token($token){
         exit;
     } else{
         $fetched = mysqli_fetch_array($query_result);
-        $_SESSION['user_name'] = $fetched['user_name'];
-        $_SESSION['user_id'] = $fetched['user_id'];
-        $new_token = encrypt($token_array[0]."-".time());
+        if($token_array[1]==1){
+            $_SESSION['student_id'] = $fetched['student_id'];
+            $_SESSION['sname']= $fetched['sname'];
+            $_SESSION['email']= $fetched['email'];
+            $_SESSION['class_id']= $fetched['class_id'];
+            $_SESSION['group_id']= $fetched['group_id'];
+
+        }
+        elseif ($token_array[1]==2){
+            $_SESSION['teacher_id'] = $fetched['teacher_id'];
+            $_SESSION['tname']= $fetched['name'];
+            $_SESSION['email']= $fetched['email'];
+            $_SESSION['info_id']= $fetched['info_id'];
+        }
+        $_SESSION['type']= $token_array[1];
+        $new_token = encrypt($token_array[0]."-".$token_array[1]."-".time());
         $_SESSION['token'] = $new_token;
         return $fetched;
     }
