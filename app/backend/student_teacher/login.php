@@ -38,7 +38,7 @@ if($type == 1){
                     "token" => $token,
                     "id" => $id,
                     'class_id'=>$fetched['class_id'],
-                    'teacher_id'=> $teacher_id,//$fetched2['teacher_id'],
+                    'teacher_id'=> $teacher_id,
                     'name'=>$fetched['sname'],
                     'type'=>$type,
                     'group_id'=>$fetched['group_id']
@@ -79,7 +79,7 @@ elseif ($type == 2){
         $token = encrypt($token);
 
         $result = array(
-            "code" => 0,
+            "code" => 3,
             "msg" => "登陆成功",
             "res" => array(
                 "token" => $token,
