@@ -7,6 +7,7 @@ import intro from "./modules/intro";
 import resource from "./modules/resource";
 import homework from "./modules/homework";
 import forum from "./modules/forum";
+import group from "./modules/group";
 
 Vue.use(Vuex);
 
@@ -18,6 +19,7 @@ export default new Vuex.Store({
         intro,
         resource,
         homework,
-        forum
+        forum,
+        group
     }
 })

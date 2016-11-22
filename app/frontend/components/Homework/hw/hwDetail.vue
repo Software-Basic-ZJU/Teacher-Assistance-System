@@ -59,7 +59,7 @@
             }
         },
         computed:{
-            hwDetail(){                     //作业详情
+            hwDetail(){                             //作业详情
                 let hwId=this.$route.params.hwId;
                 let list=this.$store.state.homework.hwList;
                 for(let i=0;i<list.length;i++){

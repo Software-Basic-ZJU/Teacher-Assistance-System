@@ -3,6 +3,7 @@ import router from '../../../routes';
 import * as actions from './actions';
 
 const state={
+    loading:false,
     newResrc:{
         title:'',
         filePath:''

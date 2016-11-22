@@ -25,6 +25,7 @@ import {
     quesDetail,
     addQues,
     editQues,
+    correct,
     Forum,
     forumScetion,
     forumHome,
@@ -168,6 +169,11 @@ const routes=[
                         name:'editQues',
                         path:'/homework/:hwId/question/edit/:quesId',
                         component:editQues
+                    },
+                    {
+                        name:'correct',
+                        path:'/homework/:hwId/question/:quesId/correct/:sid',
+                        component:correct
                     }
                 ]
             },

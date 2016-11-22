@@ -12,7 +12,7 @@
                         {{question.title}}
                     </div>
                     <div class="content" v-html="question.content"></div>
-                    <div class="submitBox">
+                    <div class="submitBox" v-if="!identify">
                         <h3>提交作业</h3>
                         <Editor
                                 method="submitHw"
@@ -99,6 +99,7 @@
 </style>
 <script>
     import Editor from "../../Editor/Editor.vue";
+    import router from "../../../routes";
     import {mapState} from "vuex";
     export default{
         data(){
@@ -131,7 +132,10 @@
         }),
         methods:{
             checkHw(index,row){
-                console.log(index,row.sid);
+//                console.log(index,row.sid);
+                let hwId=this.$route.params.hwId;
+                let quesId=this.$route.params.quesId;
+                router.push({name:'correct',params:{hwId:hwId,quesId:quesId,sid:row.sid}});
             }
         },
         components:{

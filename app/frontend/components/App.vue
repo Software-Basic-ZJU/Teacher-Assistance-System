@@ -23,10 +23,10 @@
     .app{
         width:100%;
         height:100vh;
-    }
-    .container{
         max-width:1400px;
         min-width:960px;
+    }
+    .container{
         margin:0px auto;
     }
     .menuBox{
@@ -67,6 +67,9 @@
     .el-form-item:after,
     .el-form-item__content:after{
         clear:none;
+    }
+    .el-dialog{
+        min-width:300px;
     }
 </style>
 <script>

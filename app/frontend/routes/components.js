@@ -64,6 +64,12 @@ export const addQues=resolve=>{
     })
 };
 
+export const correct=resolve=>{
+    require.ensure(['../components/Homework/correct/correct.vue'],()=>{
+        resolve(require('../components/Homework/correct/correct.vue'))
+    })
+};
+
 export const editQues=resolve=>{
     require.ensure(['../components/Homework/question/editQues.vue'],()=>{
         resolve(require('../components/Homework/question/editQues.vue'))
