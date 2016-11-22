@@ -16,13 +16,13 @@ loginCheck($_POST['token']);
 //Get information
 $notice_id = test_input(mysqli_escape_string($conn, $_POST['notice_id']));
 $query_result = mysqli_query($conn, "select * from notification 
-                                         where class_id ='$notice_id'");
+                                         where noti_id ='$notice_id'");
 if($fetched = mysqli_fetch_array($query_result)){
     $result = array(
         "code" => 0,
         "msg" => "查找成功",
         "res" => array(
-            "notice_id" => $fetched['notice_id'],
+            "notice_id" => $fetched['noti_id'],
             "title" => $fetched['title'],
             "content" => $fetched['content'],
             "time" => $fetched['time'],

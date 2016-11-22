@@ -21,7 +21,7 @@ if($fetched = mysqli_fetch_array($query_result)){
     $notices = array();
     do{ //Notices[String](notice_id,title,level,time,content)
         $notices[] = array(
-            "notice_id" => $fetched['notice_id'],
+            "notice_id" => $fetched['noti_id'],
             "title" => $fetched['title'],
             "level" => $fetched['level'],
             "time" => $fetched['time'],

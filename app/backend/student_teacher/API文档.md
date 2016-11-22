@@ -55,11 +55,11 @@ POST——Teacher-Assistance-System/app/backend/student_teacher/login.php
 	)
 ```
 
-## 2、查找通知功能
+## 2、查找一个班级的通知列表功能
 
 POST——Teacher-Assistance-System/app/backend/student_teacher/getNotices.php
 
-参数：class_id
+参数：class_id（查找一个班级的通知）
 
 返回:
 
@@ -81,6 +81,113 @@ POST——Teacher-Assistance-System/app/backend/student_teacher/getNotices.php
 ```php
 		"code" => 1,
         "msg" => "查找失败，班级ID错误",
+        "res" => null
+```
+
+## 3、查找一则通知功能
+
+POST——Teacher-Assistance-System/app/backend/student_teacher/getNoticeDetail.php
+
+参数：notice_id
+
+返回:
+
+```php
+		"code" => 0,
+        "msg" => "查找成功",
+        "res" => array(
+            "notice_id" 
+            "title"
+            "content"
+            "time"
+            "level"(0为普通，1为重要)
+        )
+```
+
+```php
+		"code" => 1,
+        "msg" => "查找失败，notice_id错误",
+        "res" => null
+```
+
+## 4、查找一个教师的文章列表功能
+
+POST——Teacher-Assistance-System/app/backend/student_teacher/getArticles.php
+
+参数：teacher_id
+
+返回:
+
+```php
+		"code" => 0,
+        "msg" => "查找成功",
+        "res" => $articles
+ //其中$articles为数组的数组
+          $articles[] = array(
+            "article_id"
+            "title"
+            "content"
+            "author"
+            "time"
+        );
+```
+
+```php
+		"code" => 1,
+        "msg" => "查找失败，teacher_id错误",
+        "res" => null
+```
+
+## 5、查找一篇文章
+
+POST——Teacher-Assistance-System/app/backend/student_teacher/getArticleDetail.php
+
+参数：article_id
+
+返回:
+
+```php
+		"code" => 0,
+        "msg" => "查找成功",
+        "res" => array(
+            "article_id"
+            "title"
+            "content" 
+            "author"
+            "time"
+        )
+```
+
+```php
+		"code" => 1,
+        "msg" => "查找失败，article_id错误",
+        "res" => null
+```
+
+## 6、返回home页面信息（教师联系方式）
+
+POST——Teacher-Assistance-System/app/backend/student_teacher/getHome.php
+
+参数：class_id
+
+返回:
+
+```php
+		"code" => 0,
+        "msg" => "查找成功",
+        "res" => array(
+            "name" （教师名字）
+            "phone" 
+            "email" 
+            "wechat"
+            "qq" 
+            "other_contact" 
+        )
+```
+
+```php
+		"code" => 1,
+        "msg" => "查找失败，class_id错误",
         "res" => null
 ```
 

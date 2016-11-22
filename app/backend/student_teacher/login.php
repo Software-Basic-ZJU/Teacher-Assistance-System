@@ -27,10 +27,6 @@ if($type == 1){
         $query_result2 = mysqli_query($conn, "select teacher_id from class_teacher where class_id ='$class_id'");
         if($fetched2 = mysqli_fetch_array($query_result2)){
             //Token,id,class_id,teacher_id,name,type,group_id
-            $teacher_id = array();
-            do{
-                $teacher_id[] = $fetched2['teacher_id'];
-            }while($fetched2 = mysqli_fetch_array($query_result2));
             $result = array(
                 "code" => 0,
                 "msg" => "登陆成功",
@@ -38,7 +34,7 @@ if($type == 1){
                     "token" => $token,
                     "id" => $id,
                     'class_id'=>$fetched['class_id'],
-                    'teacher_id'=> $teacher_id,
+                    'teacher_id'=> $fetched2['teacher_id'],
                     'name'=>$fetched['sname'],
                     'type'=>$type,
                     'group_id'=>$fetched['group_id']
