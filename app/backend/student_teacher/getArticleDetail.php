@@ -16,14 +16,14 @@ loginCheck($_POST['token']);
 //Get information
 $article_id = test_input(mysqli_escape_string($conn, $_POST['article_id']));
 $query_result = mysqli_query($conn, "select * from article 
-                                         where article_id ='$article_id'");
+                                         where art_id ='$article_id'");
 if($fetched = mysqli_fetch_array($query_result)){
     //Article_id,title,content,author,time
     $result = array(
         "code" => 0,
         "msg" => "查找成功",
         "res" => array(
-            "article_id" => $fetched['article_id'],
+            "article_id" => $fetched['art_id'],
             "title" => $fetched['title'],
             "content" => $fetched['content'],
             "author" => $fetched['author'],

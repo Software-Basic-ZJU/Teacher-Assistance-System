@@ -7,7 +7,8 @@
  */
 function connectDB(){
     global $conn;
-    $conn = mysqli_connect("host", "username", "passwd", "dbname");//要修改密码和
+    $conn = mysqli_connect("localhost","root","","course_assist");
+    $conn->query("set names 'utf8'");
     if(mysqli_connect_errno()){
         printf("Connect failed: %s\n", mysqli_connect_errno());
         exit();
@@ -89,3 +90,4 @@ function loginCheck($token){
         return $fetched;
     }
 }
+?>
