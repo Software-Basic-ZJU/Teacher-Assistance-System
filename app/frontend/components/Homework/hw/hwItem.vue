@@ -19,24 +19,6 @@
                 </div>
                 <div class="cl"></div>
             </el-card>
-            <el-dialog title="修改作业" v-model="showEdit" size="tiny" @close="closeEditHw(hwId)">
-                <el-form :model="newHw">
-                    <el-form-item label="作业标题" :label-width="formLabelWidth">
-                        <el-input v-model="newHw.title" auto-complete="off" class="title"></el-input>
-                    </el-form-item>
-                    <el-form-item>
-                        <el-date-picker
-                                v-model="newHw.deadline"
-                                type="datetime"
-                                placeholder="选择截止日期"
-                        ></el-date-picker>
-                    </el-form-item>
-                </el-form>
-                <div slot="footer" class="dialog-footer">
-                    <el-button @click.native="closeEditHw(hwId)">取消</el-button>
-                    <el-button type="primary" @click.native="editHw(hwId)">确认修改</el-button>
-                </div>
-            </el-dialog>
         </div>
     </div>
 </template>
@@ -59,17 +41,7 @@
             return{
                 bodyStyle:{
                     backgroundColor:"#EFF2F7"
-                },
-                newHw:{
-                    title:this.title,
-                    deadline:this.deadline
                 }
-            }
-        },
-        computed:{
-            showEdit(){
-                let hwId=this.hwId;
-                return !!this.$store.state.homework.showEdit[hwId];
             }
         },
         props:{
@@ -81,21 +53,10 @@
         },
         methods:{
             goHwDetail(hwId){
-                let self=this;
                 router.push({name:'hwDetail',params:{hwId:hwId}})
             },
             showEditHw(hwId){
                 this.$store.dispatch('showEditHw',hwId);
-            },
-            closeEditHw(hwId){
-                this.$store.dispatch('closeEditHw',hwId);
-            },
-            editHw(hwId){
-                this.$store.dispatch('editHw',{
-                    hwId:hwId,
-                    title:this.newHw.title,
-                    deadline:this.newHw.deadline
-                })
             }
         }
     }
