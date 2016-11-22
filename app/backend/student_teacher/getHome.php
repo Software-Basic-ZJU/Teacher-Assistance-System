@@ -12,7 +12,7 @@ include '_include.php';
 global $conn;
 connectDB();
 //Verify token
-//loginCheck($_POST['token']);
+loginCheck($_POST['token']);
 //Get information
 $class_id = test_input(mysqli_escape_string($conn, $_POST['class_id']));
 //select *, count(distinct name) from table group by name
