@@ -8,7 +8,7 @@
 header('Content-type: application/json');
 session_start();
 // Connect database
-include '_include.php';
+include '../login/_include.php';
 global $conn;
 connectDB();
 //Verify token
