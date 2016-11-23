@@ -11,9 +11,20 @@ import group from "./modules/group";
 
 Vue.use(Vuex);
 
+const state={
+    identify:0,
+
+};
+
+const mutations={
+    
+};
+
 export default new Vuex.Store({
+    state,
     getters,
     actions,
+    mutations,
     modules:{
         info,
         intro,

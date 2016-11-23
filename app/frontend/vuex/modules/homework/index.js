@@ -34,17 +34,25 @@ const state={
         {
             sid:'111',
             name:'LowesYang',
+            content:'啦啦啦啦我我哦我',
+            attach:'http://www.baidu.com',
             status:'已交'
         },
         {
             sid:'123',
             name:'lalala',
+            content:'啦啦啦啦showhsow',
+            attach:'http://www.baidu.com',
             status:'未交'
         }
     ],
     showAction:false,       //对话框弹出和消失state
     actionType:false,       //false为添加作业，true为编辑作业
-    editHwId:''
+    editHwId:'',
+    markForm:{              //教师点评表单state
+        score:'',
+        review:''
+    }
 }
 
 const mutations={
