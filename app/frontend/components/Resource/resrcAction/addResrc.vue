@@ -3,8 +3,8 @@
         <div>
             <h3>添加资源</h3>
             <el-form :model="newResrc">
-                <el-form-item label="课件名称">
-                    <el-input v-model="newResrc.title"></el-input>
+                <el-form-item label="课件资源名称">
+                    <el-input placeholder="课件资源名称" v-model="newResrc.title"></el-input>
                 </el-form-item>
                 <el-upload
                         action="//jsonplaceholder.typicode.com/posts/"
@@ -33,6 +33,9 @@
     }
     .el-button{
         margin-top:20px;
+    }
+    .el-input{
+        width:200px;
     }
 </style>
 <script>

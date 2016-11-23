@@ -13,4 +13,8 @@ export const showEditHw=({commit},hwId)=>{
 
 export const submitHw=({commit},payload)=>{
     console.log(payload);
+};
+
+export const submitReview=({commit},markForm)=>{
+    console.log(markForm);
 }

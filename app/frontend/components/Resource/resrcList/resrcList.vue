@@ -38,7 +38,7 @@
                 >
                     <span>
                         <el-button size="small" @click="showEdit($index,row)">更新</el-button>
-                        <a :download="resrcList[$index].filePath" ><el-button type="primary" size="small">下载</el-button></a>
+                        <a :href="resrcList[$index].filePath" :download="resrcList[$index].title"><el-button type="primary" size="small">下载</el-button></a>
                     </span>
                 </el-table-column>
             </el-table>
