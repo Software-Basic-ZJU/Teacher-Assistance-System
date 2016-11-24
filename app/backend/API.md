@@ -193,7 +193,7 @@ POST——Teacher-Assistance-System/app/backend/getHome.php
 
 ## 7、返回课程信息
 
-POST——Teacher-Assistance-System/app/backend/getCourseInfo.php
+POST——Teacher-Assistance-System/app/backend/getInfo/getCourseInfo.php
 
 参数：teacher_id
 
@@ -215,7 +215,7 @@ POST——Teacher-Assistance-System/app/backend/getCourseInfo.php
 
 ## 8、返回教师信息
 
-POST——Teacher-Assistance-System/app/backend/getTeacherInfo.php
+POST——Teacher-Assistance-System/app/backend/getInfo/getTeacherInfo.php
 
 参数：teacher_id
 
@@ -232,6 +232,36 @@ POST——Teacher-Assistance-System/app/backend/getTeacherInfo.php
             "honor"
             "other_info"
         )
+```
+
+```php
+		"code" => 1,
+        "msg" => "查找失败，class_id错误",
+        "res" => null
+```
+
+## 9、返回教师资源列表
+
+POST——Teacher-Assistance-System/app/backend/aboutResource/getResourceList
+
+参数：teacher_id
+
+返回:
+
+```php
+		"code" => 0,
+        "msg" => "查找成功",
+        "res" => $resourceList
+          
+         其中
+          $resourceList[] = array(
+            "resource_id" 
+            "name" 资源名字
+            "path"路径
+            "upload_time" 
+            "uploader_name"
+            "size" 资源大小
+        );
 ```
 
 ```php
