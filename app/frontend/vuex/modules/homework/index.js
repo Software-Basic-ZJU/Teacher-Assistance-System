@@ -9,12 +9,18 @@ const state={
             title:'第一章作业',
             publishTime:"2016-11-03",
             deadline:"2016-12-03",
+            hwType:1,
+            punishType:0,
+            punishRate:1
         },
         {
             hwId:2,
             title:'第二章作业',
             publishTime:"2016-11-03",
             deadline:"2016-12-03",
+            hwType:0,
+            punishType:1,
+            punishRate:0.52
         }
     ],
     quesList:[
@@ -30,37 +36,39 @@ const state={
         {
             sid:'111',
             name:'LowesYang',
+            content:'啦啦啦啦我我哦我',
+            attach:'http://www.baidu.com',
             status:'已交'
         },
         {
             sid:'123',
             name:'lalala',
+            content:'啦啦啦啦showhsow',
+            attach:'http://www.baidu.com',
             status:'未交'
         }
     ],
-    showAdd:false,
-    showEdit:[],          //bool 数组
+    showAction:false,       //对话框弹出和消失state
+    actionType:false,       //false为添加作业，true为编辑作业
+    editHwId:'',
+    markForm:{              //教师点评表单state
+        score:'',
+        review:''
+    }
 }
 
 const mutations={
-    showAddHw(state){
-        state.showAdd=true;
+    showHwAction(state){
+        state.showAction=true;
     },
-    closeAddHw(state){
-        state.showAdd=false;
+    closeHwAction(state){
+        state.showAction=false;
+        state.editHwId='';
     },
     showEditHw(state,hwId){
-        Vue.set(state.showEdit,hwId,true);
+        state.actionType=true;
+        state.editHwId=hwId;
     },
-    closeEditHw(state,hwId){
-        Vue.set(state.showEdit,hwId,false);
-    },
-    addHw(state,payload){
-        console.log(payload)
-    },
-    editHw(state,payload){
-        console.log(payload)
-    }
 }
 
 export default {

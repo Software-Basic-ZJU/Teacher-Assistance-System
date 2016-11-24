@@ -72,7 +72,7 @@ function loginCheck($token){
         $fetched = mysqli_fetch_array($query_result);
         if($token_array[1]==1){
             $_SESSION['student_id'] = $fetched['student_id'];
-            $_SESSION['sname']= $fetched['sname'];
+            $_SESSION['sname']= $fetched['name'];
             $_SESSION['email']= $fetched['email'];
             $_SESSION['class_id']= $fetched['class_id'];
             $_SESSION['group_id']= $fetched['group_id'];

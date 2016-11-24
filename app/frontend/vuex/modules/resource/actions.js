@@ -20,3 +20,7 @@ export const cancelAddResrc=({commit})=>{
     commit('cancelAddResrc');
     router.go(-1);
 }
+
+export const resrcFilter=({commit},index)=>{
+    commit('resrcFilter',index);
+}

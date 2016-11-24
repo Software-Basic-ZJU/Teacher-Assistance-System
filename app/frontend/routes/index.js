@@ -6,8 +6,8 @@ import {
     infoNotice,
     noticeDetail,
     infoArticle,
-    infoHome,
-    editHome,
+    infoContact,
+    editContact,
     articleDetail,
     addArticle,
     editArticle,
@@ -32,13 +32,23 @@ import {
     Post,
     addPost,
     editPost,
-    Group
+    Group,
+    Mail,
+    Search,
+    Setting,
+    User,
+    Login
 } from "./components";
 
 Vue.use(VueRouter);
 
 
 const routes=[
+    {
+        name:'login',
+        path:'/login',
+        component:Login
+    },
     {
         path:'/',
         component:App,
@@ -49,22 +59,22 @@ const routes=[
                 path:'/info',
                 name:'Info',
                 component:Info,
-                redirect:'/info/home',
+                redirect:'/info/notices',
                 children:[
-                    {
-                        name:'home',
-                        path:'/info/home',
-                        component:infoHome
-                    },
-                    {
-                        name:'editHome',
-                        path:'/info/home/edit',
-                        component:editHome
-                    },
                     {
                         name:'notices',
                         path:'/info/notices',
                         component:infoNotice
+                    },
+                    {
+                        name:'contact',
+                        path:'/info/contact',
+                        component:infoContact
+                    },
+                    {
+                        name:'editContact',
+                        path:'/info/contact/edit',
+                        component:editContact
                     },
                     {
                         name:'articles',
@@ -214,6 +224,28 @@ const routes=[
                 name:'member',
                 path:'/member',
                 component:Group
+            },
+
+            //global pages route
+            {
+                name:'search',
+                path:'/search',
+                component:Search
+            },
+            {
+                name:'mail',
+                path:'/mail',
+                component:Mail
+            },
+            {
+                name:'setting',
+                path:'/setting',
+                component:Setting
+            },
+            {
+                name:'user',
+                path:'/user',
+                component:User
             }
         ]
     },

@@ -3,8 +3,12 @@ import * as actions from './actions';
 
 const state={
     loading:false,
-    homeInfo:{
-        content:'<h2>dfdfdfdf</h2>'
+    contact:{
+        Email:'234347589@qq.com',
+        Phone:'123456789',
+        QQ:12121212,
+        Wechat:111333444,
+        ohterContact:'lalala'
     },
     noticeList:[
         {

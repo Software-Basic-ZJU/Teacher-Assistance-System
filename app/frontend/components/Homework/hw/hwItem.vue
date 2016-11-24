@@ -6,10 +6,11 @@
                     :body-style="bodyStyle"
             >
                 <div slot="header" class="clearfix">
+                    <el-tag :class="{'group':hwType}">{{hwType?'小组作业':'个人作业'}}</el-tag>
                     <span style="line-height: 36px;">{{title}}</span>
                     <el-button class="fr" type="primary" @click="goHwDetail(hwId)">前往查看</el-button>
-                    <el-button class="fr" v-if="identify==1" icon="edit" @click.native="showEditHw(hwId)"></el-button>
-                    <el-button class="fr" v-if="identify==1" type="danger" icon="delete"></el-button>
+                    <el-button class="fr" v-if="identify==1" icon="edit" :plain="true" type="warning" @click.native="showEditHw(hwId)"></el-button>
+                    <el-button class="fr" v-if="identify==1" type="danger" :plain="true" icon="delete"></el-button>
                 </div>
                 <div class="text item fl">
                     发布时间: &nbsp;&nbsp;{{publishTime}}
@@ -19,24 +20,6 @@
                 </div>
                 <div class="cl"></div>
             </el-card>
-            <el-dialog title="修改作业" v-model="showEdit" size="tiny" @close="closeEditHw(hwId)">
-                <el-form :model="newHw">
-                    <el-form-item label="作业标题" :label-width="formLabelWidth">
-                        <el-input v-model="newHw.title" auto-complete="off" class="title"></el-input>
-                    </el-form-item>
-                    <el-form-item>
-                        <el-date-picker
-                                v-model="newHw.deadline"
-                                type="datetime"
-                                placeholder="选择截止日期"
-                        ></el-date-picker>
-                    </el-form-item>
-                </el-form>
-                <div slot="footer" class="dialog-footer">
-                    <el-button @click.native="closeEditHw(hwId)">取消</el-button>
-                    <el-button type="primary" @click.native="editHw(hwId)">确认修改</el-button>
-                </div>
-            </el-dialog>
         </div>
     </div>
 </template>
@@ -46,6 +29,13 @@
     }
     .el-button--primary{
         margin-left:10px;
+    }
+    .el-tag{
+        margin-right:20px;
+    }
+    .el-tag.group{
+        background-color: #58B7FF;
+        border-color:#58B7FF;
     }
     .text.item{
         font-size:14px;
@@ -59,17 +49,7 @@
             return{
                 bodyStyle:{
                     backgroundColor:"#EFF2F7"
-                },
-                newHw:{
-                    title:this.title,
-                    deadline:this.deadline
                 }
-            }
-        },
-        computed:{
-            showEdit(){
-                let hwId=this.hwId;
-                return !!this.$store.state.homework.showEdit[hwId];
             }
         },
         props:{
@@ -77,25 +57,15 @@
             title:String,
             publishTime:String,
             deadline:String,
-            identify:[String,Number]
+            identify:[String,Number],
+            hwType:[String,Number]
         },
         methods:{
             goHwDetail(hwId){
-                let self=this;
                 router.push({name:'hwDetail',params:{hwId:hwId}})
             },
             showEditHw(hwId){
                 this.$store.dispatch('showEditHw',hwId);
-            },
-            closeEditHw(hwId){
-                this.$store.dispatch('closeEditHw',hwId);
-            },
-            editHw(hwId){
-                this.$store.dispatch('editHw',{
-                    hwId:hwId,
-                    title:this.newHw.title,
-                    deadline:this.newHw.deadline
-                })
             }
         }
     }

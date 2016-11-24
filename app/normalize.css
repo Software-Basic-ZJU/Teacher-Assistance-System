@@ -99,6 +99,10 @@ a {
  * in all browsers (opinionated).
  */
 
+a{
+    text-decoration: none;
+    color:#1D8CE0;
+}
 a:active,
 a:hover {
     outline-width: 0;

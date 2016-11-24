@@ -2,9 +2,13 @@
     <div>
         <div>
             <div class="header">
-                <h2>课程资源</h2>
+                <el-tabs :active-name="currIndex" @tab-click="resrcFilter">
+                    <el-tab-pane label="教师资源"></el-tab-pane>
+                    <el-tab-pane label="学生资源"></el-tab-pane>
+                </el-tabs>
                 <el-button type="success" class="fr" @click="addResrc">添加资源</el-button>
             </div>
+            <span class="warning">以下是学生在论坛中分享的各种资源。</span>
             <el-table :data="resrcList" border :row-key="resrcId">
                 <el-table-column
                         prop="title"
@@ -34,11 +38,12 @@
                 <el-table-column
                         inline-template
                         label="操作"
-                        min-width="120"
+                        width="180"
                 >
                     <span>
-                        <el-button size="small" @click="showEdit($index,row)">更新</el-button>
-                        <a :download="resrcList[$index].filePath" ><el-button type="primary" size="small">下载</el-button></a>
+                        <el-button size="small" :plain="true" type="danger" @click="remove($index,row)">删除</el-button>
+                        <el-button class="updateBtn" size="small" @click="showEdit($index,row)">更新</el-button>
+                        <a :href="resrcList[$index].filePath" :download="resrcList[$index].title"><el-button type="primary" size="small">下载</el-button></a>
                     </span>
                 </el-table-column>
             </el-table>
@@ -74,9 +79,20 @@
         height:25px;
         margin-top:0px;
     }
+    .header .el-tabs{
+        width:100%;
+    }
+    .header .el-button--success{
+        position: relative;
+        z-index:1;
+        margin-top:-62px;
+    }
     .el-table{
         width:100%;
         max-height:900px;
+    }
+    .updateBtn{
+        margin-left:0px;
     }
     .el-button--success{
         margin-top:-45px;
@@ -94,11 +110,17 @@
                 isUpload:false
             }
         },
-        computed:mapState({
-            resrcList:state=>state.resource.resrcList,
-            showEditResrc:state=>state.resource.showEdit,
-            editResrc:state=>state.resource.editResrc
-        }),
+        computed:{
+            resrcList(){
+                return this.$store.getters.resrcList;
+            },
+            showEditResrc(){
+                return this.$store.state.resource.showEdit
+            },
+            editResrc(){
+                return this.$store.state.resource.editResrc
+            },
+        },
         methods:{
             addResrc(){
                 router.push({name:'addResrc'});
@@ -132,6 +154,12 @@
             },
             uploadResrc(){
                 this.$store.dispatch('uploadResrc')
+            },
+            resrcFilter(tab){
+                this.$store.dispatch('resrcFilter',tab.index);
+            },
+            remove(index,row){
+
             }
         }
     }

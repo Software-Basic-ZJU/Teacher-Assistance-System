@@ -1,23 +1,20 @@
-export const showAddHw=({commit})=>{
-    commit('showAddHw');
+export const showHwAction=({commit})=>{
+    commit('showHwAction');
 };
 
-export const closeAddHw=({commit})=>{
-    commit('closeAddHw');
+export const closeHwAction=({commit})=>{
+    commit('closeHwAction');
 };
 
 export const showEditHw=({commit},hwId)=>{
+    commit('showHwAction');
     commit('showEditHw',hwId);
-}
+};
 
-export const closeEditHw=({commit},hwId)=>{
-    commit('closeEditHw',hwId);
-}
+export const submitHw=({commit},payload)=>{
+    console.log(payload);
+};
 
-export const addHw=({commit},payload)=>{
-    commit('addHw',payload);
-}
-
-export const editHw=({commit},payload)=>{
-    commit('editHw',payload);
+export const submitReview=({commit},markForm)=>{
+    console.log(markForm);
 }

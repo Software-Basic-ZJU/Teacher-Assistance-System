@@ -13,3 +13,7 @@ export const editorSubmit=({commit},payload)=>{
         default:break;
     }
 }
+
+export const login=({commit},loginForm)=>{
+    console.log(loginForm);
+}

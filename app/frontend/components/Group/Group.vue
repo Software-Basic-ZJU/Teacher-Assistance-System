@@ -32,8 +32,8 @@
                 <el-table-column
                         inline-template
                         label="操作"
-                        min-width="30">
-                    <el-button type="danger" @click="quitGroup($index,row)">退出</el-button>
+                        min-width="20">
+                    <el-button type="danger" @click="quitGroup($index,row)" size="small">退出</el-button>
                 </el-table-column>
             </el-table>
         </div>
@@ -51,7 +51,7 @@
                     <el-input v-model="group.id" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="小组密码" :label-width="formLabelWidth">
-                    <el-input v-model="group.password" auto-complete="off"></el-input>
+                    <el-input type="password" v-model="group.password" auto-complete="off"></el-input>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">

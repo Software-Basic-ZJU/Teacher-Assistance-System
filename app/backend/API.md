@@ -2,7 +2,7 @@
 
 ## 1、登录功能
 
-POST——Teacher-Assistance-System/app/backend/student_teacher/login.php
+POST——Teacher-Assistance-System/app/backend/login/login.php
 
 参数：id, password, type（登陆的身份类型，1为学生，2为教师）
 
@@ -57,7 +57,7 @@ POST——Teacher-Assistance-System/app/backend/student_teacher/login.php
 
 ## 2、查找一个班级的通知列表功能
 
-POST——Teacher-Assistance-System/app/backend/student_teacher/getNotices.php
+POST——Teacher-Assistance-System/app/backend/aboutNotice/getNotices.php
 
 参数：class_id（查找一个班级的通知）
 
@@ -86,7 +86,7 @@ POST——Teacher-Assistance-System/app/backend/student_teacher/getNotices.php
 
 ## 3、查找一则通知功能
 
-POST——Teacher-Assistance-System/app/backend/student_teacher/getNoticeDetail.php
+POST——Teacher-Assistance-System/app/backend/aboutNotice/getNoticeDetail.php
 
 参数：notice_id
 
@@ -112,7 +112,7 @@ POST——Teacher-Assistance-System/app/backend/student_teacher/getNoticeDetail.
 
 ## 4、查找一个教师的文章列表功能
 
-POST——Teacher-Assistance-System/app/backend/student_teacher/getArticles.php
+POST——Teacher-Assistance-System/app/backend/aboutArticle/getArticles.php
 
 参数：teacher_id
 
@@ -140,7 +140,7 @@ POST——Teacher-Assistance-System/app/backend/student_teacher/getArticles.php
 
 ## 5、查找一篇文章
 
-POST——Teacher-Assistance-System/app/backend/student_teacher/getArticleDetail.php
+POST——Teacher-Assistance-System/app/backend/aboutArticle/getArticleDetail.php
 
 参数：article_id
 
@@ -166,7 +166,7 @@ POST——Teacher-Assistance-System/app/backend/student_teacher/getArticleDetail
 
 ## 6、返回home页面信息（教师联系方式）
 
-POST——Teacher-Assistance-System/app/backend/student_teacher/getHome.php
+POST——Teacher-Assistance-System/app/backend/getHome.php
 
 参数：class_id
 
@@ -183,6 +183,85 @@ POST——Teacher-Assistance-System/app/backend/student_teacher/getHome.php
             "qq" 
             "other_contact" 
         )
+```
+
+```php
+		"code" => 1,
+        "msg" => "查找失败，class_id错误",
+        "res" => null
+```
+
+## 7、返回课程信息
+
+POST——Teacher-Assistance-System/app/backend/getInfo/getCourseInfo.php
+
+参数：teacher_id
+
+返回:
+
+```php
+		"code" => 0,
+        "msg" => "查找成功",
+        "res" => array(
+            "course_info"
+        )
+```
+
+```php
+		"code" => 1,
+        "msg" => "查找失败，class_id错误",
+        "res" => null
+```
+
+## 8、返回教师信息
+
+POST——Teacher-Assistance-System/app/backend/getInfo/getTeacherInfo.php
+
+参数：teacher_id
+
+返回:
+
+```php
+        "code" => 0,
+        "msg" => "查找成功",
+        "res" => array(
+            "old_teaching"
+            "achievement"
+            "teaching_style"
+            "publishment"
+            "honor"
+            "other_info"
+        )
+```
+
+```php
+		"code" => 1,
+        "msg" => "查找失败，class_id错误",
+        "res" => null
+```
+
+## 9、返回教师资源列表
+
+POST——Teacher-Assistance-System/app/backend/aboutResource/getResourceList
+
+参数：teacher_id
+
+返回:
+
+```php
+		"code" => 0,
+        "msg" => "查找成功",
+        "res" => $resourceList
+          
+         其中
+          $resourceList[] = array(
+            "resource_id" 
+            "name" 资源名字
+            "path"路径
+            "upload_time" 
+            "uploader_name"
+            "size" 资源大小
+        );
 ```
 
 ```php

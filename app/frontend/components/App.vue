@@ -23,10 +23,10 @@
     .app{
         width:100%;
         height:100vh;
-        max-width:1400px;
         min-width:960px;
     }
     .container{
+        max-width:1400px;
         margin:0px auto;
     }
     .menuBox{
@@ -70,14 +70,17 @@
     }
     .el-dialog{
         min-width:300px;
+        max-width:500px;
     }
 </style>
 <script>
     import Header from "./Header/Header.vue";
     import store from "../vuex"
+    import router from "../routes";
 
     export default{
         data(){
+//            router.replace({name:'login'});
             return {
                 menu: [
                     {
