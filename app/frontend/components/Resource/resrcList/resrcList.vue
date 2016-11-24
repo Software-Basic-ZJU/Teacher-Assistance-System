@@ -3,8 +3,8 @@
         <div>
             <div class="header">
                 <el-tabs :active-name="currIndex" @tab-click="resrcFilter">
-                    <el-tab-pane label="教师资源"></el-tab-pane>
-                    <el-tab-pane label="学生资源"></el-tab-pane>
+                    <el-tab-pane label="教师资源" name="1"></el-tab-pane>
+                    <el-tab-pane label="学生资源" name="2"></el-tab-pane>
                 </el-tabs>
                 <el-button type="success" class="fr" @click="addResrc">添加资源</el-button>
             </div>
@@ -41,8 +41,8 @@
                         width="180"
                 >
                     <span>
-                        <el-button size="small" :plain="true" type="danger" @click="remove($index,row)">删除</el-button>
-                        <el-button class="updateBtn" size="small" @click="showEdit($index,row)">更新</el-button>
+                        <el-button size="small" :plain="true" type="danger" icon="delete" @click="remove($index,row)"></el-button>
+                        <el-button class="updateBtn" size="small" :plain="true" type="warning" icon="edit" @click="showEdit($index,row)"></el-button>
                         <a :href="resrcList[$index].filePath" :download="resrcList[$index].title"><el-button type="primary" size="small">下载</el-button></a>
                     </span>
                 </el-table-column>
@@ -120,6 +120,9 @@
             editResrc(){
                 return this.$store.state.resource.editResrc
             },
+            currIndex(){
+                return this.$store.state.resource.resrcFilter
+            }
         },
         methods:{
             addResrc(){
