@@ -13,7 +13,6 @@ Vue.use(Vuex);
 
 const state={
     identify:0,
-
 };
 
 const mutations={

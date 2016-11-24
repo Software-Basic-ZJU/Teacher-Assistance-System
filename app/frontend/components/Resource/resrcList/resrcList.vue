@@ -8,7 +8,7 @@
                 </el-tabs>
                 <el-button type="success" class="fr" @click="addResrc">添加资源</el-button>
             </div>
-            <span class="warning">以下是学生在论坛中分享的各种资源。</span>
+            <div class="warning" v-if="currIndex==2">以下是学生在论坛中分享的各种资源。</div>
             <el-table :data="resrcList" border :row-key="resrcId">
                 <el-table-column
                         prop="title"
@@ -94,6 +94,12 @@
     .updateBtn{
         margin-left:0px;
     }
+    .warning{
+        margin-top:-10px;
+        margin-bottom:10px;
+        font-size:14px;
+        color:#8492A6;
+    }
     .el-button--success{
         margin-top:-45px;
     }
@@ -114,15 +120,11 @@
             resrcList(){
                 return this.$store.getters.resrcList;
             },
-            showEditResrc(){
-                return this.$store.state.resource.showEdit
-            },
-            editResrc(){
-                return this.$store.state.resource.editResrc
-            },
-            currIndex(){
-                return this.$store.state.resource.resrcFilter
-            }
+            ...mapState({
+                showEditResrc:state=>state.resource.showEdit,
+                editResrc:state=>state.resource.editResrc,
+                currIndex:state=>state.resource.resrcFilter
+            })
         },
         methods:{
             addResrc(){

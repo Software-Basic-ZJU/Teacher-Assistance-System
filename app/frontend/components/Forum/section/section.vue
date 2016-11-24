@@ -45,6 +45,10 @@
                 section="公共讨论区";
                 break;
             case "group":
+                if(!!1) {    //TODO 如果不是学生且没有选择要看的小组 需要从localStorage中取出
+                    this.$message('请在小组名单中选择一个小组进入其讨论区。');
+                    router.push({name:'member'});
+                }
                 section="小组讨论区";
                 break;
             default:
@@ -52,7 +56,7 @@
                 break;
             }
             return{
-                secName:section,
+                secName:section
             }
         },
         computed:{
