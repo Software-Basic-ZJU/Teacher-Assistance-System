@@ -35,7 +35,7 @@ if($type == 1){
                     "id" => $id,
                     'class_id'=>$fetched['class_id'],
                     'teacher_id'=> $fetched2['teacher_id'],
-                    'name'=>$fetched['sname'],
+                    'name'=>$fetched['name'],
                     'type'=>$type,
                     'group_id'=>$fetched['group_id']
                 )
@@ -51,7 +51,7 @@ if($type == 1){
                     "id" => $id,
                     'class_id'=>$fetched['class_id'],
                     'teacher_id'=> null,//$fetched2['teacher_id'],
-                    'name'=>$fetched['sname'],
+                    'name'=>$fetched['name'],
                     'type'=>$type,
                     'group_id'=>$fetched['group_id']
                 )
