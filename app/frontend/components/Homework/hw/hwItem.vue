@@ -6,10 +6,11 @@
                     :body-style="bodyStyle"
             >
                 <div slot="header" class="clearfix">
+                    <el-tag :class="{'group':hwType}">{{hwType?'小组作业':'个人作业'}}</el-tag>
                     <span style="line-height: 36px;">{{title}}</span>
                     <el-button class="fr" type="primary" @click="goHwDetail(hwId)">前往查看</el-button>
-                    <el-button class="fr" v-if="identify==1" icon="edit" @click.native="showEditHw(hwId)"></el-button>
-                    <el-button class="fr" v-if="identify==1" type="danger" icon="delete"></el-button>
+                    <el-button class="fr" v-if="identify==1" icon="edit" :plain="true" type="warning" @click.native="showEditHw(hwId)"></el-button>
+                    <el-button class="fr" v-if="identify==1" type="danger" :plain="true" icon="delete"></el-button>
                 </div>
                 <div class="text item fl">
                     发布时间: &nbsp;&nbsp;{{publishTime}}
@@ -28,6 +29,13 @@
     }
     .el-button--primary{
         margin-left:10px;
+    }
+    .el-tag{
+        margin-right:20px;
+    }
+    .el-tag.group{
+        background-color: #58B7FF;
+        border-color:#58B7FF;
     }
     .text.item{
         font-size:14px;
@@ -49,7 +57,8 @@
             title:String,
             publishTime:String,
             deadline:String,
-            identify:[String,Number]
+            identify:[String,Number],
+            hwType:[String,Number]
         },
         methods:{
             goHwDetail(hwId){

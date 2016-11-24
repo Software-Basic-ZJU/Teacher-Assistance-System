@@ -9,6 +9,7 @@
                 <el-button type="success" class="fr" @click="addQues">添加问题</el-button>
             </div>
             <div class="infoBox">
+                <span class="type">作业类型：{{hwDetail.hwType?'小组作业':'个人作业'}}</span>
                 <span class="publish">发布时间：{{hwDetail.publishTime}}</span>
                 <span class="ddl">截止时间：{{hwDetail.deadline}}</span>
             </div>
@@ -36,12 +37,14 @@
         padding:5px 0px;
         font-size:14px;
     }
+    .infoBox>span{
+        margin-right:30px;
+    }
     .infoBox>.publish{
         color:#8492A6;
     }
     .infoBox>.ddl{
         color:#FF4949;
-        margin-left:30px;
     }
     .quesList{
         padding-top:10px;

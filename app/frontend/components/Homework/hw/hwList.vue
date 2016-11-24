@@ -13,13 +13,14 @@
                     :publish-time="item.publishTime"
                     :deadline="item.deadline"
                     :identify="identify"
+                    :hw-type="item.hwType"
             ></hw-item>
             <el-dialog :title="dialogTitle" v-model="showAction" size="tiny" @close="closeHwAction">
                 <el-form :model="tempHw">
                     <el-form-item label="作业标题">
                         <el-input v-model="tempHw.title" auto-complete="off" class="title"></el-input>
                     </el-form-item>
-                    <el-form-item>
+                    <el-form-item label="截止日期">
                         <el-date-picker
                                 v-model="deadline"
                                 type="datetime"
@@ -27,6 +28,12 @@
                                 format="yyyy-MM-dd HH-mm-ss"
                                 :onClick="pickTime"
                         ></el-date-picker>
+                    </el-form-item>
+                    <el-form-item label="作业类型" >
+                        <el-radio-group v-model="hwType">
+                            <el-radio :label="0">个人作业</el-radio>
+                            <el-radio :label="1">小组作业</el-radio>
+                        </el-radio-group>
                     </el-form-item>
                     <el-form-item label="逾期惩罚" >
                         <el-radio-group v-model="punishType" @change="punishChange">
@@ -87,6 +94,7 @@
         data(){
             return{
                 identify:1,
+                hwType:0,
                 punishType:0,
                 deadline:'',
                 punishRate:''
@@ -103,6 +111,7 @@
                 for(let i=0;i<hwList.length;i++){
                     if(hwList[i].hwId==state.homework.editHwId){
                         this.deadline=hwList[i].deadline;
+                        this.hwType=hwList[i].hwType;
                         this.punishRate=(hwList[i].punishRate*100).toFixed(0);
                         return hwList[i];
                     }
@@ -128,6 +137,7 @@
                 this.$store.dispatch('closeHwAction');
             },
             submitHwAction(){
+                this.tempHw.hwType=this.hwType;
                 this.tempHw.deadline=this.deadline;
                 this.tempHw.punishRate=(this.punishRate/100).toFixed(2);
                 this.$store.dispatch('submitHw',this.tempHw);

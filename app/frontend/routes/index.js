@@ -6,8 +6,8 @@ import {
     infoNotice,
     noticeDetail,
     infoArticle,
-    infoHome,
-    editHome,
+    infoContact,
+    editContact,
     articleDetail,
     addArticle,
     editArticle,
@@ -49,22 +49,22 @@ const routes=[
                 path:'/info',
                 name:'Info',
                 component:Info,
-                redirect:'/info/home',
+                redirect:'/info/notices',
                 children:[
-                    {
-                        name:'home',
-                        path:'/info/home',
-                        component:infoHome
-                    },
-                    {
-                        name:'editHome',
-                        path:'/info/home/edit',
-                        component:editHome
-                    },
                     {
                         name:'notices',
                         path:'/info/notices',
                         component:infoNotice
+                    },
+                    {
+                        name:'contact',
+                        path:'/info/contact',
+                        component:infoContact
+                    },
+                    {
+                        name:'editContact',
+                        path:'/info/contact/edit',
+                        component:editContact
                     },
                     {
                         name:'articles',

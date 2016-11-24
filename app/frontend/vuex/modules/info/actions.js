@@ -12,4 +12,8 @@ export const getReplyList=({commit})=>{
 
 export const deleteComment=({commit},commentId)=>{
     commit('deleteComment',commentId);
+};
+
+export const editContact=({commit},contact)=>{
+    console.log(contact)
 }

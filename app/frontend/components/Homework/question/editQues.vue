@@ -19,13 +19,11 @@
         },
         computed:{
             question(){
-                let list=this.$store.state.homework.hwList;
-                let quesList=[];
+                let quesList=this.$store.state.homework.quesList;
                 let i;
-                for(i=0;i<list.length;i++){
-                    if(list[i].hwId==this.$route.params.hwId){
-                        quesList=list[i].quesList;
-                        break;
+                for(i=0;i<quesList.length;i++){
+                    if(quesList[i].quesId=this.$route.params.quesId){
+                        return quesList[i];
                     }
                 }
                 if(i==list.length){
@@ -34,11 +32,6 @@
                         type:'error',
                         message:'该问题不存在!'
                     })
-                }
-                for(i=0;i<quesList.length;i++){
-                    if(quesList[i].quesId=this.$route.params.quesId){
-                        return quesList[i];
-                    }
                 }
             }
         },

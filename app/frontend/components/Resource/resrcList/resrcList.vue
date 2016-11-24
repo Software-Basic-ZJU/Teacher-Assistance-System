@@ -34,7 +34,7 @@
                 <el-table-column
                         inline-template
                         label="操作"
-                        min-width="120"
+                        width="140"
                 >
                     <span>
                         <el-button size="small" @click="showEdit($index,row)">更新</el-button>

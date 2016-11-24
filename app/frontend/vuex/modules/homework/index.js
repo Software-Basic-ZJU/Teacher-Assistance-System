@@ -9,6 +9,7 @@ const state={
             title:'第一章作业',
             publishTime:"2016-11-03",
             deadline:"2016-12-03",
+            hwType:1,
             punishType:0,
             punishRate:1
         },
@@ -17,6 +18,7 @@ const state={
             title:'第二章作业',
             publishTime:"2016-11-03",
             deadline:"2016-12-03",
+            hwType:0,
             punishType:1,
             punishRate:0.52
         }

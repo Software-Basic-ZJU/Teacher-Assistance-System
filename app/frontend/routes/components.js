@@ -82,15 +82,15 @@ export const infoNotice=resolve=>{
     })
 };
 
-export const infoHome=resolve=>{
-    require.ensure(['../components/Info/home/home.vue'],()=>{
-        resolve(require('../components/Info/home/home.vue'))
+export const infoContact=resolve=>{
+    require.ensure(['../components/Info/contact/contact.vue'],()=>{
+        resolve(require('../components/Info/contact/contact.vue'))
     })
 };
 
-export const editHome=resolve=>{
-    require.ensure(['../components/Info/home/editHome.vue'],()=>{
-        resolve(require('../components/Info/home/editHome.vue'))
+export const editContact=resolve=>{
+    require.ensure(['../components/Info/contact/editContact.vue'],()=>{
+        resolve(require('../components/Info/contact/editContact.vue'))
     })
 };
 
