@@ -32,13 +32,23 @@ import {
     Post,
     addPost,
     editPost,
-    Group
+    Group,
+    Mail,
+    Search,
+    Setting,
+    User,
+    Login
 } from "./components";
 
 Vue.use(VueRouter);
 
 
 const routes=[
+    {
+        name:'login',
+        path:'/login',
+        component:Login
+    },
     {
         path:'/',
         component:App,
@@ -214,6 +224,28 @@ const routes=[
                 name:'member',
                 path:'/member',
                 component:Group
+            },
+
+            //global pages route
+            {
+                name:'search',
+                path:'/search',
+                component:Search
+            },
+            {
+                name:'mail',
+                path:'/mail',
+                component:Mail
+            },
+            {
+                name:'setting',
+                path:'/setting',
+                component:Setting
+            },
+            {
+                name:'user',
+                path:'/user',
+                component:User
             }
         ]
     },

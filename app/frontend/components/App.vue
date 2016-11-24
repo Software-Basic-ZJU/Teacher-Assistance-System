@@ -76,9 +76,11 @@
 <script>
     import Header from "./Header/Header.vue";
     import store from "../vuex"
+    import router from "../routes";
 
     export default{
         data(){
+//            router.replace({name:'login'});
             return {
                 menu: [
                     {
