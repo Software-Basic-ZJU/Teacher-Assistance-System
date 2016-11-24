@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <el-tabs type="card" @tab-click="handleClick" :active-name="currIndex">
+            <el-tabs type="card" @tab-click="changeTabs" :active-name="currIndex">
                 <el-tab-pane label="通知"></el-tab-pane>
                 <el-tab-pane label="联系方式"></el-tab-pane>
                 <el-tab-pane label="教学文章"></el-tab-pane>
@@ -43,7 +43,7 @@
             else if(route=='articles') this.currIndex="3";
         },
         methods: {
-            handleClick(tab) {
+            changeTabs(tab) {
                 switch(tab.index){
                     case "1":
                         router.push({name:'notices'});

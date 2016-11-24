@@ -51,7 +51,7 @@
                     <el-input v-model="group.id" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="小组密码" :label-width="formLabelWidth">
-                    <el-input v-model="group.password" auto-complete="off"></el-input>
+                    <el-input type="password" v-model="group.password" auto-complete="off"></el-input>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">

@@ -1,6 +1,6 @@
 export const Login=resolve=>{
-    require.ensure(['../components/Login/Login.vue'],()=>{
-        resolve(require('../components/Login/Login.vue'))
+    require.ensure(['../components/Login.vue'],()=>{
+        resolve(require('../components/Login.vue'))
     })
 };
 
