@@ -10,7 +10,7 @@
                     <div class="topBox">
                         <i class="iconfont icon-search fl" @click="search"></i>
                         <el-badge is-dot class="item fl">
-                            <i class="iconfont icon-i-mail fl" @click="showMail=true"></i>
+                            <i class="iconfont icon-i-mail fl" @click="showMail = true"></i>
                         </el-badge>
                         <!--<i class="iconfont icon-setting fl" @click="goRoute"></i>-->
                         <i class="iconfont icon-user fl" @click="goRoute"></i>
@@ -20,9 +20,8 @@
                 <div class="cl"></div>
             </div>
 
-            <el-dialog title="私信" v-model="showMail" :close-on-click-modal="false" size="large">
-                <div class="leftBox"></div>
-            </el-dialog>
+            <!-- mail -->
+            <Mail :show-mail="showMail"></Mail>
         </div>
     </div>
 </template>
@@ -70,6 +69,7 @@
 </style>
 <script>
     import router from "../../routes";
+    import Mail from "../Global/Mail/Mail.vue";
     export default{
         data(){
             return{
@@ -83,6 +83,9 @@
             goRoute(){
 
             },
+        },
+        components:{
+            Mail
         }
     }
 </script>

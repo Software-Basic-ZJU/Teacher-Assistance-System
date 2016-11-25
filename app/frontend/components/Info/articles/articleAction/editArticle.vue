@@ -10,7 +10,7 @@
 
 </style>
 <script>
-    import Editor from "../../Editor/Editor.vue";
+    import Editor from "../../../Editor/Editor.vue";
     export default{
         data(){
             return{

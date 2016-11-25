@@ -119,14 +119,14 @@ export const articleDetail=resolve=>{
 };
 
 export const addArticle=resolve=>{
-    require.ensure(['../components/Info/articles/addArticle.vue'],()=>{
-        resolve(require('../components/Info/articles/addArticle.vue'))
+    require.ensure(['../components/Info/articles/articleAction/addArticle.vue'],()=>{
+        resolve(require('../components/Info/articles/articleAction/addArticle.vue'))
     })
 };
 
 export const editArticle=resolve=>{
-    require.ensure(['../components/Info/articles/editArticle.vue'],()=>{
-        resolve(require('../components/Info/articles/editArticle.vue'))
+    require.ensure(['../components/Info/articles/articleAction/editArticle.vue'],()=>{
+        resolve(require('../components/Info/articles/articleAction/editArticle.vue'))
     })
 };
 
