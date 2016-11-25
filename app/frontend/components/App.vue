@@ -70,7 +70,10 @@
     }
     .el-dialog{
         min-width:300px;
-        max-width:500px;
+        max-width:740px;
+    }
+    .el-icon-d-arrow-left,.el-icon-d-arrow-right{
+        margin-top:-3px;
     }
 </style>
 <script>

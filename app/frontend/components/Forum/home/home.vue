@@ -100,12 +100,17 @@
                         todayNum:10,
                         replyNum:8
                     }
-                ]
+                ],
+                identify:1
             }
         },
         methods:{
             goPath(section){
-                router.push({name:'section',params:{section:section}});
+                if(section=='group' && !!this.identify) {    //如果不是学生
+                    this.$message('请在小组名单中选择一个小组进入其讨论区。');
+                    router.push({name:'member'});
+                }
+                else router.push({name:'section',params:{section:section}});
             }
         }
     }

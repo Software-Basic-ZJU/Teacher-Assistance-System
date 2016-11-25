@@ -32,8 +32,12 @@
                 <el-table-column
                         inline-template
                         label="操作"
-                        min-width="20">
-                    <el-button type="danger" @click="quitGroup($index,row)" size="small">退出</el-button>
+                        width="210"
+                >
+                    <span>
+                        <el-button @click="goGroupForum($index,row)" size="small" v-if="identify">进入该小组讨论区</el-button>
+                        <el-button type="danger" @click="quitGroup($index,row)" size="small">退出</el-button>
+                    </span>
                 </el-table-column>
             </el-table>
         </div>
@@ -71,7 +75,7 @@
 </style>
 <script>
     import {mapState} from 'vuex';
-
+    import router from "../../routes";
     export default{
         data(){
             return{
@@ -82,7 +86,8 @@
                     id:'',
                     name:'',
                     password:''
-                }
+                },
+                identify:1
             }
         },
         computed:mapState({
@@ -117,6 +122,10 @@
             },
             quitGroup(index,row){
                 console.log(row.id);
+            },
+            goGroupForum(index,row){
+                //TODO groupId存进教师的localstorage的身份信息中
+                router.push({name:'section',params:{section:'group'}});
             }
         }
     }

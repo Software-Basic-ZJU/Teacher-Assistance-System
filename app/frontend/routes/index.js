@@ -225,30 +225,30 @@ const routes=[
                 path:'/member',
                 component:Group
             },
-
-            //global pages route
-            {
-                name:'search',
-                path:'/search',
-                component:Search
-            },
-            {
-                name:'mail',
-                path:'/mail',
-                component:Mail
-            },
-            {
-                name:'setting',
-                path:'/setting',
-                component:Setting
-            },
-            {
-                name:'user',
-                path:'/user',
-                component:User
-            }
         ]
     },
+
+    //global pages route
+    {
+        name:'search',
+        path:'/search',
+        component:Search
+    },
+    {
+        name:'mail',
+        path:'/mail',
+        component:Mail
+    },
+    {
+        name:'setting',
+        path:'/setting',
+        component:Setting
+    },
+    {
+        name:'user',
+        path:'/user',
+        component:User
+    }
 ]
 
 const router=new VueRouter({

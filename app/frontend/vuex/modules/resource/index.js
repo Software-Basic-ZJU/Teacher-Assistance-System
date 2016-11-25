@@ -49,7 +49,7 @@ const state={
             size:1024
         }
     ],
-    resrcFilter:1,          //1 显示教师资源  2 显示学生资源
+    resrcFilter:'1',          //1 显示教师资源  2 显示学生资源
     showEdit:false
 }
 

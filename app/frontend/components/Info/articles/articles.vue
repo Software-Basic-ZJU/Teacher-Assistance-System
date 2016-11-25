@@ -18,10 +18,10 @@
 </template>
 <style scoped>
     .articleBox{
-        margin-top:-20px;
+        margin-top:-10px;
     }
     .el-button--success{
-        margin-top:-52px;
+        margin-top:-62px;
     }
 </style>
 <script>
