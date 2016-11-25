@@ -9,7 +9,7 @@
                 <div class="cl"></div>
             </div>
             <el-dialog title="添加通知" v-model="showAddNotice" @close="toggleAdd">
-                <Editor method="addNotice" btn-name="确认添加"></Editor>
+                <Editor method="addNotice" btn-name="确认添加" :has-level="true"></Editor>
             </el-dialog>
         </div>
     </div>

@@ -69,7 +69,7 @@
         },
         methods:{
             goDetail(mailId){
-
+                this.$store.dispatch('getCurrMail',mailId)
             }
         }
     }

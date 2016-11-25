@@ -6,7 +6,10 @@
                     <el-breadcrumb-item :to="{name:'articles'}">教学文章</el-breadcrumb-item>
                     <el-breadcrumb-item>{{article.title}}</el-breadcrumb-item>
                 </el-breadcrumb>
-                <el-button type="success" class="fr" icon="edit" @click="editArticle($route.params.artId)"></el-button>
+                <div class="btnGroup fr">
+                    <el-button type="danger" icon="delete" @click="remove"></el-button>
+                    <el-button type="success" icon="edit" @click="editArticle($route.params.artId)"></el-button>
+                </div>
             </div>
             <div class="main">
                 <div class="top">
@@ -40,7 +43,7 @@
     .header{
         padding-top:10px;
     }
-    .el-button--success{
+    .btnGroup{
         margin-top:-45px;
     }
     .main{
@@ -92,6 +95,9 @@
         methods:{
             editArticle(artId){
                 router.push({name:'editArticle',params:{artId:artId}});
+            },
+            remove(){
+
             }
         },
         components:{

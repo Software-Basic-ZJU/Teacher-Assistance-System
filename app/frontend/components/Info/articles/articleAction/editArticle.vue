@@ -2,7 +2,7 @@
     <div>
         <div>
             <h3>编辑教学文章</h3>
-            <Editor btn-name="确认更改" method="addArticle" :data="article"></Editor>
+            <Editor btn-name="确认更改" method="addArticle" :data="article" :has-author="true"></Editor>
         </div>
     </div>
 </template>
