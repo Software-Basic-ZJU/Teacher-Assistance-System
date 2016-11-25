@@ -21,7 +21,9 @@
             </div>
 
             <!-- mail -->
-            <Mail :show-mail="showMail"></Mail>
+            <el-dialog class="mailBox" title="我的信箱" v-model="showMail" :close-on-click-modal="false" size="large">
+                <Mail></Mail>
+            </el-dialog>
         </div>
     </div>
 </template>
@@ -66,6 +68,7 @@
     .actionBox .iconfont:hover{
         background-color: #EFF2F7;
     }
+
 </style>
 <script>
     import router from "../../routes";
@@ -75,6 +78,12 @@
             return{
                 showMail:false,
             }
+        },
+        created(){
+            this.$on('closeMail',function(){
+                console.log('yo')
+                this.showMail=false;
+            });
         },
         methods:{
             search(){

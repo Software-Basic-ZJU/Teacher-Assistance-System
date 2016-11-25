@@ -8,6 +8,7 @@ import resource from "./modules/resource";
 import homework from "./modules/homework";
 import forum from "./modules/forum";
 import group from "./modules/group";
+import mail from "./modules/mail";
 
 Vue.use(Vuex);
 
@@ -30,6 +31,7 @@ export default new Vuex.Store({
         resource,
         homework,
         forum,
-        group
+        group,
+        mail
     }
 })

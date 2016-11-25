@@ -72,6 +72,9 @@
         min-width:300px;
         max-width:740px;
     }
+    .el-icon-d-arrow-left,.el-icon-d-arrow-right{
+        margin-top:-3px;
+    }
 </style>
 <script>
     import Header from "./Header/Header.vue";
