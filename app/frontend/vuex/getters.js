@@ -9,4 +9,4 @@ export const resrcList=state=>(
 
 export const mailList=state=>(
     !state.mail.mailListType?state.mail.receivedList:state.mail.sendedList
-)
+);

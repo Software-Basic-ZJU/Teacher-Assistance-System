@@ -1,7 +1,23 @@
 <template>
     <div>
         <div>
-            <el-input v-model="data.title" placeholder="标题" v-if="hasTitle"></el-input>
+            <div v-if="hasTitle">
+                标题：<el-input v-model="data.title" placeholder="标题"></el-input>
+            </div>
+            <div v-if="hasAuthor">
+                作者：<el-input class="author" v-model="data.author" placeholder="作者"></el-input>
+            </div>
+            <div class="level" v-if="hasLevel">通知等级：
+                <el-switch
+                    v-model="data.level"
+                    on-text="重要"
+                    on-color="#ff4949"
+                    off-text="普通"
+                    off-color="#20A0FF"
+                >
+                </el-switch>
+            </div>
+
             <div id="editor" style="height:300px;max-height:500px;" v-html="data.content">
             </div>
             <el-upload
@@ -27,14 +43,21 @@
         margin-top:20px;
     }
     .el-input{
-        width:50%;
-        margin:10px 0px 20px 0px;
+        width:400px;
+        margin-bottom:15px;
+        margin-top:5px;
+    }
+    .el-input.author{
+        width:200px;
     }
     .el-upload{
         margin-top:10px;
     }
     .el-upload__tip{
         margin-left:20px;
+    }
+    .level{
+        margin-bottom:15px;
     }
 </style>
 <style>
@@ -64,27 +87,35 @@
                 type:Boolean,
                 default:false
             },
+            hasLevel:{
+                type:Boolean,
+                default:false
+            },
+            hasAuthor:{
+                type:Boolean,
+                default:false
+            },
             btnName:String,             //编辑器的确认按钮内容
             method:String,              //编辑器的功能
             data:{                      //编辑器提交的对象
                 type:Object,
                 default:{
                     title:'',
+                    author:'',
                     content:'',
-                    filePath:''
+                    filePath:'',
+                    level:false
                 }
             }
         },
         methods:{
             publish(){
-                let content=this.editor.$txt.html();
+                this.data.content=this.editor.$txt.html();
                 let section=this.$route.params.section;
                 let method=this.method;
                 this.$store.dispatch('editorSubmit',{
                     method:method,
-                    title:this.data.title,
-                    content,
-                    filePath:this.data.filePath,
+                    data:this.data,
                     section:section
                 })
             },

@@ -6,12 +6,18 @@
                     <el-breadcrumb-item :to="{name:'notices'}">通知</el-breadcrumb-item>
                     <el-breadcrumb-item>{{notice.title}}</el-breadcrumb-item>
                 </el-breadcrumb>
-                <el-button
+                <div class="btnGroup fr">
+                    <el-button
+                            type="danger"
+                            icon="delete"
+                            @click="remove"
+                    ></el-button>
+                    <el-button
                         type="success"
-                        class="fr"
                         icon="edit"
                         @click="toggleEdit"
-                ></el-button>
+                    ></el-button>
+                </div>
             </div>
             <div class="main">
                 <div class="header">
@@ -22,7 +28,7 @@
                 <div class="content" v-html="notice.content"></div>
             </div>
             <el-dialog title="编辑通知" v-model="showEditNotice" @close="toggleEdit">
-                <Editor method="editNotice" btn-name="确认更改" :data="notice"></Editor>
+                <Editor method="editNotice" btn-name="确认更改" :has-level="true" :data="notice"></Editor>
             </el-dialog>
         </div>
     </div>
@@ -34,7 +40,7 @@
     .header{
         padding-top:10px;
     }
-    .el-button--success{
+    .btnGroup{
         margin-top:-45px;
     }
     .main{
@@ -67,6 +73,9 @@
         methods:{
             toggleEdit(){
                 this.$store.dispatch('toggleEditNotice');
+            },
+            remove(){
+
             }
         },
         components:{

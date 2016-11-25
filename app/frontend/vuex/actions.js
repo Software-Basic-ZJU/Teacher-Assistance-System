@@ -1,4 +1,5 @@
 export const editorSubmit=({commit},payload)=>{
+    console.log(payload)
     switch(payload.method){
         case 'addPost':break;
         case 'editPost':break;
