@@ -1,10 +1,12 @@
 # API文档
 
+（默认给token）
+
 ## 1、登录功能
 
 POST——Teacher-Assistance-System/app/backend/login/login.php
 
-参数：id, password, type（登陆的身份类型，1为学生，2为教师）
+参数：id, password, type（登陆的身份类型，1为学生，2为教师，3为助教）
 
 返回:
 
@@ -54,6 +56,22 @@ POST——Teacher-Assistance-System/app/backend/login/login.php
           'group_id' （null）
 	)
 ```
+
+```php
+			"code" => 4,
+            "msg" => "登陆成功",
+            "res" => array(
+                "token" 
+                "id" (assist_id)
+                'class_id'=>null,
+                'teacher_id'=> null,
+                'name'=>null,
+                'type'(此时为3，代表助教)
+                'group_id'=>null
+            )
+```
+
+
 
 ## 2、查找一个班级的通知列表功能
 
@@ -164,11 +182,11 @@ POST——Teacher-Assistance-System/app/backend/aboutArticle/getArticleDetail.ph
         "res" => null
 ```
 
-## 6、返回home页面信息（教师联系方式）
+## 6、返回教师联系方式
 
-POST——Teacher-Assistance-System/app/backend/getHome.php
+POST——Teacher-Assistance-System/app/backend/aboutInfo/getContact.php
 
-参数：class_id
+参数：teacher_id
 
 返回:
 
@@ -193,7 +211,7 @@ POST——Teacher-Assistance-System/app/backend/getHome.php
 
 ## 7、返回课程信息
 
-POST——Teacher-Assistance-System/app/backend/getInfo/getCourseInfo.php
+POST——Teacher-Assistance-System/app/backend/aboutInfo/getCourseInfo.php
 
 参数：teacher_id
 
@@ -215,7 +233,7 @@ POST——Teacher-Assistance-System/app/backend/getInfo/getCourseInfo.php
 
 ## 8、返回教师信息
 
-POST——Teacher-Assistance-System/app/backend/getInfo/getTeacherInfo.php
+POST——Teacher-Assistance-System/app/backend/aboutInfo/getTeacherInfo.php
 
 参数：teacher_id
 
@@ -225,12 +243,7 @@ POST——Teacher-Assistance-System/app/backend/getInfo/getTeacherInfo.php
         "code" => 0,
         "msg" => "查找成功",
         "res" => array(
-            "old_teaching"
-            "achievement"
-            "teaching_style"
-            "publishment"
-            "honor"
-            "other_info"
+            "teacher_info" => $fetched['teacher_info'],
         )
 ```
 
@@ -267,6 +280,219 @@ POST——Teacher-Assistance-System/app/backend/aboutResource/getResourceList
 ```php
 		"code" => 1,
         "msg" => "查找失败，class_id错误",
+        "res" => null
+```
+
+## 10、上传文件
+
+POST——Teacher-Assistance-System/app/backend/aboutResource/uploadFile
+
+参数：无
+
+返回:
+
+```php
+    array(
+        'code' => 1,
+        'msg' => 一些错误信息
+        'res' => null
+    );
+```
+
+```php
+		'code' => 0,
+        'msg' => '上传成功',
+        'res' => array(
+            'path' 路径
+            'time' 时间
+            'size' 大小
+        )
+```
+
+## 11、上传资源（先用10的上传文件，再用此脚本更新数据库）
+
+POST——Teacher-Assistance-System/app/backend/aboutResource/addResource
+
+参数：name、uploader_id、type（0为教师资源，1为帖子资源）、post_id、path、time、size
+
+返回:
+
+```php
+		"code" => 0,
+        "msg" => "查找成功",
+        "res" => $resourceList
+          
+         $resourceList[] = array(
+            "resource_id"
+            "name"资源名字
+            "path"路径
+            "upload_time"上传时间
+            "uploader_name"上传者名字
+            "size"文件大小
+        );
+```
+
+```php
+  			'code' => 1,
+            'msg' => '添加失败,数据库错误',
+            'res' => null
+```
+
+## 12、删除资源
+
+POST——Teacher-Assistance-System/app/backend/aboutResource/removeResource
+
+参数：resource_id
+
+返回:
+
+```php
+            "code" => 0,
+            "msg" => "删除成功",
+            "res" => null
+```
+
+```php
+            "code" => 1,
+            "msg" => "删除失败",
+            "res" => null
+```
+
+```php
+        "code" => 2,
+        "msg" => "没有这个资源",
+        "res" => null
+```
+
+```php
+		"code" => 3,
+        "msg" => "无效用户尝试删除文件",
+        "res" => null
+```
+
+## 13、更新资源(同样先上传文件再更新资源)
+
+POST——Teacher-Assistance-System/app/backend/aboutResource/updateResource
+
+参数：resource_id、uploader_id、name、path、time、size
+
+返回:
+
+```php
+            "code" => 0,
+            "msg" => "更新成功",
+            "res" => array(
+                'resource_id'
+                'name'文件名
+                'time'更新时间
+                'size' 文件大小
+                'uploader_name'
+                'uploader_id'
+            )
+```
+
+```php
+            "code" => 1,
+            "msg" => "文件已上传，但旧文件不能删除",
+            "res" => array(
+                'resource_id'
+                'name' => $name,
+                'time' => $time,
+                'size' => $size,
+                'uploader_name' => $user_name,
+                'uploader_id' => $uploader_id
+            )
+```
+
+```php
+        "code" => 2,
+        "msg" => "没有这个资源",
+        "res" => null
+```
+
+## 14、教师修改联系方式
+
+POST——Teacher-Assistance-System/app/backend/aboutInfo/editContact
+
+参数：teacher_id,email,phone,qq,wechar,other_contact
+
+返回:
+
+```php
+        "code" => 0,
+        "msg" => "修改成功",
+        "res" => array(
+            "phone"
+            "email" 
+            "wechat"
+            "qq"
+            "other_contact"
+        )
+```
+
+```php
+        "code" => 1,
+        "msg" => "查找失败",
+        "res" => null
+```
+
+## 15、发布通知
+
+POST——Teacher-Assistance-System/app/backend/aboutNotice/addNotice
+
+参数：title、content、level、class_id
+
+返回:
+
+```php
+        "code" => 0,
+        "msg" => "通知发布成功",
+        "res" => array(
+            'notice_id'
+            'title'
+            'level' => $level,
+            'time' => $time,
+            'content' => $content,
+            'class_id' => $class_id
+        )
+```
+
+```php
+        "code" => 1,
+        "msg" => "通知发布失败",
+        "res" => null
+```
+
+## 16、修改通知
+
+POST——Teacher-Assistance-System/app/backend/aboutNotice/editNotice
+
+参数：notice_id、title、content、level、class_id
+
+返回:
+
+```php
+        "code" => 0,
+        "msg" => "修改成功",
+        "res" => array(
+            'notice_id' => $notice_id,
+            'title' => $title,
+            'level' => $level,
+            'time' => $time,
+            'content' => $content,
+            'class_id' => $class_id
+        )
+```
+
+```php
+        "code" => 1,
+        "msg" => "查找失败",
+        "res" => null
+```
+
+```php
+        "code" => 2,
+        "msg" => "无效用户尝试操作",
         "res" => null
 ```
 

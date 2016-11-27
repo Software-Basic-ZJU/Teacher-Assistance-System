@@ -16,7 +16,7 @@ loginCheck($_POST['token']);
 //Get information
 $teacher_id = test_input(mysqli_escape_string($conn, $_POST['teacher_id']));
 //select *, count(distinct name) from table group by name
-$query_result = mysqli_query($conn, "select course_info from teacher JOIN teacher_info
+$query_result = mysqli_query($conn, "select course_info from teacher
                                          where teacher_id ='$teacher_id'");
 if($fetched = mysqli_fetch_array($query_result)){
     $result = array(
