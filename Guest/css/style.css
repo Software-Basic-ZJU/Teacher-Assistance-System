@@ -513,6 +513,7 @@ footer .logo img {
     background-position: -200px -50px;
 }
 .tabsblock {
+    padding-top: 60px;
     background: #f6f6f6;
 }
 .tabsblock .wrap {
@@ -520,19 +521,23 @@ footer .logo img {
     min-height: 565px;
 }
 .tabsblock .wrap img {
-    position: absolute;
-    left: 22px;
-    bottom: 0;
+    position: relative;
+    left: auto;
+    bottom: auto;
+    display: block;
+    margin: 0 auto;
 }
 .tab {
-    padding-left: 540px;
-    width: 400px;
-    display: table-cell;
-    height: 565px;
+    text-align: center;
+    padding-left: 0;
+    width: auto;
+    display: block;
+    height: auto;
     vertical-align: middle;
 }
 .tabs {
     padding: 0 0 23px;
+    display: inline-block;
 }
 .tabs li {
     width: 12px;
@@ -681,7 +686,7 @@ footer .logo img {
         padding-top: 60px;
     }
     .tabsblock .wrap {
-        min-height: 0;
+        min-height: 20px;
     }
     .tabsblock .wrap img {
         position: relative;
