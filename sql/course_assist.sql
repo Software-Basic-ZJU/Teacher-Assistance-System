@@ -377,27 +377,6 @@ CREATE TABLE `teacher` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `teacher_info`
--- ----------------------------
-DROP TABLE IF EXISTS `teacher_info`;
-CREATE TABLE `teacher_info` (
-  `info_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `old_teaching` text,
-  `achievement` text,
-  `teaching_style` text,
-  `publishment` text,
-  `honor` text,
-  `other_info` text,
-  `course_info` text,
-  PRIMARY KEY (`info_id`),
-  UNIQUE KEY `info_id` (`info_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of teacher_info
--- ----------------------------
-
--- ----------------------------
 -- Table structure for `works`
 -- ----------------------------
 DROP TABLE IF EXISTS `works`;
