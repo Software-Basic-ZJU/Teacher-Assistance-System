@@ -75,6 +75,9 @@
     .el-icon-d-arrow-left,.el-icon-d-arrow-right{
         margin-top:-3px;
     }
+    .el-input.is-disabled>.el-input__inner{
+        color:#8492A6;
+    }
 </style>
 <script>
     import Header from "./Header/Header.vue";

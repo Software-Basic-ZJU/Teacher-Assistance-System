@@ -20,5 +20,5 @@ export const getCurrMail=({commit},mailId)=>{
 export const replyMail=({commit},mail)=>{
     commit('showMailDetail',false);
     commit('showToSend',true);
-    commit('updateMailForm',this.mail);
+    commit('updateMailForm',mail);
 }

@@ -14,9 +14,9 @@ export const joinGroup=({commit},group)=>{
 }
 
 export const showActionGroup=({commit})=>{
-    commit('showCreateGroup');
+    commit('showActionGroup');
 }
 
 export const closeActionGroup=({commit})=>{
-
+    commit('closeActionGroup');
 }

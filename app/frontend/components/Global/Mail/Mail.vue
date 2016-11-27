@@ -32,6 +32,7 @@
                                 class="fr"
                         ></el-pagination>
                     </div>
+
                     <div v-if="toSend && !detailShow">
                         <to-send :mail-form="mailForm"></to-send>
                     </div>
@@ -59,18 +60,8 @@
         height:410px;
     }
     .mainBox .mailList{
+        position:relative;
         height:380px;
-    }
-    .list-item {
-        margin-right: 10px;
-    }
-    .list-enter-active, .list-leave-active {
-        transition: all 1s;
-    }
-    .list-enter, .list-leave-active {
-        position:absolute;
-        opacity: 0;
-        transform: translateY(30px);
     }
 </style>
 <script>

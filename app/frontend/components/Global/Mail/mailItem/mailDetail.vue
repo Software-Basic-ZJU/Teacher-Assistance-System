@@ -13,7 +13,7 @@
                 {{mail.content}}
             </div>
             <el-button @click="goBack" size="small">返回信箱</el-button>
-            <el-button type="primary" @click="replayMail" size="small">回复</el-button>
+            <el-button type="primary" @click="replyMail" size="small">回复</el-button>
         </div>
     </div>
 </template>
