@@ -117,6 +117,13 @@ section,
 .clearfix {
     display: block;
 }
+.clearfix p{
+    color: gray;
+}
+.cd-see-all .btn-1 {
+    color: gray;
+    border-color:gray;
+}
 audio,
 canvas,
 video {
@@ -878,7 +885,7 @@ hr:after {content: url(../images/dots.png);display: inline-block;position: relat
         font-size: 1.5em;
     }
 }
-header{text-align: center;color: #fff;background: url(../images/bg.jpg) no-repeat scroll center center ;-webkit-background-size: cover;-moz-background-size: cover;background-size: cover;-o-background-size: cover;height: 650px;}	
+header{text-align: center;color: #fff;background: url(../images/bg.jpg) no-repeat scroll center center ;-webkit-background-size: cover;-moz-background-size: cover;background-size: cover;-o-background-size: cover;height: 700px;}
 header img{display: block; margin: 200px auto  50px auto;}
 header .intro-text .intro-heading {text-transform: uppercase;font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight: 700;font-size: 50px;}
 header .intro-text .intro-lead-in {margin-bottom: 30px;font-family: 'Shadows Into Light', cursive;font-style: italic;font-size: 42px;}
@@ -1036,7 +1043,7 @@ header .intro-text .intro-lead-in {margin-bottom: 30px;font-family: 'Shadows Int
 /* ---------------------------------------------------------------------------- */
 /* -------------------------------Team(box-4)---------------------------------- */
 /* ---------------------------------------------------------------------------- */
-.box-content.box-4 {}
+.box-content.box-4 {background: whitesmoke}
 .box-content.box-4 .box-item{margin-bottom: 10px; display: inline-block;}
 .box-content.box-4 span{display: block; font-weight: bold; margin-top: 10px;}
 .box-content.box-4 img{margin: 5px;}
