@@ -4,7 +4,7 @@
 
 POST——Teacher-Assistance-System/app/backend/login/login.php
 
-参数：id, password, type（登陆的身份类型，1为学生，2为教师）
+参数：id, password, type（登陆的身份类型，1为学生，2为教师，3为助教）
 
 返回:
 
@@ -54,6 +54,22 @@ POST——Teacher-Assistance-System/app/backend/login/login.php
           'group_id' （null）
 	)
 ```
+
+```php
+			"code" => 4,
+            "msg" => "登陆成功",
+            "res" => array(
+                "token" 
+                "id" (assist_id)
+                'class_id'=>null,
+                'teacher_id'=> null,
+                'name'=>null,
+                'type'(此时为3，代表助教)
+                'group_id'=>null
+            )
+```
+
+
 
 ## 2、查找一个班级的通知列表功能
 
@@ -164,9 +180,9 @@ POST——Teacher-Assistance-System/app/backend/aboutArticle/getArticleDetail.ph
         "res" => null
 ```
 
-## 6、返回home页面信息（教师联系方式）
+## 6、返回教师联系方式
 
-POST——Teacher-Assistance-System/app/backend/getHome.php
+POST——Teacher-Assistance-System/app/backend/getContact.php
 
 参数：class_id
 
@@ -225,12 +241,7 @@ POST——Teacher-Assistance-System/app/backend/getInfo/getTeacherInfo.php
         "code" => 0,
         "msg" => "查找成功",
         "res" => array(
-            "old_teaching"
-            "achievement"
-            "teaching_style"
-            "publishment"
-            "honor"
-            "other_info"
+            "teacher_info" => $fetched['teacher_info'],
         )
 ```
 

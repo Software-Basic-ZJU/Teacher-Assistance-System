@@ -9,7 +9,7 @@
 
 
 <h2>PHP 验证实例</h2>
-<form method="post" action="aboutResource/getResourceList.php">
+<form method="post" action="aboutArticle/getArticleDetail.php">
     id：<input type="text" name="id">
     <br><br>
     password：<input type="text" name="password">
