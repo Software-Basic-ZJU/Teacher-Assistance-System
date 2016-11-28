@@ -99,8 +99,8 @@
                         },
                         {
                             min:6,
-                            max:30,
-                            message:'长度须在6到30个字符',
+                            max:20,
+                            message:'长度须在6到20个字符',
                             trigger:'blur'
                         }
                     ],

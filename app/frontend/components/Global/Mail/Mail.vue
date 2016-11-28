@@ -13,6 +13,8 @@
             </div>
             <div class="rightBox">
                 <div class="main">
+
+                    <!-- mail list -->
                     <div v-if="!toSend && !detailShow">
                         <div class="mailList">
                             <mail-item
@@ -33,13 +35,15 @@
                         ></el-pagination>
                     </div>
 
-                    <div v-if="toSend && !detailShow">
-                        <to-send :mail-form="mailForm"></to-send>
-                    </div>
-
                     <!-- mail detail -->
                     <div v-if="detailShow">
                         <mail-detail :mail="currMail"></mail-detail>
+                    </div>
+
+
+                    <!-- send mail -->
+                    <div v-if="toSend && !detailShow">
+                        <to-send :mail-form="mailForm"></to-send>
                     </div>
                 </div>
             </div>
@@ -53,7 +57,6 @@
     }
     .mainBox .rightBox{
         padding-left:160px;
-
     }
     .mainBox .rightBox .main{
         width:100%;

@@ -161,6 +161,9 @@
                                 if(!value){
                                     cb(new Error('请输入密码'));
                                 }
+                                else if(value.length<6 || value.length>20){
+                                    cb(new Error('密码长度须在6到20个字符'));
+                                }
                                 else cb();
                             }
                         }

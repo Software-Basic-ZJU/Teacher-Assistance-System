@@ -441,10 +441,6 @@ textarea {
     border-bottom:1px solid #E5E9F2;
     height:30px;
 }
-.el-form-item:after,
-.el-form-item__content:after{
-    clear:none;
-}
 .el-dialog{
     min-width:300px;
     max-width:800px;

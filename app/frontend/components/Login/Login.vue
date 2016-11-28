@@ -21,6 +21,9 @@
                     </el-form-item>
                 </el-form>
             </div>
+            <el-dialog title="第一次登陆，请完善个人信息" v-model="showCompleteInfo" @close="closeDialog">
+                <Complete-info></Complete-info>
+            </el-dialog>
         </div>
     </div>
 </template>
@@ -40,6 +43,7 @@
     }
 </style>
 <script>
+    import CompleteInfo from "./CompleteInfo.vue";
     export default{
         data(){
             return{
@@ -53,17 +57,22 @@
                         {
                             required:true,
                             message:'请输入教工号或学号',
-                            trigger:'blur'
+                            trigger:'change'
                         }
                     ],
                     password:[
                         {
                             required:true,
                             message:'请输入密码',
-                            trigger:'blur'
+                            trigger:'change'
                         }
                     ]
                 }
+            }
+        },
+        computed:{
+            showCompleteInfo(){
+                return this.$store.state.showCompleteInfo
             }
         },
         methods:{
@@ -74,7 +83,13 @@
                     }
                     else return false;
                 })
+            },
+            closeDialog(){
+                this.$store.dispatch('showCompleteInfo',false);
             }
+        },
+        components:{
+            CompleteInfo
         }
     }
 </script>

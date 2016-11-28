@@ -49,6 +49,12 @@
         position: relative;
     }
 </style>
+<style>
+    .el-form-item:after,
+    .el-form-item__content:after{
+        clear:none;
+    }
+</style>
 <script>
     import Header from "./Header/Header.vue";
     import store from "../vuex"

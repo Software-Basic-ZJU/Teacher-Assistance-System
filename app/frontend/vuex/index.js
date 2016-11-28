@@ -28,11 +28,17 @@ const state={
         question2:'你几岁了',
         answer1:'柳州',
         answer2:'21'
-    }
+    },
+    showCompleteInfo:false,         //补全信息对话框显示开关
 };
 
 const mutations={
-    
+    updateUserInfo(state,userInfo){
+        state.userInfo=userInfo;
+    },
+    showCompleteInfo(state,signal){
+        state.showCompleteInfo=signal;
+    }
 };
 
 export default new Vuex.Store({
