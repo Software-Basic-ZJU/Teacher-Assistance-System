@@ -19,7 +19,7 @@ $teacher_id = test_input(mysqli_escape_string($conn, $_POST['teacher_id']));
 $query_result = mysqli_query($conn, "select * ,teacher.name as uploader_name,resource.name as resource_name 
                  from resource join teacher on uploader_id = teacher_id and type = 0 and uploader_id = '$teacher_id';");
 if($fetched = mysqli_fetch_array($query_result)){
-    $notices = array();
+    $resourceList = array();
     do{ //resourceList[String](resource_id,name,path,upload_time,uploader_name,size)
         $resourceList[] = array(
             "resource_id" => $fetched['resrc_id'],
@@ -40,7 +40,7 @@ if($fetched = mysqli_fetch_array($query_result)){
 else{
     $result = array(
         "code" => 1,
-        "msg" => "查找失败，class_id错误",
+        "msg" => "查找失败，teacher_id错误",
         "res" => null
     );
     echo json_encode($result);
