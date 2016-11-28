@@ -496,3 +496,170 @@ POST——Teacher-Assistance-System/app/backend/aboutNotice/editNotice
         "res" => null
 ```
 
+## 17、删除通知
+
+POST——Teacher-Assistance-System/app/backend/aboutNotice/deleteNotice
+
+参数：notice_id
+
+返回:
+
+```php
+		"code" => 0,
+        "msg" => "删除成功",
+        "res" => null
+```
+
+```php
+        "code" => 1,
+        "msg" => "删除失败",
+        "res" => null
+```
+
+```php
+        "code" => 2,
+        "msg" => "无效用户尝试删除",
+        "res" => null
+```
+
+## 18、发布文章
+
+POST——Teacher-Assistance-System/app/backend/aboutArticle/addArticle
+
+参数：title、content、teacher_id，author、authority
+
+返回:
+
+```php
+        "code" => 0,
+        "msg" => "文章发布成功",
+        "res" => array(
+            'article_id' 
+            'title' => $title,
+            'time' => $time,
+            'content' => $content,
+            'author' => $author,
+            'authority' => $authority
+```
+
+```php
+		"code" => 1,
+        "msg" => "发布失败",
+        "res" => null
+```
+
+## 19、编辑文章
+
+POST——Teacher-Assistance-System/app/backend/aboutArticle/editArticle
+
+参数：article_id、title、content、teacher_id，author、authority
+
+返回:
+
+```php
+        "code" => 0,
+        "msg" => "修改成功",
+        "res" => array(
+            'article_id' => $article_id,
+            'title' => $title,
+            'time' => $time,
+            'content' => $content,
+            'author' => $author,
+            'authority' => $authority
+        )
+```
+
+```php
+        "code" => 1,
+        "msg" => "修改失败",
+        "res" => null
+```
+
+```php
+        "code" => 2,
+        "msg" => "无效用户尝试操作",
+        "res" => null
+```
+
+##  20、删除文章
+
+POST——Teacher-Assistance-System/app/backend/aboutArticle/deleteArticle
+
+参数：article_id
+
+返回:
+
+```php
+        "code" => 0,
+        "msg" => "删除成功",
+        "res" => null
+```
+
+```php
+        "code" => 1,
+        "msg" => "删除失败",
+        "res" => null
+```
+
+```php
+        "code" => 2,
+        "msg" => "无效用户尝试删除",
+        "res" => null
+```
+
+## 21、编辑课程信息
+
+POST——Teacher-Assistance-System/app/backend/aboutInfo/editCourseInfo
+
+参数：course_info、teacher_id
+
+返回:
+
+```php
+        "code" => 0,
+        "msg" => "修改成功",
+        "res" => array(
+            'course_info' => $course_info
+        )
+```
+
+```php
+        "code" => 1,
+        "msg" => "修改失败",
+        "res" => null
+```
+
+```php
+        "code" => 2,
+        "msg" => "无效用户尝试操作",
+        "res" => null
+```
+
+## 22、编辑教师信息
+
+POST——Teacher-Assistance-System/app/backend/aboutInfo/editTeacherInfo
+
+参数：teacher_info、teacher_id
+
+返回:
+
+```php
+        "code" => 0,
+        "msg" => "修改成功",
+        "res" => array(
+            'teacher_info' => $teacher_info
+        )
+```
+
+```php
+        "code" => 1,
+        "msg" => "修改失败",
+        "res" => null
+```
+
+```php
+        "code" => 2,
+        "msg" => "无效用户尝试操作",
+        "res" => null
+```
+

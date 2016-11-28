@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: Wu
- * Date: 2016/11/27
- * Time: 20:32
+ * Date: 2016/11/28
+ * Time: 08:48
  */
 header('Content-type: application/json');
 session_start();
@@ -17,24 +17,25 @@ loginCheck($_POST['token']);
 //title、content、level
 $title = test_input(mysqli_escape_string($conn, $_POST['title']));
 $content = test_input(mysqli_escape_string($conn, $_POST['content']));
-$level = test_input(mysqli_escape_string($conn, $_POST['level']));
-$class_id = test_input(mysqli_escape_string($conn, $_POST['class_id']));
+$author = test_input(mysqli_escape_string($conn, $_POST['author']));
+$teacher_id = test_input(mysqli_escape_string($conn, $_POST['teacher_id']));
+$authority = test_input(mysqli_escape_string($conn, $_POST['authority']));
 $time = date('y-m-d h:i:s',time());
 
-$query_result = mysqli_query($conn, "INSERT INTO notification 
-                                     (title,content,level,time,class_id) 
-                                      values('$title','$content','$level','$time','$class_id');");
+$query_result = mysqli_query($conn, "INSERT INTO article 
+                                     (title,content,time,teacher_id,author,authority) 
+                                      values('$title','$content','$time','$teacher_id','$author','$authority');");
 if($query_result){
     $result = array(
         "code" => 0,
-        "msg" => "通知发布成功",
+        "msg" => "文章发布成功",
         "res" => array(
-            'notice_id' => mysqli_insert_id($conn),//notice_id,title,level,time,content，class_id
+            'article_id' => mysqli_insert_id($conn),//article_id,title,content,author,time，authority
             'title' => $title,
-            'level' => $level,
             'time' => $time,
             'content' => $content,
-            'class_id' => $class_id
+            'author' => $author,
+            'authority' => $authority
         )
     );
     echo json_encode($result);
@@ -42,7 +43,7 @@ if($query_result){
 else{
     $result = array(
         "code" => 1,
-        "msg" => "通知发布失败",
+        "msg" => "发布失败",
         "res" => null
     );
     echo json_encode($result);
