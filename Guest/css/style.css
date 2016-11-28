@@ -520,7 +520,7 @@ footer .logo img {
     background-position: -200px -50px;
 }
 .tabsblock {
-    padding-top: 60px;
+    padding-top: 150px;
     background: #f6f6f6;
 }
 .tabsblock .wrap {
@@ -543,7 +543,7 @@ footer .logo img {
     vertical-align: middle;
 }
 .tabs {
-    padding: 0 0 23px;
+    padding: 50px;
     display: inline-block;
 }
 .tabs li {
@@ -560,6 +560,9 @@ footer .logo img {
     -webkit-transition: background-color 0.15s linear;
     transition: background-color 0.15s linear;
     cursor: pointer;
+}
+.tabs .clearfix {
+    padding-top: 50px;
 }
 .tabs li:hover {
     background-color: #8cc6bc;
@@ -839,6 +842,7 @@ hr:after {content: url(../images/dots.png);display: inline-block;position: relat
 /* ---------------------------------Header+Nav--------------------------------- */
 /* ---------------------------------------------------------------------------- */
 .navbar-default {border-color: transparent;background-color: #222;}
+/*.navbar-default .navbar-fixed-top {background: black;}*/
 .navbar-default .navbar-brand {font-family: Helvetica,Arial,cursive;color: #6ECADC;}
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus,
@@ -863,7 +867,7 @@ hr:after {content: url(../images/dots.png);display: inline-block;position: relat
     .navbar-default {
         padding: 25px 0;
         border: 0;
-        background-color: transparent;
+        background-color: black;
         -webkit-transition: padding .3s;
         -moz-transition: padding .3s;
         transition: padding .3s;
@@ -908,7 +912,7 @@ header .intro-text .intro-lead-in {margin-bottom: 30px;font-family: 'Shadows Int
 #page-content.single-page {padding: 70px 0;background: #F7F7F7;}
 
 /* ---HomePage--- */
-.box-content {padding: 100px 0;}
+.box-content {padding: 150px 0;}
 .box-content .heading{margin-bottom: 30px; text-align: center;}
 .box-content .heading h2{font-size: 45px;letter-spacing:2px;}
 .box-content .heading .intro{margin-bottom: 75px;font-family: 'Shadows Into Light', cursive;font-size:22px;font-style: italic;}

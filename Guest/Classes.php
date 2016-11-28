@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Free Bootstrap Themes by 365Bootstrap dot com - Free Responsive Html5 Templates">
 
-    <title>Design Studio</title>
+    <title>课程信息</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -54,13 +54,13 @@
                         <a href="#page-top">t2</a>
                     </li>
 					<li>
-                        <a class="page-scroll" href="#page-top">主页</a>
+                        <a class="page-scroll" href="index.php">主页</a>
                     </li>
 					<li>
 						<a class="page-scroll" href="NewList.php">最新动态</a>
 					</li>
 					<li>
-                        <a class="page-scroll" href="Classes.php">课程信息</a>
+                        <a class="page-scroll" href="#page-content">课程信息</a>
                     </li>
 					<li>
 						<a class="page-scroll" href="TeacherList.php">教师信息</a>
@@ -79,100 +79,54 @@
     </nav>
 	<!-- Navigation -->
 
-	<!-- Welcome & Login -->
-	<header id="page-top">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="o-container">
-						<div class="c-slack">
-						  <span class="c-slack__dot c-slack__dot--a"></span>
-						  <span class="c-slack__dot c-slack__dot--b"></span>
-						  <span class="c-slack__dot c-slack__dot--c"></span>
-						  <span class="c-slack__dot c-slack__dot--d"></span>
-						</div>
-					</div>
-					<div class="intro-text">
-						<div class="intro-lead-in">Teaching Assistant System</div>
-						<div class="intro-heading"></div>
-					</div>
-					<a class="btn btn-1 btn-sm" href="login.php">Log In</a>
-<!--					<a class="btn btn-1 btn-sm" href="#team">Our Team</a>-->
-				</div>
-			</div>
-		</div>
-    </header>
-	<!-- Welcome & Login -->
 
 	<!-- Main Part-->
 	<div id="page-content" class="index-page">
-		<!--New 最新动态-->
-		<div id="fh5co-services-section">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-						<i class="sl-icon-paper-plane"></i>
-						<h2>最新动态</h2>
-						<p><a href="NewList.php"> 相关文章,顶尖会议,知名论文</a></p>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-4 text-center">
-						<div class="services">
-							<span><i class="sl-icon-graph"></i></span>
-							<h3>Dashboard</h3>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-							<div class="cd-see-all"><a href="NewPassage.php" class="btn btn-1">See all</a></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- 最新动态 -->
 
-		<!-- Classes课程信息 -->
-		<section id="Classes" class="box-content box-2 box-style">
-			<div class="container">
-				<div class="row">
-					<blockquote><a href="Classes.php">这是坠吼的课程</a> </blockquote>
-				</div>
-			</div>
-		</section>
 		<!--课程信息-->
+		<section class="tabsblock">
+			<div class="wrap">
+				<div class="tab">
+					<!--国际国内背景	-->
+					<div class="box visible">
+						<div class="box-text">
+							<h3>全国最先进的教学体验</h3>
+							<p>Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam suscipit aliquet felis, quis ultrices orci condiment.</p>
+							<img src="images/tabs.png" width="200" height="200" alt="">
+						</div>
+					</div><!-- box -->
+					<div class="box">
+						<div class="box-text">
+							<h3>The easiest way to show off your best apps</h3>
+							<p>Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam suscipit aliquet felis, quis ultrices orci condiment.</p>
+						</div>
+						<img src="images/tabs.png" width="437" height="459" alt="">
+					</div><!-- box -->
+					<div class="box">
+						<div class="box-text">
+							<h3>The easiest way to show off your best apps</h3>
+							<p>Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam suscipit aliquet felis, quis ultrices orci condiment.</p>
+						</div>
+						<img src="images/tabs.png" width="437" height="459" alt="">
+					</div><!-- box -->
+					<div class="box">
+						<div class="box-text">
+							<h3>The easiest way to show off your best apps</h3>
+							<p>Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam suscipit aliquet felis, quis ultrices orci condiment.</p>
+						</div>
+						<img src="images/tabs.png" width="437" height="459" alt="">
+					</div><!-- box -->
+					<ul class="tabs clearfix">
+						<li class="active"></li>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul><!-- tabs -->
+				</div><!-- tab -->
+			</div><!-- wrap -->
+		</section><!--  -->
 
 
-		<!-- Teachers 教师信息 -->
-		<section id="Teachers" class="box-content box-4 box-style">
-			<div class="clearfix">
-				<div class="cd-testimonials-wrapper cd-container">
-					<ul class="cd-testimonials">
-						<!--人物信息单元-->
-						<li>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-							<div class="cd-author">
-								<img src="images/avatar-1.jpg" alt="Author image">
-								<ul class="cd-author-info">
-									<li>MyName</li>
-									<li>CEO, AmberCreative</li>
-								</ul>
-							</div>
-						</li>
-						<li>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-							<div class="cd-author">
-								<img src="images/avatar-1.jpg" alt="Author image">
-								<ul class="cd-author-info">
-									<li>僵硬</li>
-									<li>坠棒的</li>
-								</ul>
-							</div>
-						</li>
-					</ul> <!-- cd-testimonials -->	
-				</div> <!-- cd-testimonials-wrapper -->
-				<div class="cd-see-all"><a href="TeacherList.php" class="btn btn-1">See all</a></div>
-			</div>
-		</section>
-	</div>
 
 	<!--底-->
 	<footer>
