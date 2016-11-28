@@ -50,9 +50,19 @@
     }
 </style>
 <style>
+    .el-breadcrumb{
+        margin-top:0px;
+        padding-bottom:5px;
+        font-size:18px;
+        border-bottom:1px solid #E5E9F2;
+        height:30px;
+    }
     .el-form-item:after,
     .el-form-item__content:after{
         clear:none;
+    }
+    .el-input.is-disabled>.el-input__inner{
+        color:#8492A6;
     }
 </style>
 <script>
