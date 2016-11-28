@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: Wu
- * Date: 2016/11/27
- * Time: 20:56
+ * Date: 2016/11/28
+ * Time: 08:59
  */
 header('Content-type: application/json');
 session_start();
@@ -16,10 +16,11 @@ loginCheck($_POST['token']);
 //Get information
 $title = test_input(mysqli_escape_string($conn, $_POST['title']));
 $content = test_input(mysqli_escape_string($conn, $_POST['content']));
-$level = test_input(mysqli_escape_string($conn, $_POST['level']));
-$class_id = test_input(mysqli_escape_string($conn, $_POST['class_id']));
+$author = test_input(mysqli_escape_string($conn, $_POST['author']));
+$authority = test_input(mysqli_escape_string($conn, $_POST['authority']));
 $time = date('y-m-d h:i:s',time());
-$notice_id = test_input(mysqli_escape_string($conn, $_POST['notice_id']));
+$article_id = test_input(mysqli_escape_string($conn, $_POST['article_id']));
+$teacher_id = $_SESSION['teacher_id'];
 if($_SESSION['type']!=2){
     $result = array(
         "code" => 2,
@@ -29,21 +30,22 @@ if($_SESSION['type']!=2){
     echo json_encode($result);
     exit;
 }
+
 //select *, count(distinct name) from table group by name
-$query_result = mysqli_query($conn, "update notification
-                                     set title = '$title', content = '$content' , level = '$level' , class_id = '$class_id', time = '$time'
-                                     WHERE noti_id = '$notice_id';");
+$query_result = mysqli_query($conn, "update article
+                                     set title = '$title', content = '$content' , author = '$author' , authority = '$authority', time = '$time'
+                                     WHERE art_id = '$notice_id' and teacher_id = '$teacher_id';");
 if($query_result){
     $result = array(
         "code" => 0,
         "msg" => "修改成功",
         "res" => array(
-            'notice_id' => $notice_id,
+            'article_id' => $article_id,
             'title' => $title,
-            'level' => $level,
             'time' => $time,
             'content' => $content,
-            'class_id' => $class_id
+            'author' => $author,
+            'authority' => $authority
         )
     );
     echo json_encode($result);
