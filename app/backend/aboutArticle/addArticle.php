@@ -30,7 +30,7 @@ if($query_result){
         "code" => 0,
         "msg" => "文章发布成功",
         "res" => array(
-            'article_id' => mysqli_insert_id($conn),//article_id,title,content,author,time，authority
+            'article_id' => mysqli_insert_id($conn),
             'title' => $title,
             'time' => $time,
             'content' => $content,
