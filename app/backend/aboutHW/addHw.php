@@ -23,8 +23,8 @@ $punish_rate = test_input(mysqli_escape_string($conn, $_POST['punish_rate']));
 $time = date('y-m-d h:i:s',time());
 //Class_id,title,deadline,type, punish_type,punish_rate
 $query_result = mysqli_query($conn, "INSERT INTO homework 
-                                     (class_id,title,deadline,type,punish_type,punish_rate,publish_time)
-                                      values('$class_id','$title','$deadline','$type','$punish_type','$punish_rate','$time');");
+                                     (class_id,title,deadline,type,punish_type,punish_rate,publish_time,over)
+                                      values('$class_id','$title','$deadline','$type','$punish_type','$punish_rate','$time',0);");
 if($query_result){
     $result = array(
         "code" => 0,

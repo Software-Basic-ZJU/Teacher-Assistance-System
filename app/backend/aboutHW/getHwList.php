@@ -28,7 +28,7 @@ if($fetched = mysqli_fetch_array($query_result)){
             "deadline" => $fetched['deadline'],
             "punish_type" => $fetched['punish_type'],
             "punish_rate" => $fetched['punish_rate'],
-            "over" => $fetched['over'],
+            "over" => $fetched['over']
         );
     }while($fetched = mysqli_fetch_array($query_result));
     $result = array(

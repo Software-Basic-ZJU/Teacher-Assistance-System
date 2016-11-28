@@ -714,3 +714,38 @@ POST——Teacher-Assistance-System/app/backend/aboutHW/addHw
         "res" => null
 ```
 
+## 25、编辑作业
+
+POST——Teacher-Assistance-System/app/backend/aboutHW/editHw
+
+参数：hw_id,class_id,title,deadline,type,punish_type,punish_rate
+
+返回:
+
+```php
+        "code" => 0,
+        "msg" => "修改成功",
+        "res" => array(
+            "hw_id" => $fetched['hw_id'],
+            "title" => $fetched['title'],
+            "type" => $fetched['type'],
+            "publish_time" => $fetched['publish_time'],
+            "deadline" => $fetched['deadline'],
+            "punish_type" => $fetched['punish_type'],
+            "punish_rate" => $fetched['punish_rate'],
+            "over" => $fetched['over']
+        )
+```
+
+```php
+        "code" => 1,
+        "msg" => "修改失败",
+        "res" => null
+```
+
+```php
+        "code" => 2,
+        "msg" => "无效用户尝试操作",
+        "res" => null
+```
+
