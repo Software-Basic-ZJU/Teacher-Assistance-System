@@ -1,6 +1,6 @@
 export const Login=resolve=>{
-    require.ensure(['../components/Login.vue'],()=>{
-        resolve(require('../components/Login.vue'))
+    require.ensure(['../components/Login/Login.vue'],()=>{
+        resolve(require('../components/Login/Login.vue'))
     })
 };
 
@@ -196,27 +196,8 @@ export const Group=resolve=>{
     })
 };
 
-//global pages
-export const Mail=resolve=>{
-    require.ensure(['../components/Global/Mail/Mail.vue'],()=>{
-        resolve(require('../components/Global/Mail/Mail.vue'))
-    })
-};
-
-export const Search=resolve=>{
-    require.ensure(['../components/Global/Search/Search.vue'],()=>{
-        resolve(require('../components/Global/Search/Search.vue'))
-    })
-};
-
-export const Setting=resolve=>{
-    require.ensure(['../components/Global/Setting/Setting.vue'],()=>{
-        resolve(require('../components/Global/Setting/Setting.vue'))
-    })
-};
-
-export const User=resolve=>{
-    require.ensure(['../components/Global/User/User.vue'],()=>{
-        resolve(require('../components/Global/User/User.vue'))
+export const EditPswd=resolve=>{
+    require.ensure(['../components/Global/User/EditPswd.vue'],()=>{
+        resolve(require('../components/Global/User/EditPswd.vue'))
     })
 };

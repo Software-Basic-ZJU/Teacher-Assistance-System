@@ -75,9 +75,11 @@ const mutations={
     },
     //回复信件时对待发送的信件表单进行更新
     updateMailForm(state,mail){
-        state.mailForm.destId=mail.destId;
-        state.mailForm.title='回复 '+mail.srcName+'：'+mail.title;
-        state.mailForm.title='';
+        state.mailForm= {
+            destId: mail.srcId,
+            title: '回复 ' + mail.srcName + '：' + mail.title,
+            content: ''
+        };
     }
 }
 

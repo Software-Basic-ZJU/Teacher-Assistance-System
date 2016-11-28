@@ -10,7 +10,15 @@
                     <el-form-item label="密码" prop="password">
                         <el-input v-model="loginForm.password" type="password" placeholder="密码"></el-input>
                     </el-form-item>
-                    <el-button type="primary" @click="login" @key.enter="login">登录</el-button>
+                    <el-radio-group v-model="loginForm.idenType">
+                        <el-radio :label="0">学生</el-radio>
+                        <el-radio :label="1">老师</el-radio>
+                        <el-radio :label="2">助教</el-radio>
+                    </el-radio-group>
+                    <el-form-item>
+                        <el-button type="primary" @click="login" @key.enter="login">登录</el-button>
+                        <el-button>返回首页</el-button>
+                    </el-form-item>
                 </el-form>
             </div>
         </div>
@@ -24,6 +32,12 @@
     .loginBox>h2{
         text-align: center;
     }
+    .el-radio-group{
+        margin-top:5px;
+    }
+    .el-button--primary{
+        margin-top:20px;
+    }
 </style>
 <script>
     export default{
@@ -31,7 +45,8 @@
             return{
                 loginForm:{
                     id:'',
-                    password:''
+                    password:'',
+                    idenType:0
                 },
                 rules:{
                     id:[

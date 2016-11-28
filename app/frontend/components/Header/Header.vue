@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="header">
+        <div class="AppHeader">
             <div class="main">
                 <div class="logo fl">
                     <img src="./static/zjulogo.png"/>
@@ -13,7 +13,8 @@
                             <i class="iconfont icon-i-mail fl" @click="showMail = true"></i>
                         </el-badge>
                         <!--<i class="iconfont icon-setting fl" @click="goRoute"></i>-->
-                        <i class="iconfont icon-user fl" @click="goRoute"></i>
+                        <i class="iconfont icon-user fl" @click="showUserInfo = true"></i>
+                        <i class="iconfont icon-jiaoshixinxi fl" v-if="identify==1" @click="showTAmanage = true"></i>
                         <div class="cl"></div>
                     </div>
                 </div>
@@ -24,11 +25,22 @@
             <el-dialog class="mailBox" title="我的信箱" v-model="showMail" :close-on-click-modal="false" size="large">
                 <Mail></Mail>
             </el-dialog>
+
+            <!-- TAManage -->
+            <el-dialog class="TAmanage" title="助教管理" v-model="showTAmanage" :close-on-click-modal="false" size="large">
+                <Teach-assist></Teach-assist>
+            </el-dialog>
+
+            <!-- personal info -->
+            <el-dialog title="个人信息" v-model="showUserInfo" :close-on-click-modal="false" size="tiny">
+                <User></User>
+            </el-dialog>
+
         </div>
     </div>
 </template>
 <style scoped>
-    .header{
+    .AppHeader{
         width:100%;
         height:100px;
         background-color: #eff2f7;
@@ -68,22 +80,29 @@
     .actionBox .iconfont:hover{
         background-color: #EFF2F7;
     }
+    .el-dialog{
+        min-width:700px;
+    }
 
+</style>
+<style>
+    .AppHeader .mailBox{
+        min-width:760px;
+    }
 </style>
 <script>
     import router from "../../routes";
     import Mail from "../Global/Mail/Mail.vue";
+    import TeachAssist from "../Global/TeachAssist/TeachAssist.vue";
+    import User from "../Global/User/User.vue";
     export default{
         data(){
             return{
                 showMail:false,
+                showTAmanage:false,
+                showUserInfo:false,
+                identify:1
             }
-        },
-        created(){
-            this.$on('closeMail',function(){
-                console.log('yo')
-                this.showMail=false;
-            });
         },
         methods:{
             search(){
@@ -94,7 +113,9 @@
             },
         },
         components:{
-            Mail
+            Mail,
+            TeachAssist,
+            User
         }
     }
 </script>

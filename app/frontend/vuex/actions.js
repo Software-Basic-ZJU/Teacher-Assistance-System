@@ -18,3 +18,7 @@ export const editorSubmit=({commit},payload)=>{
 export const login=({commit},loginForm)=>{
     console.log(loginForm);
 }
+
+export const editUserInfo=({commit},newInfo)=>{
+    console.log(newInfo)
+}
