@@ -15,7 +15,15 @@ connectDB();
 loginCheck($_POST['token']);
 //Get information
 $resource_id = test_input(mysqli_escape_string($conn, $_POST['resource_id']));
-
+if($_SESSION['type']!=2 && $_SESSION['type']!=3){
+    $result = array(
+        "code" => 3,
+        "msg" => "无效用户尝试删除文件",
+        "res" => null
+    );
+    echo json_encode($result);
+    exit;
+}
 //select * from resource JOIN select  where uploader_id = 10001 and type = 0
 $query_result = mysqli_query($conn, "select path FROM resource WHERE resrc_id = '$resource_id';");
 if($fetched = mysqli_fetch_array($query_result)){

@@ -5,7 +5,7 @@
             <el-tab-pane label="教师介绍"></el-tab-pane>
         </el-tabs>
         <el-button type="success" class="fr" icon="edit" @click="goEdit"></el-button>
-        <div class="infoBox">
+        <div class="introBox">
             <div>
                 <transition name="fade">
                     <router-view></router-view>
@@ -20,12 +20,13 @@
     .el-button--success{
         position:relative;
         margin-top:-62px;
+        margin-right:20px;
         z-index:1;
     }
-    .infoBox{
+    .introBox{
         padding:0px 20px;
     }
-    .infoBox>div{
+    .introBox>div{
         position:relative;
     }
 </style>

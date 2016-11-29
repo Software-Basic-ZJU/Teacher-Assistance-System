@@ -10,9 +10,20 @@
                     <el-form-item label="密码" prop="password">
                         <el-input v-model="loginForm.password" type="password" placeholder="密码"></el-input>
                     </el-form-item>
-                    <el-button type="primary" @click="login" @key.enter="login">登录</el-button>
+                    <el-radio-group v-model="loginForm.idenType">
+                        <el-radio :label="0">学生</el-radio>
+                        <el-radio :label="1">老师</el-radio>
+                        <el-radio :label="2">助教</el-radio>
+                    </el-radio-group>
+                    <el-form-item>
+                        <el-button type="primary" @click="login" @key.enter="login">登录</el-button>
+                        <el-button>返回首页</el-button>
+                    </el-form-item>
                 </el-form>
             </div>
+            <el-dialog title="第一次登陆，请完善个人信息" v-model="showCompleteInfo" @close="closeDialog">
+                <Complete-info></Complete-info>
+            </el-dialog>
         </div>
     </div>
 </template>
@@ -24,31 +35,44 @@
     .loginBox>h2{
         text-align: center;
     }
+    .el-radio-group{
+        margin-top:5px;
+    }
+    .el-button--primary{
+        margin-top:20px;
+    }
 </style>
 <script>
+    import CompleteInfo from "./CompleteInfo.vue";
     export default{
         data(){
             return{
                 loginForm:{
                     id:'',
-                    password:''
+                    password:'',
+                    idenType:0
                 },
                 rules:{
                     id:[
                         {
                             required:true,
                             message:'请输入教工号或学号',
-                            trigger:'blur'
+                            trigger:'change'
                         }
                     ],
                     password:[
                         {
                             required:true,
                             message:'请输入密码',
-                            trigger:'blur'
+                            trigger:'change'
                         }
                     ]
                 }
+            }
+        },
+        computed:{
+            showCompleteInfo(){
+                return this.$store.state.showCompleteInfo
             }
         },
         methods:{
@@ -59,7 +83,13 @@
                     }
                     else return false;
                 })
+            },
+            closeDialog(){
+                this.$store.dispatch('showCompleteInfo',false);
             }
+        },
+        components:{
+            CompleteInfo
         }
     }
 </script>

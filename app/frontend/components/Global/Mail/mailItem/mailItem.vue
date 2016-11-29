@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="mail" @click="goDetail(mailId)">
-            <el-col :span="2" v-if="isRead!=undefined">
+            <el-col class="tagCol" :span="2" v-if="isRead!=undefined">
                 <el-tag v-if="isRead==1" close-transition="true">已读</el-tag>
                 <el-tag v-if="isRead==0" close-transition="true" class="unRead">未读</el-tag>
             </el-col>
@@ -25,7 +25,7 @@
 </template>
 <style scoped>
     .mail{
-        margin-top:1px;
+        margin-bottom:1px;
         height:40px;
         line-height:40px;
         cursor:pointer;
@@ -39,6 +39,7 @@
     .mail:hover{
         border-color:#C0CCDA;
     }
+
     .mail div{
         overflow: hidden;
         text-overflow: ellipsis;
@@ -57,6 +58,7 @@
     .mail .datetime{
         font-size:12px;
     }
+
 </style>
 <script>
     export default{
@@ -69,7 +71,7 @@
         },
         methods:{
             goDetail(mailId){
-
+                this.$store.dispatch('getCurrMail',mailId)
             }
         }
     }

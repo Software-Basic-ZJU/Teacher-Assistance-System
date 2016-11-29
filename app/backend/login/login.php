@@ -98,6 +98,36 @@ elseif ($type == 2){
         echo json_encode($result);
     }
 }
+elseif ($type == 3){
+    $query_result = mysqli_query($conn, "select * from assist 
+                                         where assist_id ='$id' and password='$password' limit 1");
+    if($fetched = mysqli_fetch_array($query_result)){
+        $token = $id."-".$type."-".time();
+        $token = encrypt($token);
+        $result = array(
+            "code" => 4,
+            "msg" => "登陆成功",
+            "res" => array(
+                "token" => $token,
+                "id" => $id,
+                'class_id'=>null,
+                'teacher_id'=> null,
+                'name'=>null,
+                'type'=>$type,
+                'group_id'=>null
+            )
+        );
+        echo json_encode($result);
+    }
+    else{
+        $result = array(
+            "code" => 2,
+            "msg" => "登录失败,用户名或密码或类型错误",
+            "res" => array()
+        );
+        echo json_encode($result);
+    }
+}
 
 
 mysqli_close($conn);

@@ -33,11 +33,9 @@ import {
     addPost,
     editPost,
     Group,
-    Mail,
-    Search,
-    Setting,
-    User,
-    Login
+    EditPswd,
+    Login,
+
 } from "./components";
 
 Vue.use(VueRouter);
@@ -227,27 +225,10 @@ const routes=[
             },
         ]
     },
-
-    //global pages route
     {
-        name:'search',
-        path:'/search',
-        component:Search
-    },
-    {
-        name:'mail',
-        path:'/mail',
-        component:Mail
-    },
-    {
-        name:'setting',
-        path:'/setting',
-        component:Setting
-    },
-    {
-        name:'user',
-        path:'/user',
-        component:User
+        name:'editPswd',
+        path:'/editPswd',
+        component:EditPswd
     }
 ]
 

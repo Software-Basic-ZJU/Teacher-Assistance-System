@@ -37,7 +37,6 @@ if($fetched = mysqli_fetch_array($getPath_result)){
         mysqli_query($conn, "update resource 
                              set name = '$name',path = '$path',size = '$size',time = '$time',uploader_id = '$uploader_id'  
                              WHERE resrc_id = '$resource_id';");
-
         $result = array(
             "code" => 0,
             "msg" => "更新成功",

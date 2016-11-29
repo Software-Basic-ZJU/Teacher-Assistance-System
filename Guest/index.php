@@ -38,37 +38,50 @@
             <div class="navbar-header page-scroll">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
+                    <span class="icon-bar">t1</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Design Studio</a>
+                <a class="navbar-brand page-scroll" href="#page-top">ZJU</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="hidden">
-                        <a href="#page-top"></a>
+                        <a href="#page-top">t2</a>
                     </li>
 					<li>
-                        <a class="page-scroll" href="#page-top">Home</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#Teachers">教师信息</a>
+                        <a class="page-scroll" href="#page-top">主页</a>
                     </li>
 					<li>
-                        <a class="page-scroll" href="#new">New</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#about">About</a>
+						<a class="page-scroll" href="#Teachers">教师信息</a>
+					</li>
+					<li>
+                        <a class="page-scroll" href="#Classes">课程信息</a>
                     </li>
 					<li>
-                        <a class="page-scroll" href="#team">Team</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#contact">Contact</a>
-                    </li>
+						<a class="page-scroll" href="#Resource">课件</a>
+					</li>
+					<li>
+						<a class="page-scroll" href="#new">最新动态</a>
+					</li>
+					<li>
+						<a class="page-scroll" href="messageboard.php">留言板</a>
+					</li>
+<!--					<li>-->
+<!--						<a class="page-scroll" href="#new">New</a>-->
+<!--					</li>-->
+<!--                    <li>-->
+<!--                        <a class="page-scroll" href="#about">About</a>-->
+<!--                    </li>-->
+<!--					<li>-->
+<!--                        <a class="page-scroll" href="#team">Team</a>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <a class="page-scroll" href="#contact">Contact</a>-->
+<!--                    </li>-->
+
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -91,28 +104,28 @@
 						</div>
 					</div>
 					<div class="intro-text">
-						<div class="intro-lead-in">Welcome To Our Studio!</div>
-						<div class="intro-heading">It's Nice To Meet You</div>
+						<div class="intro-lead-in">Teaching Assistant System</div>
+						<div class="intro-heading"></div>
 					</div>
-					<a class="btn btn-1 btn-sm" href="#about">About Us</a>
-					<a class="btn btn-1 btn-sm" href="#team">Our Team</a>
+					<a class="btn btn-1 btn-sm" href="login.php">Log In</a>
+<!--					<a class="btn btn-1 btn-sm" href="#team">Our Team</a>-->
 				</div>
 			</div>
 		</div>
     </header>
 	<!-- Header -->
-	<div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >网页模板</a></div>
+<!--	<div class="copyrights">Collect from </div>-->
 	<!-- /////////////////////////////////////////Content -->
 	<div id="page-content" class="index-page">
 		
-		<!-- ////////////Content Box 01 -->
+		<!-- 教师信息 -->
 		<section id="Teachers" class="box-content box-1">
 			<div class="container">
 				<div class="row heading">
 					<div class="col-lg-12">
 						<h2>教师信息</h2>
 						<hr>
-						<!--<div class="intro">名师指路</div>-->
+<!--						<div class="intro">名师指路</div>-->
 					</div>
 				</div>
 				<div class="row">
@@ -121,42 +134,41 @@
 							<img src="images/Html.png" />
 						</div>
 						<h3 class="blue">翁恺</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-						Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-						<button type="submit" class="btn btn-2 ">More</button>
+						<p>网易MOOC知名老师,开有诸多慕课,本校中教学Java,C,OOP和操作系统,体系等课程</p>
+						<button type="submit" class="btn btn-2 " onclick="{location.href='TeacherInfo.php'}" value="翁恺" >More</button>
 					</div>
-					<div class="col-sm-3 box-item">
-						<div class="wrap-img">
-							<img src="images/Css.png" />
-						</div>
-						<h3 class="yellow">Text Heading 3</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-						Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-						<button type="submit" class="btn btn-2 ">More</button>
-					</div>
-					<div class="col-sm-3 box-item">
-						<div class="wrap-img">
-							<img src="images/screen.png" />
-						</div>
-						<h3 class="red">Text Heading 3</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-						Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-						<button type="submit" class="btn btn-2 ">More</button>
-					</div>
-					<div class="col-sm-3 box-item">
-						<div class="wrap-img">
-							<img src="images/Setting.png" />
-						</div>
-						<h3 class="green">Text Heading 3</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-						Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-						<button type="submit" class="btn btn-2 ">More</button>
-					</div>
-				</div>		
+<!--					<div class="col-sm-3 box-item">-->
+<!--						<div class="wrap-img">-->
+<!--							<img src="images/Css.png" />-->
+<!--						</div>-->
+<!--						<h3 class="yellow">Text Heading 3</h3>-->
+<!--						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.-->
+<!--						Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>-->
+<!--						<button type="submit" class="btn btn-2 ">More</button>-->
+<!--					</div>-->
+<!--					<div class="col-sm-3 box-item">-->
+<!--						<div class="wrap-img">-->
+<!--							<img src="images/screen.png" />-->
+<!--						</div>-->
+<!--						<h3 class="red">Text Heading 3</h3>-->
+<!--						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. -->
+<!--						Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>-->
+<!--						<button type="submit" class="btn btn-2 ">More</button>-->
+<!--					</div>-->
+<!--					<div class="col-sm-3 box-item">-->
+<!--						<div class="wrap-img">-->
+<!--							<img src="images/Setting.png" />-->
+<!--						</div>-->
+<!--						<h3 class="green">Text Heading 3</h3>-->
+<!--						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.-->
+<!--						Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>-->
+<!--						<button type="submit" class="btn btn-2 ">More</button>-->
+<!--					</div>-->
+				</div>
 			</div>
 		</section>
-		
-		<!-- ////////////Content Box 02 -->
+
+		<!-- 纯文字部分 -->
 		<section id="new" class="box-content box-2 box-style">
 			<div class="container">
 				<div class="row">
@@ -164,7 +176,51 @@
 				</div>		
 			</div>
 		</section>
-		
+
+		<!--课程信息-->
+		<section class="tabsblock">
+			<div class="wrap">
+				<div class="tab">
+					<ul class="tabs clearfix">
+						<li class="active"></li>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul><!-- tabs -->
+					<!--					国际国内背景	-->
+					<div class="box visible">
+						<div class="box-text">
+							<h3>全国最先进的教学体验</h3>
+							<p>Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam suscipit aliquet felis, quis ultrices orci condiment.</p>
+							<img src="images/tabs.png" width="200" height="200" alt="">
+						</div>
+					</div><!-- box -->
+<!--					-->
+					<div class="box">
+						<div class="box-text">
+							<h3>The easiest way to show off your best apps</h3>
+							<p>Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam suscipit aliquet felis, quis ultrices orci condiment.</p>
+						</div>
+						<img src="images/tabs.png" width="437" height="459" alt="">
+					</div><!-- box -->
+					<div class="box">
+						<div class="box-text">
+							<h3>The easiest way to show off your best apps</h3>
+							<p>Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam suscipit aliquet felis, quis ultrices orci condiment.</p>
+						</div>
+						<img src="images/tabs.png" width="437" height="459" alt="">
+					</div><!-- box -->
+					<div class="box">
+						<div class="box-text">
+							<h3>The easiest way to show off your best apps</h3>
+							<p>Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam suscipit aliquet felis, quis ultrices orci condiment.</p>
+						</div>
+						<img src="images/tabs.png" width="437" height="459" alt="">
+					</div><!-- box -->
+				</div><!-- tab -->
+			</div><!-- wrap -->
+		</section><!--  -->
+
 		<!-- ////////////Content Box 03 -->
 		<section id="about" class="box-content box-3">
 			<div class="container">
@@ -603,6 +659,10 @@
 	<script src="js/jquery.easing.min.js"></script>
 	<script src="js/classie.js"></script>
 	<script src="js/cbpAnimatedHeader.js"></script>
-
+<!--疯狂套模板-->
+	<script src="js/library.js"></script>
+	<script src="js/retina.js"></script>
+	<script src="js/sliders.js"></script>
+	<script src="js/html5.js"></script>
 </body>
 </html>

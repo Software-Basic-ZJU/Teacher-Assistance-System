@@ -11,6 +11,8 @@ Vue.use(VueResource);
 Vue.use(VueHead);
 Vue.use(ElementUI);
 
+Vue.config.debug=true;
+
 //ajax config
 Vue.http.options.root='/';
 Vue.http.options.timeout=12000;

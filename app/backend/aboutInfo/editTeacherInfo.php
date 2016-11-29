@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: Wu
- * Date: 2016/11/23
- * Time: 17:19
+ * Date: 2016/11/28
+ * Time: 09:24
  */
 header('Content-type: application/json');
 session_start();
@@ -14,16 +14,28 @@ connectDB();
 //Verify token
 loginCheck($_POST['token']);
 //Get information
+$teacher_info = test_input(mysqli_escape_string($conn, $_POST['teacher_info']));
 $teacher_id = test_input(mysqli_escape_string($conn, $_POST['teacher_id']));
+if($_SESSION['type']!=2){
+    $result = array(
+        "code" => 2,
+        "msg" => "无效用户尝试操作",
+        "res" => null
+    );
+    echo json_encode($result);
+    exit;
+}
+
 //select *, count(distinct name) from table group by name
-$query_result = mysqli_query($conn, "select course_info from teacher JOIN teacher_info
-                                         where teacher_id ='$teacher_id'");
-if($fetched = mysqli_fetch_array($query_result)){
+$query_result = mysqli_query($conn, "update teacher
+                                     set teacher_info = '$teacher_info'
+                                     WHERE teacher_id = '$teacher_id';");
+if($query_result){
     $result = array(
         "code" => 0,
-        "msg" => "查找成功",
+        "msg" => "修改成功",
         "res" => array(
-            "course_info" => $fetched['course_info']
+            'teacher_info' => $teacher_info
         )
     );
     echo json_encode($result);
@@ -31,7 +43,7 @@ if($fetched = mysqli_fetch_array($query_result)){
 else{
     $result = array(
         "code" => 1,
-        "msg" => "查找失败，class_id错误",
+        "msg" => "修改失败",
         "res" => null
     );
     echo json_encode($result);

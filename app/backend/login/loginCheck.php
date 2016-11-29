@@ -49,6 +49,10 @@ function loginCheck($token){
         $query_result = mysqli_query($conn,
             "select * from teacher where teacher_id ='".$token_array[0]."' ");
     }
+    elseif ($token_array[1]==3){
+        $query_result = mysqli_query($conn,
+            "select * from teacher where assist_id ='".$token_array[0]."' ");
+    }
     else{
         $query_result = null;
     }
@@ -60,7 +64,7 @@ function loginCheck($token){
         );
         echo json_encode($result);
         exit;
-    } elseif($token_array[1] > $expireTime){
+    } elseif($token_array[2] > $expireTime){
         $result = array(
             'code' => -1,
             'msg' => 'token已过期',
@@ -83,6 +87,9 @@ function loginCheck($token){
             $_SESSION['tname']= $fetched['name'];
             $_SESSION['email']= $fetched['email'];
             $_SESSION['info_id']= $fetched['info_id'];
+        }
+        elseif($token_array[1]==3){
+            $_SESSION['assist_id'] = $fetched['assist_id'];
         }
         $_SESSION['type']= $token_array[1];
         $new_token = encrypt($token_array[0]."-".$token_array[1]."-".time());
