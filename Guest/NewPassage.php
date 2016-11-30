@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Free Bootstrap Themes by 365Bootstrap dot com - Free Responsive Html5 Templates">
 
-    <title>Design Studio</title>
+    <title>动态</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -54,7 +54,7 @@
                         <a href="#page-top">t2</a>
                     </li>
 					<li>
-                        <a class="page-scroll" href="#page-top">主页</a>
+                        <a class="page-scroll" href="index.php">主页</a>
                     </li>
 					<li>
 						<a class="page-scroll" href="NewList.php">最新动态</a>
@@ -78,31 +78,6 @@
         <!-- /.container-fluid -->
     </nav>
 	<!-- Navigation -->
-
-	<!-- Welcome & Login -->
-	<header id="page-top">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="o-container">
-						<div class="c-slack">
-						  <span class="c-slack__dot c-slack__dot--a"></span>
-						  <span class="c-slack__dot c-slack__dot--b"></span>
-						  <span class="c-slack__dot c-slack__dot--c"></span>
-						  <span class="c-slack__dot c-slack__dot--d"></span>
-						</div>
-					</div>
-					<div class="intro-text">
-						<div class="intro-lead-in">Teaching Assistant System</div>
-						<div class="intro-heading"></div>
-					</div>
-					<a class="btn btn-1 btn-sm" href="login.php">Log In</a>
-<!--					<a class="btn btn-1 btn-sm" href="#team">Our Team</a>-->
-				</div>
-			</div>
-		</div>
-    </header>
-	<!-- Welcome & Login -->
 
 	<!-- Main Part-->
 	<div id="page-content" class="index-page">
@@ -130,48 +105,7 @@
 		</div>
 		<!-- 最新动态 -->
 
-		<!-- Classes课程信息 -->
-		<section id="Classes" class="box-content box-2 box-style">
-			<div class="container">
-				<div class="row">
-					<blockquote><a href="Classes.php">这是坠吼的课程</a> </blockquote>
-				</div>
-			</div>
-		</section>
-		<!--课程信息-->
 
-
-		<!-- Teachers 教师信息 -->
-		<section id="Teachers" class="box-content box-4 box-style">
-			<div class="clearfix">
-				<div class="cd-testimonials-wrapper cd-container">
-					<ul class="cd-testimonials">
-						<!--人物信息单元-->
-						<li>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-							<div class="cd-author">
-								<img src="images/avatar-1.jpg" alt="Author image">
-								<ul class="cd-author-info">
-									<li>MyName</li>
-									<li>CEO, AmberCreative</li>
-								</ul>
-							</div>
-						</li>
-						<li>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-							<div class="cd-author">
-								<img src="images/avatar-1.jpg" alt="Author image">
-								<ul class="cd-author-info">
-									<li>僵硬</li>
-									<li>坠棒的</li>
-								</ul>
-							</div>
-						</li>
-					</ul> <!-- cd-testimonials -->	
-				</div> <!-- cd-testimonials-wrapper -->
-				<div class="cd-see-all"><a href="TeacherList.php" class="btn btn-1">See all</a></div>
-			</div>
-		</section>
 	</div>
 
 	<!--底-->

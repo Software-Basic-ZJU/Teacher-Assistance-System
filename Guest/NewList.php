@@ -91,6 +91,9 @@
 						<p> 相关文章,顶尖会议,知名论文</a></p>
 					</div>
 				</div>
+				<?php
+				include "backend/Articles/GetArticleList.php";
+				?>
 				<div class="row">
 					<div class="col-md-4 text-center">
 						<div class="services">
