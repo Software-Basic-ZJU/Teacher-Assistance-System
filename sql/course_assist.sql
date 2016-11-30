@@ -1,39 +1,37 @@
 /*
-Navicat MySQL Data Transfer
+ Navicat Premium Data Transfer
 
-Source Server         : 127.0.0.1
-Source Server Version : 50622
-Source Host           : localhost:3306
-Source Database       : course_assist
+ Source Server         : localhost
+ Source Server Type    : MySQL
+ Source Server Version : 100110
+ Source Host           : localhost
+ Source Database       : course_assist
 
-Target Server Type    : MYSQL
-Target Server Version : 50622
-File Encoding         : 65001
+ Target Server Type    : MySQL
+ Target Server Version : 100110
+ File Encoding         : utf-8
 
-Date: 2016-11-25 22:42:23
+ Date: 11/30/2016 23:14:03 PM
 */
 
-SET FOREIGN_KEY_CHECKS=0;
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
--- Table structure for `admin`
+--  Table structure for `admin`
 -- ----------------------------
 DROP TABLE IF EXISTS `admin`;
 CREATE TABLE `admin` (
   `uid` bigint(20) NOT NULL AUTO_INCREMENT,
   `admin_id` bigint(20) NOT NULL,
-  `password` varchar(30) NOT NULL,
+  `password` varchar(255) NOT NULL,
   PRIMARY KEY (`uid`),
   UNIQUE KEY `uid` (`uid`) USING BTREE,
   KEY `admin_id` (`admin_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of admin
--- ----------------------------
-
--- ----------------------------
--- Table structure for `article`
+--  Table structure for `article`
 -- ----------------------------
 DROP TABLE IF EXISTS `article`;
 CREATE TABLE `article` (
@@ -47,48 +45,23 @@ CREATE TABLE `article` (
   PRIMARY KEY (`art_id`),
   UNIQUE KEY `art_id` (`art_id`) USING BTREE,
   KEY `teacher_id` (`teacher_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of article
--- ----------------------------
-
--- ----------------------------
--- Table structure for `assists`
+--  Table structure for `assists`
 -- ----------------------------
 DROP TABLE IF EXISTS `assists`;
 CREATE TABLE `assists` (
   `uid` bigint(20) NOT NULL AUTO_INCREMENT,
   `assist_id` varchar(20) NOT NULL,
-  `password` varchar(30) NOT NULL,
+  `password` varchar(255) NOT NULL,
   PRIMARY KEY (`uid`),
   UNIQUE KEY `uid` (`uid`) USING BTREE,
   KEY `assist_id` (`assist_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of assists
--- ----------------------------
-
--- ----------------------------
--- Table structure for `classes`
--- ----------------------------
-DROP TABLE IF EXISTS `classes`;
-CREATE TABLE `classes` (
-  `class_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `term` bit(1) NOT NULL,
-  `year` int(11) NOT NULL,
-  `name` varchar(30) NOT NULL,
-  PRIMARY KEY (`class_id`),
-  UNIQUE KEY `class_id` (`class_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of classes
--- ----------------------------
-
--- ----------------------------
--- Table structure for `class_teacher`
+--  Table structure for `class_teacher`
 -- ----------------------------
 DROP TABLE IF EXISTS `class_teacher`;
 CREATE TABLE `class_teacher` (
@@ -98,11 +71,20 @@ CREATE TABLE `class_teacher` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of class_teacher
+--  Table structure for `classes`
 -- ----------------------------
+DROP TABLE IF EXISTS `classes`;
+CREATE TABLE `classes` (
+  `class_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `term` bit(1) NOT NULL,
+  `year` int(11) NOT NULL,
+  `name` varchar(30) NOT NULL,
+  PRIMARY KEY (`class_id`),
+  UNIQUE KEY `class_id` (`class_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for `comment`
+--  Table structure for `comment`
 -- ----------------------------
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment` (
@@ -115,14 +97,10 @@ CREATE TABLE `comment` (
   PRIMARY KEY (`com_id`),
   UNIQUE KEY `com_id` (`com_id`) USING BTREE,
   KEY `target_id` (`target_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of comment
--- ----------------------------
-
--- ----------------------------
--- Table structure for `course_info`
+--  Table structure for `course_info`
 -- ----------------------------
 DROP TABLE IF EXISTS `course_info`;
 CREATE TABLE `course_info` (
@@ -135,11 +113,7 @@ CREATE TABLE `course_info` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of course_info
--- ----------------------------
-
--- ----------------------------
--- Table structure for `group`
+--  Table structure for `group`
 -- ----------------------------
 DROP TABLE IF EXISTS `group`;
 CREATE TABLE `group` (
@@ -150,14 +124,10 @@ CREATE TABLE `group` (
   `password` varchar(30) NOT NULL,
   PRIMARY KEY (`group_id`),
   UNIQUE KEY `group_id` (`group_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of group
--- ----------------------------
-
--- ----------------------------
--- Table structure for `homework`
+--  Table structure for `homework`
 -- ----------------------------
 DROP TABLE IF EXISTS `homework`;
 CREATE TABLE `homework` (
@@ -173,14 +143,10 @@ CREATE TABLE `homework` (
   PRIMARY KEY (`hw_id`),
   UNIQUE KEY `hw_id` (`hw_id`) USING BTREE,
   KEY `class_id` (`class_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of homework
--- ----------------------------
-
--- ----------------------------
--- Table structure for `mail`
+--  Table structure for `mail`
 -- ----------------------------
 DROP TABLE IF EXISTS `mail`;
 CREATE TABLE `mail` (
@@ -196,14 +162,10 @@ CREATE TABLE `mail` (
   UNIQUE KEY `mail_id` (`mail_id`) USING BTREE,
   KEY `src_id` (`src_id`) USING BTREE,
   KEY `dest_id` (`dest_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of mail
--- ----------------------------
-
--- ----------------------------
--- Table structure for `message`
+--  Table structure for `message`
 -- ----------------------------
 DROP TABLE IF EXISTS `message`;
 CREATE TABLE `message` (
@@ -214,14 +176,10 @@ CREATE TABLE `message` (
   `msg_state` varchar(1) NOT NULL,
   PRIMARY KEY (`msg_id`),
   UNIQUE KEY `msg_id` (`msg_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of message
--- ----------------------------
-
--- ----------------------------
--- Table structure for `notification`
+--  Table structure for `notification`
 -- ----------------------------
 DROP TABLE IF EXISTS `notification`;
 CREATE TABLE `notification` (
@@ -234,14 +192,10 @@ CREATE TABLE `notification` (
   PRIMARY KEY (`noti_id`),
   UNIQUE KEY `noti_id` (`noti_id`) USING BTREE,
   KEY `class_id` (`class_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of notification
--- ----------------------------
-
--- ----------------------------
--- Table structure for `posts`
+--  Table structure for `posts`
 -- ----------------------------
 DROP TABLE IF EXISTS `posts`;
 CREATE TABLE `posts` (
@@ -257,14 +211,10 @@ CREATE TABLE `posts` (
   PRIMARY KEY (`post_id`),
   UNIQUE KEY `post_id` (`post_id`) USING BTREE,
   KEY `teacher_id` (`teacher_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of posts
--- ----------------------------
-
--- ----------------------------
--- Table structure for `questions`
+--  Table structure for `questions`
 -- ----------------------------
 DROP TABLE IF EXISTS `questions`;
 CREATE TABLE `questions` (
@@ -278,14 +228,10 @@ CREATE TABLE `questions` (
   PRIMARY KEY (`ques_id`),
   UNIQUE KEY `ques_id` (`ques_id`) USING BTREE,
   KEY `hw_id` (`hw_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of questions
--- ----------------------------
-
--- ----------------------------
--- Table structure for `reply_post`
+--  Table structure for `reply_post`
 -- ----------------------------
 DROP TABLE IF EXISTS `reply_post`;
 CREATE TABLE `reply_post` (
@@ -297,14 +243,10 @@ CREATE TABLE `reply_post` (
   PRIMARY KEY (`repost_id`),
   UNIQUE KEY `repost_id` (`repost_id`) USING BTREE,
   KEY `post_id` (`post_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of reply_post
--- ----------------------------
-
--- ----------------------------
--- Table structure for `resource`
+--  Table structure for `resource`
 -- ----------------------------
 DROP TABLE IF EXISTS `resource`;
 CREATE TABLE `resource` (
@@ -319,20 +261,16 @@ CREATE TABLE `resource` (
   PRIMARY KEY (`resrc_id`),
   UNIQUE KEY `resrc_id` (`resrc_id`) USING BTREE,
   KEY `post_id` (`post_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of resource
--- ----------------------------
-
--- ----------------------------
--- Table structure for `student`
+--  Table structure for `student`
 -- ----------------------------
 DROP TABLE IF EXISTS `student`;
 CREATE TABLE `student` (
   `uid` bigint(20) NOT NULL AUTO_INCREMENT,
   `student_id` varchar(20) NOT NULL,
-  `password` varchar(30) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `name` varchar(30) NOT NULL,
   `email` varchar(30) DEFAULT NULL,
   `question1` text,
@@ -344,20 +282,16 @@ CREATE TABLE `student` (
   PRIMARY KEY (`uid`),
   UNIQUE KEY `uid` (`uid`) USING BTREE,
   UNIQUE KEY `student_id` (`student_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of student
--- ----------------------------
-
--- ----------------------------
--- Table structure for `teacher`
+--  Table structure for `teacher`
 -- ----------------------------
 DROP TABLE IF EXISTS `teacher`;
 CREATE TABLE `teacher` (
   `uid` bigint(20) NOT NULL AUTO_INCREMENT,
   `teacher_id` varchar(20) NOT NULL,
-  `password` varchar(30) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `name` varchar(30) NOT NULL,
   `phone` varchar(20) DEFAULT NULL,
   `email` varchar(30) DEFAULT NULL,
@@ -370,14 +304,10 @@ CREATE TABLE `teacher` (
   PRIMARY KEY (`uid`),
   UNIQUE KEY `uid` (`uid`) USING BTREE,
   UNIQUE KEY `teacher_id` (`teacher_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of teacher
--- ----------------------------
-
--- ----------------------------
--- Table structure for `works`
+--  Table structure for `works`
 -- ----------------------------
 DROP TABLE IF EXISTS `works`;
 CREATE TABLE `works` (
@@ -394,8 +324,6 @@ CREATE TABLE `works` (
   UNIQUE KEY `work_id` (`work_id`) USING BTREE,
   KEY `ques_id` (`ques_id`) USING BTREE,
   KEY `uploader_id` (`uploader_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of works
--- ----------------------------
+SET FOREIGN_KEY_CHECKS = 1;

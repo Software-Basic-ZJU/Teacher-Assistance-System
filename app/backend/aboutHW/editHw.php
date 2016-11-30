@@ -14,7 +14,6 @@ connectDB();
 //Verify token
 loginCheck($_POST['token']);
 //Get information
-//hw_id,class_id,title,deadline,type,punish_type,punish_rate
 $hw_id = test_input(mysqli_escape_string($conn, $_POST['hw_id']));
 $title = test_input(mysqli_escape_string($conn, $_POST['title']));
 $deadline = test_input(mysqli_escape_string($conn, $_POST['deadline']));
@@ -48,7 +47,8 @@ if($query_result){
             "deadline" => $fetched['deadline'],
             "punish_type" => $fetched['punish_type'],
             "punish_rate" => $fetched['punish_rate'],
-            "over" => $fetched['over']
+            "over" => $fetched['over'],
+            "out_of_deadline" => (date('y-m-d :i:s',time())>$deadline)?0:1//0是过期了,1是没过期
         )
     );
     echo json_encode($result);

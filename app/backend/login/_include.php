@@ -6,7 +6,7 @@
  * Time: 16:40
  */
 include 'loginCheck.php';
-
+date_default_timezone_set('Asia/Shanghai');
 function test_input($data) {
     $data = inject_prevent($data);
     $data = trim($data);//去除用户输入数据中不必要的字符（多余的空格、制表符、换行）

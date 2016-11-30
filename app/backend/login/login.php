@@ -99,7 +99,7 @@ elseif ($type == 2){
     }
 }
 elseif ($type == 3){
-    $query_result = mysqli_query($conn, "select * from assist 
+    $query_result = mysqli_query($conn, "select * from assists 
                                          where assist_id ='$id' and password='$password' limit 1");
     if($fetched = mysqli_fetch_array($query_result)){
         $token = $id."-".$type."-".time();

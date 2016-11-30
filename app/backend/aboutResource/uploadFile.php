@@ -16,7 +16,7 @@ connectDB();
 //Verify token
 loginCheck($_POST['token']);
 $user_type = $_SESSION['type'];
-$time = date('y-m-d h:i:s',time());
+$time = date('y-m-d H:i:s',time());
 $path = "upload/". md5($time).$_FILES["file"]["type"];
 $size = $_FILES["file"]["size"];
 //资源类型：0为教师资源，1为帖子资源，2为跟帖资源

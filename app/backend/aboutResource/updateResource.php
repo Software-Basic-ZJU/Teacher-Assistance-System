@@ -15,8 +15,6 @@ connectDB();
 loginCheck($_POST['token']);
 //Get information
 
-// resource_id,uploader_id,name,file
-//返回 resource_id,name,time,size,uploader_name,uploader_id
 $resource_id = test_input(mysqli_escape_string($conn, $_POST['resource_id']));
 $uploader_id = test_input(mysqli_escape_string($conn, $_POST['uploader_id']));
 $name = test_input(mysqli_escape_string($conn, $_POST['name']));

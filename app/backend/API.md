@@ -255,7 +255,7 @@ POST——Teacher-Assistance-System/app/backend/aboutInfo/getTeacherInfo.php
 
 ## 9、返回教师资源列表
 
-POST——Teacher-Assistance-System/app/backend/aboutResource/getResourceList
+POST——Teacher-Assistance-System/app/backend/aboutResource/getResourceList.php
 
 参数：teacher_id
 
@@ -279,7 +279,7 @@ POST——Teacher-Assistance-System/app/backend/aboutResource/getResourceList
 
 ```php
 		"code" => 1,
-        "msg" => "查找失败，class_id错误",
+        "msg" => "查找失败，class_id错误,或者没有资源",
         "res" => null
 ```
 
@@ -311,7 +311,7 @@ POST——Teacher-Assistance-System/app/backend/aboutResource/uploadFile
 
 ## 11、上传资源（先用10的上传文件，再用此脚本更新数据库）
 
-POST——Teacher-Assistance-System/app/backend/aboutResource/addResource
+POST——Teacher-Assistance-System/app/backend/aboutResource/addResource.php
 
 参数：name、uploader_id、type（0为教师资源，1为帖子资源）、post_id、path、time、size
 
@@ -340,7 +340,7 @@ POST——Teacher-Assistance-System/app/backend/aboutResource/addResource
 
 ## 12、删除资源
 
-POST——Teacher-Assistance-System/app/backend/aboutResource/removeResource
+POST——Teacher-Assistance-System/app/backend/aboutResource/removeResource.php
 
 参数：resource_id
 
@@ -372,7 +372,7 @@ POST——Teacher-Assistance-System/app/backend/aboutResource/removeResource
 
 ## 13、更新资源(同样先上传文件再更新资源)
 
-POST——Teacher-Assistance-System/app/backend/aboutResource/updateResource
+POST——Teacher-Assistance-System/app/backend/aboutResource/updateResource.php
 
 参数：resource_id、uploader_id、name、path、time、size
 
@@ -412,7 +412,7 @@ POST——Teacher-Assistance-System/app/backend/aboutResource/updateResource
 
 ## 14、教师修改联系方式
 
-POST——Teacher-Assistance-System/app/backend/aboutInfo/editContact
+POST——Teacher-Assistance-System/app/backend/aboutInfo/editContact.php
 
 参数：teacher_id,email,phone,qq,wechar,other_contact
 
@@ -438,7 +438,7 @@ POST——Teacher-Assistance-System/app/backend/aboutInfo/editContact
 
 ## 15、发布通知
 
-POST——Teacher-Assistance-System/app/backend/aboutNotice/addNotice
+POST——Teacher-Assistance-System/app/backend/aboutNotice/addNotice.php
 
 参数：title、content、level、class_id
 
@@ -465,7 +465,7 @@ POST——Teacher-Assistance-System/app/backend/aboutNotice/addNotice
 
 ## 16、修改通知
 
-POST——Teacher-Assistance-System/app/backend/aboutNotice/editNotice
+POST——Teacher-Assistance-System/app/backend/aboutNotice/editNotice.php
 
 参数：notice_id、title、content、level、class_id
 
@@ -498,7 +498,7 @@ POST——Teacher-Assistance-System/app/backend/aboutNotice/editNotice
 
 ## 17、删除通知
 
-POST——Teacher-Assistance-System/app/backend/aboutNotice/deleteNotice
+POST——Teacher-Assistance-System/app/backend/aboutNotice/deleteNotice.php
 
 参数：notice_id
 
@@ -524,7 +524,7 @@ POST——Teacher-Assistance-System/app/backend/aboutNotice/deleteNotice
 
 ## 18、发布文章
 
-POST——Teacher-Assistance-System/app/backend/aboutArticle/addArticle
+POST——Teacher-Assistance-System/app/backend/aboutArticle/addArticle.php
 
 参数：title、content、teacher_id，author、authority
 
@@ -550,7 +550,7 @@ POST——Teacher-Assistance-System/app/backend/aboutArticle/addArticle
 
 ## 19、编辑文章
 
-POST——Teacher-Assistance-System/app/backend/aboutArticle/editArticle
+POST——Teacher-Assistance-System/app/backend/aboutArticle/editArticle.php
 
 参数：article_id、title、content、teacher_id，author、authority
 
@@ -583,7 +583,7 @@ POST——Teacher-Assistance-System/app/backend/aboutArticle/editArticle
 
 ##  20、删除文章
 
-POST——Teacher-Assistance-System/app/backend/aboutArticle/deleteArticle
+POST——Teacher-Assistance-System/app/backend/aboutArticle/deleteArticle.php
 
 参数：article_id
 
@@ -609,7 +609,7 @@ POST——Teacher-Assistance-System/app/backend/aboutArticle/deleteArticle
 
 ## 21、编辑课程信息
 
-POST——Teacher-Assistance-System/app/backend/aboutInfo/editCourseInfo
+POST——Teacher-Assistance-System/app/backend/aboutInfo/editCourseInfo.php
 
 参数：course_info、teacher_id
 
@@ -637,7 +637,7 @@ POST——Teacher-Assistance-System/app/backend/aboutInfo/editCourseInfo
 
 ## 22、编辑教师信息
 
-POST——Teacher-Assistance-System/app/backend/aboutInfo/editTeacherInfo
+POST——Teacher-Assistance-System/app/backend/aboutInfo/editTeacherInfo.php
 
 参数：teacher_info、teacher_id
 
@@ -665,7 +665,7 @@ POST——Teacher-Assistance-System/app/backend/aboutInfo/editTeacherInfo
 
 ## 23、获取作业列表
 
-POST——Teacher-Assistance-System/app/backend/aboutHW/getHwList
+POST——Teacher-Assistance-System/app/backend/aboutHW/getHwList.php
 
 参数：class_id
 
@@ -676,7 +676,7 @@ POST——Teacher-Assistance-System/app/backend/aboutHW/getHwList
         "msg" => "查找成功",
         "res" => $hwList
           
-          $hwList[] = array(
+        $hwList[] = array(
             "hw_id" => $fetched['hw_id'],
             "title" => $fetched['title'],
             "type" => $fetched['type'],
@@ -684,7 +684,8 @@ POST——Teacher-Assistance-System/app/backend/aboutHW/getHwList
             "deadline" => $fetched['deadline'],
             "punish_type" => $fetched['punish_type'],
             "punish_rate" => $fetched['punish_rate'],
-            "over" 是否过期
+            "over" => $fetched['over'],//老师是否已经全部批改
+            "out_of_deadline" => $out_of_deadline//0是过期了,1是没过期
         );
 ```
 
@@ -696,9 +697,9 @@ POST——Teacher-Assistance-System/app/backend/aboutHW/getHwList
 
 ## 24、发布作业
 
-POST——Teacher-Assistance-System/app/backend/aboutHW/addHw
+POST——Teacher-Assistance-System/app/backend/aboutHW/addHw.php
 
-参数：Class_id,title,deadline,type,punish_type,punish_rate
+参数：class_id,title,deadline,type,punish_type,punish_rate
 
 返回:
 
@@ -716,7 +717,7 @@ POST——Teacher-Assistance-System/app/backend/aboutHW/addHw
 
 ## 25、编辑作业
 
-POST——Teacher-Assistance-System/app/backend/aboutHW/editHw
+POST——Teacher-Assistance-System/app/backend/aboutHW/editHw.php
 
 参数：hw_id,class_id,title,deadline,type,punish_type,punish_rate
 
@@ -746,6 +747,26 @@ POST——Teacher-Assistance-System/app/backend/aboutHW/editHw
 ```php
         "code" => 2,
         "msg" => "无效用户尝试操作",
+        "res" => null
+```
+
+## 26、删除作业
+
+POST——Teacher-Assistance-System/app/backend/aboutHW/deleteHw.php
+
+参数：hw_id
+
+返回:
+
+```php
+        "code" => 0,
+        "msg" => "删除成功",
+        "res" => null
+```
+
+```php
+        "code" => 1,
+        "msg" => "删除失败",
         "res" => null
 ```
 

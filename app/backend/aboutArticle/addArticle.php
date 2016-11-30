@@ -14,13 +14,12 @@ connectDB();
 //Verify token
 loginCheck($_POST['token']);
 //Get information
-//title、content、level
 $title = test_input(mysqli_escape_string($conn, $_POST['title']));
 $content = test_input(mysqli_escape_string($conn, $_POST['content']));
 $author = test_input(mysqli_escape_string($conn, $_POST['author']));
 $teacher_id = test_input(mysqli_escape_string($conn, $_POST['teacher_id']));
 $authority = test_input(mysqli_escape_string($conn, $_POST['authority']));
-$time = date('y-m-d h:i:s',time());
+$time = date('y-m-d H:i:s',time());
 
 $query_result = mysqli_query($conn, "INSERT INTO article 
                                      (title,content,time,teacher_id,author,authority) 

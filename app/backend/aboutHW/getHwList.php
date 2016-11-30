@@ -15,11 +15,11 @@ connectDB();
 loginCheck($_POST['token']);
 //Get information
 $class_id = test_input(mysqli_escape_string($conn, $_POST['class_id']));
-//hwList[String](hw_id,title,type,publish_time,deadline，punish_type,punish_rate,over)
 $query_result = mysqli_query($conn, "select * from homework WHERE class_id = '$class_id';");
 if($fetched = mysqli_fetch_array($query_result)){
     $hwList = array();
     do{
+        $out_of_deadline = (date('y-m-d h:i:s',time())>$fetched['deadline'])?0:1;//0是过期了,1是没过期
         $hwList[] = array(
             "hw_id" => $fetched['hw_id'],
             "title" => $fetched['title'],
@@ -28,7 +28,8 @@ if($fetched = mysqli_fetch_array($query_result)){
             "deadline" => $fetched['deadline'],
             "punish_type" => $fetched['punish_type'],
             "punish_rate" => $fetched['punish_rate'],
-            "over" => $fetched['over']
+            "over" => $fetched['over'],//老师是否已经全部批改
+            "out_of_deadline" =>$out_of_deadline
         );
     }while($fetched = mysqli_fetch_array($query_result));
     $result = array(

@@ -21,7 +21,7 @@ if($fetched = mysqli_fetch_array($query_result)){
     $articles = array();
     do{ //Articles[String](title,content,author,time)
         $articles[] = array(
-            "article_id" => $fetched['article_id'],
+            "article_id" => $fetched['art_id'],
             "title" => $fetched['title'],
             "content" => $fetched['content'],
             "author" => $fetched['author'],
