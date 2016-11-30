@@ -69,7 +69,7 @@
 						<a class="page-scroll" href="Resource.php">课件</a>
 					</li>
 					<li>
-						<a class="page-scroll" href="MessageBoard.php">留言板</a>
+						<a class="page-scroll" href="">留言板</a>
 					</li>
                 </ul>
             </div>

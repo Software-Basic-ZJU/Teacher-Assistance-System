@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!--<html lang="en">-->
+<html>
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -92,7 +92,7 @@
 					</div>
 				</div>
 				<?php
-				include "backend/Articles/GetArticleList.php";
+				include 'backend/Articles/GetArticleListLM.php';
 				?>
 				<div class="row">
 					<div class="col-md-4 text-center">
@@ -100,7 +100,7 @@
 							<span><i class="sl-icon-graph"></i></span>
 							<h3>Dashboard</h3>
 							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-							<div class="cd-see-all"><a href="NewPassage.php" class="btn btn-1">See all</a></div>
+							<div class="cd-see-all"><a href="NewPassage.php?art_id=" class="btn btn-1">See all</a></div>
 						</div>
 					</div>
 				</div>
