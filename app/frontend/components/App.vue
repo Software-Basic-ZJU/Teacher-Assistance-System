@@ -50,13 +50,6 @@
     }
 </style>
 <style>
-    .fade-enter,
-    .fade-leave,
-    .fade-enter-active,
-    .fade-leave-active{
-        width:100%;
-        position:absolute;
-    }
     .el-breadcrumb{
         margin-top:0px;
         padding-bottom:5px;
@@ -67,13 +60,6 @@
     .el-form-item:after,
     .el-form-item__content:after{
         clear:none;
-    }
-    .el-dialog{
-        min-width:300px;
-        max-width:740px;
-    }
-    .el-icon-d-arrow-left,.el-icon-d-arrow-right{
-        margin-top:-3px;
     }
     .el-input.is-disabled>.el-input__inner{
         color:#8492A6;

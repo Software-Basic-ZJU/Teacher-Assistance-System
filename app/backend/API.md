@@ -663,3 +663,89 @@ POST——Teacher-Assistance-System/app/backend/aboutInfo/editTeacherInfo
         "res" => null
 ```
 
+## 23、获取作业列表
+
+POST——Teacher-Assistance-System/app/backend/aboutHW/getHwList
+
+参数：class_id
+
+返回:
+
+```php
+        "code" => 0,
+        "msg" => "查找成功",
+        "res" => $hwList
+          
+          $hwList[] = array(
+            "hw_id" => $fetched['hw_id'],
+            "title" => $fetched['title'],
+            "type" => $fetched['type'],
+            "publish_time" => $fetched['publish_time'],
+            "deadline" => $fetched['deadline'],
+            "punish_type" => $fetched['punish_type'],
+            "punish_rate" => $fetched['punish_rate'],
+            "over" 是否过期
+        );
+```
+
+```php
+        "code" => 1,
+        "msg" => "查找失败，class_id错误",
+        "res" => null
+```
+
+## 24、发布作业
+
+POST——Teacher-Assistance-System/app/backend/aboutHW/addHw
+
+参数：Class_id,title,deadline,type,punish_type,punish_rate
+
+返回:
+
+```php
+        "code" => 0,
+        "msg" => "作业发布成功",
+        "res" => null
+```
+
+```php
+        "code" => 1,
+        "msg" => "作业发布失败",
+        "res" => null
+```
+
+## 25、编辑作业
+
+POST——Teacher-Assistance-System/app/backend/aboutHW/editHw
+
+参数：hw_id,class_id,title,deadline,type,punish_type,punish_rate
+
+返回:
+
+```php
+        "code" => 0,
+        "msg" => "修改成功",
+        "res" => array(
+            "hw_id" => $fetched['hw_id'],
+            "title" => $fetched['title'],
+            "type" => $fetched['type'],
+            "publish_time" => $fetched['publish_time'],
+            "deadline" => $fetched['deadline'],
+            "punish_type" => $fetched['punish_type'],
+            "punish_rate" => $fetched['punish_rate'],
+            "over" => $fetched['over']
+        )
+```
+
+```php
+        "code" => 1,
+        "msg" => "修改失败",
+        "res" => null
+```
+
+```php
+        "code" => 2,
+        "msg" => "无效用户尝试操作",
+        "res" => null
+```
+

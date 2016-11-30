@@ -29,19 +29,19 @@
                     destId:[
                         {
                             required:true,
-                            message:'请输入收件人id!',
+                            message:'请输入收件人id',
                             trigger:'blur'
                         },
                         {
                             max:40,
-                            message:'收件人id太长了...',
+                            message:'收件人id太长了',
                             trigger:'blur'
                         }
                     ],
                     title:[
                         {
                             required:true,
-                            message:'请输入信件标题!',
+                            message:'请输入信件标题',
                             trigger:'blur'
                         },
                         {
@@ -53,7 +53,7 @@
                     content:[
                         {
                             required:true,
-                            message:'请输入信件内容!',
+                            message:'请输入信件内容',
                             trigger:'blur'
                         },
                         {
