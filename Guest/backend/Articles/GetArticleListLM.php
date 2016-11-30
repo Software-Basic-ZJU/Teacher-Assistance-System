@@ -1,7 +1,6 @@
 
 <?php
-
-include '../connectDB.php';
+include dirname(dirname(__FILE__)).'/connectDB.php';
 global $conn;
 connectDB();
 

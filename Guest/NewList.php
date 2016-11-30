@@ -92,7 +92,7 @@
 					</div>
 				</div>
 				<?php
-				include 'backend/Articles/GetArticleListLM.php';
+				include dirname(__FILE__).'/backend/Articles/GetArticleListLM.php';
 				?>
 				<div class="row">
 					<div class="col-md-4 text-center">
