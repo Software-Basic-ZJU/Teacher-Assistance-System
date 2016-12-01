@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: Wu
- * Date: 2016/11/28
- * Time: 09:17
+ * Date: 2016/12/1
+ * Time: 13:43
  */
 header('Content-type: application/json');
 session_start();
@@ -14,9 +14,11 @@ connectDB();
 //Verify token
 loginCheck($_POST['token']);
 //Get information
-$course_info = test_input(mysqli_escape_string($conn, $_POST['course_info']));
-$teacher_id = test_input(mysqli_escape_string($conn, $_POST['teacher_id']));
-if($_SESSION['type']!=2){
+$work_id = test_input(mysqli_escape_string($conn, $_POST['work_id']));
+$score = test_input(mysqli_escape_string($conn, $_POST['score']));
+$reply = test_input(mysqli_escape_string($conn, $_POST['reply']));
+
+if($_SESSION['type']!=2 && $_SESSION['type']!=3){
     $result = array(
         "code" => 2,
         "msg" => "无效用户尝试操作",
@@ -25,24 +27,21 @@ if($_SESSION['type']!=2){
     echo json_encode($result);
     exit;
 }
-
-$query_result = mysqli_query($conn, "update teacher
-                                     set course_info = '$course_info'
-                                     WHERE teacher_id = '$teacher_id';");
+$query_result = mysqli_query($conn, "update works
+                                 set score = '$score', reply = '$reply'
+                                 WHERE work_id = '$work_id';");
 if($query_result){
     $result = array(
         "code" => 0,
-        "msg" => "修改成功",
-        "res" => array(
-            'course_info' => $course_info
-        )
+        "msg" => "点评成功",
+        "res" => null
     );
     echo json_encode($result);
 }
 else{
     $result = array(
         "code" => 1,
-        "msg" => "修改失败",
+        "msg" => "点评失败",
         "res" => null
     );
     echo json_encode($result);

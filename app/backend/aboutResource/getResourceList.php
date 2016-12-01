@@ -12,7 +12,7 @@ include '../login/_include.php';
 global $conn;
 connectDB();
 //Verify token
-loginCheck($_POST['token']);
+//loginCheck($_POST['token']);
 //Get information
 $teacher_id = test_input(mysqli_escape_string($conn, $_POST['teacher_id']));
 //select * from resource JOIN select  where uploader_id = 10001 and type = 0
@@ -40,7 +40,7 @@ if($fetched = mysqli_fetch_array($query_result)){
 else{
     $result = array(
         "code" => 1,
-        "msg" => "查找失败，teacher_id错误",
+        "msg" => "查找失败，teacher_id错误,或者没有资源",
         "res" => null
     );
     echo json_encode($result);

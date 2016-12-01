@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: Wu
- * Date: 2016/11/21
- * Time: 16:21
+ * Date: 2016/12/1
+ * Time: 20:53
  */
 header('Content-type: application/json');
 session_start();
@@ -15,30 +15,28 @@ connectDB();
 loginCheck($_POST['token']);
 //Get information
 $teacher_id = test_input(mysqli_escape_string($conn, $_POST['teacher_id']));
-$query_result = mysqli_query($conn, "select * from article 
-                                         where teacher_id ='$teacher_id'");
+
+$query_result = mysqli_query($conn, "select section,count(post_id) as total_num,COUNT( CASE WHEN to_days(publish_time) = to_days(now()) THEN 1 ELSE NULL END ) as today_num from posts where teacher_id = '$teacher_id' group by section;");
 if($fetched = mysqli_fetch_array($query_result)){
-    $articles = array();
-    do{ //Articles[String](title,content,author,time)
-        $articles[] = array(
-            "article_id" => $fetched['art_id'],
-            "title" => $fetched['title'],
-            "content" => $fetched['content'],
-            "author" => $fetched['author'],
-            "time" => $fetched['time']
+    $sectionList = array();
+    do{
+        $sectionList[] = array(
+            "section" => $fetched['section'],
+            "total_num" => $fetched['total_num'],
+            "today_num" => $fetched['today_num']
         );
     }while($fetched = mysqli_fetch_array($query_result));
     $result = array(
         "code" => 0,
         "msg" => "查找成功",
-        "res" => $articles
+        "res" => $sectionList
     );
     echo json_encode($result);
 }
 else{
     $result = array(
         "code" => 1,
-        "msg" => "查找失败，teacher_id错误",
+        "msg" => "查找失败",
         "res" => null
     );
     echo json_encode($result);

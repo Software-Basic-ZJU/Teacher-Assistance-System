@@ -24,7 +24,6 @@ if($_SESSION['type']!=2 && $_SESSION['type']!=3){
     echo json_encode($result);
     exit;
 }
-//select * from resource JOIN select  where uploader_id = 10001 and type = 0
 $query_result = mysqli_query($conn, "select path FROM resource WHERE resrc_id = '$resource_id';");
 if($fetched = mysqli_fetch_array($query_result)){
     $path = $fetched['path'];

@@ -24,7 +24,6 @@ if($_SESSION['type']!=2){
     echo json_encode($result);
     exit;
 }
-//select * from resource JOIN select  where uploader_id = 10001 and type = 0
 $query_result = mysqli_query($conn, "delete from article WHERE art_id = '$article_id';");
 if($query_result){
     $result = array(

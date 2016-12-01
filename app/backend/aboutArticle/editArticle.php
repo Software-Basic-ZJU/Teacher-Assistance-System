@@ -18,7 +18,7 @@ $title = test_input(mysqli_escape_string($conn, $_POST['title']));
 $content = test_input(mysqli_escape_string($conn, $_POST['content']));
 $author = test_input(mysqli_escape_string($conn, $_POST['author']));
 $authority = test_input(mysqli_escape_string($conn, $_POST['authority']));
-$time = date('y-m-d h:i:s',time());
+$time = date('y-m-d H:i:s',time());
 $article_id = test_input(mysqli_escape_string($conn, $_POST['article_id']));
 $teacher_id = $_SESSION['teacher_id'];
 if($_SESSION['type']!=2){
@@ -34,7 +34,7 @@ if($_SESSION['type']!=2){
 //select *, count(distinct name) from table group by name
 $query_result = mysqli_query($conn, "update article
                                      set title = '$title', content = '$content' , author = '$author' , authority = '$authority', time = '$time'
-                                     WHERE art_id = '$notice_id' and teacher_id = '$teacher_id';");
+                                     WHERE art_id = '$article_id' and teacher_id = '$teacher_id';");
 if($query_result){
     $result = array(
         "code" => 0,

@@ -255,7 +255,7 @@ POST——Teacher-Assistance-System/app/backend/aboutInfo/getTeacherInfo.php
 
 ## 9、返回教师资源列表
 
-POST——Teacher-Assistance-System/app/backend/aboutResource/getResourceList
+POST——Teacher-Assistance-System/app/backend/aboutResource/getResourceList.php
 
 参数：teacher_id
 
@@ -279,7 +279,7 @@ POST——Teacher-Assistance-System/app/backend/aboutResource/getResourceList
 
 ```php
 		"code" => 1,
-        "msg" => "查找失败，class_id错误",
+        "msg" => "查找失败，class_id错误,或者没有资源",
         "res" => null
 ```
 
@@ -311,7 +311,7 @@ POST——Teacher-Assistance-System/app/backend/aboutResource/uploadFile
 
 ## 11、上传资源（先用10的上传文件，再用此脚本更新数据库）
 
-POST——Teacher-Assistance-System/app/backend/aboutResource/addResource
+POST——Teacher-Assistance-System/app/backend/aboutResource/addResource.php
 
 参数：name、uploader_id、type（0为教师资源，1为帖子资源）、post_id、path、time、size
 
@@ -340,7 +340,7 @@ POST——Teacher-Assistance-System/app/backend/aboutResource/addResource
 
 ## 12、删除资源
 
-POST——Teacher-Assistance-System/app/backend/aboutResource/removeResource
+POST——Teacher-Assistance-System/app/backend/aboutResource/removeResource.php
 
 参数：resource_id
 
@@ -372,7 +372,7 @@ POST——Teacher-Assistance-System/app/backend/aboutResource/removeResource
 
 ## 13、更新资源(同样先上传文件再更新资源)
 
-POST——Teacher-Assistance-System/app/backend/aboutResource/updateResource
+POST——Teacher-Assistance-System/app/backend/aboutResource/updateResource.php
 
 参数：resource_id、uploader_id、name、path、time、size
 
@@ -412,7 +412,7 @@ POST——Teacher-Assistance-System/app/backend/aboutResource/updateResource
 
 ## 14、教师修改联系方式
 
-POST——Teacher-Assistance-System/app/backend/aboutInfo/editContact
+POST——Teacher-Assistance-System/app/backend/aboutInfo/editContact.php
 
 参数：teacher_id,email,phone,qq,wechar,other_contact
 
@@ -438,7 +438,7 @@ POST——Teacher-Assistance-System/app/backend/aboutInfo/editContact
 
 ## 15、发布通知
 
-POST——Teacher-Assistance-System/app/backend/aboutNotice/addNotice
+POST——Teacher-Assistance-System/app/backend/aboutNotice/addNotice.php
 
 参数：title、content、level、class_id
 
@@ -465,7 +465,7 @@ POST——Teacher-Assistance-System/app/backend/aboutNotice/addNotice
 
 ## 16、修改通知
 
-POST——Teacher-Assistance-System/app/backend/aboutNotice/editNotice
+POST——Teacher-Assistance-System/app/backend/aboutNotice/editNotice.php
 
 参数：notice_id、title、content、level、class_id
 
@@ -498,7 +498,7 @@ POST——Teacher-Assistance-System/app/backend/aboutNotice/editNotice
 
 ## 17、删除通知
 
-POST——Teacher-Assistance-System/app/backend/aboutNotice/deleteNotice
+POST——Teacher-Assistance-System/app/backend/aboutNotice/deleteNotice.php
 
 参数：notice_id
 
@@ -524,7 +524,7 @@ POST——Teacher-Assistance-System/app/backend/aboutNotice/deleteNotice
 
 ## 18、发布文章
 
-POST——Teacher-Assistance-System/app/backend/aboutArticle/addArticle
+POST——Teacher-Assistance-System/app/backend/aboutArticle/addArticle.php
 
 参数：title、content、teacher_id，author、authority
 
@@ -550,7 +550,7 @@ POST——Teacher-Assistance-System/app/backend/aboutArticle/addArticle
 
 ## 19、编辑文章
 
-POST——Teacher-Assistance-System/app/backend/aboutArticle/editArticle
+POST——Teacher-Assistance-System/app/backend/aboutArticle/editArticle.php
 
 参数：article_id、title、content、teacher_id，author、authority
 
@@ -583,7 +583,7 @@ POST——Teacher-Assistance-System/app/backend/aboutArticle/editArticle
 
 ##  20、删除文章
 
-POST——Teacher-Assistance-System/app/backend/aboutArticle/deleteArticle
+POST——Teacher-Assistance-System/app/backend/aboutArticle/deleteArticle.php
 
 参数：article_id
 
@@ -609,7 +609,7 @@ POST——Teacher-Assistance-System/app/backend/aboutArticle/deleteArticle
 
 ## 21、编辑课程信息
 
-POST——Teacher-Assistance-System/app/backend/aboutInfo/editCourseInfo
+POST——Teacher-Assistance-System/app/backend/aboutInfo/editCourseInfo.php
 
 参数：course_info、teacher_id
 
@@ -637,7 +637,7 @@ POST——Teacher-Assistance-System/app/backend/aboutInfo/editCourseInfo
 
 ## 22、编辑教师信息
 
-POST——Teacher-Assistance-System/app/backend/aboutInfo/editTeacherInfo
+POST——Teacher-Assistance-System/app/backend/aboutInfo/editTeacherInfo.php
 
 参数：teacher_info、teacher_id
 
@@ -665,7 +665,7 @@ POST——Teacher-Assistance-System/app/backend/aboutInfo/editTeacherInfo
 
 ## 23、获取作业列表
 
-POST——Teacher-Assistance-System/app/backend/aboutHW/getHwList
+POST——Teacher-Assistance-System/app/backend/aboutHW/getHwList.php
 
 参数：class_id
 
@@ -676,7 +676,7 @@ POST——Teacher-Assistance-System/app/backend/aboutHW/getHwList
         "msg" => "查找成功",
         "res" => $hwList
           
-          $hwList[] = array(
+        $hwList[] = array(
             "hw_id" => $fetched['hw_id'],
             "title" => $fetched['title'],
             "type" => $fetched['type'],
@@ -684,7 +684,8 @@ POST——Teacher-Assistance-System/app/backend/aboutHW/getHwList
             "deadline" => $fetched['deadline'],
             "punish_type" => $fetched['punish_type'],
             "punish_rate" => $fetched['punish_rate'],
-            "over" 是否过期
+            "over" => $fetched['over'],//老师是否已经全部批改
+            "out_of_deadline" => $out_of_deadline//0是过期了,1是没过期
         );
 ```
 
@@ -696,9 +697,9 @@ POST——Teacher-Assistance-System/app/backend/aboutHW/getHwList
 
 ## 24、发布作业
 
-POST——Teacher-Assistance-System/app/backend/aboutHW/addHw
+POST——Teacher-Assistance-System/app/backend/aboutHW/addHw.php
 
-参数：Class_id,title,deadline,type,punish_type,punish_rate
+参数：class_id,title,deadline,type,punish_type,punish_rate
 
 返回:
 
@@ -716,7 +717,7 @@ POST——Teacher-Assistance-System/app/backend/aboutHW/addHw
 
 ## 25、编辑作业
 
-POST——Teacher-Assistance-System/app/backend/aboutHW/editHw
+POST——Teacher-Assistance-System/app/backend/aboutHW/editHw.php
 
 参数：hw_id,class_id,title,deadline,type,punish_type,punish_rate
 
@@ -747,5 +748,363 @@ POST——Teacher-Assistance-System/app/backend/aboutHW/editHw
         "code" => 2,
         "msg" => "无效用户尝试操作",
         "res" => null
+```
+
+## 26、删除作业
+
+POST——Teacher-Assistance-System/app/backend/aboutHW/deleteHw.php
+
+参数：hw_id
+
+返回:
+
+```php
+        "code" => 0,
+        "msg" => "删除成功",
+        "res" => null
+```
+
+```php
+        "code" => 1,
+        "msg" => "删除失败",
+        "res" => null
+```
+
+## 27、查找一份作业中的问题列表
+
+POST——Teacher-Assistance-System/app/backend/aboutQues/getQuesList.php
+
+参数：hw_id
+
+返回:
+
+```php
+		"code" => 0,
+        "msg" => "查找成功",
+        "res" => $quesList
+          
+          $quesList[] = array(
+            "ques_id" => $fetched['ques_id'],
+            "title" => $fetched['title'],
+            "type" => $fetched['type'],
+            "content" => $fetched['content'],
+            "should_num" => $should_num,
+            "submit_num" => $fetched['submit_num'],
+            "ques_finish" => $fetched['ques_finish']
+        );
+```
+
+```php
+        "code" => 1,
+        "msg" => "查找失败",
+        "res" => null
+```
+
+## 28、增加一份作业中的一个问题
+
+POST——Teacher-Assistance-System/app/backend/aboutQues/addQues.php
+
+参数：Hw_id,title,content,type
+
+返回:
+
+```php
+        "code" => 0,
+        "msg" => "题目发布成功",
+        "res" => array(
+            "ques_id" => $ques_id,
+            "title" => $title,
+            "type" => $type,
+            "content" => $content,
+            "should_num" => $should_num,
+            "submit_num" => 0,
+            "ques_finish" => 0
+        )
+```
+
+```php
+        "code" => 1,
+        "msg" => "题目发布失败",
+        "res" => null
+```
+
+## 29、删除一份作业中的一个问题
+
+POST——Teacher-Assistance-System/app/backend/aboutQues/removeQues.php
+
+参数：ques_id
+
+返回:
+
+```php
+        "code" => 0,
+        "msg" => "删除成功",
+        "res" => null
+```
+
+```php
+        "code" => 1,
+        "msg" => "删除失败",
+        "res" => null
+```
+
+```php
+        "code" => 2,
+        "msg" => "无效用户尝试操作",
+        "res" => null
+```
+
+
+
+## 30、修改一份作业中的一个问题
+
+POST——Teacher-Assistance-System/app/backend/aboutQues/editQues.php
+
+参数：ques_id,title,content,type
+
+返回:
+
+```php
+        "code" => 0,
+        "msg" => "修改成功",
+        "res" => array(
+            "ques_id" => $fetched['ques_id'],
+            "title" => $fetched['title'],
+            "type" => $fetched['type'],
+            "content" => $fetched['content'],
+            "should_num" => $should_num,
+            "submit_num" => $fetched['submit_num'],
+            "ques_finish" => $fetched['ques_finish']
+        )
+```
+
+```php
+        "code" => 1,
+        "msg" => "修改失败",
+        "res" => null
+
+```
+
+```php
+        "code" => 2,
+        "msg" => "无效用户尝试操作",
+        "res" => null
+```
+
+## 31、一个学生交一个问题的作业（work）
+
+POST——Teacher-Assistance-System/app/backend/aboutWork/submitWork.php
+
+参数：ques_id,content,attachment,uploader_id,type
+
+返回:
+
+```php
+        "code" => 0,
+        "msg" => "作业提交成功",
+        "res" => null
+```
+
+```php
+        "code" => 1,
+        "msg" => "作业提交失败",
+        "res" => null
+```
+
+```php
+            "code" => 2,
+            "msg" => "作业提交成功,但是数据库已交数目并未更新",
+            "res" => null
+```
+
+## 32、得到一个学生对于一个问题的提交
+
+POST——Teacher-Assistance-System/app/backend/aboutWork/getStuWork.php
+
+参数：ques_id,uploader_id
+
+返回:
+
+```php
+        "code" => 0,
+        "msg" => "查找成功",
+        "res" => array(
+            "work_id" => $fetched['work_id'],
+            "reply" => $fetched['reply'],
+            "content" => $fetched['content'],
+            "score" => $fetched['score'],
+            "attachment" => $fetched['attachment'],
+            "uploader_id" => $fetched['uploader_id']
+```
+
+```php
+        "code" => 1,
+        "msg" => "查找失败",
+        "res" => null
+```
+
+## 33、批改一个提交（work）
+
+POST——Teacher-Assistance-System/app/backend/aboutWork/correctWork.php
+
+参数：work_id,score,reply
+
+返回:
+
+```php
+        "code" => 0,
+        "msg" => "点评成功",
+        "res" => null
+```
+
+```php
+        "code" => 1,
+        "msg" => "点评失败",
+        "res" => null
+```
+
+```php
+        "code" => 2,
+        "msg" => "无效用户尝试操作",
+        "res" => null
+```
+
+## 34、提交对于一个问题（ques）的所有评价
+
+POST——Teacher-Assistance-System/app/backend/aboutQues/finishQues.php
+
+参数：ques_id
+
+返回:
+
+```php
+            "code" => 0,
+            "msg" => "提交成功",
+            "res" => null
+```
+
+```php
+        "code" => 1,
+        "msg" => "还有未点评的work",
+        "res" => null
+```
+
+```php
+        "code" => 2,
+        "msg" => "无效用户尝试操作",
+        "res" => null
+```
+
+## 35、获取一道题目（ques）的应交名单
+
+POST——Teacher-Assistance-System/app/backend/aboutWork/getWorkStuList.php
+
+参数：ques_id，type
+
+返回:
+
+```php
+           "code" => 0,
+            "msg" => "个人查找成功",
+            "res" => $stuList
+              
+              $stuList[] = array(
+                "id" => $fetched['student_id'],
+                "name" => $fetched['name'],
+                "status" => $status//已交是1，未交是0
+            );
+```
+
+```php
+        $result = array(
+            "code" => 1,
+            "msg" => "小组查找成功",
+            "res" => $stuList
+        );
+        
+            $stuList[] = array(
+                "id" => $fetched['student_id'],
+                "name" => $fetched['name'],
+                "status" => $status
+            );
+```
+
+```php
+            "code" => 3,
+            "msg" => "查找失败",
+            "res" => null
+```
+
+## 36、获取论坛首页信息
+
+POST——Teacher-Assistance-System/app/backend/aboutPost/getForumInfo.php
+
+参数：teacher_id
+
+返回:
+
+```php
+        "code" => 0,
+        "msg" => "查找成功",
+        "res" => $sectionList
+         
+          $sectionList[] = array(
+            "section" => $fetched['section'],
+            "total_num" => $fetched['total_num'],
+            "today_num" => $fetched['today_num']
+        );
+```
+
+```php
+        "code" => 1,
+        "msg" => "查找失败",
+        "res" => null
+```
+
+## 37、获取帖子列表 
+
+POST——Teacher-Assistance-System/app/backend/aboutPost/getPostList.php
+
+参数：section,teacher_id,group_id//若section为2的时候要传group-id
+
+//sction：0为教师答疑区，1为公共讨论区，2为小组讨论区
+
+返回:
+
+```php
+            "code" => 0,
+            "msg" => "查找成功",
+            "res" => $postList
+              
+              $postList[] = array(
+                "post_id" => $post_id,
+                "title" => $fetched['title'],
+                "content" => $fetched['content'],
+                "author_id" => $author_id,
+                "author_name" => $author_name,
+                "publish_time" => $fetched['publish_time'],
+                "update_time" => $fetched['update_time'],
+                "reply_num" => $reply_num,
+                "attachment" => $attachment
+            );
+
+       		$attachment[] = array(
+                        "resrc_id" => $fetched_resource['resrc_id'],
+                        "name" => $fetched_resource['name'],
+                        "path" => $fetched_resource['path'],
+                        "size" => $fetched_resource['size']
+                    );
+```
+
+```php
+            "code" => 1,
+            "msg" => "查找失败，错误",
+            "res" => null
+```
+
+```php
+                        "code" => 2,
+                        "msg" => "无此上传人",
+                        "res" => null
 ```
 

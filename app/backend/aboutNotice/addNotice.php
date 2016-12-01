@@ -19,7 +19,7 @@ $title = test_input(mysqli_escape_string($conn, $_POST['title']));
 $content = test_input(mysqli_escape_string($conn, $_POST['content']));
 $level = test_input(mysqli_escape_string($conn, $_POST['level']));
 $class_id = test_input(mysqli_escape_string($conn, $_POST['class_id']));
-$time = date('y-m-d h:i:s',time());
+$time = date('y-m-d H:i:s',time());
 
 $query_result = mysqli_query($conn, "INSERT INTO notification 
                                      (title,content,level,time,class_id) 

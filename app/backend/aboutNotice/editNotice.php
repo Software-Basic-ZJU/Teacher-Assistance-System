@@ -18,7 +18,7 @@ $title = test_input(mysqli_escape_string($conn, $_POST['title']));
 $content = test_input(mysqli_escape_string($conn, $_POST['content']));
 $level = test_input(mysqli_escape_string($conn, $_POST['level']));
 $class_id = test_input(mysqli_escape_string($conn, $_POST['class_id']));
-$time = date('y-m-d h:i:s',time());
+$time = date('y-m-d H:i:s',time());
 $notice_id = test_input(mysqli_escape_string($conn, $_POST['notice_id']));
 if($_SESSION['type']!=2){
     $result = array(
@@ -29,7 +29,6 @@ if($_SESSION['type']!=2){
     echo json_encode($result);
     exit;
 }
-//select *, count(distinct name) from table group by name
 $query_result = mysqli_query($conn, "update notification
                                      set title = '$title', content = '$content' , level = '$level' , class_id = '$class_id', time = '$time'
                                      WHERE noti_id = '$notice_id';");
