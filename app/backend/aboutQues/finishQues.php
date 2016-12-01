@@ -38,7 +38,7 @@ else{
     $get_avg_score = mysqli_query($conn, "select AVG(score) as avg_score from works WHERE ques_id = '$ques_id';");
     if($fetched_avg_score = mysqli_fetch_array($get_avg_score)){
         $avg_score = $fetched_avg_score['avg_score'];
-        mysqli_query($conn, "update questions set average_score = '$avg_score' WHERE ques_id = '$ques_id';");
+        mysqli_query($conn, "update questions set average_score = '$avg_score', ques_finish = 1 WHERE ques_id = '$ques_id';");
         $get_hw_id = mysqli_query($conn, "select hw_id from questions WHERE ques_id = '$ques_id';");
         if($fetched_hw_id = mysqli_fetch_array($get_hw_id)){
             $hw_id = $fetched_hw_id['hw_id'];
@@ -55,9 +55,6 @@ else{
         );
         echo json_encode($result);
     }
-
-
-
 }
 mysqli_close($conn);
 ?>

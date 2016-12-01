@@ -995,3 +995,116 @@ POST——Teacher-Assistance-System/app/backend/aboutQues/finishQues.php
         "res" => null
 ```
 
+## 35、获取一道题目（ques）的应交名单
+
+POST——Teacher-Assistance-System/app/backend/aboutWork/getWorkStuList.php
+
+参数：ques_id，type
+
+返回:
+
+```php
+           "code" => 0,
+            "msg" => "个人查找成功",
+            "res" => $stuList
+              
+              $stuList[] = array(
+                "id" => $fetched['student_id'],
+                "name" => $fetched['name'],
+                "status" => $status//已交是1，未交是0
+            );
+```
+
+```php
+        $result = array(
+            "code" => 1,
+            "msg" => "小组查找成功",
+            "res" => $stuList
+        );
+        
+            $stuList[] = array(
+                "id" => $fetched['student_id'],
+                "name" => $fetched['name'],
+                "status" => $status
+            );
+```
+
+```php
+            "code" => 3,
+            "msg" => "查找失败",
+            "res" => null
+```
+
+## 36、获取论坛首页信息
+
+POST——Teacher-Assistance-System/app/backend/aboutPost/getForumInfo.php
+
+参数：teacher_id
+
+返回:
+
+```php
+        "code" => 0,
+        "msg" => "查找成功",
+        "res" => $sectionList
+         
+          $sectionList[] = array(
+            "section" => $fetched['section'],
+            "total_num" => $fetched['total_num'],
+            "today_num" => $fetched['today_num']
+        );
+```
+
+```php
+        "code" => 1,
+        "msg" => "查找失败",
+        "res" => null
+```
+
+## 37、获取帖子列表 
+
+POST——Teacher-Assistance-System/app/backend/aboutPost/getPostList.php
+
+参数：section,teacher_id,group_id//若section为2的时候要传group-id
+
+//sction：0为教师答疑区，1为公共讨论区，2为小组讨论区
+
+返回:
+
+```php
+            "code" => 0,
+            "msg" => "查找成功",
+            "res" => $postList
+              
+              $postList[] = array(
+                "post_id" => $post_id,
+                "title" => $fetched['title'],
+                "content" => $fetched['content'],
+                "author_id" => $author_id,
+                "author_name" => $author_name,
+                "publish_time" => $fetched['publish_time'],
+                "update_time" => $fetched['update_time'],
+                "reply_num" => $reply_num,
+                "attachment" => $attachment
+            );
+
+       		$attachment[] = array(
+                        "resrc_id" => $fetched_resource['resrc_id'],
+                        "name" => $fetched_resource['name'],
+                        "path" => $fetched_resource['path'],
+                        "size" => $fetched_resource['size']
+                    );
+```
+
+```php
+            "code" => 1,
+            "msg" => "查找失败，错误",
+            "res" => null
+```
+
+```php
+                        "code" => 2,
+                        "msg" => "无此上传人",
+                        "res" => null
+```
+

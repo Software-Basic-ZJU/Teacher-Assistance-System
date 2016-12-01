@@ -9,7 +9,7 @@
 
 <!--teacher_id,email,phone,qq,wechar,other_contact-->
 <h2>PHP 验证实例</h2>
-<form method="post" action="aboutQues/finishQues.php">
+<form method="post" action="aboutPost/getPostList.php">
     id：<input type="text" name="id">
     <br><br>
     password：<input type="text" name="password">
@@ -75,17 +75,17 @@
     <br><br>
 
     <br><br>
-    work_id：<input type="text" name="work_id">
+    group_id：<input type="text" name="group_id">
     <br><br>
-    score：<input type="text" name="score">
+    section：<input type="text" name="section">
     <br><br>
     reply：<input type="text" name="reply">
     <br><br>
     finish：<input type="text" name="finish">
     <br><br>
     type：
-    <input type="radio" name="type" value="1">student
-    <input type="radio" name="type" value="2">teacher
+    <input type="radio" name="type" value="0">0
+    <input type="radio" name="type" value="1">1
     <input type="radio" name="type" value="3">assist
     <br><br>
     <input type="submit" name="submit" value="登陆">
