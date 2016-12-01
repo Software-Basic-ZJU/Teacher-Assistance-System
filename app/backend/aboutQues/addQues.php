@@ -12,7 +12,7 @@ include '../login/_include.php';
 global $conn;
 connectDB();
 //Verify token
-//loginCheck($_POST['token']);
+loginCheck($_POST['token']);
 //Get information
 $hw_id = test_input(mysqli_escape_string($conn, $_POST['hw_id']));
 $title = test_input(mysqli_escape_string($conn, $_POST['title']));
@@ -20,8 +20,8 @@ $content = test_input(mysqli_escape_string($conn, $_POST['content']));
 $type = test_input(mysqli_escape_string($conn, $_POST['type']));
 //Class_id,title,deadline,type, punish_type,punish_rate
 $query_result = mysqli_query($conn, "INSERT INTO questions 
-                                     (hw_id,title,content,type,submit_num,average_score)
-                                      values('$hw_id','$title','$content','$type',0,0);");
+                                     (hw_id,title,content,type,submit_num,average_score,ques_finish)
+                                      values('$hw_id','$title','$content','$type',0,0,0);");
 if($query_result){
     $ques_id = mysqli_insert_id($conn);
     if($type == 0){
@@ -45,7 +45,8 @@ if($query_result){
             "type" => $type,
             "content" => $content,
             "should_num" => $should_num,
-            "submit_num" => 0
+            "submit_num" => 0,
+            "ques_finish" => 0
         )
     );
     echo json_encode($result);

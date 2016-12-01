@@ -11,7 +11,7 @@
  Target Server Version : 100110
  File Encoding         : utf-8
 
- Date: 11/30/2016 23:14:03 PM
+ Date: 12/01/2016 15:32:04 PM
 */
 
 SET NAMES utf8mb4;
@@ -121,10 +121,10 @@ CREATE TABLE `group` (
   `leader_id` varchar(20) NOT NULL,
   `member_num` int(11) NOT NULL,
   `group_name` varchar(30) NOT NULL,
-  `password` varchar(30) NOT NULL,
+  `password` varchar(255) NOT NULL,
   PRIMARY KEY (`group_id`),
   UNIQUE KEY `group_id` (`group_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Table structure for `homework`
@@ -143,7 +143,7 @@ CREATE TABLE `homework` (
   PRIMARY KEY (`hw_id`),
   UNIQUE KEY `hw_id` (`hw_id`) USING BTREE,
   KEY `class_id` (`class_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Table structure for `mail`
@@ -192,7 +192,7 @@ CREATE TABLE `notification` (
   PRIMARY KEY (`noti_id`),
   UNIQUE KEY `noti_id` (`noti_id`) USING BTREE,
   KEY `class_id` (`class_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Table structure for `posts`
@@ -225,10 +225,11 @@ CREATE TABLE `questions` (
   `submit_num` int(11) DEFAULT NULL,
   `average_score` int(11) DEFAULT NULL,
   `type` varchar(1) NOT NULL,
+  `ques_finish` varchar(1) NOT NULL,
   PRIMARY KEY (`ques_id`),
   UNIQUE KEY `ques_id` (`ques_id`) USING BTREE,
   KEY `hw_id` (`hw_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Table structure for `reply_post`
@@ -304,7 +305,7 @@ CREATE TABLE `teacher` (
   PRIMARY KEY (`uid`),
   UNIQUE KEY `uid` (`uid`) USING BTREE,
   UNIQUE KEY `teacher_id` (`teacher_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Table structure for `works`
@@ -319,11 +320,10 @@ CREATE TABLE `works` (
   `score` int(11) DEFAULT NULL,
   `uploader_id` varchar(20) NOT NULL,
   `type` varchar(1) NOT NULL,
-  `finish` varchar(1) NOT NULL,
   PRIMARY KEY (`work_id`),
   UNIQUE KEY `work_id` (`work_id`) USING BTREE,
   KEY `ques_id` (`ques_id`) USING BTREE,
   KEY `uploader_id` (`uploader_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 SET FOREIGN_KEY_CHECKS = 1;

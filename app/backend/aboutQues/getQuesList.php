@@ -38,7 +38,8 @@ if($fetched = mysqli_fetch_array($query_result)){
             "type" => $fetched['type'],
             "content" => $fetched['content'],
             "should_num" => $should_num,
-            "submit_num" => $fetched['submit_num']
+            "submit_num" => $fetched['submit_num'],
+            "ques_finish" => $fetched['ques_finish']
         );
     }while($fetched = mysqli_fetch_array($query_result));
     $result = array(

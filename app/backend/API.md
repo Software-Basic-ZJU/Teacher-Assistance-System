@@ -789,7 +789,8 @@ POST——Teacher-Assistance-System/app/backend/aboutQues/getQuesList.php
             "type" => $fetched['type'],
             "content" => $fetched['content'],
             "should_num" => $should_num,
-            "submit_num" => $fetched['submit_num']
+            "submit_num" => $fetched['submit_num'],
+            "ques_finish" => $fetched['ques_finish']
         );
 ```
 
@@ -816,7 +817,8 @@ POST——Teacher-Assistance-System/app/backend/aboutQues/addQues.php
             "type" => $type,
             "content" => $content,
             "should_num" => $should_num,
-            "submit_num" => 0
+            "submit_num" => 0,
+            "ques_finish" => 0
         )
 ```
 
@@ -871,7 +873,8 @@ POST——Teacher-Assistance-System/app/backend/aboutQues/editQues.php
             "type" => $fetched['type'],
             "content" => $fetched['content'],
             "should_num" => $should_num,
-            "submit_num" => $fetched['submit_num']
+            "submit_num" => $fetched['submit_num'],
+            "ques_finish" => $fetched['ques_finish']
         )
 ```
 
@@ -880,6 +883,110 @@ POST——Teacher-Assistance-System/app/backend/aboutQues/editQues.php
         "msg" => "修改失败",
         "res" => null
 
+```
+
+```php
+        "code" => 2,
+        "msg" => "无效用户尝试操作",
+        "res" => null
+```
+
+## 31、一个学生交一个问题的作业（work）
+
+POST——Teacher-Assistance-System/app/backend/aboutWork/submitWork.php
+
+参数：ques_id,content,attachment,uploader_id,type
+
+返回:
+
+```php
+        "code" => 0,
+        "msg" => "作业提交成功",
+        "res" => null
+```
+
+```php
+        "code" => 1,
+        "msg" => "作业提交失败",
+        "res" => null
+```
+
+```php
+            "code" => 2,
+            "msg" => "作业提交成功,但是数据库已交数目并未更新",
+            "res" => null
+```
+
+## 32、得到一个学生对于一个问题的提交
+
+POST——Teacher-Assistance-System/app/backend/aboutWork/getStuWork.php
+
+参数：ques_id,uploader_id
+
+返回:
+
+```php
+        "code" => 0,
+        "msg" => "查找成功",
+        "res" => array(
+            "work_id" => $fetched['work_id'],
+            "reply" => $fetched['reply'],
+            "content" => $fetched['content'],
+            "score" => $fetched['score'],
+            "attachment" => $fetched['attachment'],
+            "uploader_id" => $fetched['uploader_id']
+```
+
+```php
+        "code" => 1,
+        "msg" => "查找失败",
+        "res" => null
+```
+
+## 33、批改一个提交（work）
+
+POST——Teacher-Assistance-System/app/backend/aboutWork/correctWork.php
+
+参数：work_id,score,reply
+
+返回:
+
+```php
+        "code" => 0,
+        "msg" => "点评成功",
+        "res" => null
+```
+
+```php
+        "code" => 1,
+        "msg" => "点评失败",
+        "res" => null
+```
+
+```php
+        "code" => 2,
+        "msg" => "无效用户尝试操作",
+        "res" => null
+```
+
+## 34、提交对于一个问题（ques）的所有评价
+
+POST——Teacher-Assistance-System/app/backend/aboutQues/finishQues.php
+
+参数：ques_id
+
+返回:
+
+```php
+            "code" => 0,
+            "msg" => "提交成功",
+            "res" => null
+```
+
+```php
+        "code" => 1,
+        "msg" => "还有未点评的work",
+        "res" => null
 ```
 
 ```php
