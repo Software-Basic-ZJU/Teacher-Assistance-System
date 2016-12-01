@@ -1,6 +1,6 @@
 <?php
 header('Content-type: application/json;charset=utf-8');
-include '../connectDB.php';
+include dirname(dirname(__FILE__)).'/connectDB.php';
 
 global $conn;
 connectDB();

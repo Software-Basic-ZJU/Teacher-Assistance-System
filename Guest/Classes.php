@@ -31,8 +31,7 @@
         <script src="js/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
-
+<body onload="Get_Course()">
 	<!-- /////////////////////////////////////////Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -90,31 +89,31 @@
 					<!--国际国内背景	-->
 					<div class="box visible">
 						<div class="box-text">
-							<h3>全国最先进的教学体验</h3>
-							<p>Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam suscipit aliquet felis, quis ultrices orci condiment.</p>
-							<img src="images/tabs.png" width="200" height="200" alt="">
+							<h3>课程背景</h3>
+							<p  id='background'>此处显示课程背景.</p>
+							<img src="images/tabs.png" width="220" height="230" alt="">
 						</div>
 					</div><!-- box -->
 					<div class="box">
 						<div class="box-text">
-							<h3>The easiest way to show off your best apps</h3>
-							<p>Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam suscipit aliquet felis, quis ultrices orci condiment.</p>
+							<h3>教学计划</h3>
+							<p id='courseplan'>此处显示教学背景</p>
 						</div>
-						<img src="images/tabs.png" width="437" height="459" alt="">
+						<img src="images/tabs.png" width="220" height="230" alt="">
 					</div><!-- box -->
 					<div class="box">
 						<div class="box-text">
-							<h3>The easiest way to show off your best apps</h3>
-							<p>Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam suscipit aliquet felis, quis ultrices orci condiment.</p>
+							<h3>教材&预修要求</h3>
+							<p id='text-pre'>此处显示教材&预修要求.</p>
 						</div>
-						<img src="images/tabs.png" width="437" height="459" alt="">
+						<img src="images/tabs.png" width="220" height="230" alt="">
 					</div><!-- box -->
 					<div class="box">
 						<div class="box-text">
-							<h3>The easiest way to show off your best apps</h3>
-							<p>Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam suscipit aliquet felis, quis ultrices orci condiment.</p>
+							<h3>考核方式</h3>
+							<p id='exam'>此处显示考核方式.</p>
 						</div>
-						<img src="images/tabs.png" width="437" height="459" alt="">
+						<img src="images/tabs.png" width="220" height="230" alt="">
 					</div><!-- box -->
 					<ul class="tabs clearfix">
 						<li class="active"></li>
@@ -222,6 +221,20 @@
 		</div>
 	</footer>
 	<!-- Footer -->
+
+	<script type="text/javascript">
+    // PHP 后端交互所用到的
+    function Get_Course(){
+    	$("#background").html("");
+        $.getJSON("./backend/CourseInfo/CourseInfo.php", function(json){
+        	$('#background').append(json.res.background);
+        	$('#courseplan').append(json.res.course_plan);
+        	$('#text-pre').append(json.res.textbook_precourse);
+        	$('#exam').append(json.res.exam_homework);
+        });
+
+    }
+</script>
 
 	
 	<!-- jQuery -->
