@@ -76,7 +76,7 @@ CREATE TABLE `class_teacher` (
 DROP TABLE IF EXISTS `classes`;
 CREATE TABLE `classes` (
   `class_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `term` bit(1) NOT NULL,
+  `term` varchar(1) NOT NULL,
   `year` int(11) NOT NULL,
   `name` varchar(30) NOT NULL,
   PRIMARY KEY (`class_id`),
@@ -327,3 +327,4 @@ CREATE TABLE `works` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 SET FOREIGN_KEY_CHECKS = 1;
+
