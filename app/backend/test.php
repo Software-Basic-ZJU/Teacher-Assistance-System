@@ -9,7 +9,7 @@
 
 <!--teacher_id,email,phone,qq,wechar,other_contact-->
 <h2>PHP 验证实例</h2>
-<form method="post" action="aboutHW/deleteHw.php">
+<form method="post" action="aboutQues/editQues.php">
     id：<input type="text" name="id">
     <br><br>
     password：<input type="text" name="password">
@@ -68,6 +68,8 @@
     punish_rate：<input type="text" name="punish_rate">
     <br><br>
 
+    <br><br>
+    ques_id：<input type="text" name="ques_id">
     <br><br>
 
     type：

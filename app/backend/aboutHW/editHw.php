@@ -36,6 +36,8 @@ $query_result = mysqli_query($conn, "update homework
                                      set title = '$title', deadline = '$deadline' , class_id = '$class_id' , type = '$type', punish_type = '$punish_type', punish_rate = '$punish_rate'
                                      WHERE hw_id = '$hw_id';");
 if($query_result){
+    $query_result2 = mysqli_query($conn, "select * from homework WHERE hw_id = '$hw_id';");
+    $fetched = mysqli_fetch_array($query_result2);
     $result = array(
         "code" => 0,
         "msg" => "修改成功",

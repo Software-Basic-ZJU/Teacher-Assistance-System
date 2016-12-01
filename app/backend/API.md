@@ -770,3 +770,121 @@ POST——Teacher-Assistance-System/app/backend/aboutHW/deleteHw.php
         "res" => null
 ```
 
+## 27、查找一份作业中的问题列表
+
+POST——Teacher-Assistance-System/app/backend/aboutQues/getQuesList.php
+
+参数：hw_id
+
+返回:
+
+```php
+		"code" => 0,
+        "msg" => "查找成功",
+        "res" => $quesList
+          
+          $quesList[] = array(
+            "ques_id" => $fetched['ques_id'],
+            "title" => $fetched['title'],
+            "type" => $fetched['type'],
+            "content" => $fetched['content'],
+            "should_num" => $should_num,
+            "submit_num" => $fetched['submit_num']
+        );
+```
+
+```php
+        "code" => 1,
+        "msg" => "查找失败",
+        "res" => null
+```
+
+## 28、增加一份作业中的一个问题
+
+POST——Teacher-Assistance-System/app/backend/aboutQues/addQues.php
+
+参数：Hw_id,title,content,type
+
+返回:
+
+```php
+        "code" => 0,
+        "msg" => "题目发布成功",
+        "res" => array(
+            "ques_id" => $ques_id,
+            "title" => $title,
+            "type" => $type,
+            "content" => $content,
+            "should_num" => $should_num,
+            "submit_num" => 0
+        )
+```
+
+```php
+        "code" => 1,
+        "msg" => "题目发布失败",
+        "res" => null
+```
+
+## 29、删除一份作业中的一个问题
+
+POST——Teacher-Assistance-System/app/backend/aboutQues/removeQues.php
+
+参数：ques_id
+
+返回:
+
+```php
+        "code" => 0,
+        "msg" => "删除成功",
+        "res" => null
+```
+
+```php
+        "code" => 1,
+        "msg" => "删除失败",
+        "res" => null
+```
+
+```php
+        "code" => 2,
+        "msg" => "无效用户尝试操作",
+        "res" => null
+```
+
+
+
+## 30、修改一份作业中的一个问题
+
+POST——Teacher-Assistance-System/app/backend/aboutQues/editQues.php
+
+参数：ques_id,title,content,type
+
+返回:
+
+```php
+        "code" => 0,
+        "msg" => "修改成功",
+        "res" => array(
+            "ques_id" => $fetched['ques_id'],
+            "title" => $fetched['title'],
+            "type" => $fetched['type'],
+            "content" => $fetched['content'],
+            "should_num" => $should_num,
+            "submit_num" => $fetched['submit_num']
+        )
+```
+
+```php
+        "code" => 1,
+        "msg" => "修改失败",
+        "res" => null
+
+```
+
+```php
+        "code" => 2,
+        "msg" => "无效用户尝试操作",
+        "res" => null
+```
+
