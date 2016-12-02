@@ -1,6 +1,6 @@
 <?php
-//header('Content-type: application/json;charset=utf-8');
-include '../connectDB.php';
+header('Content-type: application/json;charset=utf-8');
+include dirname(dirname(__FILE__)).'/connectDB.php';
 
 global $conn;
 connectDB();
@@ -16,7 +16,9 @@ if($fetched = mysqli_fetch_array($query_teacherinfo))
             "teach_experience" => $fetched['teach_experience'],
             "profile" => $fetched['profile'],
             "honor" => $fetched['honor'],
-            "other_info" => $fetched['other_info']
+            "brief_intro" => $fetched['brief_intro'],
+            "name" => $fetched['name'],
+            "photo" => $fetched['photo']
         );
     }while($fetched = mysqli_fetch_array($query_teacherinfo));
     $result = array(

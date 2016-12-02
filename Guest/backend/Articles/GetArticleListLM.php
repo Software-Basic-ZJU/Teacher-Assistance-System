@@ -37,11 +37,10 @@ while ($row=mysqli_fetch_array($result)) {
                 <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
                 <h5><?php echo $row['time']?></h5>
                 <div class="cd-see-all"><a href="NewPassage.php?art_id=<?php echo $row['art_id']?>" class="btn btn-1" >详细</a></div>
-            </div>
+           </div>
         </div>
     </div>
 
-}
 <?php
 };
 $page_len = ($page_len%2)?$page_len:$pagelen+1;//页码个数

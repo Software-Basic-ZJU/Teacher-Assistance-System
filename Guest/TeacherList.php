@@ -31,8 +31,7 @@
         <script src="js/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
-
+<body onload="Get_TeacherList()">
 	<!-- /////////////////////////////////////////Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -83,7 +82,7 @@
 	<!-- Main Part-->
 	<div id="page-content" class="index-page">
 		<!--教师信息-->
-		<section id="Teacher" class="box-content box-1">
+		<section id="Teacher" class="box-content box-1"  >
 			<div class="container">
 				<div class="row heading">
 					<div class="col-lg-12">
@@ -91,45 +90,37 @@
 						<hr>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-sm-3 box-item">
+
+				<div id="teacher-list" class="row">
+
+<?php
+	if($_COOKIE['teacher_num'])
+		$num=$_COOKIE['teacher_num'];
+	else
+		$num=1;
+	for($i=0; $i<$num; $i++)
+	{
+
+?>
+					<div id="first" class="col-sm-3 box-item">
 						<div class="wrap-img">
-							<img src="images/Html.png" />
+							<img id="<?php echo $i?>_photo" src="images/Html.png" />
 						</div>
-						<h3 class="blue">翁恺</h3>
-						<p>网易MOOC知名老师,开有诸多慕课,本校中教学Java,C,OOP和操作系统,体系等课程</p>
+						<h3 id="<?php echo $i?>_name" class="blue">虚位以待</h3>
+						<p id="<?php echo $i?>_intro">虚位以待</p>
 						<button type="submit" class="btn btn-2 " onclick="{location.href='TeacherInfo.php'}" value="teacherid" >detail</button>
 					</div>
-					<!--					<div class="col-sm-3 box-item">-->
-					<!--						<div class="wrap-img">-->
-					<!--							<img src="images/Css.png" />-->
-					<!--						</div>-->
-					<!--						<h3 class="yellow">Text Heading 3</h3>-->
-					<!--						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.-->
-					<!--						Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>-->
-					<!--						<button type="submit" class="btn btn-2 ">More</button>-->
-					<!--					</div>-->
-					<!--					<div class="col-sm-3 box-item">-->
-					<!--						<div class="wrap-img">-->
-					<!--							<img src="images/screen.png" />-->
-					<!--						</div>-->
-					<!--						<h3 class="red">Text Heading 3</h3>-->
-					<!--						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. -->
-					<!--						Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>-->
-					<!--						<button type="submit" class="btn btn-2 ">More</button>-->
-					<!--					</div>-->
-					<!--					<div class="col-sm-3 box-item">-->
-					<!--						<div class="wrap-img">-->
-					<!--							<img src="images/Setting.png" />-->
-					<!--						</div>-->
-					<!--						<h3 class="green">Text Heading 3</h3>-->
-					<!--						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.-->
-					<!--						Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>-->
-					<!--						<button type="submit" class="btn btn-2 ">More</button>-->
-					<!--					</div>-->
+
+<?php
+	}
+?>
+
 				</div>
+
 			</div>
 		</section>
+
+
 
 
 	<!--底-->
@@ -227,7 +218,38 @@
 	</footer>
 	<!-- Footer -->
 
+	<script type="text/javascript">
+    // PHP 后端交互所用到的
+    function Get_TeacherList(){
+        $.getJSON("./backend/TeacherInfo/TeacherInfo.php", function(json){
+        	//alert("test");
+      		num = json.res.length;
+      		for(i=0; i<num; i++)
+      		{
+		    	$("#" + i +"_name").html("");
+	    		$("#" + i +"_intro").html("");
+	    		$("#" + i +"_photo").html("");
+	        	$("#" + i +"_name").append(json.res[i].name);
+	        	$("#" + i +"_intro").append(json.res[i].brief_intro);
+				$("#" + i +"_photo").append(json.res[i].photo);
+      		}
+      		
+ 		var date=new Date();
+		var cookieExpire=date.getTime() + 3 * 30 * 24 * 60 * 60 * 1000 ;
+		 
+			/* 三个月 x 一个月当作 30 天 x 一天 24 小时 
+			x 一小时 60 分 x 一分 60 秒 x 一秒 1000 毫秒 */
+		//alert("now:"+date.getTime()+"/n now-1: "+cookieExpire);
+		document.cookie="teacher_num="+num+" ;expires="+cookieExpire;
+		//alert("222");
+        });
+       
+}
+
+	</script>
 	
+
+
 	<!-- jQuery -->
 	<script src="js/jquery-2.1.1.js"></script>
 	<script src="js/masonry.pkgd.min.js"></script>
