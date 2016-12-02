@@ -86,34 +86,41 @@
 		<section class="tabsblock">
 			<div class="wrap">
 				<div class="tab">
+
+
 					<!--国际国内背景	-->
 					<div class="box visible">
 						<div class="box-text">
-							<h3>课程背景</h3>
-							<p  id='background'>此处显示课程背景.</p>
-							<img src="images/tabs.png" width="220" height="230" alt="">
+							<h2>课程背景</h2>
+							<hr>
+							<br>
+							<p  id='back_ground'>此处显示课程背景.</p>
 						</div>
 					</div><!-- box -->
 					<div class="box">
 						<div class="box-text">
-							<h3>教学计划</h3>
-							<p id='courseplan'>此处显示教学背景</p>
+							<h2>教学计划</h2>
+							<hr>
+							<br>
+							<!-- <p id='courseplan'>此处显示教学计划</p> -->
 						</div>
-						<img src="images/tabs.png" width="220" height="230" alt="">
+						<img id="img_address" src="" alt="此外应该是教学计划表">
 					</div><!-- box -->
 					<div class="box">
 						<div class="box-text">
-							<h3>教材&预修要求</h3>
+							<h2>教材&预修要求</h2>
+							<hr>
+							<br>
 							<p id='text-pre'>此处显示教材&预修要求.</p>
 						</div>
-						<img src="images/tabs.png" width="220" height="230" alt="">
 					</div><!-- box -->
 					<div class="box">
 						<div class="box-text">
-							<h3>考核方式</h3>
+							<h2>考核方式</h2>
+							<hr>
+							<br>
 							<p id='exam'>此处显示考核方式.</p>
 						</div>
-						<img src="images/tabs.png" width="220" height="230" alt="">
 					</div><!-- box -->
 					<ul class="tabs clearfix">
 						<li class="active"></li>
@@ -225,10 +232,15 @@
 	<script type="text/javascript">
     // PHP 后端交互所用到的
     function Get_Course(){
-    	$("#background").html("");
+    	$("#back_ground").html("");
+    	$("#courseplan").html("");
+    	$("#text-pre").html("");
+    	$("#exam").html("");
         $.getJSON("./backend/CourseInfo/CourseInfo.php", function(json){
-        	$('#background').append(json.res.background);
-        	$('#courseplan').append(json.res.course_plan);
+        	$('#back_ground').append(json.res.background);
+        	//$('#courseplan').append(json.res.course_plan);
+        	var img_add = "./" + json.res.course_plan;
+        	document.getElementById("img_address").src = img_add;
         	$('#text-pre').append(json.res.textbook_precourse);
         	$('#exam').append(json.res.exam_homework);
         });
