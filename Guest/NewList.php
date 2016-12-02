@@ -91,9 +91,52 @@
 						<p> 相关文章,顶尖会议,知名论文</a></p>
 					</div>
 				</div>
-				<?php
-				include dirname(__FILE__).'/backend/Articles/GetArticleListLM.php';
-				?>
+				<div class="row">
+					<div class="col-md-4 text-center">
+						<div class="services">
+							<span><i class="sl-icon-graph"></i></span>
+							<h3>Dashboard</h3>
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+							<div class="cd-see-all"><a href="NewPassage.php?art_id=" class="btn btn-1">See all</a></div>
+						</div>
+					</div>
+					<div class="col-md-4 text-center">
+						<div class="services">
+							<span><i class="sl-icon-graph"></i></span>
+							<h3>Dashboard</h3>
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+							<div class="cd-see-all"><a href="NewPassage.php?art_id=" class="btn btn-1">See all</a></div>
+						</div>
+					</div>
+					<div class="col-md-4 text-center">
+						<div class="services">
+							<span><i class="sl-icon-graph"></i></span>
+							<h3>Dashboard</h3>
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+							<div class="cd-see-all"><a href="NewPassage.php?art_id=" class="btn btn-1">See all</a></div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4 text-center">
+						<div class="services">
+							<span><i class="sl-icon-graph"></i></span>
+							<h3>Dashboard</h3>
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+							<div class="cd-see-all"><a href="NewPassage.php?art_id=" class="btn btn-1">See all</a></div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4 text-center">
+						<div class="services">
+							<span><i class="sl-icon-graph"></i></span>
+							<h3>Dashboard</h3>
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+							<div class="cd-see-all"><a href="NewPassage.php?art_id=" class="btn btn-1">See all</a></div>
+						</div>
+					</div>
+				</div>
 				<div class="row">
 					<div class="col-md-4 text-center">
 						<div class="services">
