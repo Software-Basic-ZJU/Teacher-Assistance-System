@@ -1125,7 +1125,7 @@ footer .copyright p, footer .copyright ul{margin: 20px 0;}
 a.btn:focus{outline: 0;}
 
 .btn-1 {color: #fff;background-color: transparent;border: 2px solid #fff;margin:0 15px 20px 0;min-width: 170px;line-height: 26px;}
-.btn-1:hover {color: #000;background-color: #fff;border-color: #fff;}
+.btn-1:hover {color: #6ECADC;background-color: #fff;border-color: #000;}
 
 .btn-2 {background: #333;border: 2px solid transparent;margin:20px 0 50px 0; color:#fff;}
 .btn-2:hover {color:#333;border:2px solid #333;background:transparent;}

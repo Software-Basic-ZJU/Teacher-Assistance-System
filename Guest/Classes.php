@@ -90,9 +90,9 @@
 					<div class="box visible">
 						<div class="box-text">
 							<h3>课程背景</h3>
-							<p  id='background'>此处显示课程背景.</p>
-							<img src="images/tabs.png" width="220" height="230" alt="">
+							<p  id='bg'>此处显示课程背景.</p>
 						</div>
+						<img src="images/tabs.png" width="220" height="230" alt="">
 					</div><!-- box -->
 					<div class="box">
 						<div class="box-text">

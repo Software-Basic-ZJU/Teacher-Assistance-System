@@ -1,9 +1,13 @@
 
 <?php
+echo 1;
 include dirname(dirname(__FILE__)).'/connectDB.php';
+echo 2;
 global $conn;
-connectDB();
 
+
+connectDB();
+echo 3;
 $Page_size=10;
 
 $result=mysqli_query($conn,'select * from article');
@@ -26,6 +30,7 @@ $page=$_GET['page'];
 $offset=$Page_size*($page-1);
 $sql="select * from article limit $offset,$Page_size";
 $result=mysqli_query($conn,$sql);
+echo 3;
 while ($row=mysqli_fetch_array($result)) {
 ?>
     <div class="row">

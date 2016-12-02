@@ -98,35 +98,73 @@
 						</div>
 						<h3 class="blue">翁恺</h3>
 						<p>网易MOOC知名老师,开有诸多慕课,本校中教学Java,C,OOP和操作系统,体系等课程</p>
-						<button type="submit" class="btn btn-2 " onclick="{location.href='TeacherInfo.php'}" value="teacherid" >detail</button>
+						<!--<button type="submit" class="btn btn-2 " onclick="{location.href='TeacherInfo.php'}" value="teacherid" >detail</button>-->
+						<div class="cd-see-all"><a href="#0" class="btn btn-1">More</a></div>
+						<div class="cd-testimonials-all">
+							<div class="cd-testimonials-all-wrapper">
+								<ul>
+									<li class="cd-testimonials-item">
+										<p>Lorem ipsuweqrewqr23143214weqrweqm dolor sit amet, consectetur adipisicing elit. Odit totam saepe iste maiores neque animi molestias nihil illum nisi temporibus.</p>
+										<div class="cd-author">
+											<img src="images/avatar-1.jpg" alt="Author image">
+											<ul class="cd-author-info">
+												<li>教学经历</li>
+											</ul>
+										</div> <!-- cd-author -->
+									</li>
+									<li class="cd-testimonials-item">
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore nostrum nisi, doloremque error hic nam nemo doloribus porro impedit perferendis. Tempora, distinctio hic suscipit. At ullam eaque atque recusandae modi fugiat voluptatem laborum laboriosam rerum, consequatur reprehenderit omnis, enim pariatur nam, quidem, quas vel reiciendis aspernatur consequuntur. Commodi quasi enim, nisi alias fugit architecto, doloremque, eligendi quam autem exercitationem consectetur.</p>
+										<div class="cd-author">
+											<img src="images/avatar-2.jpg" alt="Author image">
+											<ul class="cd-author-info">
+												<li>科研成果</li>
+											</ul>
+										</div>
+									</li>
+									<li class="cd-testimonials-item">
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem quibusdam eveniet, molestiae laborum voluptatibus minima hic quasi accusamus ut facere, eius expedita, voluptatem? Repellat incidunt veniam quaerat, qui laboriosam dicta. Quidem ducimus laudantium dolorum enim qui at ipsum, a error.</p>
+										<div class="cd-author">
+											<img src="images/avatar-3.jpg" alt="Author image">
+											<ul class="cd-author-info">
+												<li>教学风格</li>
+											</ul>
+										</div> <!-- cd-author -->
+									</li>
+									<li class="cd-testimonials-item">
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero voluptates officiis tempore quae officia! Beatae quia deleniti cum corporis eos perferendis libero reiciendis nemo iusto accusamus, debitis tempora voluptas praesentium repudiandae laboriosam excepturi laborum, nisi optio repellat explicabo, incidunt ex numquam. Ullam perferendis officiis harum doloribus quae corrupti minima quia, aliquam nostrum expedita pariatur maxime repellat, voluptas sunt unde, inventore.</p>
+
+										<div class="cd-author">
+											<img src="images/avatar-4.jpg" alt="Author image">
+											<ul class="cd-author-info">
+												<li>个人简介</li>
+											</ul>
+										</div> <!-- cd-author -->
+									</li>
+									<li class="cd-testimonials-item">
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit totam saepe iste maiores neque animi molestias nihil illum nisi temporibus.</p>
+
+										<div class="cd-author">
+											<img src="images/avatar-5.jpg" alt="Author image">
+											<ul class="cd-author-info">
+												<li>所获荣誉</li>
+											</ul>
+										</div> <!-- cd-author -->
+									</li>
+									<li class="cd-testimonials-item">
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis quia quas, quis illo adipisci voluptate ex harum iste commodi nulla dolor. Eius ratione quod ab!</p>
+
+										<div class="cd-author">
+											<img src="images/avatar-6.jpg" alt="Author image">
+											<ul class="cd-author-info">
+												<li>出版书籍</li>
+											</ul>
+										</div> <!-- cd-author -->
+									</li>
+								</ul>
+							</div>	<!-- cd-testimonials-all-wrapper -->
+							<a href="#0" class="close-btn">Close</a>
+						</div> <!-- cd-testimonials-all -->
 					</div>
-					<!--					<div class="col-sm-3 box-item">-->
-					<!--						<div class="wrap-img">-->
-					<!--							<img src="images/Css.png" />-->
-					<!--						</div>-->
-					<!--						<h3 class="yellow">Text Heading 3</h3>-->
-					<!--						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.-->
-					<!--						Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>-->
-					<!--						<button type="submit" class="btn btn-2 ">More</button>-->
-					<!--					</div>-->
-					<!--					<div class="col-sm-3 box-item">-->
-					<!--						<div class="wrap-img">-->
-					<!--							<img src="images/screen.png" />-->
-					<!--						</div>-->
-					<!--						<h3 class="red">Text Heading 3</h3>-->
-					<!--						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. -->
-					<!--						Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>-->
-					<!--						<button type="submit" class="btn btn-2 ">More</button>-->
-					<!--					</div>-->
-					<!--					<div class="col-sm-3 box-item">-->
-					<!--						<div class="wrap-img">-->
-					<!--							<img src="images/Setting.png" />-->
-					<!--						</div>-->
-					<!--						<h3 class="green">Text Heading 3</h3>-->
-					<!--						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.-->
-					<!--						Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>-->
-					<!--						<button type="submit" class="btn btn-2 ">More</button>-->
-					<!--					</div>-->
 				</div>
 			</div>
 		</section>
