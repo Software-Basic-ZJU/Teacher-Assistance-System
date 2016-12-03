@@ -91,6 +91,7 @@
 						<p> 相关文章,顶尖会议,知名论文</a></p>
 					</div>
 				</div>
+<<<<<<< HEAD
 				<div class="row">
 					<div class="col-md-4 text-center">
 						<div class="services">
@@ -137,6 +138,11 @@
 						</div>
 					</div>
 				</div>
+=======
+				<?php
+				include 'backend/Articles/GetArticleListLM.php';
+				?>
+>>>>>>> parent of b314e96... 修复最新动态获取文章的bug
 				<div class="row">
 					<div class="col-md-4 text-center">
 						<div class="services">
