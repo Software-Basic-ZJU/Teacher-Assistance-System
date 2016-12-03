@@ -84,6 +84,7 @@
 		<!--教师信息-->
 		<section id="Teacher" class="box-content box-1"  >
 			<div class="container">
+
 				<div class="row heading">
 					<div class="col-lg-12">
 						<h2>名师列表</h2>
@@ -91,34 +92,93 @@
 					</div>
 				</div>
 
-				<div id="teacher-list" class="row">
-
+				<div id="row" class="container-fluid">
 <?php
 	if($_COOKIE['teacher_num'])
 		$num=$_COOKIE['teacher_num'];
 	else
-		$num=1;
+		$num=4;
 	for($i=0; $i<$num; $i++)
 	{
-
-?>
-					<div id="first" class="col-sm-3 box-item">
+?>				
+					<!--老师列表-->
+					<div id="one-teacher" class="col-sm-3 box-item">
 						<div class="wrap-img">
 							<img id="<?php echo $i?>_photo" src="images/Html.png" />
 						</div>
 						<h3 id="<?php echo $i?>_name" class="blue">虚位以待</h3>
 						<p id="<?php echo $i?>_intro">虚位以待</p>
-						<button type="submit" class="btn btn-2 " onclick="{location.href='TeacherInfo.php'}" value="teacherid" >detail</button>
-					</div>
-
-<?php
+						<div class="cd-see-all"><a href="#00<?php echo $i?>" class="btn btn-2">Detail</a></div>
+						<br>
+						<br>
+					</div>			
+	<?php
 	}
 ?>
-
 				</div>
-
 			</div>
 		</section>
+
+
+		
+								<!--老师详细信息-->
+		<div class="cd-testimonials-all">
+			<div class="cd-testimonials-all-wrapper">
+		<?php
+		for($i=0; $i<$num; $i++)
+		{
+		?>
+				<!--带小点的表-->
+				<section id="00<?php echo $i?>" class="tabsblock">
+					<div class="wrap">
+						<div class="tab">
+							<!--教学经历	-->
+							<div class="box visible">
+								<div class="box-text">
+									<h2>个人简介</h2>
+									<hr>
+									<br>
+									<p id="<?php echo $i?>_profile">此处显示课个人简介<?php echo $i?>.</p>
+								</div>
+							</div><!-- box -->
+
+							<div class="box">
+								<div class="box-text">
+									<h2>教学经历</h2>
+									<hr>
+									<br>
+									<p id='<?php echo $i?>_teach-exp'>此处显示教学经历</p> 
+								</div>
+							</div><!-- box -->
+
+							<div class="box">
+								<div class="box-text">
+									<h2>荣誉&出版物</h2>
+									<hr>
+									<br>
+									<p id='<?php echo $i?>_honor'>此处显示个人荣誉&出版物.</p>
+								</div>
+							</div><!-- box -->
+
+							<ul class="tabs clearfix">
+								<li class="active"></li>
+								<li></li>
+								<li></li>
+							</ul><!-- tabs -->
+
+						</div><!-- tab -->
+					</div><!-- wrap -->
+				</section><!--  -->
+		<?php
+		}
+		?>					
+						
+			</div>	<!-- cd-testimonials-all-wrapper -->
+			<a href="" class="close-btn">close</a>
+		</div> <!-- cd-testimonials-all -->
+
+
+
 
 
 
@@ -226,12 +286,21 @@
       		num = json.res.length;
       		for(i=0; i<num; i++)
       		{
+      			//获取教师列表介绍
 		    	$("#" + i +"_name").html("");
 	    		$("#" + i +"_intro").html("");
 	    		$("#" + i +"_photo").html("");
 	        	$("#" + i +"_name").append(json.res[i].name);
 	        	$("#" + i +"_intro").append(json.res[i].brief_intro);
 				$("#" + i +"_photo").append(json.res[i].photo);
+
+				//获取教师详细介绍
+				$("#" + i +"_teach-exp").html("");
+	    		$("#" + i +"_profile").html("");
+	    		$("#" + i +"_honor").html("");
+	        	$("#" + i +"_teach-exp").append(json.res[i].teach_experience);
+	        	$("#" + i +"_profile").append(json.res[i].profile);
+				$("#" + i +"_honor").append(json.res[i].honor);
       		}
       		
  		var date=new Date();
