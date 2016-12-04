@@ -148,6 +148,48 @@
 			</div>
 		</div>
 	</div>
+
+	<!--留言框-->
+	<section class="box-content box-5" id="contact">
+		<div class="container">
+			<div class="row heading">
+				<div class="col-lg-12">
+					<h2>我要留言</h2>
+					<hr>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md" >
+					<div id="contact-form">
+						<form name="form1" method="post" action="contact.php">
+							<div class="row">
+
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="form-group">
+										<input type="text" class="form-control input-lg" name="subject" id="subject" placeholder="Subject" required="required" />
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="form-group">
+											<textarea name="message" id="message" class="form-control" rows="4" cols="25" required="required"
+													  placeholder="Message"></textarea>
+									</div>
+									<button type="submit" class="btn btn-3 btn-block" name="btnContactUs" id="btnContactUs">
+										Submit</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
 	<!--底-->
 	<footer>
 		<div class="wrap-footer">

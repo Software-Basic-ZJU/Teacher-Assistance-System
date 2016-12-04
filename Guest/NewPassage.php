@@ -83,23 +83,18 @@
 	<div id="page-content" class="index-page">
 		<!--New 最新动态-->
 		<div id="fh5co-services-section">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-						<i class="sl-icon-paper-plane"></i>
-						<h2>最新动态</h2>
-						<p><a href="NewList.php"> 相关文章,顶尖会议,知名论文</a></p>
-					</div>
+			<div class="col-md text-center">
+				<div class="container">
+
 				</div>
-				<div class="row">
-					<div class="col-md-4 text-center">
-						<div class="services">
-							<span><i class="sl-icon-graph"></i></span>
-							<h3>Dashboard</h3>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-							<div class="cd-see-all"><a href="NewPassage.php" class="btn btn-1">See all</a></div>
+				<div class="services">
+					<div class="row">
+						<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
+							<h2>文章标题</h2>
+							<h4>作者时间等信息</h4>
 						</div>
 					</div>
+					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
 				</div>
 			</div>
 		</div>
