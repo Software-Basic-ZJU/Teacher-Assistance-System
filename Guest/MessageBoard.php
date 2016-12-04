@@ -89,7 +89,11 @@
 				</div>
 			</div>
 		</div>
+		<?php
+		include dirname(__FILE__).'/backend/MessageBoard/Get.php';
+		?>
 	</div>
+	
 	<div class="container" style="margin-top: 10px">
 		<div class="well well-lg sr-button">
 			<div class="row text-center">
@@ -148,6 +152,10 @@
 			</div>
 		</div>
 	</div>
+
+
+	
+	
 
 	<!--留言框-->
 	<section class="box-content box-5" id="contact">
@@ -189,6 +197,8 @@
 		</div>
 	</section>
 
+
+	
 
 	<!--底-->
 	<footer>
