@@ -63,9 +63,6 @@
     </div>
 </template>
 <style scoped>
-    .homework{
-        padding:0px 20px;
-    }
     .header{
         border-bottom:1px solid #D3DCE6;
     }

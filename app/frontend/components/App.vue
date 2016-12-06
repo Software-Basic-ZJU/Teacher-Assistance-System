@@ -11,9 +11,7 @@
             </div>
             <div class="mainBox">
                 <div v-loading="loading">
-                    <transition name="fade">
-                        <router-view></router-view>
-                    </transition>
+                    <router-view></router-view>
                 </div>
             </div>
         </div>
@@ -42,11 +40,24 @@
         margin-right:15px;
         font-size:16px;
     }
+    .menuBox .el-menu{
+        background-color:white;
+        -webkit-box-shadow: 0 1px 5px 0 rgba(0,34,77,.1);
+        -moz-box-shadow: 0 1px 5px 0 rgba(0,34,77,.1);
+        box-shadow: 0 1px 5px 0 rgba(0,34,77,.1);
+    }
     .mainBox{
         padding:10px 10px 10px 270px;
     }
     .mainBox>div{
         position: relative;
+    }
+    .mainBox>div>div{
+        background-color: white;
+        padding:10px 15px;
+        -webkit-box-shadow: 0 1px 5px 0 rgba(0,34,77,.1);
+        -moz-box-shadow: 0 1px 5px 0 rgba(0,34,77,.1);
+        box-shadow: 0 1px 5px 0 rgba(0,34,77,.1);
     }
 </style>
 <style>
@@ -63,6 +74,11 @@
     }
     .el-input.is-disabled>.el-input__inner{
         color:#8492A6;
+    }
+    .el-card{
+        -webkit-box-shadow: 0 0px 0px 0 rgba(0,34,77,.1);
+        -moz-box-shadow: 0 0px 0px 0 rgba(0,34,77,.1);
+        box-shadow: 0 0px 0px 0 rgba(0,34,77,.1);
     }
 </style>
 <script>

@@ -27,9 +27,6 @@
     </div>
 </template>
 <style scoped>
-    .hwDetail{
-        padding:0px 20px;
-    }
     .header{
         padding:10px 0px;
     }

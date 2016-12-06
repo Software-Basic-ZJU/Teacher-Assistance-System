@@ -2,6 +2,7 @@ body {
     font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
     margin: 0;
     color:#324057;
+    background-color:#f3f6fb;
 }
 /*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css */
 
@@ -427,13 +428,6 @@ textarea {
 .fr{float:right;}
 .cl{clear:both;}
 
-.fade-enter,
-.fade-leave,
-.fade-enter-active,
-.fade-leave-active{
-    width:100%;
-    position:absolute;
-}
 
 .el-dialog{
     min-width:300px;

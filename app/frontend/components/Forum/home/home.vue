@@ -16,7 +16,6 @@
                     <div>今日新帖：{{item.todayNum}}</div>
                 </div>
             </div>
-            <div class="cl"></div>
         </div>
     </div>
 </template>
