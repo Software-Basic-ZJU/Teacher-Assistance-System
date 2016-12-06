@@ -1073,8 +1073,52 @@ POST——Teacher-Assistance-System/app/backend/aboutPost/getPostList.php
 
 POST——Teacher-Assistance-System/app/backend/aboutPost/addPost.php
 
-参数：title,content,teacher_id,section
+参数：title,content,teacher_id,section、resrc_id
 
-（要发布帖子，首先使用aboutResource/uploadFile上传附件，再使用此脚本发布文章）
+（要发布帖子，首先使用aboutResource/addResource.php上传附件，再使用此脚本发布文章）
 
 返回:
+
+```php
+		"code" => 0,
+        "msg" => "帖子发布成功",
+        "res" => array(
+            'post_id' => $post_id,
+            'title' => $title,
+            'content' => $content,
+            'author_id' => $author_id,
+            'author_name' => $author_name,
+            'publish_time' => $time,
+            'update_time' => $time,
+            'reply_num' => 0
+        )
+```
+
+```php
+        "code" => 1,
+        "msg" => "帖子发布失败",
+        "res" => null
+```
+
+```php
+            $result = array(
+                "code" => 2,
+                "msg" => "发帖人并无所在小组",
+                "res" => null
+            );
+```
+
+```php
+            $result = array(
+                "code" => 3,
+                "msg" => "无此发帖人",
+                "res" => null
+            );
+```
+
+```php
+            "code" => 4,
+            "msg" => "无法插入资源",
+            "res" => null
+```
+
