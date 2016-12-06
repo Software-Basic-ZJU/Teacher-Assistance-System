@@ -37,23 +37,12 @@ if($type == 1){
                     'teacher_id'=> $fetched2['teacher_id'],
                     'name'=>$fetched['name'],
                     'type'=>$type,
-                    'group_id'=>$fetched['group_id']
-                )
-            );
-            echo json_encode($result);
-        }
-        else {
-            $result = array(
-                "code" => 1,
-                "msg" => "登陆成功，其班级无教师信息",
-                "res" => array(
-                    "token" => $token,
-                    "id" => $id,
-                    'class_id'=>$fetched['class_id'],
-                    'teacher_id'=> null,//$fetched2['teacher_id'],
-                    'name'=>$fetched['name'],
-                    'type'=>$type,
-                    'group_id'=>$fetched['group_id']
+                    'group_id'=>$fetched['group_id'],
+                    'email' => $fetched['email'],
+                    'question1' => $fetched['question1'],
+                    'question2' => $fetched['question1'],
+                    'answer1' => $fetched['answer1'],
+                    'answer2' => $fetched['answer2']
                 )
             );
             echo json_encode($result);

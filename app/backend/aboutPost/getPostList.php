@@ -12,7 +12,7 @@ include '../login/_include.php';
 global $conn;
 connectDB();
 //Verify token
-//loginCheck($_POST['token']);
+loginCheck($_POST['token']);
 //Get information
 $section = test_input(mysqli_escape_string($conn, $_POST['section']));//所在版块：0为教师答疑区，1为公共讨论区，2为小组讨论区
 $teacher_id = test_input(mysqli_escape_string($conn, $_POST['teacher_id']));
