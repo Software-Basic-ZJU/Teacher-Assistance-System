@@ -42,7 +42,7 @@
 <style scoped>
     .AppHeader{
         width:100%;
-        height:100px;
+        height:110px;
         background-color: white;
         -webkit-box-shadow: 0 1px 5px 0 rgba(0,34,77,.1);
         -moz-box-shadow: 0 1px 5px 0 rgba(0,34,77,.1);
@@ -54,7 +54,8 @@
         margin:0px auto;
     }
     .main .logo>img{
-        width:220px;
+        margin-top:5px;
+        width:230px;
         margin-left:5px;
     }
     .main .logo .name{
