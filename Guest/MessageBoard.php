@@ -171,7 +171,6 @@
 					<div id="contact-form">
 						<form name="form1" method="post" action="contact.php">
 							<div class="row">
-
 							</div>
 							<div class="row">
 								<div class="col-md-12">
