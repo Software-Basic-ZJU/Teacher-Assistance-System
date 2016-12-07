@@ -14,9 +14,7 @@
         </div>
     </div>
 </template>
-<style>
-    .noticeBox{
-    }
+<style scoped>
     .noteItem{
         width:100%;
         height:30px;

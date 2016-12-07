@@ -283,59 +283,60 @@ POST——Teacher-Assistance-System/app/backend/aboutResource/getResourceList.ph
         "res" => null
 ```
 
-## 10、上传文件
-
-POST——Teacher-Assistance-System/app/backend/aboutResource/uploadFile
-
-参数：无
-
-返回:
-
-```php
-    array(
-        'code' => 1,
-        'msg' => 一些错误信息
-        'res' => null
-    );
-```
-
-```php
-		'code' => 0,
-        'msg' => '上传成功',
-        'res' => array(
-            'path' 路径
-            'time' 时间
-            'size' 大小
-        )
-```
-
-## 11、上传资源（先用10的上传文件，再用此脚本更新数据库）
+## 10、上传文件到服务器并插入resource表
 
 POST——Teacher-Assistance-System/app/backend/aboutResource/addResource.php
 
-参数：name、uploader_id、type（0为教师资源，1为帖子资源）、post_id、path、time、size
+参数：uploader_id、type（0为教师资源，1为帖子资源）、file
 
 返回:
 
 ```php
-		"code" => 0,
-        "msg" => "查找成功",
-        "res" => $resourceList
-          
-         $resourceList[] = array(
-            "resource_id"
-            "name"资源名字
-            "path"路径
-            "upload_time"上传时间
-            "uploader_name"上传者名字
-            "size"文件大小
-        );
+    $result = array(
+        'code' => 0,
+        'msg' => '添加成功',
+        'res' => array(
+            'resource_id' => $resource_id,
+            'name' => $name,
+            'time' => $time,
+            'size' => $size,
+            'path' => $path,
+            'uploader_name' => $user_name,
+            'uploader_id' => $uploader_id
+        )
+    );
 ```
 
 ```php
   			'code' => 1,
             'msg' => '添加失败,数据库错误',
             'res' => null
+```
+
+## 11、上传资源确认名字
+
+POST——Teacher-Assistance-System/app/backend/aboutResource/resourceConfirm.php
+
+参数：resource_id、name、old_resource_id
+
+返回:
+
+```php
+	$result = array(
+        "code" => 0,
+        "msg" => "修改成功",
+        "res" => array(
+            'name' => $name
+        )
+    );
+```
+
+```php
+	$result = array(
+        "code" => 1,
+        "msg" => "修改失败",
+        "res" => null
+    );
 ```
 
 ## 12、删除资源
@@ -367,46 +368,6 @@ POST——Teacher-Assistance-System/app/backend/aboutResource/removeResource.php
 ```php
 		"code" => 3,
         "msg" => "无效用户尝试删除文件",
-        "res" => null
-```
-
-## 13、更新资源(同样先上传文件再更新资源)
-
-POST——Teacher-Assistance-System/app/backend/aboutResource/updateResource.php
-
-参数：resource_id、uploader_id、name、path、time、size
-
-返回:
-
-```php
-            "code" => 0,
-            "msg" => "更新成功",
-            "res" => array(
-                'resource_id'
-                'name'文件名
-                'time'更新时间
-                'size' 文件大小
-                'uploader_name'
-                'uploader_id'
-            )
-```
-
-```php
-            "code" => 1,
-            "msg" => "文件已上传，但旧文件不能删除",
-            "res" => array(
-                'resource_id'
-                'name' => $name,
-                'time' => $time,
-                'size' => $size,
-                'uploader_name' => $user_name,
-                'uploader_id' => $uploader_id
-            )
-```
-
-```php
-        "code" => 2,
-        "msg" => "没有这个资源",
         "res" => null
 ```
 
@@ -1106,5 +1067,58 @@ POST——Teacher-Assistance-System/app/backend/aboutPost/getPostList.php
                         "code" => 2,
                         "msg" => "无此上传人",
                         "res" => null
+```
+
+## 38、发布帖子
+
+POST——Teacher-Assistance-System/app/backend/aboutPost/addPost.php
+
+参数：title,content,teacher_id,section、resrc_id
+
+（要发布帖子，首先使用aboutResource/addResource.php上传附件，再使用此脚本发布文章）
+
+返回:
+
+```php
+		"code" => 0,
+        "msg" => "帖子发布成功",
+        "res" => array(
+            'post_id' => $post_id,
+            'title' => $title,
+            'content' => $content,
+            'author_id' => $author_id,
+            'author_name' => $author_name,
+            'publish_time' => $time,
+            'update_time' => $time,
+            'reply_num' => 0
+        )
+```
+
+```php
+        "code" => 1,
+        "msg" => "帖子发布失败",
+        "res" => null
+```
+
+```php
+            $result = array(
+                "code" => 2,
+                "msg" => "发帖人并无所在小组",
+                "res" => null
+            );
+```
+
+```php
+            $result = array(
+                "code" => 3,
+                "msg" => "无此发帖人",
+                "res" => null
+            );
+```
+
+```php
+            "code" => 4,
+            "msg" => "无法插入资源",
+            "res" => null
 ```
 

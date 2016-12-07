@@ -2,9 +2,7 @@
     <div>
         <div class="forum">
             <div class="view">
-                <transition name="fade">
-                    <router-view></router-view>
-                </transition>
+                <router-view></router-view>
             </div>
         </div>
     </div>

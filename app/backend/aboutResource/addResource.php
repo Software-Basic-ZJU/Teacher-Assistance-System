@@ -15,15 +15,21 @@ connectDB();
 
 //Verify token
 loginCheck($_POST['token']);
-//Name,uploader_id,type,file
 //Get information
-$name = $_POST['name'];
+$upload_result = uploadFile($_POST['token'],$_FILES['file']);
+if($upload_result['code']!=0){
+    echo json_encode($upload_result);
+    exit;
+}
+else{
+    $name = $upload_result['res']['name'];
+    $time = $upload_result['res']['time'];
+    $size = $upload_result['res']['size'];
+    $path = $upload_result['res']['path'];
+}
 $uploader_id = $_POST['uploader_id'];
 $type = $_POST['type'];
-$post_id = $_POST['post_id'];
-$path = $_POST['path'];
-$time = $_POST['time'];
-$size = $_POST['size'];
+$post_id = null;
 $user_type = $_SESSION['type'];
 //Add resource
 $add_result = mysqli_query($conn,
@@ -46,6 +52,7 @@ if($add_result){
             'name' => $name,
             'time' => $time,
             'size' => $size,
+            'path' => $path,
             'uploader_name' => $user_name,
             'uploader_id' => $uploader_id
         )

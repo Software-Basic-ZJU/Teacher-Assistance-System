@@ -12,7 +12,7 @@ include '../login/_include.php';
 global $conn;
 connectDB();
 //Verify token
-//loginCheck($_POST['token']);
+loginCheck($_POST['token']);
 //Get information
 $section = test_input(mysqli_escape_string($conn, $_POST['section']));//所在版块：0为教师答疑区，1为公共讨论区，2为小组讨论区
 $teacher_id = test_input(mysqli_escape_string($conn, $_POST['teacher_id']));
@@ -52,15 +52,12 @@ if($section == 2){
 
             $getResource_result = mysqli_query($conn, "select * from resource WHERE post_id = '$post_id' AND type = 1;");
             if($fetched_resource = mysqli_fetch_array($getResource_result)){
-                $attachment = array();
-                do{
-                    $attachment[] = array(
-                        "resrc_id" => $fetched_resource['resrc_id'],
-                        "name" => $fetched_resource['name'],
-                        "path" => $fetched_resource['path'],
-                        "size" => $fetched_resource['size']
-                    );
-                }while($fetched_resource = mysqli_fetch_array($getResource_result));
+                $attachment = array(
+                    "resrc_id" => $fetched_resource['resrc_id'],
+                    "name" => $fetched_resource['name'],
+                    "path" => $fetched_resource['path'],
+                    "size" => $fetched_resource['size']
+                );
             }
             else{
                 $attachment = null;

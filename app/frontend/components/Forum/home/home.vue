@@ -16,7 +16,6 @@
                     <div>今日新帖：{{item.todayNum}}</div>
                 </div>
             </div>
-            <div class="cl"></div>
         </div>
     </div>
 </template>
@@ -40,9 +39,9 @@
         cursor:pointer;
         margin:0px 10px;
         padding-bottom:20px;
-        -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
-        -moz-box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
-        box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+        -webkit-box-shadow: 0 1px 5px 0 rgba(0,34,77,.2);
+        -moz-box-shadow: 0 1px 5px 0 rgba(0,34,77,.2);
+        box-shadow: 0 1px 5px 0 rgba(0,34,77,.2);
         -webkit-transition: box-shadow 0.5s;
         -moz-transition: box-shadow 0.5s;
         -ms-transition: box-shadow 0.5s;
@@ -58,9 +57,9 @@
         transition: color 0.5s;
     }
     .section:hover{
-        -webkit-box-shadow:  0 0 8px  rgba(0, 0, 0, 0.5);
-        -moz-box-shadow:  0 0 8px  rgba(0, 0, 0, 0.5);
-        box-shadow:  0 0 8px  rgba(0, 0, 0, 0.5);
+        -webkit-box-shadow:  0 1px 8px  rgba(0,34,77,.4);
+        -moz-box-shadow:  0 1px 8px  rgba(0,34,77,.4);
+        box-shadow:  0 1px 8px  rgba(0,34,77,.4);
     }
     .section:hover h3{
         color:#20A0FF;
