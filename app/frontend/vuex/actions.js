@@ -19,7 +19,9 @@ export const editorSubmit=({commit},payload)=>{
 };
 
 export const login=({commit},loginForm)=>{
+    commit('isLoading',true);
     //TODO 如果是首次登陆，则跳转至完成信息界面
+
     Vue.http("/backend/login.php",
         {
             id:loginForm.id,
@@ -41,7 +43,12 @@ export const login=({commit},loginForm)=>{
 
         }
     },(response)=>{
-        Vue.$message(response.body.msg);
+        Vue.prototype.$message({
+            type:'danger',
+            message:"请检查网络配置!"
+        });
+    }).then(()=>{
+        commit('isLoading',false);
     });
     commit('showCompleteInfo',true);
     console.log(loginForm);

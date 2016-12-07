@@ -16,12 +16,19 @@
                         <el-radio :label="2">助教</el-radio>
                     </el-radio-group>
                     <el-form-item>
-                        <el-button type="primary" @click="login" @key.enter="login">登录</el-button>
+                        <el-button type="primary" @click="login" @key.enter="login" :loading="isLoading">登录</el-button>
                         <el-button>返回首页</el-button>
                     </el-form-item>
                 </el-form>
             </div>
-            <el-dialog title="第一次登陆，请完善个人信息" v-model="showCompleteInfo" @close="closeDialog">
+            <el-dialog
+                    title="第一次登陆，请完善个人信息"
+                    v-model="showCompleteInfo"
+                    @close="closeDialog"
+                    :show-close="false"
+                    :close-on-click-modal="false"
+                    :close-on-press-escape="false"
+            >
                 <Complete-info></Complete-info>
             </el-dialog>
         </div>
@@ -44,6 +51,7 @@
 </style>
 <script>
     import CompleteInfo from "./CompleteInfo.vue";
+    import {mapState} from "vuex";
     export default{
         data(){
             return{
@@ -71,9 +79,10 @@
             }
         },
         computed:{
-            showCompleteInfo(){
-                return this.$store.state.showCompleteInfo
-            }
+            ...mapState({
+                showCompleteInfo:state=>state.showCompleteInfo,
+                isLoading:state=>state.loading
+            })
         },
         methods:{
             login(){
