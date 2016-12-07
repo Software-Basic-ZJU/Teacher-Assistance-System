@@ -1,16 +1,14 @@
 <template>
     <div>
         <div>
-            <el-tabs type="card" @tab-click="changeTabs" :active-name="currIndex">
+            <el-tabs @tab-click="changeTabs" :active-name="currIndex">
                 <el-tab-pane label="通知"></el-tab-pane>
                 <el-tab-pane label="联系方式"></el-tab-pane>
                 <el-tab-pane label="教学文章"></el-tab-pane>
             </el-tabs>
             <div class="infoBox">
                 <div>
-                    <transition name="fade">
-                        <router-view></router-view>
-                    </transition>
+                    <router-view></router-view>
                 </div>
             </div>
         </div>
@@ -19,9 +17,6 @@
 <style scoped>
     .el-tabs{
         width:100%;
-    }
-    .infoBox{
-        padding:0px 20px;
     }
     .infoBox>div{
         position: relative;

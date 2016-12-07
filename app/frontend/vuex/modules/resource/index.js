@@ -54,6 +54,9 @@ const state={
 }
 
 const mutations={
+    updateLoading(state,signal){
+        state.loading=signal;
+    },
     showEditResrc(state,payload){
         state.showEdit=true;
         let row=payload.row;

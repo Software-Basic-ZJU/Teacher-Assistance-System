@@ -39,18 +39,17 @@ while($fetched = mysqli_fetch_array($query_message))
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="comment">回复:</label>
-                                <textarea class="form-control"　name="comment" rows="4"></textarea>
+                                <label for="reply">回复:</label>
+                                <textarea class="form-control" name="reply" rows="4" value=""></textarea>
                             </div>
                             <input type="hidden" name="msg_id" value="<?php echo $fetched['msg_id']?>">
                             <div class="col-sm-12 text-center">
-                                <button type="submit" name="commentSubmit" class="btn btn-default btn-xl sr-button" style="background-color:#F05F40">提交</button>
+                                <button type="submit" name="replySubmit" class="btn btn-default btn-xl sr-button" style="background-color:#F05F40">提交</button>
                             </div>
                         </div>
                     </div>
                 </form>
             </div>
-
         </div>
     </div>
 

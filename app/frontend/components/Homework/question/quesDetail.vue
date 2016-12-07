@@ -69,7 +69,7 @@
 </template>
 <style scoped>
     .quesDetail{
-        padding:10px 20px;
+        padding:10px 0px;
     }
     .main>.leftBox{
         width:54%;

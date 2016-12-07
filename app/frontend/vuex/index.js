@@ -14,6 +14,7 @@ import TAmanage from "./modules/TAmanage";
 Vue.use(Vuex);
 
 const state={
+    loading:false,
     isLogin:false,
     userInfo:{
         id:'123456',
@@ -33,6 +34,9 @@ const state={
 };
 
 const mutations={
+    isLoading(state,signal){
+        state.loading=signal;
+    },
     updateUserInfo(state,userInfo){
         state.userInfo=userInfo;
     },
