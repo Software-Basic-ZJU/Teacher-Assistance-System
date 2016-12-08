@@ -19,10 +19,10 @@ export const editorSubmit=({commit},payload)=>{
 };
 
 export const login=({commit},loginForm)=>{
+    console.log(loginForm);
     commit('isLoading',true);
-    //TODO 如果是首次登陆，则跳转至完成信息界面
 
-    Vue.http("/backend/login.php",
+    Vue.http.post("backend/login/login.php",
         {
             id:loginForm.id,
             password:loginForm.password,
@@ -30,6 +30,8 @@ export const login=({commit},loginForm)=>{
         }
     ).then((response)=>{
         let resp=response.body;
+
+        console.log(resp);
         if(!resp.code){
 
         }
@@ -44,14 +46,13 @@ export const login=({commit},loginForm)=>{
         }
     },(response)=>{
         Vue.prototype.$message({
-            type:'danger',
+            type:'error',
             message:"请检查网络配置!"
         });
     }).then(()=>{
         commit('isLoading',false);
     });
-    commit('showCompleteInfo',true);
-    console.log(loginForm);
+    // console.log(loginForm);
 };
 
 export const editUserInfo=({commit},newInfo)=>{

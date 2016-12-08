@@ -5,8 +5,6 @@
  * Date: 2016/11/20
  * Time: 14:57
  */
-header('Content-type: application/json');
-session_start();
 // Connect database
 include '_include.php';
 global $conn;
@@ -56,7 +54,7 @@ if($type == 1){
         echo json_encode($result);
     }
 }
-elseif ($type == 2){
+else if ($type == 2){
     $query_result = mysqli_query($conn, "select * from teacher 
                                          where teacher_id ='$id' and password='$password' limit 1");
     if($fetched = mysqli_fetch_array($query_result)){
@@ -87,9 +85,8 @@ elseif ($type == 2){
         echo json_encode($result);
     }
 }
-elseif ($type == 3){
-    $query_result = mysqli_query($conn, "select * from assists 
-                                         where assist_id ='$id' and password='$password' limit 1");
+else if ($type == 3){
+    $query_result = mysqli_query($conn, "select * from assists where assist_id ='$id' and password='$password' limit 1");
     if($fetched = mysqli_fetch_array($query_result)){
         $token = $id."-".$type."-".time();
         $token = encrypt($token);
@@ -117,7 +114,10 @@ elseif ($type == 3){
         echo json_encode($result);
     }
 }
-
+else echo json_encode(array(
+    "code"=> -1,
+    "msg"=>"该身份类型不存在!",
+));
 
 mysqli_close($conn);
 ?>

@@ -14,10 +14,11 @@ Vue.use(ElementUI);
 Vue.config.debug=true;
 
 //ajax config
-Vue.http.options.root='/';
+Vue.http.options.root='http://localhost:8000/';
 Vue.http.options.timeout=12000;
+Vue.http.options.emulateJSON = true;        //php cannot resolve json directly.
 let userInfo=LS.getItem('userInfo');
-Vue.http.headers.common['Access-Token']=userInfo?userInfo.token:'';
+Vue.http.headers.common['x-access-token']=userInfo?userInfo.token:'';
 
 //timeout config
 Vue.http.interceptors.push((req,next)=>{
@@ -36,7 +37,10 @@ Vue.http.interceptors.push((req,next)=>{
         clearTimeout(hasTimeout);
         if(!response.status) return;
         if(response.body.code==-1){     //身份不通过暂时设为-1
-            //Todo
+            Vue.prototype.$message({
+                type:'error',
+                message:response.body.msg
+            })
         }
     })
 })

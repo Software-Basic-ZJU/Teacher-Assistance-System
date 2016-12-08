@@ -3,8 +3,8 @@
         <div class="AppHeader">
             <div class="main">
                 <div class="logo fl">
-                    <img src="./static/zjulogo.png"/>
-                    <div class="name" >软件工程@计算机科学与技术学院</div>
+                    <!--<img src="./static/zjulogo.png"/>-->
+                    <div class="name" >课程辅助系统</div>
                 </div>
                 <div class="actionBox fr">
                     <div class="topBox">
@@ -43,7 +43,7 @@
     .AppHeader{
         width:100%;
         height:110px;
-        background-color: white;
+        background-color: #2a2a2a;
         -webkit-box-shadow: 0 1px 5px 0 rgba(0,34,77,.1);
         -moz-box-shadow: 0 1px 5px 0 rgba(0,34,77,.1);
         box-shadow: 0 1px 5px 0 rgba(0,34,77,.1);
@@ -59,10 +59,12 @@
         margin-left:5px;
     }
     .main .logo .name{
-        font-size:16px;
-        margin-left:15px;
-        margin-top:-2px;
+        font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+        font-size:32px;
+        margin-left:20px;
+        margin-top:20px;
         font-weight: bold;
+        color:snow ;
     }
     .actionBox .topBox{
         height:30px;

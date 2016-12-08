@@ -11,9 +11,9 @@
                         <el-input v-model="loginForm.password" type="password" placeholder="密码"></el-input>
                     </el-form-item>
                     <el-radio-group v-model="loginForm.idenType">
-                        <el-radio :label="0">学生</el-radio>
-                        <el-radio :label="1">老师</el-radio>
-                        <el-radio :label="2">助教</el-radio>
+                        <el-radio :label="1">学生</el-radio>
+                        <el-radio :label="2">老师</el-radio>
+                        <el-radio :label="3">助教</el-radio>
                     </el-radio-group>
                     <el-form-item>
                         <el-button type="primary" @click="login" @key.enter="login" :loading="isLoading">登录</el-button>
@@ -58,7 +58,7 @@
                 loginForm:{
                     id:'',
                     password:'',
-                    idenType:0
+                    idenType:1
                 },
                 rules:{
                     id:[
