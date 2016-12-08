@@ -17,7 +17,7 @@ loginCheck($_POST['token']);
 $article_id = test_input(mysqli_escape_string($conn, $_POST['article_id']));
 if($_SESSION['type']!=2){
     $result = array(
-        "code" => 2,
+        "code" => 403,
         "msg" => "无效用户尝试删除",
         "res" => null
     );
@@ -35,7 +35,7 @@ if($query_result){
 }
 else{
     $result = array(
-        "code" => 1,
+        "code" => -1,
         "msg" => "删除失败",
         "res" => null
     );

@@ -23,7 +23,7 @@ $punish_type = test_input(mysqli_escape_string($conn, $_POST['punish_type']));
 $punish_rate = test_input(mysqli_escape_string($conn, $_POST['punish_rate']));
 if($_SESSION['type']!=2){
     $result = array(
-        "code" => 2,
+        "code" => 403,
         "msg" => "无效用户尝试操作",
         "res" => null
     );
@@ -57,7 +57,7 @@ if($query_result){
 }
 else{
     $result = array(
-        "code" => 1,
+        "code" => -1,
         "msg" => "修改失败",
         "res" => null
     );

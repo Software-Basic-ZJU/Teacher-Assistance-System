@@ -17,7 +17,7 @@ loginCheck($_POST['token']);
 $ques_id = test_input(mysqli_escape_string($conn, $_POST['ques_id']));
 if($_SESSION['type']!=2){
     $result = array(
-        "code" => 2,
+        "code" => 403,
         "msg" => "无效用户尝试操作",
         "res" => null
     );
@@ -28,7 +28,7 @@ $query_result = mysqli_query($conn, "select * from works WHERE ques_id = '$ques_
 
 if($fetched = mysqli_fetch_array($query_result)){
     $result = array(
-        "code" => 1,
+        "code" => -1,
         "msg" => "还有未点评的work",
         "res" => null
     );

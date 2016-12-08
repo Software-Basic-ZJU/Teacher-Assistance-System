@@ -39,7 +39,7 @@ if($fetched = mysqli_fetch_array($query_result)){
 }
 else{
     $result = array(
-        "code" => 1,
+        "code" => -1,
         "msg" => "查找失败，teacher_id错误,或者没有资源",
         "res" => null
     );

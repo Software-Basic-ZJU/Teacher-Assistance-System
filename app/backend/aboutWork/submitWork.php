@@ -35,8 +35,8 @@ if($query_result){
     }
     else{
         $result = array(
-            "code" => 2,
-            "msg" => "作业提交成功,但是数据库已交数目并未更新",
+            "code" => -1,
+            "msg" => "数据库更新失败",
             "res" => null
         );
         echo json_encode($result);
@@ -44,7 +44,7 @@ if($query_result){
 }
 else{
     $result = array(
-        "code" => 1,
+        "code" => -1,
         "msg" => "作业提交失败",
         "res" => null
     );

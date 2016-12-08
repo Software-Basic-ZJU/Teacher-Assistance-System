@@ -29,7 +29,7 @@ if($fetched = mysqli_fetch_array($query_result)){
         echo json_encode($result);
     } else {
         $result = array(
-            "code" => 1,
+            "code" => -1,
             "msg" => "删除失败",
             "res" => null
         );
@@ -38,7 +38,7 @@ if($fetched = mysqli_fetch_array($query_result)){
 }
 else{
     $result = array(
-        "code" => 2,
+        "code" => -1,
         "msg" => "没有这个资源",
         "res" => null
     );

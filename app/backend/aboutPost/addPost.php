@@ -31,7 +31,7 @@ if($_SESSION['type']==1){
         }
         else{
             $result = array(
-                "code" => 2,
+                "code" => 403,
                 "msg" => "发帖人并无所在小组",
                 "res" => null
             );
@@ -63,8 +63,8 @@ if($query_result){
         }
         else{
             $result = array(
-                "code" => 3,
-                "msg" => "无此发帖人",
+                "code" => 403,
+                "msg" => "发布者身份非法",
                 "res" => null
             );
             echo json_encode($result);
@@ -72,17 +72,19 @@ if($query_result){
         }
     }
 
-    $updateResource_result = mysqli_query($conn, "update resource
-                                     set post_id = '$post_id'
-                                     WHERE resrc_id = '$resrc_id';");
-    if(!$updateResource_result){
-        $result = array(
-            "code" => 4,
-            "msg" => "无法插入资源",
-            "res" => null
-        );
-        echo json_encode($result);
-        exit;
+    if($resrc_id!=null){
+        $updateResource_result = mysqli_query($conn, "update resource
+                                         set post_id = '$post_id'
+                                         WHERE resrc_id = '$resrc_id';");
+        if(!$updateResource_result){
+            $result = array(
+                "code" => -1,
+                "msg" => "插入附件失败",
+                "res" => null
+            );
+            echo json_encode($result);
+            exit;
+        }
     }
     $result = array(
         "code" => 0,
@@ -102,7 +104,7 @@ if($query_result){
 }
 else{
     $result = array(
-        "code" => 1,
+        "code" => -1,
         "msg" => "帖子发布失败",
         "res" => null
     );

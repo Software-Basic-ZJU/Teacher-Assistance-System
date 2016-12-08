@@ -45,8 +45,8 @@ if($type == 0){
     }
     else{
         $result = array(
-            "code" => 3,
-            "msg" => "查找失败",
+            "code" => -1,
+            "msg" => "获取应交学生列表失败",
             "res" => null
         );
         echo json_encode($result);
@@ -81,8 +81,8 @@ elseif ($type == 1){
     }
     else{
         $result = array(
-            "code" => 3,
-            "msg" => "查找失败",
+            "code" => -1,
+            "msg" => "获取应交小组列表失败",
             "res" => null
         );
         echo json_encode($result);

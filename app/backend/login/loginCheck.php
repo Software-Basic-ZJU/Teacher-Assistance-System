@@ -58,7 +58,7 @@ function loginCheck($token){
     }
     if(!$query_result){
         $result = array(
-            'code' => -1,
+            'code' => 403,
             'msg' => '当前用户名与token中的用户名不一致',
             'res' => array()
         );
@@ -66,7 +66,7 @@ function loginCheck($token){
         exit;
     } elseif($token_array[2] > $expireTime){
         $result = array(
-            'code' => -1,
+            'code' => 403,
             'msg' => 'token已过期',
             'res' => array()
         );

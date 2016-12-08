@@ -7,7 +7,7 @@
             </div>
             <el-form ref="userInfo" :rules="rules" :model="userInfo" label-width="94px">
                 <div class="notice">基本信息</div>
-                <el-form-item label="教工号 / 学号">
+                <el-form-item label="教工号/学号">
                     <el-input v-model="userInfo.id" :disabled="true"></el-input>
                 </el-form-item>
                 <el-form-item label="姓名" prop="name">

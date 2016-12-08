@@ -95,7 +95,7 @@
         padding-top:40px;
     }
     .actionBox .result>i{
-        color:#6ECADC;
+        color:#13CE66;
         font-size:32px;
     }
     .actionBox .result .hrefBox{

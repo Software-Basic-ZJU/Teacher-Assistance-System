@@ -28,7 +28,7 @@
                         width="80"
                 >
                     <span>
-                        <el-button size="small" type="danger" icon="delete" @click="deleteTA($index,row)"></el-button>
+                        <el-button size="small" type="danger" icon="delete" @click="deleteTA($index,row)" :plain="true"></el-button>
                     </span>
                 </el-table-column>
             </el-table>

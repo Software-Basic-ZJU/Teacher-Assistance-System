@@ -11,7 +11,7 @@ POST——Teacher-Assistance-System/app/backend/login/login.php
 返回:
 
 ```php
-    code: 0（学生登录成功）
+    code: 1（学生登录成功）
     msg: 登陆成功
     res:{
         "token" （加密后的用户token，用于验证）
@@ -21,30 +21,22 @@ POST——Teacher-Assistance-System/app/backend/login/login.php
         'name'    (sname)
         'type'     (此时为1，代表学生)
         'group_id'
+        'email'
+        'question1'
+        'question2'
+        'answer1'
+        'answer2'
     }
-```
-```php
-	"code" => 1,（学生登录成功）
-    "msg" => "登陆成功，其班级无教师信息",
-	"res" => array(
-         "token" 
-         "id"    （student_id）
-         'class_id' 
-         'teacher_id'（null，没有找到教师信息）
-         'name'  (sname)
-         'type'   (此时为1，代表学生)
-         'group_id' 
-    )
 ```
 
 ```php
-    "code" => 2,
+    "code" => -1,
     "msg" => "登录失败,用户名或密码或类型错误",
     "res" => array()
 ```
 
 ```php
-	"code" => 3,(教师登陆成功)
+	"code" => 2,(教师登陆成功)
     "msg" => "登陆成功",
     "res" => array(
           "token"
@@ -58,7 +50,7 @@ POST——Teacher-Assistance-System/app/backend/login/login.php
 ```
 
 ```php
-			"code" => 4,
+			"code" => 3, (助教登录成功)
             "msg" => "登陆成功",
             "res" => array(
                 "token" 
@@ -97,7 +89,7 @@ POST——Teacher-Assistance-System/app/backend/aboutNotice/getNotices.php
 ```
 
 ```php
-		"code" => 1,
+		"code" => -1,
         "msg" => "查找失败，班级ID错误",
         "res" => null
 ```
@@ -123,7 +115,7 @@ POST——Teacher-Assistance-System/app/backend/aboutNotice/getNoticeDetail.php
 ```
 
 ```php
-		"code" => 1,
+		"code" => -1,
         "msg" => "查找失败，notice_id错误",
         "res" => null
 ```
@@ -151,7 +143,7 @@ POST——Teacher-Assistance-System/app/backend/aboutArticle/getArticles.php
 ```
 
 ```php
-		"code" => 1,
+		"code" => -1,
         "msg" => "查找失败，teacher_id错误",
         "res" => null
 ```
@@ -177,7 +169,7 @@ POST——Teacher-Assistance-System/app/backend/aboutArticle/getArticleDetail.ph
 ```
 
 ```php
-		"code" => 1,
+		"code" => -1,
         "msg" => "查找失败，article_id错误",
         "res" => null
 ```
@@ -204,7 +196,7 @@ POST——Teacher-Assistance-System/app/backend/aboutInfo/getContact.php
 ```
 
 ```php
-		"code" => 1,
+		"code" => -1,
         "msg" => "查找失败，class_id错误",
         "res" => null
 ```
@@ -226,7 +218,7 @@ POST——Teacher-Assistance-System/app/backend/aboutInfo/getCourseInfo.php
 ```
 
 ```php
-		"code" => 1,
+		"code" => -1,
         "msg" => "查找失败，class_id错误",
         "res" => null
 ```
@@ -248,7 +240,7 @@ POST——Teacher-Assistance-System/app/backend/aboutInfo/getTeacherInfo.php
 ```
 
 ```php
-		"code" => 1,
+		"code" => -1,
         "msg" => "查找失败，class_id错误",
         "res" => null
 ```
@@ -278,7 +270,7 @@ POST——Teacher-Assistance-System/app/backend/aboutResource/getResourceList.ph
 ```
 
 ```php
-		"code" => 1,
+		"code" => -1,
         "msg" => "查找失败，class_id错误,或者没有资源",
         "res" => null
 ```
@@ -308,7 +300,7 @@ POST——Teacher-Assistance-System/app/backend/aboutResource/addResource.php
 ```
 
 ```php
-  			'code' => 1,
+  			'code' => -1,
             'msg' => '添加失败,数据库错误',
             'res' => null
 ```
@@ -333,7 +325,7 @@ POST——Teacher-Assistance-System/app/backend/aboutResource/resourceConfirm.ph
 
 ```php
 	$result = array(
-        "code" => 1,
+        "code" => -1,
         "msg" => "修改失败",
         "res" => null
     );
@@ -354,19 +346,19 @@ POST——Teacher-Assistance-System/app/backend/aboutResource/removeResource.php
 ```
 
 ```php
-            "code" => 1,
+            "code" => -1,
             "msg" => "删除失败",
             "res" => null
 ```
 
 ```php
-        "code" => 2,
+        "code" => -1,
         "msg" => "没有这个资源",
         "res" => null
 ```
 
 ```php
-		"code" => 3,
+		"code" => 403,
         "msg" => "无效用户尝试删除文件",
         "res" => null
 ```
@@ -392,8 +384,14 @@ POST——Teacher-Assistance-System/app/backend/aboutInfo/editContact.php
 ```
 
 ```php
-        "code" => 1,
+        "code" => -1,
         "msg" => "查找失败",
+        "res" => null
+```
+
+```php
+        "code" => 403,
+        "msg" => "无效用户尝试操作",
         "res" => null
 ```
 
@@ -419,7 +417,7 @@ POST——Teacher-Assistance-System/app/backend/aboutNotice/addNotice.php
 ```
 
 ```php
-        "code" => 1,
+        "code" => -1,
         "msg" => "通知发布失败",
         "res" => null
 ```
@@ -446,13 +444,13 @@ POST——Teacher-Assistance-System/app/backend/aboutNotice/editNotice.php
 ```
 
 ```php
-        "code" => 1,
+        "code" => -1,
         "msg" => "查找失败",
         "res" => null
 ```
 
 ```php
-        "code" => 2,
+        "code" => 403,
         "msg" => "无效用户尝试操作",
         "res" => null
 ```
@@ -472,13 +470,13 @@ POST——Teacher-Assistance-System/app/backend/aboutNotice/deleteNotice.php
 ```
 
 ```php
-        "code" => 1,
+        "code" => -1,
         "msg" => "删除失败",
         "res" => null
 ```
 
 ```php
-        "code" => 2,
+        "code" => 403,
         "msg" => "无效用户尝试删除",
         "res" => null
 ```
@@ -504,7 +502,7 @@ POST——Teacher-Assistance-System/app/backend/aboutArticle/addArticle.php
 ```
 
 ```php
-		"code" => 1,
+		"code" => -1,
         "msg" => "发布失败",
         "res" => null
 ```
@@ -531,13 +529,13 @@ POST——Teacher-Assistance-System/app/backend/aboutArticle/editArticle.php
 ```
 
 ```php
-        "code" => 1,
+        "code" => -1,
         "msg" => "修改失败",
         "res" => null
 ```
 
 ```php
-        "code" => 2,
+        "code" => 403,
         "msg" => "无效用户尝试操作",
         "res" => null
 ```
@@ -557,13 +555,13 @@ POST——Teacher-Assistance-System/app/backend/aboutArticle/deleteArticle.php
 ```
 
 ```php
-        "code" => 1,
+        "code" => -1,
         "msg" => "删除失败",
         "res" => null
 ```
 
 ```php
-        "code" => 2,
+        "code" => 403,
         "msg" => "无效用户尝试删除",
         "res" => null
 ```
@@ -585,13 +583,13 @@ POST——Teacher-Assistance-System/app/backend/aboutInfo/editCourseInfo.php
 ```
 
 ```php
-        "code" => 1,
+        "code" => -1,
         "msg" => "修改失败",
         "res" => null
 ```
 
 ```php
-        "code" => 2,
+        "code" => 403,
         "msg" => "无效用户尝试操作",
         "res" => null
 ```
@@ -613,13 +611,13 @@ POST——Teacher-Assistance-System/app/backend/aboutInfo/editTeacherInfo.php
 ```
 
 ```php
-        "code" => 1,
+        "code" => -1,
         "msg" => "修改失败",
         "res" => null
 ```
 
 ```php
-        "code" => 2,
+        "code" => 403,
         "msg" => "无效用户尝试操作",
         "res" => null
 ```
@@ -651,7 +649,7 @@ POST——Teacher-Assistance-System/app/backend/aboutHW/getHwList.php
 ```
 
 ```php
-        "code" => 1,
+        "code" => -1,
         "msg" => "查找失败，class_id错误",
         "res" => null
 ```
@@ -671,7 +669,7 @@ POST——Teacher-Assistance-System/app/backend/aboutHW/addHw.php
 ```
 
 ```php
-        "code" => 1,
+        "code" => -1,
         "msg" => "作业发布失败",
         "res" => null
 ```
@@ -700,13 +698,13 @@ POST——Teacher-Assistance-System/app/backend/aboutHW/editHw.php
 ```
 
 ```php
-        "code" => 1,
+        "code" => -1,
         "msg" => "修改失败",
         "res" => null
 ```
 
 ```php
-        "code" => 2,
+        "code" => 403,
         "msg" => "无效用户尝试操作",
         "res" => null
 ```
@@ -726,8 +724,14 @@ POST——Teacher-Assistance-System/app/backend/aboutHW/deleteHw.php
 ```
 
 ```php
-        "code" => 1,
+        "code" => -1,
         "msg" => "删除失败",
+        "res" => null
+```
+
+```php
+        "code" => 403,
+        "msg" => "无效用户尝试操作",
         "res" => null
 ```
 
@@ -756,7 +760,7 @@ POST——Teacher-Assistance-System/app/backend/aboutQues/getQuesList.php
 ```
 
 ```php
-        "code" => 1,
+        "code" => -1,
         "msg" => "查找失败",
         "res" => null
 ```
@@ -784,7 +788,7 @@ POST——Teacher-Assistance-System/app/backend/aboutQues/addQues.php
 ```
 
 ```php
-        "code" => 1,
+        "code" => -1,
         "msg" => "题目发布失败",
         "res" => null
 ```
@@ -804,13 +808,13 @@ POST——Teacher-Assistance-System/app/backend/aboutQues/removeQues.php
 ```
 
 ```php
-        "code" => 1,
+        "code" => -1,
         "msg" => "删除失败",
         "res" => null
 ```
 
 ```php
-        "code" => 2,
+        "code" => 403,
         "msg" => "无效用户尝试操作",
         "res" => null
 ```
@@ -840,14 +844,14 @@ POST——Teacher-Assistance-System/app/backend/aboutQues/editQues.php
 ```
 
 ```php
-        "code" => 1,
+        "code" => -1,
         "msg" => "修改失败",
         "res" => null
 
 ```
 
 ```php
-        "code" => 2,
+        "code" => 403,
         "msg" => "无效用户尝试操作",
         "res" => null
 ```
@@ -867,14 +871,14 @@ POST——Teacher-Assistance-System/app/backend/aboutWork/submitWork.php
 ```
 
 ```php
-        "code" => 1,
+        "code" => -1,
         "msg" => "作业提交失败",
         "res" => null
 ```
 
 ```php
-            "code" => 2,
-            "msg" => "作业提交成功,但是数据库已交数目并未更新",
+            "code" => -1,
+            "msg" => "数据库更新失败",
             "res" => null
 ```
 
@@ -899,7 +903,7 @@ POST——Teacher-Assistance-System/app/backend/aboutWork/getStuWork.php
 ```
 
 ```php
-        "code" => 1,
+        "code" => -1,
         "msg" => "查找失败",
         "res" => null
 ```
@@ -919,13 +923,13 @@ POST——Teacher-Assistance-System/app/backend/aboutWork/correctWork.php
 ```
 
 ```php
-        "code" => 1,
+        "code" => -1,
         "msg" => "点评失败",
         "res" => null
 ```
 
 ```php
-        "code" => 2,
+        "code" => 403,
         "msg" => "无效用户尝试操作",
         "res" => null
 ```
@@ -945,13 +949,13 @@ POST——Teacher-Assistance-System/app/backend/aboutQues/finishQues.php
 ```
 
 ```php
-        "code" => 1,
+        "code" => -1,
         "msg" => "还有未点评的work",
         "res" => null
 ```
 
 ```php
-        "code" => 2,
+        "code" => 403,
         "msg" => "无效用户尝试操作",
         "res" => null
 ```
@@ -991,8 +995,8 @@ POST——Teacher-Assistance-System/app/backend/aboutWork/getWorkStuList.php
 ```
 
 ```php
-            "code" => 3,
-            "msg" => "查找失败",
+            "code" => -1,
+            "msg" => "获取应交学生(小组)列表失败",
             "res" => null
 ```
 
@@ -1017,7 +1021,7 @@ POST——Teacher-Assistance-System/app/backend/aboutPost/getForumInfo.php
 ```
 
 ```php
-        "code" => 1,
+        "code" => -1,
         "msg" => "查找失败",
         "res" => null
 ```
@@ -1058,14 +1062,14 @@ POST——Teacher-Assistance-System/app/backend/aboutPost/getPostList.php
 ```
 
 ```php
-            "code" => 1,
+            "code" => -1,
             "msg" => "查找失败，错误",
             "res" => null
 ```
 
 ```php
-                        "code" => 2,
-                        "msg" => "无此上传人",
+                        "code" => 403,
+                        "msg" => "发布者身份非法",
                         "res" => null
 ```
 
@@ -1095,14 +1099,14 @@ POST——Teacher-Assistance-System/app/backend/aboutPost/addPost.php
 ```
 
 ```php
-        "code" => 1,
+        "code" => -1,
         "msg" => "帖子发布失败",
         "res" => null
 ```
 
 ```php
             $result = array(
-                "code" => 2,
+                "code" => 403,
                 "msg" => "发帖人并无所在小组",
                 "res" => null
             );
@@ -1110,15 +1114,15 @@ POST——Teacher-Assistance-System/app/backend/aboutPost/addPost.php
 
 ```php
             $result = array(
-                "code" => 3,
+                "code" => 403,
                 "msg" => "无此发帖人",
                 "res" => null
             );
 ```
 
 ```php
-            "code" => 4,
-            "msg" => "无法插入资源",
+            "code" => -1,
+            "msg" => "插入附件失败",
             "res" => null
 ```
 

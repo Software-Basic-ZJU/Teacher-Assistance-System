@@ -62,7 +62,7 @@
         box-shadow:  0 1px 8px  rgba(0,34,77,.4);
     }
     .section:hover h3{
-        color:#20A0FF;
+        color:#6ECADC;
     }
     .infoBox{
         font-size:14px;

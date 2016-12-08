@@ -20,7 +20,7 @@ $group_id = test_input(mysqli_escape_string($conn, $_POST['group_id']));
 if($section == 2){
     $query_result = mysqli_query($conn, "select * from posts WHERE section = '$section' AND teacher_id = '$teacher_id' AND group_id = '$group_id';");
     if($fetched = mysqli_fetch_array($query_result)){
-        $postList = array();//post_id,title,content,author_id,author_name,publish_time,update_time,reply_num,attachment[String](resource_id,name,path,size)
+        $postList = array();      //post_id,title,content,author_id,author_name,publish_time,update_time,reply_num,attachment[String](resource_id,name,path,size)
         do{
             $author_id = $fetched['author_id'];
             $post_id = $fetched['post_id'];
@@ -36,8 +36,8 @@ if($section == 2){
                 }
                 else{
                     $result = array(
-                        "code" => 2,
-                        "msg" => "无此上传人",
+                        "code" => 403,
+                        "msg" => "发布者身份非法",
                         "res" => null
                     );
                     echo json_encode($result);

@@ -28,7 +28,7 @@ if($type == 1){
         if($fetched2 = mysqli_fetch_array($query_result2)){
             //Token,id,class_id,teacher_id,name,type,group_id
             $result = array(
-                "code" => 0,
+                "code" => 1,
                 "msg" => "登陆成功",
                 "res" => array(
                     "token" => $token,
@@ -49,7 +49,7 @@ if($type == 1){
         }
     } else {
         $result = array(
-            "code" => 2,
+            "code" => -1,
             "msg" => "登录失败,用户名或密码或类型错误",
             "res" => array()
         );
@@ -64,7 +64,7 @@ elseif ($type == 2){
         $token = encrypt($token);
 
         $result = array(
-            "code" => 3,
+            "code" => 2,
             "msg" => "登陆成功",
             "res" => array(
                 "token" => $token,
@@ -80,7 +80,7 @@ elseif ($type == 2){
     }
     else{
         $result = array(
-            "code" => 2,
+            "code" => -1,
             "msg" => "登录失败,用户名或密码或类型错误",
             "res" => array()
         );
@@ -94,7 +94,7 @@ elseif ($type == 3){
         $token = $id."-".$type."-".time();
         $token = encrypt($token);
         $result = array(
-            "code" => 4,
+            "code" => 3,
             "msg" => "登陆成功",
             "res" => array(
                 "token" => $token,
@@ -110,7 +110,7 @@ elseif ($type == 3){
     }
     else{
         $result = array(
-            "code" => 2,
+            "code" => -1,
             "msg" => "登录失败,用户名或密码或类型错误",
             "res" => array()
         );

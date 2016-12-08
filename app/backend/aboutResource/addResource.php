@@ -60,7 +60,7 @@ if($add_result){
     echo json_encode($result);
 } else{
         $result = array(
-            'code' => 1,
+            'code' => -1,
             'msg' => '添加失败,数据库错误',
             'res' => null
         );

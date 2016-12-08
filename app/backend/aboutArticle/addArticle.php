@@ -41,7 +41,7 @@ if($query_result){
 }
 else{
     $result = array(
-        "code" => 1,
+        "code" => -1,
         "msg" => "发布失败",
         "res" => null
     );
