@@ -34,8 +34,8 @@
         margin-right:20px;
     }
     .el-tag.group{
-        background-color: #58B7FF;
-        border-color:#58B7FF;
+        background-color: #6ECADC;
+        border-color:#6ECADC;
     }
     .text.item{
         font-size:14px;
@@ -48,7 +48,7 @@
         data(){
             return{
                 bodyStyle:{
-                    backgroundColor:"#EFF2F7"
+                    backgroundColor:"#F0F0F0"
                 }
             }
         },

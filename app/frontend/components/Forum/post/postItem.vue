@@ -30,14 +30,14 @@
         transition: background-color 0.3s;
     }
     .postItem:hover{
-        background-color: #E5E9F2;
+        background-color: #F0F0F0;
     }
     .postItem>.header{
         padding:10px 0px;
         font-size:14px;
     }
     .postItem>.header>.author{
-        color:#1D8CE0;
+        color:#6ECADC;
     }
     .postItem>.header>.time{
         margin-left: 50px;

@@ -10,6 +10,7 @@
                     <el-button
                             type="danger"
                             icon="delete"
+                            :plain="true"
                             @click="remove"
                     ></el-button>
                     <el-button

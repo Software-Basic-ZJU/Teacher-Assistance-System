@@ -80,6 +80,10 @@
         -moz-box-shadow: 0 0px 0px 0 rgba(0,34,77,.1);
         box-shadow: 0 0px 0px 0 rgba(0,34,77,.1);
     }
+    .el-step__head.is-text.is-success{
+        background-color: #6ECADC;
+        border-color:#6ECADC;
+    }
 </style>
 <script>
     import Header from "./Header/Header.vue";

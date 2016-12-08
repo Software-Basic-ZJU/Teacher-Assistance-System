@@ -30,12 +30,12 @@
         transition: border-color 0.3s;
     }
     .item:hover{
-        border-bottom-color:#99A9BF;
+        border-bottom-color:#6ECADC;
     }
     .header>.title{
         margin-bottom:5px;
         font-size:18px;
-        color:#1D8CE0;
+        color:#6ECADC;
     }
     .header>span{
         font-size:12px;

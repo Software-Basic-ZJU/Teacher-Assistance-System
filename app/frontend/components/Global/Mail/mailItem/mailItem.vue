@@ -48,12 +48,12 @@
         padding:0 5px;
     }
     .mail .unRead{
-        background-color: #58B7FF;
-        border-color:#58B7FF;
+        background-color: #6ECADC;
+        border-color:#6ECADC;
     }
     .mail .success{
-        background-color: #13CE66;
-        border-color:#13CE66;
+        background-color: #6ECADC;
+        border-color:#6ECADC;
     }
     .mail .datetime{
         font-size:12px;

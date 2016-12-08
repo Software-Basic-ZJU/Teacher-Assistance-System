@@ -2,7 +2,13 @@
     <div>
         <div>
             <h3>编辑主题</h3>
-            <Editor method="editPost" btn-name="更新" :data="hostPost"></Editor>
+            <Editor
+                    method="editPost"
+                    btn-name="更新"
+                    :data="hostPost"
+                    :has-upload="true"
+                    :default-file-list="fileList"
+            ></Editor>
         </div>
     </div>
 </template>
@@ -14,6 +20,12 @@
     export default{
         data(){
             return{
+                fileList:[
+                    {
+                        name:'food.jpeg',
+                        url:'https://dsfsdds'
+                    }
+                ]
             }
         },
         computed:{

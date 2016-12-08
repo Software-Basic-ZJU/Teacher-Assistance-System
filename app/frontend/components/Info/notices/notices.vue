@@ -28,7 +28,7 @@
         transition: border-color 0.3s;
     }
     .noteItem:hover{
-        border-color:#58B7FF;
+        border-color:#6ECADC;
     }
     .noteItem .iconfont{
         font-size:20px;

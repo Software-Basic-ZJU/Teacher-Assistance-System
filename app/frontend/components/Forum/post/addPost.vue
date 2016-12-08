@@ -2,7 +2,7 @@
     <div>
         <div>
             <h3>发布主题</h3>
-            <Editor method="addPost" btn-name="发布"></Editor>
+            <Editor method="addPost" btn-name="发布" :has-upload="true"></Editor>
         </div>
     </div>
 </template>

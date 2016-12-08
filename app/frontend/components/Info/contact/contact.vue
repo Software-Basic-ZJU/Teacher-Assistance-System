@@ -20,7 +20,7 @@
     }
     .contactItem{
         margin-bottom:20px;
-        font-size:18px;
+        font-size:16px;
     }
     .contactItem .title{
         font-weight: bold;

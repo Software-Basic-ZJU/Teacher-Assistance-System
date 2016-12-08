@@ -19,7 +19,7 @@
             </div>
             <div class="footer">
                 <el-button size="small" @click="showReply">{{replyBtn}}</el-button>
-                <el-button type="success" icon="edit" :plain="true" size="small" @click="goEditPost($route.params.pid)"></el-button>
+                <el-button type="warning" icon="edit" :plain="true" size="small" @click="goEditPost($route.params.pid)"></el-button>
                 <el-button type="danger" icon="delete" :plain="true" size="small" @click="removePost($route.params.pid)"></el-button>
                 <span class="time fr">发表于：{{hostPost.updateTime}}</span>
                 <span class="time fr">最后更新：{{hostPost.updateTime}}</span>
@@ -65,7 +65,7 @@
         margin-bottom:5px;
     }
     .hostPost>.header>.author{
-        color:#1D8CE0;
+        color:#6ECADC;
     }
     .hostPost>.main{
         padding:10px 0px;

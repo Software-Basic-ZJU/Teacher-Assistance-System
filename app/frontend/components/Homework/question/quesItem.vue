@@ -12,8 +12,8 @@
                         <div class="haveNum">实交人数：{{haveNum}}</div>
                     </div>
                     <el-button class="fr" type="primary" @click="goQuesByName(quesId,'quesDetail')">前往查看</el-button>
-                    <el-button class="fr" @click="goQuesByName(quesId,'editQues')">编辑</el-button>
-                    <el-button class="fr" type="danger">删除</el-button>
+                    <el-button class="fr" type="warning" :plain="true" @click="goQuesByName(quesId,'editQues')" icon="edit"></el-button>
+                    <el-button class="fr" type="danger" :plain="true" icon="delete"></el-button>
                 </div>
             </el-card>
         </div>
@@ -21,7 +21,7 @@
 </template>
 <style scoped>
     .statistics{
-        background-color: #E5E9F2;
+        background-color: #F0F0F0;
         margin-top:-10px;
         margin-bottom:10px;
         margin-left:80px;

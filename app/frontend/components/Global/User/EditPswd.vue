@@ -66,10 +66,14 @@
 </template>
 <style scoped>
     .editPswd{
-        margin:50px auto;
+        margin:30px auto;
         width:600px;
         height:300px;
-        padding:10px;
+        padding:30px 20px 20px 30px;
+        background-color: white;
+        -webkit-box-shadow: 0 1px 5px 0 rgba(0,34,77,.1);
+        -moz-box-shadow: 0 1px 5px 0 rgba(0,34,77,.1);
+        box-shadow: 0 1px 5px 0 rgba(0,34,77,.1);
     }
     .actionBox{
         width:450px;
@@ -91,7 +95,7 @@
         padding-top:40px;
     }
     .actionBox .result>i{
-        color:#13CE66;
+        color:#6ECADC;
         font-size:32px;
     }
     .actionBox .result .hrefBox{

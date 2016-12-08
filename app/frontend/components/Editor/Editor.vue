@@ -27,6 +27,7 @@
                 :before-upload="checkUpload"
                 :on-success="finish"
                 :on-remove="removeFile"
+                :default-file-list="defaultFileList"
             >
                 <el-button size="small" type="primary">点击上传</el-button>
                 <span class="el-upload__tip" slot="tip">只能上传一个文件，且大小不能超过15MB。</span>
@@ -95,6 +96,10 @@
                 type:Boolean,
                 default:false
             },
+            defaultFileList:{
+                type:Array,
+                default:[]
+            },
             btnName:String,             //编辑器的确认按钮内容
             method:String,              //编辑器的功能
             data:{                      //编辑器提交的对象
@@ -121,7 +126,13 @@
             },
             reset(){
                 this.editor.clear();
-                this.data.title="";
+                this.data={
+                    title:'',
+                    author:'',
+                    content:'',
+                    filePath:'',
+                    level:false
+                }
             },
             checkUpload(file){
                 if(this.isUpload) {

@@ -24,7 +24,7 @@
         font-size:14px;
     }
     .post>.header>.author{
-        color:#1D8CE0;
+        color:#6ECADC;
     }
     .post>.header>.time{
         margin-left: 50px;
