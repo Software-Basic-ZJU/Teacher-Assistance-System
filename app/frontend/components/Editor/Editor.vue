@@ -13,7 +13,7 @@
                     on-text="重要"
                     on-color="#ff4949"
                     off-text="普通"
-                    off-color="#20A0FF"
+                    off-color="#6ECADC"
                 >
                 </el-switch>
             </div>
