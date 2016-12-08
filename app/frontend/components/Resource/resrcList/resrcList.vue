@@ -6,7 +6,7 @@
                     <el-tab-pane label="教师资源" name="1"></el-tab-pane>
                     <el-tab-pane label="学生资源" name="2"></el-tab-pane>
                 </el-tabs>
-                <el-button type="success" class="fr" @click="addResrc">添加资源</el-button>
+                <el-button type="success" class="fr" @click="addResrc" v-show="currIndex!=2" icon="plus"></el-button>
             </div>
             <div class="warning" v-if="currIndex==2">以下是学生在论坛中分享的各种资源。</div>
             <el-table :data="resrcList" border :row-key="resrcId">
