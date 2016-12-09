@@ -14,9 +14,9 @@ include('../login/_include.php');
 connectDB();
 
 //Verify token
-loginCheck($_POST['token']);
+loginCheck($_SERVER['HTTP_X_ACCESS_TOKEN']);
 //Get information
-$upload_result = uploadFile($_POST['token'],$_FILES['file']);
+$upload_result = uploadFile($_SERVER['HTTP_X_ACCESS_TOKEN'],$_FILES['file']);
 if($upload_result['code']!=0){
     echo json_encode($upload_result);
     exit;

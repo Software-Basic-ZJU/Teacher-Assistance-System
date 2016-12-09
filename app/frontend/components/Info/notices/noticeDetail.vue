@@ -16,20 +16,19 @@
                     <el-button
                         type="success"
                         icon="edit"
-                        @click="toggleEdit"
+                        @click="toggleEditNotice(true)"
                     ></el-button>
                 </div>
             </div>
             <div class="main">
                 <div class="header">
                     <div class="title">{{notice.title}}</div>
-                    <span class="author">{{notice.author}}</span>
-                    <span class="time">{{notice.publishTime}}</span>
+                    <div class="time">{{notice.time}}</div>
                 </div>
                 <div class="content" v-html="notice.content"></div>
             </div>
-            <el-dialog title="编辑通知" v-model="showEditNotice" @close="toggleEdit">
-                <Editor method="editNotice" btn-name="确认更改" :has-level="true" :data="notice"></Editor>
+            <el-dialog title="编辑通知" v-model="showEditNotice" @close="toggleEditNotice(false)">
+                <Editor method="editNotice" btn-name="确认更改" :has-level="true" :data="Object.assign({},notice)"></Editor>
             </el-dialog>
         </div>
     </div>
@@ -50,33 +49,38 @@
     .main>.header{
         text-align: center;
     }
+    .main>.header .title{
+        font-size:20px;
+    }
+    .main>.header .time{
+        margin-top:10px;
+        font-size:14px;
+    }
+    .main .content{
+        margin-top:10px;
+    }
 </style>
 <script>
     import Editor from "../../Editor/Editor.vue";
+    import {mapState} from "vuex";
     export default{
         data(){
+            this.$store.dispatch('getNotice',this.$route.params.nid);
             return{
             }
         },
         computed:{
-            notice(){
-                let list=this.$store.state.info.noticeList;
-                for(let i=0;i<list.length;i++){
-                    if(list[i].nid==this.$route.params.nid){
-                        return list[i];
-                    }
-                }
-            },
-            showEditNotice(){
-                return this.$store.state.info.showEditNotice
-            }
+            ...mapState({
+                showEditNotice:state=>state.info.showEditNotice,
+                notice:state=>state.info.notice
+            })
         },
         methods:{
-            toggleEdit(){
-                this.$store.dispatch('toggleEditNotice');
+            toggleEditNotice(signal){
+                this.$store.dispatch('toggleEditNotice',signal);
             },
             remove(){
-
+                this.$store.dispatch('removeNotice',this.$route.params.nid);
             }
         },
         components:{

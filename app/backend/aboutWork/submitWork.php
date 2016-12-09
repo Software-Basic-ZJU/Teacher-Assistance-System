@@ -13,7 +13,7 @@ include '../login/_include.php';
 global $conn;
 connectDB();
 //Verify token
-loginCheck($_POST['token']);
+loginCheck($_SERVER['HTTP_X_ACCESS_TOKEN']);
 //Get information
 $ques_id = test_input(mysqli_escape_string($conn, $_POST['ques_id']));
 $attachment = test_input(mysqli_escape_string($conn, $_POST['attachment']));

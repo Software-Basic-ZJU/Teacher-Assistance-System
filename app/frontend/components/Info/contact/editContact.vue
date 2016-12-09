@@ -4,19 +4,19 @@
             <h3>编辑联系方式</h3>
             <el-form :model="contact" label-position="left" label-width="120px">
                 <el-form-item label="Email">
-                    <el-input v-model="contact.Email"></el-input>
+                    <el-input v-model="contact.email"></el-input>
                 </el-form-item>
                 <el-form-item label="Phone">
-                    <el-input v-model="contact.Phone"></el-input>
+                    <el-input v-model="contact.phone"></el-input>
                 </el-form-item>
                 <el-form-item label="QQ">
-                    <el-input v-model="contact.QQ"></el-input>
+                    <el-input v-model="contact.qq"></el-input>
                 </el-form-item>
                 <el-form-item label="Wechat">
-                    <el-input v-model="contact.Wechat"></el-input>
+                    <el-input v-model="contact.wechat"></el-input>
                 </el-form-item>
                 <el-form-item label="其他联系方式">
-                    <el-input type="textarea" v-model="contact.ohterContact"></el-input>
+                    <el-input type="textarea" v-model="contact.otherContact"></el-input>
                 </el-form-item>
                 <el-button type="primary" @click="submitContact">确认修改</el-button>
                 <el-button @click="goBack">取消</el-button>

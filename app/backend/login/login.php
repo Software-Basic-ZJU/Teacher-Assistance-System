@@ -17,7 +17,7 @@ $type = test_input(mysqli_escape_string($conn, $_POST['type']));
 //type: 1->student 2->teacher
 if($type == 1){
     $query_result = mysqli_query($conn, "select * from student 
-                                         where student_id ='$id' and password='$password' limit 1");
+                                     where student_id ='$id' and password='$password' limit 1");
     if($fetched = mysqli_fetch_array($query_result)){
         $token = $id."-".$type."-".time();
         $token = encrypt($token);
@@ -55,20 +55,29 @@ if($type == 1){
     }
 }
 else if ($type == 2){
+    $year=(int)date('Y');
     $query_result = mysqli_query($conn, "select * from teacher 
                                          where teacher_id ='$id' and password='$password' limit 1");
     if($fetched = mysqli_fetch_array($query_result)){
         $token = $id."-".$type."-".time();
         $token = encrypt($token);
-
+        $class_query=mysqli_query($conn,"select class_teacher.class_id,name from classes join class_teacher on classes.class_id=class_teacher.class_id
+                                          where teacher_id='$id' and ((year='$year' and term=0) or (year='$year'+1 and term=1));");
+        $class=[];$i=0;
+        while($class_fetch=mysqli_fetch_array($class_query)){
+            $class[$i++]=array(
+                "class_id"=>$class_fetch['class_id'],
+                "class_name"=>$class_fetch['name']
+            );
+        }
         $result = array(
             "code" => 2,
             "msg" => "登陆成功",
             "res" => array(
                 "token" => $token,
                 "id" => $id,
-                'class_id'=>null,
-                'teacher_id'=> null,
+                'class_id'=>$class,
+                'teacher_id'=> $id,
                 'name'=>$fetched['name'],
                 'type'=>$type,
                 'group_id'=>null
@@ -117,6 +126,7 @@ else if ($type == 3){
 else echo json_encode(array(
     "code"=> -1,
     "msg"=>"该身份类型不存在!",
+    "res"=>array()
 ));
 
 mysqli_close($conn);

@@ -12,7 +12,7 @@ include '../login/_include.php';
 global $conn;
 connectDB();
 //Verify token
-loginCheck($_POST['token']);
+loginCheck($_SERVER['HTTP_X_ACCESS_TOKEN']);
 //Get information
 $hw_id = test_input(mysqli_escape_string($conn, $_POST['hw_id']));
 //quesList[String](ques_id,type,title,content,should_num(应交人数),submit_num(实交人数))

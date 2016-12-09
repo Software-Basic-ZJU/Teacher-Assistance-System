@@ -12,11 +12,12 @@ include '../login/_include.php';
 global $conn;
 connectDB();
 //Verify token
-loginCheck($_POST['token']);
+loginCheck($_SERVER['HTTP_X_ACCESS_TOKEN']);
 //Get information
-$class_id = test_input(mysqli_escape_string($conn, $_POST['class_id']));
+$teacher_id = test_input(mysqli_escape_string($conn, $_POST['teacher_id']));
 $query_result = mysqli_query($conn, "select * from notification 
-                                         where class_id ='$class_id';");
+                                              where teacher_id ='$teacher_id';");
+
 if($fetched = mysqli_fetch_array($query_result)){
     $notices = array();
     do{ //Notices[String](notice_id,title,level,time,content)
@@ -25,7 +26,7 @@ if($fetched = mysqli_fetch_array($query_result)){
             "title" => $fetched['title'],
             "level" => $fetched['level'],
             "time" => $fetched['time'],
-            "content" => $fetched['content']
+            "content" => $fetched['content'],
         );
     }while($fetched = mysqli_fetch_array($query_result));
     $result = array(

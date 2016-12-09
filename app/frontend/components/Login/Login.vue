@@ -3,7 +3,7 @@
         <div>
             <div class="loginBox">
                 <h2>久违了,老司机</h2>
-                <el-form ref="loginForm" :model="loginForm" :rules="rules">
+                <el-form ref="loginForm" :model="loginForm" :rules="rules" @keyup.enter="login">
                     <el-form-item label="教工号/学号" prop="id">
                         <el-input v-model="loginForm.id" placeholder="教工号/学号"></el-input>
                     </el-form-item>
@@ -16,7 +16,7 @@
                         <el-radio :label="3">助教</el-radio>
                     </el-radio-group>
                     <el-form-item>
-                        <el-button type="primary" @click="login" @key.enter="login" :loading="isLoading">登录</el-button>
+                        <el-button type="primary" @click="login" :loading="isLoading">登录</el-button>
                         <el-button>返回首页</el-button>
                     </el-form-item>
                 </el-form>
@@ -52,8 +52,15 @@
 <script>
     import CompleteInfo from "./CompleteInfo.vue";
     import {mapState} from "vuex";
+    import {LS} from "../../helpers/utils";
+    import router from "../../routes";
     export default{
         data(){
+            let userInfo=LS.getItem("userInfo");
+            if(userInfo && userInfo.token){
+                this.$message('欢迎回来！');
+                router.push({name:'App'});
+            }
             return{
                 loginForm:{
                     id:'',

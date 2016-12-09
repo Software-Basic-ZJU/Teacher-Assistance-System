@@ -69,7 +69,7 @@ POST——Teacher-Assistance-System/app/backend/login/login.php
 
 POST——Teacher-Assistance-System/app/backend/aboutNotice/getNotices.php
 
-参数：class_id（查找一个班级的通知）
+参数：teacher_id(老师id,若为学生则此字段为空)
 
 返回:
 
@@ -367,7 +367,7 @@ POST——Teacher-Assistance-System/app/backend/aboutResource/removeResource.php
 
 POST——Teacher-Assistance-System/app/backend/aboutInfo/editContact.php
 
-参数：teacher_id,email,phone,qq,wechar,other_contact
+参数：teacher_id,email,phone,qq,wechat,other_contact
 
 返回:
 
@@ -385,7 +385,7 @@ POST——Teacher-Assistance-System/app/backend/aboutInfo/editContact.php
 
 ```php
         "code" => -1,
-        "msg" => "查找失败",
+        "msg" => "修改失败",
         "res" => null
 ```
 
@@ -395,11 +395,11 @@ POST——Teacher-Assistance-System/app/backend/aboutInfo/editContact.php
         "res" => null
 ```
 
-## 15、发布通知
+## 15、发布通知              
 
 POST——Teacher-Assistance-System/app/backend/aboutNotice/addNotice.php
 
-参数：title、content、level、class_id
+参数：title、content、level、teacher_id
 
 返回:
 

@@ -20,8 +20,8 @@
 <style scoped>
     .item{
         cursor:pointer;
-        margin-top:10px;
         border-bottom:1px solid #EFF2F7;
+        padding-top:10px;
         padding-bottom:10px;
         -webkit-transition: border-color 0.3s;
         -moz-transition: border-color 0.3s;

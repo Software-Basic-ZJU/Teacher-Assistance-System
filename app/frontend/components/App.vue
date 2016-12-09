@@ -85,10 +85,15 @@
     import Header from "./Header/Header.vue";
     import store from "../vuex"
     import router from "../routes";
+    import {LS} from "../helpers/utils";
 
     export default{
         data(){
 //            router.replace({name:'login'});
+            let userInfo=LS.getItem("userInfo");
+            if(!userInfo||!userInfo.token){
+                router.push({name:'login'});
+            }
             return {
                 menu: [
                     {

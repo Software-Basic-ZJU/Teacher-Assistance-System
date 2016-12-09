@@ -10,27 +10,17 @@ import forum from "./modules/forum";
 import group from "./modules/group";
 import mail from "./modules/mail";
 import TAmanage from "./modules/TAmanage";
+import {LS} from "../helpers/utils";
+import router from "../routes";
 
 Vue.use(Vuex);
 
 const state={
     loading:false,
     isLogin:false,
-    userInfo:{
-        id:'123456',
-        name:'LowesYang',
-        identify:0,
-        classId:'143',
-        className:'mmm',
-        teacherId:'12356',
-        email:'234347589@qq.com',
-        groupId:'163',
-        question1:'你的家乡在哪里',
-        question2:'你几岁了',
-        answer1:'柳州',
-        answer2:'21'
-    },
+    userInfo:{},                    //身份为老师或助教时，class_id为数组
     showCompleteInfo:false,         //补全信息对话框显示开关
+    editorLoading:false             //编辑器的loading
 };
 
 const mutations={
@@ -42,6 +32,14 @@ const mutations={
     },
     showCompleteInfo(state,signal){
         state.showCompleteInfo=signal;
+    },
+    logout(state){
+        state.isLogin=false;
+        LS.clear();
+        router.push({name:'login'});
+    },
+    editorLoading(state,signal){
+        state.editorLoading=signal;
     }
 };
 

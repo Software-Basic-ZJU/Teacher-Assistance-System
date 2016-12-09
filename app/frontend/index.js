@@ -18,7 +18,7 @@ Vue.http.options.root='http://localhost:8000/';
 Vue.http.options.timeout=12000;
 Vue.http.options.emulateJSON = true;        //php cannot resolve json directly.
 let userInfo=LS.getItem('userInfo');
-Vue.http.headers.common['x-access-token']=userInfo?userInfo.token:'';
+Vue.http.headers.common['X-Access-Token']=userInfo?userInfo.token:'';
 
 //timeout config
 Vue.http.interceptors.push((req,next)=>{
@@ -35,12 +35,44 @@ Vue.http.interceptors.push((req,next)=>{
     }
     next((response)=>{
         clearTimeout(hasTimeout);
-        if(!response.status) return;
-        if(response.body.code==-1){     //身份不通过暂时设为-1
+        if(!response.status){       //error回调
+            Vue.prototype.$message({
+                type:'error',
+                message:'请检查网络配置'
+            });
+            return;
+        }
+        else if(response.status==408){
+            Vue.prototype.$message({
+                type:'error',
+                message:'请求超时，请稍后重试'
+            });
+            return;
+        }
+        else if(response.body.code== -1){
             Vue.prototype.$message({
                 type:'error',
                 message:response.body.msg
-            })
+            });
+            return;
+        }
+        else if(response.body.code==403){   //身份不通过设为403
+            Vue.prototype.$message({
+                type:'error',
+                message:response.body.msg
+            });
+            LS.clear();
+            router.push({name:'login'});
+            store.dispatch('logout');
+            return;
+        }
+        else{
+            if(response.body.res && response.body.res.token) {
+                let userInfo=LS.getItem("userInfo") || {};
+                userInfo.token = response.body.res.token;
+                Vue.http.headers.common["X-Access-Token"] = response.body.res.token;
+                LS.setItem("userInfo", userInfo);
+            }
         }
     })
 })

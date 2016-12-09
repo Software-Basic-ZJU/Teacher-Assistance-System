@@ -5,10 +5,11 @@
  * Date: 2016/11/20
  * Time: 16:40
  */
-include 'loginCheck.php';
 date_default_timezone_set('Asia/Shanghai');
-header('Content-type: application/json');
+header('Content-type: application/json;charset=utf-8');
 session_start();
+
+include 'loginCheck.php';
 
 function test_input($data) {
     $data = inject_prevent($data);

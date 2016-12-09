@@ -1,15 +1,15 @@
 <template>
     <div>
         <div class="noticeBox">
-            <el-button type="success" class="fr" icon="plus" @click="toggleAdd"></el-button>
-            <div class="noteItem" v-for="item in noticeList" :key="item.nid" @click.stop="goDetail(item.nid)">
+            <el-button type="success" class="fr" icon="plus" @click="toggleAddNotice(true)" v-if="idenType!=1"></el-button>
+            <div class="noteItem" v-for="item in noticeList" :key="item.notice_id" @click.stop="goDetail(item.notice_id)">
                 <i class="iconfont fl" :class="{'icon-tongzhi1':item.level==0,'icon-icon15 serious':item.level==1}"></i>
                 <div class="title fl">{{item.title}}</div>
-                <div class="time fr">{{item.publishTime}}</div>
+                <div class="time fr">{{item.time}}</div>
                 <div class="cl"></div>
             </div>
-            <el-dialog title="添加通知" v-model="showAddNotice" @close="toggleAdd">
-                <Editor method="addNotice" btn-name="确认添加" :has-level="true"></Editor>
+            <el-dialog title="添加通知" v-model="showAddNotice" @close="toggleAddNotice(false)">
+                <Editor method="addNotice" btn-name="确认添加" :has-level="true" :class-choice="true"></Editor>
             </el-dialog>
         </div>
     </div>
@@ -51,21 +51,29 @@
     import router from "../../../routes";
     import Editor from "../../Editor/Editor.vue"
     import {mapState} from "vuex";
+    import {LS} from "../../../helpers/utils";
+
     export default{
         data(){
+            this.$store.dispatch('getNoticeList');
             return{
             }
         },
-        computed:mapState({
-            noticeList:state=>state.info.noticeList,
-            showAddNotice:state=>state.info.showAddNotice
-        }),
+        computed:{
+            ...mapState({
+                showAddNotice:state =>state.info.showAddNotice,
+                idenType:state =>state.userInfo.type
+            }),
+            noticeList(){
+                return this.$store.getters.noticeList
+            }
+        },
         methods:{
             goDetail(nid){
                 router.push({name:'notice',params:{nid:nid}});
             },
-            toggleAdd(){
-                this.$store.dispatch('toggleAddNotice');
+            toggleAddNotice(signal){
+                this.$store.dispatch('toggleAddNotice',signal);
             }
         },
         components:{

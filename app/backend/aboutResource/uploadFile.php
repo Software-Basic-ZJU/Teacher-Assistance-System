@@ -14,7 +14,7 @@ include('../login/_include.php');
 connectDB();
 
 //Verify token
-loginCheck($_POST['token']);
+loginCheck($_SERVER['HTTP_X_ACCESS_TOKEN']);
 $user_type = $_SESSION['type'];
 $time = date('y-m-d H:i:s',time());
 $path = "upload/". md5($time).$_FILES["file"]["type"];

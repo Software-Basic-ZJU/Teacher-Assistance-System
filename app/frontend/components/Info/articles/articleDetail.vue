@@ -65,7 +65,7 @@
         text-align: center;
     }
     .main .title{
-        font-size:32px;
+        font-size:28px;
     }
     .main .info{
         margin-top:10px;
@@ -90,6 +90,7 @@
     import comment from "./comment/comment.vue";
     export default{
         data(){
+            this.$store.dispatch('getArticle',this.$route.params.artId);
             return{
                 isReplyShow:false,
                 newReply:{
@@ -99,12 +100,7 @@
         },
         computed:{
             article(){
-                let articles=this.$store.state.info.articleList;
-                for(let i=0;i<articles.length;i++){
-                    if(articles[i].artId==this.$route.params.artId){
-                        return articles[i];
-                    }
-                }
+                return this.$store.state.info.article;
             }
         },
         methods:{

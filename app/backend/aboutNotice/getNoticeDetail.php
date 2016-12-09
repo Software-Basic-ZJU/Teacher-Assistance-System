@@ -12,7 +12,7 @@ include '../login/_include.php';
 global $conn;
 connectDB();
 //Verify token
-loginCheck($_POST['token']);
+loginCheck($_SERVER['HTTP_X_ACCESS_TOKEN']);
 //Get information
 $notice_id = test_input(mysqli_escape_string($conn, $_POST['notice_id']));
 $query_result = mysqli_query($conn, "select * from notification 
@@ -26,7 +26,8 @@ if($fetched = mysqli_fetch_array($query_result)){
             "title" => $fetched['title'],
             "content" => $fetched['content'],
             "time" => $fetched['time'],
-            "level" => $fetched['level']
+            "level" => $fetched['level'],
+            "class_id"=>$fetched['class_id']
         )
     );
     echo json_encode($result);

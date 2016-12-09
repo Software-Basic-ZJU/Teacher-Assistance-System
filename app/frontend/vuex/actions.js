@@ -1,25 +1,32 @@
 import router from "../routes";
 import Vue from "vue";
+import {LS} from "../helpers/utils";
 
-export const editorSubmit=({commit},payload)=>{
-    console.log(payload)
-    switch(payload.method){
-        case 'addPost':break;
-        case 'editPost':break;
-        case 'addNotice':break;
-        case 'editNotice':break;
-        case 'addArticle':break;
-        case 'editArticle':break;
-        case 'editCourse':break;
-        case 'editTeacher':break;
-        case 'addQues':break;
-        case 'editQues':break;
-        default:break;
-    }
+export const editorSubmit=({dispatch,commit},payload)=>{
+    console.log(payload);
+    dispatch(payload.method,payload);
+    // switch(payload.method){
+    //     case 'addPost':
+    //         dispatch('addPost',payload);
+    //         break;
+    //     case 'editPost':break;
+    //     case 'addNotice':break;
+    //     case 'editNotice':break;
+    //     case 'addArticle':break;
+    //     case 'editArticle':break;
+    //     case 'editCourse':break;
+    //     case 'editTeacher':break;
+    //     case 'addQues':break;
+    //     case 'editQues':break;
+    //     default:break;
+    // }
 };
 
+export const editorLoading=({commit},signal)=>{
+    commit('editorLoading',signal)
+}
+
 export const login=({commit},loginForm)=>{
-    console.log(loginForm);
     commit('isLoading',true);
 
     Vue.http.post("backend/login/login.php",
@@ -30,27 +37,20 @@ export const login=({commit},loginForm)=>{
         }
     ).then((response)=>{
         let resp=response.body;
-
-        console.log(resp);
-        if(!resp.code){
-
+        if(resp.code!=-1) {
+            let userInfo=resp.res;
+            LS.setItem("userInfo",userInfo);
+            if(resp.code==1){   //判断是否有补全信息
+            }
+            commit('updateUserInfo',userInfo);
+            Vue.prototype.$message({
+                type: 'success',
+                message: resp.msg
+            })
         }
-        else if(resp.code==1){
-
-        }
-        else if(resp.code==2){
-
-        }
-        else if(resp.code==3){
-
-        }
-    },(response)=>{
-        Vue.prototype.$message({
-            type:'error',
-            message:"请检查网络配置!"
-        });
     }).then(()=>{
         commit('isLoading',false);
+        router.replace({name:'App'});
     });
     // console.log(loginForm);
 };
@@ -65,4 +65,9 @@ export const showCompleteInfo=({commit},signal)=>{
 
 export const submitMoreInfo=({commit},moreInfo)=>{
     console.log(moreInfo);
+};
+
+export const logout=({commit})=>{
+    commit('isLoading',false);
+    commit('logout');
 }

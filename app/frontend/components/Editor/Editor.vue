@@ -33,7 +33,7 @@
                 <span class="el-upload__tip" slot="tip">只能上传一个文件，且大小不能超过15MB。</span>
             </el-upload>
             <div class="btnGroup">
-                <el-button type="primary" @click="publish">{{btnName}}</el-button>
+                <el-button type="primary" @click="publish" :loading="isLoading">{{btnName}}</el-button>
                 <el-button @click="reset">清空</el-button>
             </div>
         </div>
@@ -47,6 +47,12 @@
         width:400px;
         margin-bottom:15px;
         margin-top:5px;
+    }
+    .el-select{
+        margin-top:5px;
+        margin-bottom:15px;
+        width:300px;
+
     }
     .el-input.author{
         width:200px;
@@ -67,9 +73,12 @@
     }
 </style>
 <script>
+    import {LS} from "../../helpers/utils";
     export default{
         data(){
+            let userInfo=LS.getItem("userInfo");
             return{
+                classArr:userInfo.class_id,
                 editor:null,
                 isUpload:false
             }
@@ -78,6 +87,11 @@
             let editor=new wangEditor('editor');
             editor.create();
             this.editor=editor;
+        },
+        computed:{
+            isLoading(){
+                return this.$store.state.editorLoading
+            }
         },
         props:{
             hasTitle:{                  //编辑器是否需要含有标题输入框
@@ -116,12 +130,12 @@
         methods:{
             publish(){
                 this.data.content=this.editor.$txt.html();
-                let section=this.$route.params.section;
+                let params=this.$route.params;
                 let method=this.method;
                 this.$store.dispatch('editorSubmit',{
                     method:method,
                     data:this.data,
-                    section:section
+                    routeParams:params
                 })
             },
             reset(){

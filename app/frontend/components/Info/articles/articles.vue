@@ -1,14 +1,14 @@
 <template>
     <div>
+        <el-button type="success" class="fr" icon="plus" @click="addArticle"></el-button>
         <div class="articleBox">
-            <el-button type="success" class="fr" icon="plus" @click="addArticle"></el-button>
             <article-item
                     v-for="item in articleList"
-                    :key="item.articleId"
-                    :art-id="item.artId"
+                    :key="item.article_id"
+                    :art-id="item.article_id"
                     :title="item.title"
                     :author="item.author"
-                    :publish-time="item.publishTime"
+                    :publish-time="item.time"
                     :content="item.content"
                     :reply-num="item.replyNum"
             >
@@ -18,7 +18,7 @@
 </template>
 <style scoped>
     .articleBox{
-        margin-top:-10px;
+        margin-top:0px;
     }
     .el-button--success{
         margin-top:-62px;
@@ -29,6 +29,7 @@
     import router from "../../../routes";
     export default{
         data(){
+            this.$store.dispatch('getArticleList');
             return{
             }
         },
