@@ -17,8 +17,17 @@
                 >
                 </el-switch>
             </div>
-
-            <div id="editor" style="height:300px;max-height:500px;" v-html="data.content">
+            <div class="level" v-if="hasAuthority">游客是否可见：
+                <el-switch
+                        v-model="data.authority"
+                        on-text="否"
+                        on-color="#ff4949"
+                        off-text="是"
+                        off-color="#6ECADC"
+                >
+                </el-switch>
+            </div>
+            <div id="editor" style="height:300px;" v-html="data.content">
             </div>
             <el-upload
                 v-if="hasUpload"
@@ -41,7 +50,7 @@
 </template>
 <style scoped>
     .btnGroup{
-        margin-top:20px;
+        margin:20px 0px;
     }
     .el-input{
         width:400px;
@@ -76,9 +85,7 @@
     import {LS} from "../../helpers/utils";
     export default{
         data(){
-            let userInfo=LS.getItem("userInfo");
             return{
-                classArr:userInfo.class_id,
                 editor:null,
                 isUpload:false
             }
@@ -98,15 +105,19 @@
                 type:Boolean,
                 default:true
             },
-            hasUpload:{
+            hasUpload:{                 //编辑器是否需要上传文件功能
                 type:Boolean,
                 default:false
             },
-            hasLevel:{
+            hasLevel:{                  //通知专用，重要等级选择
                 type:Boolean,
                 default:false
             },
-            hasAuthor:{
+            hasAuthor:{                 //是否有作者
+                type:Boolean,
+                default:false
+            },
+            hasAuthority:{              //是否对游客可见，fakse为可见,true为不可见
                 type:Boolean,
                 default:false
             },
@@ -123,7 +134,8 @@
                     author:'',
                     content:'',
                     filePath:'',
-                    level:false
+                    level:false,
+                    authority:false
                 }
             }
         },

@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import * as actions from "./actions";
 
+
 const state={
     loading:false,
     courseInfo:{

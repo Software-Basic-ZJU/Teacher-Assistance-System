@@ -7,7 +7,7 @@
                     <el-breadcrumb-item>{{article.title}}</el-breadcrumb-item>
                 </el-breadcrumb>
                 <div class="btnGroup fr">
-                    <el-button type="danger" :plain="true" icon="delete" @click="remove"></el-button>
+                    <el-button type="danger" :plain="true" icon="delete" @click="remove($route.params.artId)"></el-button>
                     <el-button type="success" icon="edit" @click="editArticle($route.params.artId)"></el-button>
                 </div>
             </div>
@@ -16,7 +16,7 @@
                     <div class="title">{{article.title}}</div>
                     <div class="info">
                         <div class="author">作者：{{article.author}}</div>
-                        <div class="time">发表于：{{article.publishTime}}</div>
+                        <div class="time">发表于：{{article.time}}</div>
                     </div>
                 </div>
                 <div class="content" v-html="article.content"></div>
@@ -88,6 +88,8 @@
 <script>
     import router from "../../../routes";
     import comment from "./comment/comment.vue";
+    import {LS} from "../../../helpers/utils";
+
     export default{
         data(){
             this.$store.dispatch('getArticle',this.$route.params.artId);
@@ -105,6 +107,7 @@
         },
         methods:{
             editArticle(artId){
+                LS.setItem("article_temp",this.article);
                 router.push({name:'editArticle',params:{artId:artId}});
             },
             reply(artId){
@@ -113,7 +116,14 @@
             toggleReplyShow(){
                 this.isReplyShow=!this.isReplyShow;
             },
-            remove(){
+            remove(artId){
+                this.$confirm('确认要删除该文章吗？','提示',{
+                    confirmButtonText:'确认删除',
+                    cancelButtonText:'取消',
+                    type:'warning'
+                }).then(()=>{
+                    this.$store.dispatch('removeArticle',artId);
+                }).catch(()=>{});
 
             }
         },

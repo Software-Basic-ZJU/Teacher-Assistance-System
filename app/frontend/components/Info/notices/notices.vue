@@ -8,6 +8,14 @@
                 <div class="time fr">{{item.time}}</div>
                 <div class="cl"></div>
             </div>
+            <el-pagination
+                    small
+                    @current-change="changePage"
+                    page-size="15"
+                    :current-page="currPage"
+                    layout="prev,pager,next"
+                    :total="noticeNum"
+            ></el-pagination>
             <el-dialog title="添加通知" v-model="showAddNotice" @close="toggleAddNotice(false)">
                 <Editor method="addNotice" btn-name="确认添加" :has-level="true" :class-choice="true"></Editor>
             </el-dialog>
@@ -45,6 +53,7 @@
     }
     .el-button--success{
         margin-top:-62px;
+
     }
 </style>
 <script>
@@ -62,7 +71,9 @@
         computed:{
             ...mapState({
                 showAddNotice:state =>state.info.showAddNotice,
-                idenType:state =>state.userInfo.type
+                idenType:state =>state.userInfo.type,
+                noticeNum:state=>state.info.noticeList.length,
+                currPage:state=>state.info.noticeCurrPage
             }),
             noticeList(){
                 return this.$store.getters.noticeList
@@ -74,6 +85,9 @@
             },
             toggleAddNotice(signal){
                 this.$store.dispatch('toggleAddNotice',signal);
+            },
+            changePage(val){
+                this.$store.dispatch('changeNotePage',val);
             }
         },
         components:{

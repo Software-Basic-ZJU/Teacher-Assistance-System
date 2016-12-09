@@ -1,9 +1,9 @@
 <template>
     <div>
         <div class="group">
-            <div class="btnGroup" v-if="!isInGroup && !identify">
-                <el-button size="large" @click="showGroupAction(0)">创建小组</el-button>
-                <el-button size="large" @click="showGroupAction(1)">加入小组</el-button>
+            <div class="btnGroup" v-if="!isInGroup && idenType==1">
+                <el-button @click="showGroupAction(0)">创建小组</el-button>
+                <el-button @click="showGroupAction(1)">加入小组</el-button>
             </div>
             <el-table
                     :data="groupList"
@@ -41,8 +41,8 @@
                         width="210"
                 >
                     <span>
-                        <el-button @click="goGroupForum($index,row)" size="small" v-if="identify">进入该小组讨论区</el-button>
-                        <el-button type="danger" @click="quitGroup($index,row)" size="small" v-if="!identify">退出</el-button>
+                        <el-button @click="goGroupForum($index,row)" size="small" v-if="idenType!=1">进入该小组讨论区</el-button>
+                        <el-button type="danger" @click="quitGroup($index,row)" size="small" v-if="idenType==1">退出</el-button>
                     </span>
                 </el-table-column>
             </el-table>
@@ -73,17 +73,23 @@
 </template>
 <style scoped>
     .group{
-        padding:0px 20px;
+        padding:0px 10px;
+
     }
     .group .el-table{
-        margin-top:20px;
+        margin-top:10px;
     }
 </style>
 <script>
     import {mapState} from 'vuex';
     import router from "../../routes";
+    import {LS} from "../../helpers/utils";
     export default{
         data(){
+            let userInfo=LS.getItem("userInfo");
+            if(!userInfo || !userInfo.token){
+                router.push({name:'login'});
+            }
             return {
                 showGroup: false,
                 actionType: 0,           //0为创建小组,1为加入小组
@@ -93,7 +99,7 @@
                     name: '',
                     password: ''
                 },
-                identify: 1
+                idenType:userInfo.type
             }
         },
         computed: {

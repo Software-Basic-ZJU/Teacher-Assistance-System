@@ -4,7 +4,8 @@
             <div class="header">
                 <el-breadcrumb separator="/">
                     <el-breadcrumb-item :to="{name:'notices'}">通知</el-breadcrumb-item>
-                    <el-breadcrumb-item>{{notice.title}}</el-breadcrumb-item>
+                    <el-breadcrumb-item>{{notice.title}} <el-tag :class="{'important':notice.level==1}">{{notice.level==1?'重要通知':'普通通知'}}</el-tag>
+                    </el-breadcrumb-item>
                 </el-breadcrumb>
                 <div class="btnGroup fr">
                     <el-button
@@ -52,6 +53,13 @@
     .main>.header .title{
         font-size:20px;
     }
+    .el-tag{
+        margin-left:10px;
+    }
+    .el-tag.important{
+        background-color:#FF4949;
+        border-color:#FF4949;
+    }
     .main>.header .time{
         margin-top:10px;
         font-size:14px;
@@ -80,7 +88,13 @@
                 this.$store.dispatch('toggleEditNotice',signal);
             },
             remove(){
-                this.$store.dispatch('removeNotice',this.$route.params.nid);
+                this.$confirm('确认要删除该文章吗？','提示',{
+                        confirmButtonText:'确认删除',
+                        cancelButtonText:'取消',
+                        type:'warning'
+                    }).then(()=>{
+                        this.$store.dispatch('removeNotice',this.$route.params.nid);
+                }).catch(()=>{});
             }
         },
         components:{

@@ -42,14 +42,14 @@ Vue.http.interceptors.push((req,next)=>{
             });
             return;
         }
-        else if(response.status==408){
+        else if(response.status==408){      //超时回调
             Vue.prototype.$message({
                 type:'error',
                 message:'请求超时，请稍后重试'
             });
             return;
         }
-        else if(response.body.code== -1){
+        else if(response.body.code== -1){       //请求错误码统一处理
             Vue.prototype.$message({
                 type:'error',
                 message:response.body.msg
@@ -67,7 +67,7 @@ Vue.http.interceptors.push((req,next)=>{
             return;
         }
         else{
-            if(response.body.res && response.body.res.token) {
+            if(response.body.res && response.body.res.token) {      //更新token
                 let userInfo=LS.getItem("userInfo") || {};
                 userInfo.token = response.body.res.token;
                 Vue.http.headers.common["X-Access-Token"] = response.body.res.token;

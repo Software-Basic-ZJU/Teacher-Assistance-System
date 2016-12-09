@@ -1,7 +1,7 @@
 <template>
     <div>
         <el-tabs @tab-click="handleClick" :active-name="currIndex">
-            <el-tab-pane label="课程介绍"></el-tab-pane>
+            <el-tab-pane label="课程介绍" ></el-tab-pane>
             <el-tab-pane label="教师介绍"></el-tab-pane>
         </el-tabs>
         <el-button type="success" class="fr" icon="edit" @click="goEdit"></el-button>

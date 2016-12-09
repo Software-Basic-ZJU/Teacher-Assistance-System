@@ -34,7 +34,7 @@
     }
     .header>.title{
         margin-bottom:5px;
-        font-size:18px;
+        font-size:20px;
         color:#6ECADC;
     }
     .header>span{

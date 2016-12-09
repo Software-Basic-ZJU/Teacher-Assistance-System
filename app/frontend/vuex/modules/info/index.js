@@ -9,6 +9,8 @@ const state={
     notice:{},
     articleList:[],
     article:{},
+    noticeCurrPage:1,
+    articleCurrPage:1,
     showAddNotice:false,                 //添加通知模态框显示变量
     showEditNotice:false
 }
@@ -37,6 +39,12 @@ const mutations={
     },
     updateReplyList(state,payload){
 
+    },
+    changeArtPage(state,val){
+        state.articleCurrPage=val;
+    },
+    changeNotePage(state,val){
+        state.noticeCurrPage=val;
     },
     addNotice(state,newNotice){
         let userInfo=LS.getItem("userInfo");

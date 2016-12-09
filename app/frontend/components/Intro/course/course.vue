@@ -12,6 +12,8 @@
 </style>
 <script>
     import router from "../../../routes";
+    import {LS} from "../../../helpers/utils";
+
     export default{
         data(){
             this.$store.dispatch('getCourseInfo');

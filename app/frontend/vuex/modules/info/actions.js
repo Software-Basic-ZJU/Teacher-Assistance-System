@@ -95,6 +95,18 @@ export const addNotice=({commit},payload)=>{
     let userInfo=LS.getItem("userInfo");
     if(!userInfo || !userInfo.token) return commit('logout');
     let newNotice=payload.data;
+    if(newNotice.title==''){
+        return Vue.prototype.$message({
+            type:'warning',
+            message:'标题不能为空'
+        })
+    }
+    if(newNotice.content==''){
+        return Vue.prototype.$message({
+            type:'warning',
+            message:'内容不能为空'
+        })
+    }
     commit('editorLoading',true);
     Vue.http.post('backend/aboutNotice/addNotice.php',
         {
@@ -123,6 +135,18 @@ export const editNotice=({commit},payload)=>{
     let userInfo=LS.getItem("userInfo");
     if(!userInfo || !userInfo.token) return commit('logout');
     let newNotice=payload.data;
+    if(newNotice.title==''){
+        return Vue.prototype.$message({
+            type:'warning',
+            message:'标题不能为空'
+        })
+    }
+    if(newNotice.content==''){
+        return Vue.prototype.$message({
+            type:'warning',
+            message:'内容不能为空'
+        })
+    }
     commit('editorLoading',true);
     Vue.http.post('backend/aboutNotice/editNotice.php',
         {
@@ -203,6 +227,119 @@ export const getArticle=({commit},artId)=>{
         commit('isLoading',false);
     })
 };
+
+// 发表文章
+export const addArticle=({commit},payload)=>{
+    let userInfo=LS.getItem("userInfo");
+    if(!userInfo || !userInfo.token) return commit('logout');
+    let newArticle=payload.data;
+    if(newArticle.title==''){
+        return Vue.prototype.$message({
+            type:'warning',
+            message:'标题不能为空'
+        })
+    }
+    if(newArticle.content==''){
+        return Vue.prototype.$message({
+            type:'warning',
+            message:'内容不能为空'
+        })
+    }
+    if(newArticle.author==''){
+        return Vue.prototype.$message({
+            type:'warning',
+            message:'作者不能为空'
+        })
+    }
+    commit('isLoading',true);
+    Vue.http.post('backend/aboutArticle/addArticle.php',
+        {
+            title:newArticle.title,
+            content:newArticle.content,
+            author:newArticle.author,
+            authority:newArticle.authority?1:0,
+            teacher_id:userInfo.teacher_id
+        }
+    ).then((response)=>{
+        let resp=response.body;
+        if(!resp.code){
+            router.push({name:'articleDetail',params:{artId:resp.res.article_id}})
+        }
+    }).then(()=>{
+        commit('isLoading',false);
+    })
+};
+
+// 修改文章
+export const editArticle=({commit},payload)=>{
+    let userInfo=LS.getItem("userInfo");
+    if(!userInfo || !userInfo.token) return commit('logout');
+    let newArticle=payload.data;
+    if(newArticle.title==''){
+        return Vue.prototype.$message({
+            type:'warning',
+            message:'标题不能为空'
+        })
+    }
+    if(newArticle.content==''){
+        return Vue.prototype.$message({
+            type:'warning',
+            message:'内容不能为空'
+        })
+    }
+    if(newArticle.author==''){
+        return Vue.prototype.$message({
+            type:'warning',
+            message:'作者不能为空'
+        })
+    }
+    commit('isLoading',true);
+    Vue.http.post('backend/aboutArticle/editArticle.php',
+        {
+            article_id:payload.routeParams.artId,
+            title:newArticle.title,
+            content:newArticle.content,
+            author:newArticle.author,
+            authority:newArticle.authority?1:0,
+            teacher_id:userInfo.teacher_id
+        }
+    ).then((response)=>{
+        let resp=response.body;
+        if(!resp.code){
+            router.replace({name:'articleDetail',params:{artId:payload.routeParams.artId}});
+        }
+    }).then(()=>{
+        commit('isLoading',false);
+    })
+}
+
+// 删除文章
+export const removeArticle=({commit},artId)=>{
+    commit('isLoading',true);
+    Vue.http.post('backend/aboutArticle/deleteArticle.php',
+        {
+            article_id:artId
+        }
+    ).then((response)=>{
+        let resp=response.body;
+        if(!resp.code){
+            router.replace({name:'articles'})
+        }
+    }).then(()=>{
+        commit('isLoading',false);
+    })
+}
+
+// 通知列表跳转至某一页
+export const changeNotePage=({commit},val)=>{
+    commit('changeNotePage',val);
+}
+
+// 文章列表跳转至某一页
+export const changeArtPage=({commit},val)=>{
+    commit('changeArtPage',val);
+};
+
 
 export const getReplyList=({commit})=>{
     commit('updateReplyList');

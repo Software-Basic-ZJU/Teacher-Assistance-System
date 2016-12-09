@@ -4,7 +4,7 @@
             <h3>编辑教师介绍</h3>
             <Editor
                     btn-name="确认修改"
-                    method="editTeacher"
+                    method="editTeacherInfo"
                     :has-title="false"
                     :data="teacherInfo"
             ></Editor>
@@ -25,6 +25,10 @@
         },
         computed:{
             teacherInfo(){
+                let teacherInfo=this.$store.state.intro.teacherInfo;
+                if(teacherInfo.content==''){
+                    this.$store.dispatch('getTeacherInfo');
+                }
                 return this.$store.state.intro.teacherInfo;
             }
         },

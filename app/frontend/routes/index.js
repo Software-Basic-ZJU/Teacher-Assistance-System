@@ -93,7 +93,7 @@ const routes=[
             },
             {
                 name:'addArticle',
-                path:'/info/article/add',
+                path:'/info/addArticle',
                 component:addArticle
             },
             {

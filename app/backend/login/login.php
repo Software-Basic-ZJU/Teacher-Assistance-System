@@ -39,8 +39,6 @@ if($type == 1){
                     'email' => $fetched['email'],
                     'question1' => $fetched['question1'],
                     'question2' => $fetched['question1'],
-                    'answer1' => $fetched['answer1'],
-                    'answer2' => $fetched['answer2']
                 )
             );
             echo json_encode($result);
