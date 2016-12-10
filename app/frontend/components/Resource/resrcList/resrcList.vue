@@ -6,25 +6,26 @@
                     <el-tab-pane label="教师资源" name="1"></el-tab-pane>
                     <el-tab-pane label="学生资源" name="2"></el-tab-pane>
                 </el-tabs>
-                <el-button type="success" class="fr" @click="addResrc" v-show="currIndex!=2" icon="plus"></el-button>
+                <el-button type="success" class="fr" @click="addResrc" v-show="currIndex!=2 && idenType!=1" icon="plus"></el-button>
             </div>
             <div class="warning" v-if="currIndex==2">以下是学生在论坛中分享的各种资源。</div>
-            <el-table :data="resrcList" border :row-key="resrcId">
+            <el-table :data="resrcList" border :row-key="resource_id">
                 <el-table-column
-                        prop="title"
+                        prop="name"
                         label="课件名称"
-                        min-width="150"
+                        min-width="180"
                         show-overflow-tooltip="true"
                 >
                 </el-table-column>
                 <el-table-column
-                        prop="time"
+                        prop="upload_time"
                         label="上传时间"
                         show-overflow-tooltip="true"
+                        width="172"
                 >
                 </el-table-column>
                 <el-table-column
-                        prop="uploader"
+                        prop="uploader_name"
                         label="上传人"
                         show-overflow-tooltip="true"
                 >
@@ -33,6 +34,7 @@
                         prop="size"
                         label="文件大小"
                         show-overflow-tooltip="true"
+                        min-width="100"
                 >
                 </el-table-column>
                 <el-table-column
@@ -43,22 +45,25 @@
                     <span>
                         <el-button size="small" :plain="true" type="danger" icon="delete" @click="remove($index,row)"></el-button>
                         <el-button class="updateBtn" size="small" :plain="true" type="warning" icon="edit" @click="showEdit($index,row)"></el-button>
-                        <a :href="resrcList[$index].filePath" :download="resrcList[$index].title"><el-button type="primary" size="small">下载</el-button></a>
+                        <a :href="resrcList[$index].path" :download="resrcList[$index].title"><el-button type="primary" size="small">下载</el-button></a>
                     </span>
                 </el-table-column>
             </el-table>
             <el-dialog title="编辑资源" v-model="showEditResrc" @close="closeEdit">
-                <el-form :model="editResrc">
+                <el-form :model="currResrc">
                     <el-form-item label="资源名称" :label-width="formLabelWidth">
-                        <el-input v-model="editResrc.title" auto-complete="off"></el-input>
+                        <el-input v-model="currResrc.name" auto-complete="off"></el-input>
                     </el-form-item>
                     <el-upload
-                            action="//jsonplaceholder.typicode.com/posts/"
+                            action="http://localhost:8000/backend/aboutResource/addResource.php"
                             type="drag"
+                            :headers="header"
+                            :data="uploadInfo"
                             :multiple="false"
                             :before-upload="checkUpload"
                             :on-remove="removeFile"
                             :on-success="finish"
+                            :default-file-list="[{name:currResrc.name,url:currResrc.path}]"
                     >
                         <i class="el-icon-upload"></i>
                         <div class="el-dragger__text">将文件拖到此处，或<em>点击上传</em></div>
@@ -109,11 +114,27 @@
 </style>
 <script>
     import router from "../../../routes";
+    import {LS} from "../../../helpers/utils";
     import {mapState} from "vuex";
     export default{
         data(){
+            this.$store.dispatch('getResrcList');
+            let userInfo=LS.getItem("userInfo");
             return{
-                isUpload:false
+                isUpload:true,
+                currResrc:{
+                    resrcId:'',
+                    name:'',
+                    path:''
+                },
+                header:{        //上传文件的请求头
+                    "X-Access-Token":userInfo.token
+                },
+                uploadInfo:{    //上传文件的额外参数
+                    uploader_id:userInfo.teacher_id,
+                    type:0
+                },
+                idenType:userInfo.type
             }
         },
         computed:{
@@ -122,8 +143,7 @@
             },
             ...mapState({
                 showEditResrc:state=>state.resource.showEdit,
-                editResrc:state=>state.resource.editResrc,
-                currIndex:state=>state.resource.resrcFilter
+                 currIndex:state=>state.resource.resrcFilter
             })
         },
         methods:{
@@ -131,13 +151,17 @@
                 router.push({name:'addResrc'});
             },
             showEdit(index,row){
-                this.$store.dispatch('showEditResrc',{
-                    index,
-                    row
-                });
+                console.log(row);
+
+                this.$store.dispatch('showEditResrc',true);
+                this.currResrc={
+                    resrcId:row.resource_id,
+                    name:row.name,
+                    filePath:row.path
+                }
             },
             closeEdit(){
-                this.$store.dispatch('closeEditResrc')
+                this.$store.dispatch('showEditResrc',false)
             },
             checkUpload(file){
                 if(this.isUpload) {

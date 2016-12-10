@@ -16,7 +16,7 @@ connectDB();
 //Verify token
 loginCheck($_SERVER['HTTP_X_ACCESS_TOKEN']);
 //Get information
-$upload_result = uploadFile($_SERVER['HTTP_X_ACCESS_TOKEN'],$_FILES['file']);
+$upload_result = uploadFile($_FILES['file']);
 if($upload_result['code']!=0){
     echo json_encode($upload_result);
     exit;
@@ -25,16 +25,15 @@ else{
     $name = $upload_result['res']['name'];
     $time = $upload_result['res']['time'];
     $size = $upload_result['res']['size'];
-    $path = $upload_result['res']['path'];
+    $path = dirname(__FILE__).$upload_result['res']['path'];
 }
 $uploader_id = $_POST['uploader_id'];
 $type = $_POST['type'];
-$post_id = null;
 $user_type = $_SESSION['type'];
 //Add resource
 $add_result = mysqli_query($conn,
-    "insert into resource (name,path,size,time,type,post_id,uploader_id) 
-     values('$name','$path','$size','$time','$type','$post_id','$uploader_id')");
+    "insert into resource (name,path,size,time,type,uploader_id) 
+     values('$name','$path','$size','$time','$type','$uploader_id')");
 
 if($add_result){
     $resource_id = mysqli_insert_id($conn);

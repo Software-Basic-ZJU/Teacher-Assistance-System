@@ -1,37 +1,39 @@
 /*
- Navicat Premium Data Transfer
+Navicat MySQL Data Transfer
 
- Source Server         : localhost
- Source Server Type    : MySQL
- Source Server Version : 100110
- Source Host           : localhost
- Source Database       : course_assist
+Source Server         : 127.0.0.1
+Source Server Version : 50622
+Source Host           : localhost:3306
+Source Database       : course_assist
 
- Target Server Type    : MySQL
- Target Server Version : 100110
- File Encoding         : utf-8
+Target Server Type    : MYSQL
+Target Server Version : 50622
+File Encoding         : 65001
 
- Date: 12/01/2016 15:32:04 PM
+Date: 2016-12-10 00:46:06
 */
 
-SET NAMES utf8mb4;
-SET FOREIGN_KEY_CHECKS = 0;
+SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
---  Table structure for `admin`
+-- Table structure for `admin`
 -- ----------------------------
 DROP TABLE IF EXISTS `admin`;
 CREATE TABLE `admin` (
   `uid` bigint(20) NOT NULL AUTO_INCREMENT,
   `admin_id` bigint(20) NOT NULL,
-  `password` varchar(255) NOT NULL,
+  `password` varchar(100) NOT NULL,
   PRIMARY KEY (`uid`),
   UNIQUE KEY `uid` (`uid`) USING BTREE,
   KEY `admin_id` (`admin_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
---  Table structure for `article`
+-- Records of admin
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `article`
 -- ----------------------------
 DROP TABLE IF EXISTS `article`;
 CREATE TABLE `article` (
@@ -45,46 +47,76 @@ CREATE TABLE `article` (
   PRIMARY KEY (`art_id`),
   UNIQUE KEY `art_id` (`art_id`) USING BTREE,
   KEY `teacher_id` (`teacher_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10022 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
---  Table structure for `assists`
+-- Records of article
+-- ----------------------------
+INSERT INTO `article` VALUES ('10000', '今天去游玩', '真的好好玩&lt;p&gt;SADFSDFS&lt;/p&gt;', '2016-12-09 20:28:39', '1234567', '杨奕辉', '0');
+INSERT INTO `article` VALUES ('10001', '阿斯顿发生', '&lt;p&gt;&lt;br&gt;&lt;/p&gt;', '2016-12-09 19:53:34', '1234567', '', '0');
+INSERT INTO `article` VALUES ('10002', '撒旦法撒旦', '&lt;p&gt;&lt;br&gt;&lt;/p&gt;', '2016-12-09 19:59:33', '1234567', '发送到发', '0');
+INSERT INTO `article` VALUES ('10003', '撒旦法撒旦', '&lt;p&gt;&lt;br&gt;&lt;/p&gt;', '2016-12-09 19:59:50', '1234567', '发送到发', '0');
+INSERT INTO `article` VALUES ('10004', 'asdf', '&lt;p&gt;&lt;br&gt;&lt;/p&gt;', '2016-12-09 20:02:56', '1234567', 'sdfsd', '0');
+INSERT INTO `article` VALUES ('10017', '今天去游玩', '真的好好玩&amp;amp;lt;p&amp;amp;gt;SADFSDFS&amp;amp;lt;/p&amp;amp;gt;&amp;lt;p&amp;gt;双方都胜多负少东方闪电&amp;lt;/p&amp;gt;&lt;p&gt;撒旦法撒旦&lt;/p&gt;', '2016-12-09 20:41:26', '1234567', '杨奕辉', '0');
+INSERT INTO `article` VALUES ('10018', '今天去游玩', '真的好好玩&amp;amp;lt;p&amp;amp;gt;SADFSDFS&amp;amp;lt;/p&amp;amp;gt;&amp;lt;p&amp;gt;双方都胜多负少东方闪电&amp;lt;/p&amp;gt;&lt;p&gt;范德萨范德萨&lt;/p&gt;', '2016-12-09 20:42:45', '1234567', '杨奕辉', '0');
+INSERT INTO `article` VALUES ('10020', '水电费', '&amp;lt;p&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/p&amp;gt;&lt;p&gt;发斯蒂芬&lt;/p&gt;', '2016-12-09 20:47:15', '1234567', '地方', '0');
+INSERT INTO `article` VALUES ('10021', 'dsfsd', '&lt;p&gt;&lt;br&gt;&lt;/p&gt;', '2016-12-09 22:23:06', '1234567', 'dsfdsfsd', '0');
+
+-- ----------------------------
+-- Table structure for `assists`
 -- ----------------------------
 DROP TABLE IF EXISTS `assists`;
 CREATE TABLE `assists` (
   `uid` bigint(20) NOT NULL AUTO_INCREMENT,
   `assist_id` varchar(20) NOT NULL,
-  `password` varchar(255) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `name` varchar(30) NOT NULL,
   PRIMARY KEY (`uid`),
   UNIQUE KEY `uid` (`uid`) USING BTREE,
   KEY `assist_id` (`assist_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
---  Table structure for `class_teacher`
+-- Records of assists
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `classes`
+-- ----------------------------
+DROP TABLE IF EXISTS `classes`;
+CREATE TABLE `classes` (
+  `class_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `term` bit(1) NOT NULL,
+  `year` int(11) NOT NULL,
+  `name` varchar(30) NOT NULL,
+  PRIMARY KEY (`class_id`),
+  UNIQUE KEY `class_id` (`class_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=10003 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of classes
+-- ----------------------------
+INSERT INTO `classes` VALUES ('10001', '', '2016', '软工1班');
+INSERT INTO `classes` VALUES ('10002', '', '2016', '软工2班');
+
+-- ----------------------------
+-- Table structure for `class_teacher`
 -- ----------------------------
 DROP TABLE IF EXISTS `class_teacher`;
 CREATE TABLE `class_teacher` (
   `class_id` bigint(20) NOT NULL,
   `teacher_id` varchar(20) NOT NULL,
-  `assist_id` varchar(20) NOT NULL
+  `assist_id` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
---  Table structure for `classes`
+-- Records of class_teacher
 -- ----------------------------
-DROP TABLE IF EXISTS `classes`;
-CREATE TABLE `classes` (
-  `class_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `term` varchar(1) NOT NULL,
-  `year` int(11) NOT NULL,
-  `name` varchar(30) NOT NULL,
-  PRIMARY KEY (`class_id`),
-  UNIQUE KEY `class_id` (`class_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+INSERT INTO `class_teacher` VALUES ('10001', '1234567', null);
+INSERT INTO `class_teacher` VALUES ('10002', '1234567', null);
 
 -- ----------------------------
---  Table structure for `comment`
+-- Table structure for `comment`
 -- ----------------------------
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment` (
@@ -100,7 +132,11 @@ CREATE TABLE `comment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
---  Table structure for `course_info`
+-- Records of comment
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `course_info`
 -- ----------------------------
 DROP TABLE IF EXISTS `course_info`;
 CREATE TABLE `course_info` (
@@ -113,21 +149,29 @@ CREATE TABLE `course_info` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
---  Table structure for `group`
+-- Records of course_info
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `group`
 -- ----------------------------
 DROP TABLE IF EXISTS `group`;
 CREATE TABLE `group` (
   `group_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `leader_id` varchar(20) NOT NULL,
-  `member_num` int(11) NOT NULL,
   `group_name` varchar(30) NOT NULL,
-  `password` varchar(255) NOT NULL,
+  `password` varchar(30) NOT NULL,
+  `class_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`group_id`),
   UNIQUE KEY `group_id` (`group_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
---  Table structure for `homework`
+-- Records of group
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `homework`
 -- ----------------------------
 DROP TABLE IF EXISTS `homework`;
 CREATE TABLE `homework` (
@@ -143,10 +187,14 @@ CREATE TABLE `homework` (
   PRIMARY KEY (`hw_id`),
   UNIQUE KEY `hw_id` (`hw_id`) USING BTREE,
   KEY `class_id` (`class_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
---  Table structure for `mail`
+-- Records of homework
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `mail`
 -- ----------------------------
 DROP TABLE IF EXISTS `mail`;
 CREATE TABLE `mail` (
@@ -165,7 +213,11 @@ CREATE TABLE `mail` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
---  Table structure for `message`
+-- Records of mail
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `message`
 -- ----------------------------
 DROP TABLE IF EXISTS `message`;
 CREATE TABLE `message` (
@@ -179,7 +231,11 @@ CREATE TABLE `message` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
---  Table structure for `notification`
+-- Records of message
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `notification`
 -- ----------------------------
 DROP TABLE IF EXISTS `notification`;
 CREATE TABLE `notification` (
@@ -188,14 +244,36 @@ CREATE TABLE `notification` (
   `content` text NOT NULL,
   `level` varchar(1) NOT NULL,
   `time` datetime NOT NULL,
-  `class_id` bigint(20) NOT NULL,
+  `teacher_id` varchar(30) NOT NULL,
   PRIMARY KEY (`noti_id`),
   UNIQUE KEY `noti_id` (`noti_id`) USING BTREE,
-  KEY `class_id` (`class_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+  KEY `class_id` (`teacher_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=10023 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
---  Table structure for `posts`
+-- Records of notification
+-- ----------------------------
+INSERT INTO `notification` VALUES ('10000', '今天教师变更', '今天由梁鸿业老师代为上课', '0', '2016-12-09 10:24:02', '1234567');
+INSERT INTO `notification` VALUES ('10001', 'asdf', '&lt;p&gt;fsdfs&lt;/p&gt;', '0', '2016-12-09 16:27:00', '1234567');
+INSERT INTO `notification` VALUES ('10002', 'fasdf', '&lt;p&gt;fsdaf&lt;/p&gt;', '0', '2016-12-09 16:27:39', '1234567');
+INSERT INTO `notification` VALUES ('10003', 'testtest', '&lt;p&gt;fdsfds&lt;/p&gt;', '0', '2016-12-09 16:32:35', '1234567');
+INSERT INTO `notification` VALUES ('10004', 'fadsfas', '&lt;p&gt;fsdfsd&lt;/p&gt;', '0', '2016-12-09 16:33:10', '1234567');
+INSERT INTO `notification` VALUES ('10008', '反倒是反倒是', '&lt;p&gt;范德萨发的&lt;/p&gt;', '0', '2016-12-09 18:09:15', '1234567');
+INSERT INTO `notification` VALUES ('10011', '的所得税法', '&lt;p&gt;鼎折覆餗的&lt;/p&gt;', '1', '2016-12-09 21:55:43', '1234567');
+INSERT INTO `notification` VALUES ('10012', 'sadfsd', '&lt;p&gt;fasdf第三方&lt;/p&gt;', '0', '2016-12-09 22:39:53', '1234567');
+INSERT INTO `notification` VALUES ('10013', 'sadfsd', '&lt;p&gt;fasdf第三方fsadfs d&lt;/p&gt;', '0', '2016-12-09 22:39:59', '1234567');
+INSERT INTO `notification` VALUES ('10014', 'sadfsd', '&lt;p&gt;fasdf第三方fsadfs dfsdfsad&lt;/p&gt;', '0', '2016-12-09 22:40:03', '1234567');
+INSERT INTO `notification` VALUES ('10015', 'sadfsd', '&lt;p&gt;fasdf第三方fsadfs dfsdfsadSDfds&amp;nbsp;&lt;/p&gt;', '0', '2016-12-09 22:40:05', '1234567');
+INSERT INTO `notification` VALUES ('10016', 'sadfsd', '&lt;p&gt;fasdf第三方fsadfs dfsdfsadSDsadfsa dfds&amp;nbsp;&lt;/p&gt;', '0', '2016-12-09 22:40:07', '1234567');
+INSERT INTO `notification` VALUES ('10017', 'sadfsd', '&lt;p&gt;fasdf第三方fsadfs dfsdfsadSDsadfsa dfds sdfsDsf sfd第三方&lt;/p&gt;', '0', '2016-12-09 22:40:11', '1234567');
+INSERT INTO `notification` VALUES ('10018', 'sadfsd', '&lt;p&gt;fasdf第三方fsadfs dfsdfsadSDsadfsa dfds sdfsDsf sfd第三方水电费上的&lt;/p&gt;', '0', '2016-12-09 22:40:16', '1234567');
+INSERT INTO `notification` VALUES ('10019', 'fsdfsd撒旦法撒旦', '&lt;p&gt;发送到&lt;/p&gt;', '0', '2016-12-09 22:40:56', '1234567');
+INSERT INTO `notification` VALUES ('10020', 'fsdfsd撒旦法撒旦', '&lt;p&gt;发送到发生的发生的&lt;/p&gt;', '0', '2016-12-09 22:41:05', '1234567');
+INSERT INTO `notification` VALUES ('10021', 'fsdfsd', '&lt;p&gt;水电费&lt;/p&gt;', '0', '2016-12-09 22:42:35', '1234567');
+INSERT INTO `notification` VALUES ('10022', 'testtset', '&lt;p&gt;水电费&lt;/p&gt;', '0', '2016-12-09 22:42:47', '1234567');
+
+-- ----------------------------
+-- Table structure for `posts`
 -- ----------------------------
 DROP TABLE IF EXISTS `posts`;
 CREATE TABLE `posts` (
@@ -214,7 +292,11 @@ CREATE TABLE `posts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
---  Table structure for `questions`
+-- Records of posts
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `questions`
 -- ----------------------------
 DROP TABLE IF EXISTS `questions`;
 CREATE TABLE `questions` (
@@ -225,14 +307,17 @@ CREATE TABLE `questions` (
   `submit_num` int(11) DEFAULT NULL,
   `average_score` int(11) DEFAULT NULL,
   `type` varchar(1) NOT NULL,
-  `ques_finish` varchar(1) NOT NULL,
   PRIMARY KEY (`ques_id`),
   UNIQUE KEY `ques_id` (`ques_id`) USING BTREE,
   KEY `hw_id` (`hw_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
---  Table structure for `reply_post`
+-- Records of questions
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `reply_post`
 -- ----------------------------
 DROP TABLE IF EXISTS `reply_post`;
 CREATE TABLE `reply_post` (
@@ -247,7 +332,11 @@ CREATE TABLE `reply_post` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
---  Table structure for `resource`
+-- Records of reply_post
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `resource`
 -- ----------------------------
 DROP TABLE IF EXISTS `resource`;
 CREATE TABLE `resource` (
@@ -262,16 +351,20 @@ CREATE TABLE `resource` (
   PRIMARY KEY (`resrc_id`),
   UNIQUE KEY `resrc_id` (`resrc_id`) USING BTREE,
   KEY `post_id` (`post_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
---  Table structure for `student`
+-- Records of resource
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `student`
 -- ----------------------------
 DROP TABLE IF EXISTS `student`;
 CREATE TABLE `student` (
   `uid` bigint(20) NOT NULL AUTO_INCREMENT,
   `student_id` varchar(20) NOT NULL,
-  `password` varchar(255) NOT NULL,
+  `password` varchar(100) NOT NULL,
   `name` varchar(30) NOT NULL,
   `email` varchar(30) DEFAULT NULL,
   `question1` text,
@@ -280,19 +373,25 @@ CREATE TABLE `student` (
   `answer2` text,
   `class_id` bigint(20) DEFAULT NULL,
   `group_id` bigint(20) DEFAULT NULL,
+  `check_code` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`uid`),
   UNIQUE KEY `uid` (`uid`) USING BTREE,
   UNIQUE KEY `student_id` (`student_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10001 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
---  Table structure for `teacher`
+-- Records of student
+-- ----------------------------
+INSERT INTO `student` VALUES ('10000', 'yyh951102', 'c92f606717d8826c16893e9bacdd6c47', '杨奕辉', null, null, null, null, null, '10001', null, null);
+
+-- ----------------------------
+-- Table structure for `teacher`
 -- ----------------------------
 DROP TABLE IF EXISTS `teacher`;
 CREATE TABLE `teacher` (
   `uid` bigint(20) NOT NULL AUTO_INCREMENT,
   `teacher_id` varchar(20) NOT NULL,
-  `password` varchar(255) NOT NULL,
+  `password` varchar(100) NOT NULL,
   `name` varchar(30) NOT NULL,
   `phone` varchar(20) DEFAULT NULL,
   `email` varchar(30) DEFAULT NULL,
@@ -305,10 +404,15 @@ CREATE TABLE `teacher` (
   PRIMARY KEY (`uid`),
   UNIQUE KEY `uid` (`uid`) USING BTREE,
   UNIQUE KEY `teacher_id` (`teacher_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10001 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
---  Table structure for `works`
+-- Records of teacher
+-- ----------------------------
+INSERT INTO `teacher` VALUES ('10000', '1234567', '21232f297a57a5a743894a0e4a801fc3', '杨奕辉', '172555222', '234347589@qq.com', 'fsd', '334345', 'fsdfds', '这是教师信息fsdfsd都是&amp;lt;p&amp;gt;ds fsd&amp;lt;/p&amp;gt;&lt;p&gt;f第三方水电费&lt;/p&gt;', '&lt;p&gt;这是课程信息&amp;amp;lt;p&amp;amp;gt;asdfsdfsdf&amp;amp;lt;/p&amp;amp;gt;&amp;lt;p&amp;gt;sdfsd&amp;lt;/p&amp;gt;&lt;/p&gt;&lt;h2&gt;dfdfgdf&lt;/h2&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;', null);
+
+-- ----------------------------
+-- Table structure for `works`
 -- ----------------------------
 DROP TABLE IF EXISTS `works`;
 CREATE TABLE `works` (
@@ -320,11 +424,13 @@ CREATE TABLE `works` (
   `score` int(11) DEFAULT NULL,
   `uploader_id` varchar(20) NOT NULL,
   `type` varchar(1) NOT NULL,
+  `finish` varchar(1) NOT NULL,
   PRIMARY KEY (`work_id`),
   UNIQUE KEY `work_id` (`work_id`) USING BTREE,
   KEY `ques_id` (`ques_id`) USING BTREE,
   KEY `uploader_id` (`uploader_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-SET FOREIGN_KEY_CHECKS = 1;
-
+-- ----------------------------
+-- Records of works
+-- ----------------------------

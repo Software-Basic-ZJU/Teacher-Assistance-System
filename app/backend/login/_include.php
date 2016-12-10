@@ -26,11 +26,11 @@ function inject_prevent($Sql_Str) {//自动过滤Sql的注入语句。
     }
     return $Sql_Str;
 }
-function uploadFile($token,$file){
-    loginCheck($token);
+function uploadFile($file){
     $user_type = $_SESSION['type'];
     $time = date('y-m-d H:i:s',time());
-    $path = "upload/". md5($time).$file["type"];
+    $fileName=explode(".",$file['name']);   //分割出文件名和后缀名
+    $path = "upload/" . substr(md5($time . $fileName[0]),8,24) . (count($fileName)>1?("." . $fileName[1]):"");
     $size = $file["size"];
     //资源类型：0为教师资源，1为帖子资源，2为跟帖资源
     if($file['error'] > 0)
@@ -58,7 +58,7 @@ function uploadFile($token,$file){
                 break;
         }
         $result = array(
-            'code' => 1,
+            'code' => -1,
             'msg' => $info,
             'res' => null
         );
@@ -67,7 +67,7 @@ function uploadFile($token,$file){
     if($user_type == 1){//如果是学生
         if ($size >= 2000000){
             $result = array(
-                'code' => 1,
+                'code' => -1,
                 'msg' => '上传失败,文件大于2M',
                 'res' => null
             );
@@ -90,7 +90,7 @@ function uploadFile($token,$file){
     }
     else{
         $result = array(
-            'code' => 1,
+            'code' => -1,
             'msg' => '上传失败',
             'res' => null
         );
