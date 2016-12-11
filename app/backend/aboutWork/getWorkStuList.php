@@ -39,7 +39,10 @@ if($type == 0){
         $result = array(
             "code" => 0,
             "msg" => "个人查找成功",
-            "res" => $stuList
+            "res" => array(
+                'stuList' => $stuList,
+                "token" => $_SESSION['token']
+            )
         );
         echo json_encode($result);
     }
@@ -47,7 +50,9 @@ if($type == 0){
         $result = array(
             "code" => -1,
             "msg" => "获取应交学生列表失败",
-            "res" => null
+            "res" => array(
+                "token" => $_SESSION['token']
+            )
         );
         echo json_encode($result);
     }
@@ -75,7 +80,10 @@ elseif ($type == 1){
         $result = array(
             "code" => 1,
             "msg" => "小组查找成功",
-            "res" => $stuList
+            "res" => array(
+                'stuList' => $stuList,
+                "token" => $_SESSION['token']
+            )
         );
         echo json_encode($result);
     }
@@ -83,7 +91,9 @@ elseif ($type == 1){
         $result = array(
             "code" => -1,
             "msg" => "获取应交小组列表失败",
-            "res" => null
+            "res" => array(
+                "token" => $_SESSION['token']
+            )
         );
         echo json_encode($result);
     }

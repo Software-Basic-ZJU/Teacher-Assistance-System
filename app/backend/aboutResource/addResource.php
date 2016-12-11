@@ -53,7 +53,8 @@ if($add_result){
             'size' => $size,
             'path' => $path,
             'uploader_name' => $user_name,
-            'uploader_id' => $uploader_id
+            'uploader_id' => $uploader_id,
+            "token" => $_SESSION['token']
         )
     );
     echo json_encode($result);
@@ -61,7 +62,9 @@ if($add_result){
         $result = array(
             'code' => -1,
             'msg' => '添加失败,数据库错误',
-            'res' => null
+            'res' => array(
+                "token" => $_SESSION['token']
+            )
         );
         echo json_encode($result);
     }

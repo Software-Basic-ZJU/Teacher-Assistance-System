@@ -29,7 +29,10 @@ if($fetched = mysqli_fetch_array($query_result)){
     $result = array(
         "code" => 0,
         "msg" => "查找成功",
-        "res" => $sectionList
+        "res" => array(
+            'sectionList' => $sectionList,
+            "token" => $_SESSION['token']
+        )
     );
     echo json_encode($result);
 }
@@ -37,7 +40,9 @@ else{
     $result = array(
         "code" => -1,
         "msg" => "查找失败",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
     );
     echo json_encode($result);
 }

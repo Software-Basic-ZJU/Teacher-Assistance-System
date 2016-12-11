@@ -25,7 +25,8 @@ if($fetched = mysqli_fetch_array($query_result)){
             "title" => $fetched['title'],
             "content" => $fetched['content'],
             "author" => $fetched['author'],
-            "time" => $fetched['time']
+            "time" => $fetched['time'],
+            "token" => $_SESSION['token']
         );
     }while($fetched = mysqli_fetch_array($query_result));
     $result = array(
@@ -39,7 +40,9 @@ else{
     $result = array(
         "code" => -1,
         "msg" => "查找失败，teacher_id错误",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
     );
     echo json_encode($result);
 }

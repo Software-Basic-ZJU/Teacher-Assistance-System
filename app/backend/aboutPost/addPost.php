@@ -80,7 +80,9 @@ if($query_result){
             $result = array(
                 "code" => -1,
                 "msg" => "插入附件失败",
-                "res" => null
+                "res" => array(
+                    'token' => $_SESSION['token']
+                )
             );
             echo json_encode($result);
             exit;
@@ -97,7 +99,8 @@ if($query_result){
             'author_name' => $author_name,
             'publish_time' => $time,
             'update_time' => $time,
-            'reply_num' => 0
+            'reply_num' => 0,
+            'token' => $_SESSION['token']
         )
     );
     echo json_encode($result);
@@ -106,7 +109,9 @@ else{
     $result = array(
         "code" => -1,
         "msg" => "帖子发布失败",
-        "res" => null
+        "res" => array(
+            'token' => $_SESSION['token']
+        )
     );
     echo json_encode($result);
 }

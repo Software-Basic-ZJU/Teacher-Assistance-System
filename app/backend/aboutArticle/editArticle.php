@@ -45,7 +45,8 @@ if($query_result){
             'time' => $time,
             'content' => $content,
             'author' => $author,
-            'authority' => $authority
+            'authority' => $authority,
+            'token' => $_SESSION['token']
         )
     );
     echo json_encode($result);
@@ -54,7 +55,9 @@ else{
     $result = array(
         "code" => -1,
         "msg" => "修改失败",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
     );
     echo json_encode($result);
 }

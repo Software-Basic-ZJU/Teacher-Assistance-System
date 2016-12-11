@@ -47,7 +47,9 @@ if($_FILES['file']['error'] > 0)
     $result = array(
         'code' => 1,
         'msg' => $info,
-        'res' => null
+        'res' => array(
+            'token' => $_SESSION['token']
+        )
     );
     echo json_encode($result);
     mysqli_close($conn);
@@ -58,7 +60,9 @@ if($user_type == 1){//如果是学生
         $result = array(
             'code' => 1,
             'msg' => '上传失败,文件大于2M',
-            'res' => null
+            'res' => array(
+                'token' => $_SESSION['token']
+            )
         );
         echo json_encode($result);
         mysqli_close($conn);
@@ -73,7 +77,8 @@ if(move_uploaded_file($_FILES["file"]["tmp_name"], $path)){
         'res' => array(
             'path' => $path,
             'time' => $time,
-            'size' => $size
+            'size' => $size,
+            'token' => $_SESSION['token']
         )
     );
     echo json_encode($result);
@@ -84,7 +89,9 @@ else{
     $result = array(
         'code' => 1,
         'msg' => '上传失败',
-        'res' => null
+        'res' => array(
+            'token' => $_SESSION['token']
+        )
     );
     echo json_encode($result);
     mysqli_close($conn);

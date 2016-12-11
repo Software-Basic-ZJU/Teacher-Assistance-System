@@ -30,7 +30,9 @@ if($fetched = mysqli_fetch_array($query_result)){
     $result = array(
         "code" => -1,
         "msg" => "还有未点评的work",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
     );
     echo json_encode($result);
 }
@@ -51,7 +53,9 @@ else{
         $result = array(
             "code" => 0,
             "msg" => "提交成功",
-            "res" => null
+            "res" => array(
+                "token" => $_SESSION['token']
+            )
         );
         echo json_encode($result);
     }

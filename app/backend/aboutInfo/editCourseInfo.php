@@ -34,7 +34,8 @@ if($query_result){
         "code" => 0,
         "msg" => "修改成功",
         "res" => array(
-            'course_info' => $course_info
+            'course_info' => $course_info,
+            "token" => $_SESSION['token']
         )
     );
     echo json_encode($result);
@@ -43,7 +44,9 @@ else{
     $result = array(
         "code" => -1,
         "msg" => "修改失败",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
     );
     echo json_encode($result);
 }

@@ -57,7 +57,8 @@ if($query_result){
             "content" => $fetched['content'],
             "should_num" => $should_num,
             "submit_num" => $fetched['submit_num'],
-            "ques_finish" => $fetched['ques_finish']
+            "ques_finish" => $fetched['ques_finish'],
+            "token" => $_SESSION['token']
         )
     );
     echo json_encode($result);
@@ -66,7 +67,9 @@ else{
     $result = array(
         "code" => -1,
         "msg" => "修改失败",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
     );
     echo json_encode($result);
 }

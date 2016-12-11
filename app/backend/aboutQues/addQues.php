@@ -46,7 +46,8 @@ if($query_result){
             "content" => $content,
             "should_num" => $should_num,
             "submit_num" => 0,
-            "ques_finish" => 0
+            "ques_finish" => 0,
+            "token" => $_SESSION['token']
         )
     );
     echo json_encode($result);
@@ -55,7 +56,9 @@ else{
     $result = array(
         "code" => -1,
         "msg" => "题目发布失败",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
     );
     echo json_encode($result);
 }

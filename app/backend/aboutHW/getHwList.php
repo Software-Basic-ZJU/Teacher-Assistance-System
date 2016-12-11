@@ -29,7 +29,8 @@ if($fetched = mysqli_fetch_array($query_result)){
             "punish_type" => $fetched['punish_type'],
             "punish_rate" => $fetched['punish_rate'],
             "over" => $fetched['over'],//老师是否已经全部批改
-            "out_of_deadline" =>$out_of_deadline
+            "out_of_deadline" =>$out_of_deadline,
+            "token" => $_SESSION['token']
         );
     }while($fetched = mysqli_fetch_array($query_result));
     $result = array(
@@ -43,7 +44,9 @@ else{
     $result = array(
         "code" => -1,
         "msg" => "查找失败，class_id错误",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
     );
     echo json_encode($result);
 }

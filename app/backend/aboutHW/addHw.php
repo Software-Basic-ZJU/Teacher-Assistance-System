@@ -29,7 +29,9 @@ if($query_result){
     $result = array(
         "code" => 0,
         "msg" => "作业发布成功",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
     );
     echo json_encode($result);
 }
@@ -37,7 +39,9 @@ else{
     $result = array(
         "code" => -1,
         "msg" => "作业发布失败",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
     );
     echo json_encode($result);
 }

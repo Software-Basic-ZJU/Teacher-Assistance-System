@@ -23,7 +23,8 @@ if($fetched = mysqli_fetch_array($query_result)){
         "code" => 0,
         "msg" => "查找成功",
         "res" => array(
-            "course_info" => $fetched['course_info']
+            "course_info" => $fetched['course_info'],
+            "token" => $_SESSION['token']
         )
     );
     echo json_encode($result);
@@ -32,7 +33,9 @@ else{
     $result = array(
         "code" => -1,
         "msg" => "查找失败，class_id错误",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
     );
     echo json_encode($result);
 }

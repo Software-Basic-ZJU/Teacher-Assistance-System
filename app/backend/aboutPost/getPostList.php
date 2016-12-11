@@ -18,6 +18,15 @@ $section = test_input(mysqli_escape_string($conn, $_POST['section']));//所在�
 $teacher_id = test_input(mysqli_escape_string($conn, $_POST['teacher_id']));
 $group_id = test_input(mysqli_escape_string($conn, $_POST['group_id']));
 if($section == 2){
+    if($_SESSION["type"]==1 && $_SESSION["group_id"]!=$group_id){
+        $result = array(
+            "code" => 403,
+            "msg" => "访问者身份非法",
+            "res" => null
+        );
+        echo json_encode($result);
+        exit;
+    }
     $query_result = mysqli_query($conn, "select * from posts WHERE section = '$section' AND teacher_id = '$teacher_id' AND group_id = '$group_id';");
     if($fetched = mysqli_fetch_array($query_result)){
         $postList = array();      //post_id,title,content,author_id,author_name,publish_time,update_time,reply_num,attachment[String](resource_id,name,path,size)
@@ -78,15 +87,20 @@ if($section == 2){
         $result = array(
             "code" => 0,
             "msg" => "查找成功",
-            "res" => $postList
+            "res" => array(
+                'postList' => $postList,
+                'token' => $_SESSION['token']
+            )
         );
         echo json_encode($result);
     }
     else{
         $result = array(
-            "code" => 1,
+            "code" => -1,
             "msg" => "查找失败，错误",
-            "res" => null
+            "res" => array(
+                'token' => $_SESSION['token']
+            )
         );
         echo json_encode($result);
     }
@@ -156,7 +170,10 @@ else{
         $result = array(
             "code" => 0,
             "msg" => "查找成功",
-            "res" => $postList
+            "res" => array(
+                'postList' => $postList,
+                'token' => $_SESSION['token']
+            )
         );
         echo json_encode($result);
     }
@@ -164,7 +181,9 @@ else{
         $result = array(
             "code" => 1,
             "msg" => "查找失败，错误",
-            "res" => null
+            "res" => array(
+                'token' => $_SESSION['token']
+            )
         );
         echo json_encode($result);
     }

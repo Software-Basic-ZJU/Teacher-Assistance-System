@@ -80,18 +80,21 @@ POST——Teacher-Assistance-System/app/backend/aboutNotice/getNotices.php
           
         //$notices是一个数组
         $notices[] = array(
-            "notice_id" （通知的ID）,
-            "title" ,
-            "level" （级别，重要程度）,
-            "time"（发布时间）
-            "content" （通知内容）
+            "notice_id" => $fetched['noti_id'],
+            "title" => $fetched['title'],
+            "level" => $fetched['level'],
+            "time" => $fetched['time'],
+            "content" => $fetched['content'],
+            "token" => $_SESSION['token']
         );
 ```
 
 ```php
 		"code" => -1,
-        "msg" => "查找失败，班级ID错误",
-        "res" => null
+        "msg" => "查找失败，class_id错误",
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ## 3、查找一则通知功能
@@ -106,18 +109,22 @@ POST——Teacher-Assistance-System/app/backend/aboutNotice/getNoticeDetail.php
 		"code" => 0,
         "msg" => "查找成功",
         "res" => array(
-            "notice_id" 
-            "title"
-            "content"
-            "time"
-            "level"(0为普通，1为重要)
+            "notice_id" => $fetched['noti_id'],
+            "title" => $fetched['title'],
+            "content" => $fetched['content'],
+            "time" => $fetched['time'],
+            "level" => $fetched['level'],//0为普通，1为重要
+            "class_id"=>$fetched['class_id'],
+            "token" => $_SESSION['token']
         )
 ```
 
 ```php
 		"code" => -1,
         "msg" => "查找失败，notice_id错误",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ## 4、查找一个教师的文章列表功能
@@ -134,18 +141,21 @@ POST——Teacher-Assistance-System/app/backend/aboutArticle/getArticles.php
         "res" => $articles
  //其中$articles为数组的数组
           $articles[] = array(
-            "article_id"
-            "title"
-            "content"
-            "author"
-            "time"
+            "article_id" => $fetched['art_id'],
+            "title" => $fetched['title'],
+            "content" => $fetched['content'],
+            "author" => $fetched['author'],
+            "time" => $fetched['time'],
+            "token" => $_SESSION['token']
         );
 ```
 
 ```php
 		"code" => -1,
         "msg" => "查找失败，teacher_id错误",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ## 5、查找一篇文章
@@ -160,18 +170,21 @@ POST——Teacher-Assistance-System/app/backend/aboutArticle/getArticleDetail.ph
 		"code" => 0,
         "msg" => "查找成功",
         "res" => array(
-            "article_id"
-            "title"
-            "content" 
-            "author"
-            "time"
+            "article_id" => $fetched['art_id'],
+            "title" => $fetched['title'],
+            "content" => $fetched['content'],
+            "author" => $fetched['author'],
+            "time" => $fetched['time'],
+            "token" => $_SESSION['token']
         )
 ```
 
 ```php
 		"code" => -1,
         "msg" => "查找失败，article_id错误",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ## 6、返回教师联系方式
@@ -186,19 +199,22 @@ POST——Teacher-Assistance-System/app/backend/aboutInfo/getContact.php
 		"code" => 0,
         "msg" => "查找成功",
         "res" => array(
-            "name" （教师名字）
-            "phone" 
-            "email" 
-            "wechat"
-            "qq" 
-            "other_contact" 
+            "name" => $fetched['name'],
+            "phone" => $fetched['phone'],
+            "email" => $fetched['email'],
+            "wechat" => $fetched['wechat'],
+            "qq" => $fetched['qq'],
+            "other_contact" => $fetched['other_contact'],
+            "token" => $_SESSION['token']
         )
 ```
 
 ```php
 		"code" => -1,
         "msg" => "查找失败，class_id错误",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ## 7、返回课程信息
@@ -214,13 +230,16 @@ POST——Teacher-Assistance-System/app/backend/aboutInfo/getCourseInfo.php
         "msg" => "查找成功",
         "res" => array(
             "course_info"
+            "token"
         )
 ```
 
 ```php
 		"code" => -1,
         "msg" => "查找失败，class_id错误",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ## 8、返回教师信息
@@ -236,13 +255,16 @@ POST——Teacher-Assistance-System/app/backend/aboutInfo/getTeacherInfo.php
         "msg" => "查找成功",
         "res" => array(
             "teacher_info" => $fetched['teacher_info'],
+           "token"
         )
 ```
 
 ```php
 		"code" => -1,
         "msg" => "查找失败，class_id错误",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ## 9、返回教师资源列表
@@ -266,13 +288,16 @@ POST——Teacher-Assistance-System/app/backend/aboutResource/getResourceList.ph
             "upload_time" 
             "uploader_name"
             "size" 资源大小
+            "token" => $_SESSION['token']
         );
 ```
 
 ```php
 		"code" => -1,
         "msg" => "查找失败，class_id错误,或者没有资源",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ## 10、上传文件到服务器并插入resource表
@@ -294,7 +319,8 @@ POST——Teacher-Assistance-System/app/backend/aboutResource/addResource.php
             'size' => $size,
             'path' => $path,
             'uploader_name' => $user_name,
-            'uploader_id' => $uploader_id
+            'uploader_id' => $uploader_id,
+            "token" => $_SESSION['token']
         )
     );
 ```
@@ -302,7 +328,9 @@ POST——Teacher-Assistance-System/app/backend/aboutResource/addResource.php
 ```php
   			'code' => -1,
             'msg' => '添加失败,数据库错误',
-            'res' => null
+            'res' => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ## 11、上传资源确认名字
@@ -318,7 +346,8 @@ POST——Teacher-Assistance-System/app/backend/aboutResource/resourceConfirm.ph
         "code" => 0,
         "msg" => "修改成功",
         "res" => array(
-            'name' => $name
+            'name' => $name，
+            "token" => $_SESSION['token']
         )
     );
 ```
@@ -327,7 +356,9 @@ POST——Teacher-Assistance-System/app/backend/aboutResource/resourceConfirm.ph
 	$result = array(
         "code" => -1,
         "msg" => "修改失败",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
     );
 ```
 
@@ -342,25 +373,31 @@ POST——Teacher-Assistance-System/app/backend/aboutResource/removeResource.php
 ```php
             "code" => 0,
             "msg" => "删除成功",
-            "res" => null
+            "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ```php
             "code" => -1,
             "msg" => "删除失败",
-            "res" => null
+            "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ```php
         "code" => -1,
         "msg" => "没有这个资源",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ```php
 		"code" => 403,
         "msg" => "无效用户尝试删除文件",
-        "res" => null
+        "res" => array()
 ```
 
 ## 14、教师修改联系方式
@@ -380,13 +417,16 @@ POST——Teacher-Assistance-System/app/backend/aboutInfo/editContact.php
             "wechat"
             "qq"
             "other_contact"
+            "token" => $_SESSION['token']
         )
 ```
 
 ```php
         "code" => -1,
         "msg" => "修改失败",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ```php
@@ -412,14 +452,16 @@ POST——Teacher-Assistance-System/app/backend/aboutNotice/addNotice.php
             'level' => $level,
             'time' => $time,
             'content' => $content,
-            'class_id' => $class_id
+			'token' => $_SESSION['token']
         )
 ```
 
 ```php
         "code" => -1,
         "msg" => "通知发布失败",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ## 16、修改通知
@@ -438,15 +480,17 @@ POST——Teacher-Assistance-System/app/backend/aboutNotice/editNotice.php
             'title' => $title,
             'level' => $level,
             'time' => $time,
-            'content' => $content,
-            'class_id' => $class_id
+            'content' => $content
+            "token" => $_SESSION['token']
         )
 ```
 
 ```php
         "code" => -1,
         "msg" => "查找失败",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ```php
@@ -466,13 +510,17 @@ POST——Teacher-Assistance-System/app/backend/aboutNotice/deleteNotice.php
 ```php
 		"code" => 0,
         "msg" => "删除成功",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ```php
         "code" => -1,
         "msg" => "删除失败",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ```php
@@ -499,12 +547,15 @@ POST——Teacher-Assistance-System/app/backend/aboutArticle/addArticle.php
             'content' => $content,
             'author' => $author,
             'authority' => $authority
+            "token" => $_SESSION['token']
 ```
 
 ```php
 		"code" => -1,
         "msg" => "发布失败",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ## 19、编辑文章
@@ -525,13 +576,16 @@ POST——Teacher-Assistance-System/app/backend/aboutArticle/editArticle.php
             'content' => $content,
             'author' => $author,
             'authority' => $authority
+            "token" => $_SESSION['token']
         )
 ```
 
 ```php
         "code" => -1,
         "msg" => "修改失败",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ```php
@@ -551,13 +605,17 @@ POST——Teacher-Assistance-System/app/backend/aboutArticle/deleteArticle.php
 ```php
         "code" => 0,
         "msg" => "删除成功",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ```php
         "code" => -1,
         "msg" => "删除失败",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ```php
@@ -579,13 +637,16 @@ POST——Teacher-Assistance-System/app/backend/aboutInfo/editCourseInfo.php
         "msg" => "修改成功",
         "res" => array(
             'course_info' => $course_info
+            "token" => $_SESSION['token']
         )
 ```
 
 ```php
         "code" => -1,
         "msg" => "修改失败",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ```php
@@ -607,13 +668,16 @@ POST——Teacher-Assistance-System/app/backend/aboutInfo/editTeacherInfo.php
         "msg" => "修改成功",
         "res" => array(
             'teacher_info' => $teacher_info
+            "token" => $_SESSION['token']
         )
 ```
 
 ```php
         "code" => -1,
         "msg" => "修改失败",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ```php
@@ -645,13 +709,16 @@ POST——Teacher-Assistance-System/app/backend/aboutHW/getHwList.php
             "punish_rate" => $fetched['punish_rate'],
             "over" => $fetched['over'],//老师是否已经全部批改
             "out_of_deadline" => $out_of_deadline//0是过期了,1是没过期
+            "token" => $_SESSION['token']
         );
 ```
 
 ```php
         "code" => -1,
         "msg" => "查找失败，class_id错误",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ## 24、发布作业
@@ -665,13 +732,17 @@ POST——Teacher-Assistance-System/app/backend/aboutHW/addHw.php
 ```php
         "code" => 0,
         "msg" => "作业发布成功",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ```php
         "code" => -1,
         "msg" => "作业发布失败",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ## 25、编辑作业
@@ -693,14 +764,17 @@ POST——Teacher-Assistance-System/app/backend/aboutHW/editHw.php
             "deadline" => $fetched['deadline'],
             "punish_type" => $fetched['punish_type'],
             "punish_rate" => $fetched['punish_rate'],
-            "over" => $fetched['over']
+            "over" => $fetched['over']，
+            "token" => $_SESSION['token']
         )
 ```
 
 ```php
         "code" => -1,
         "msg" => "修改失败",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ```php
@@ -720,13 +794,17 @@ POST——Teacher-Assistance-System/app/backend/aboutHW/deleteHw.php
 ```php
         "code" => 0,
         "msg" => "删除成功",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ```php
         "code" => -1,
         "msg" => "删除失败",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ```php
@@ -756,13 +834,16 @@ POST——Teacher-Assistance-System/app/backend/aboutQues/getQuesList.php
             "should_num" => $should_num,
             "submit_num" => $fetched['submit_num'],
             "ques_finish" => $fetched['ques_finish']
+            "token" => $_SESSION['token']
         );
 ```
 
 ```php
         "code" => -1,
         "msg" => "查找失败",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ## 28、增加一份作业中的一个问题
@@ -784,13 +865,16 @@ POST——Teacher-Assistance-System/app/backend/aboutQues/addQues.php
             "should_num" => $should_num,
             "submit_num" => 0,
             "ques_finish" => 0
+            "token" => $_SESSION['token']
         )
 ```
 
 ```php
         "code" => -1,
         "msg" => "题目发布失败",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ## 29、删除一份作业中的一个问题
@@ -804,13 +888,17 @@ POST——Teacher-Assistance-System/app/backend/aboutQues/removeQues.php
 ```php
         "code" => 0,
         "msg" => "删除成功",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ```php
         "code" => -1,
         "msg" => "删除失败",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ```php
@@ -840,14 +928,16 @@ POST——Teacher-Assistance-System/app/backend/aboutQues/editQues.php
             "should_num" => $should_num,
             "submit_num" => $fetched['submit_num'],
             "ques_finish" => $fetched['ques_finish']
+            "token" => $_SESSION['token']
         )
 ```
 
 ```php
         "code" => -1,
         "msg" => "修改失败",
-        "res" => null
-
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ```php
@@ -867,19 +957,25 @@ POST——Teacher-Assistance-System/app/backend/aboutWork/submitWork.php
 ```php
         "code" => 0,
         "msg" => "作业提交成功",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ```php
         "code" => -1,
         "msg" => "作业提交失败",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ```php
-            "code" => -1,
-            "msg" => "数据库更新失败",
-            "res" => null
+        "code" => -1,
+        "msg" => "数据库更新失败",
+        "res" => array(
+          "token" => $_SESSION['token']
+        )
 ```
 
 ## 32、得到一个学生对于一个问题的提交
@@ -900,12 +996,15 @@ POST——Teacher-Assistance-System/app/backend/aboutWork/getStuWork.php
             "score" => $fetched['score'],
             "attachment" => $fetched['attachment'],
             "uploader_id" => $fetched['uploader_id']
+            "token" => $_SESSION['token']
 ```
 
 ```php
         "code" => -1,
         "msg" => "查找失败",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ## 33、批改一个提交（work）
@@ -919,13 +1018,17 @@ POST——Teacher-Assistance-System/app/backend/aboutWork/correctWork.php
 ```php
         "code" => 0,
         "msg" => "点评成功",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ```php
         "code" => -1,
         "msg" => "点评失败",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ```php
@@ -943,15 +1046,19 @@ POST——Teacher-Assistance-System/app/backend/aboutQues/finishQues.php
 返回:
 
 ```php
-            "code" => 0,
-            "msg" => "提交成功",
-            "res" => null
+        "code" => 0,
+        "msg" => "提交成功",
+        "res" => array(
+          "token" => $_SESSION['token']
+        )
 ```
 
 ```php
         "code" => -1,
         "msg" => "还有未点评的work",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ```php
@@ -971,7 +1078,10 @@ POST——Teacher-Assistance-System/app/backend/aboutWork/getWorkStuList.php
 ```php
            "code" => 0,
             "msg" => "个人查找成功",
-            "res" => $stuList
+            "res" => array(
+                'stuList' => $stuList,
+                "token" => $_SESSION['token']
+            )
               
               $stuList[] = array(
                 "id" => $fetched['student_id'],
@@ -984,7 +1094,10 @@ POST——Teacher-Assistance-System/app/backend/aboutWork/getWorkStuList.php
         $result = array(
             "code" => 1,
             "msg" => "小组查找成功",
-            "res" => $stuList
+            "res" => array(
+                'stuList' => $stuList,
+                "token" => $_SESSION['token']
+            )
         );
         
             $stuList[] = array(
@@ -997,7 +1110,9 @@ POST——Teacher-Assistance-System/app/backend/aboutWork/getWorkStuList.php
 ```php
             "code" => -1,
             "msg" => "获取应交学生(小组)列表失败",
-            "res" => null
+            "res" => array(
+                "token" => $_SESSION['token']
+            )
 ```
 
 ## 36、获取论坛首页信息
@@ -1011,7 +1126,10 @@ POST——Teacher-Assistance-System/app/backend/aboutPost/getForumInfo.php
 ```php
         "code" => 0,
         "msg" => "查找成功",
-        "res" => $sectionList
+        "res" => array(
+            'sectionList' => $sectionList,
+            "token" => $_SESSION['token']
+        )
          
           $sectionList[] = array(
             "section" => $fetched['section'],
@@ -1023,7 +1141,9 @@ POST——Teacher-Assistance-System/app/backend/aboutPost/getForumInfo.php
 ```php
         "code" => -1,
         "msg" => "查找失败",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
 ## 37、获取帖子列表 
@@ -1039,7 +1159,10 @@ POST——Teacher-Assistance-System/app/backend/aboutPost/getPostList.php
 ```php
             "code" => 0,
             "msg" => "查找成功",
-            "res" => $postList
+            "res" => array(
+                'postList' => $postList,
+                'token' => $_SESSION['token']
+            )
               
               $postList[] = array(
                 "post_id" => $post_id,
@@ -1064,7 +1187,9 @@ POST——Teacher-Assistance-System/app/backend/aboutPost/getPostList.php
 ```php
             "code" => -1,
             "msg" => "查找失败，错误",
-            "res" => null
+            "res" => array(
+                'token' => $_SESSION['token']
+            )
 ```
 
 ```php
@@ -1095,13 +1220,16 @@ POST——Teacher-Assistance-System/app/backend/aboutPost/addPost.php
             'publish_time' => $time,
             'update_time' => $time,
             'reply_num' => 0
+            'token' => $_SESSION['token']
         )
 ```
 
 ```php
         "code" => -1,
         "msg" => "帖子发布失败",
-        "res" => null
+        "res" => array(
+                'token' => $_SESSION['token']
+            )
 ```
 
 ```php
@@ -1123,6 +1251,8 @@ POST——Teacher-Assistance-System/app/backend/aboutPost/addPost.php
 ```php
             "code" => -1,
             "msg" => "插入附件失败",
-            "res" => null
+            "res" => array(
+                'token' => $_SESSION['token']
+            )
 ```
 

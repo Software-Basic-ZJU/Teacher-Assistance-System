@@ -27,6 +27,7 @@ if($fetched = mysqli_fetch_array($query_result)){
             "level" => $fetched['level'],
             "time" => $fetched['time'],
             "content" => $fetched['content'],
+            "token" => $_SESSION['token']
         );
     }while($fetched = mysqli_fetch_array($query_result));
     $result = array(
@@ -40,7 +41,9 @@ else{
     $result = array(
         "code" => -1,
         "msg" => "查找失败，class_id错误",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
     );
     echo json_encode($result);
 }

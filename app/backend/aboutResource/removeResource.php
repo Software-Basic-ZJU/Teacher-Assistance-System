@@ -24,14 +24,18 @@ if($fetched = mysqli_fetch_array($query_result)){
         $result = array(
             "code" => 0,
             "msg" => "删除成功",
-            "res" => null
+            "res" => array(
+                "token" => $_SESSION['token']
+            )
         );
         echo json_encode($result);
     } else {
         $result = array(
             "code" => -1,
             "msg" => "删除失败",
-            "res" => null
+            "res" => array(
+                "token" => $_SESSION['token']
+            )
         );
         echo json_encode($result);
     }
@@ -40,7 +44,9 @@ else{
     $result = array(
         "code" => -1,
         "msg" => "没有这个资源",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
     );
     echo json_encode($result);
 }

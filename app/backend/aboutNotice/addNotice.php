@@ -34,6 +34,7 @@ if($query_result){
             'level' => $level,
             'time' => $time,
             'content' => $content,
+            'token' => $_SESSION['token']
         )
     );
     echo json_encode($result);
@@ -42,7 +43,9 @@ else{
     $result = array(
         "code" => -1,
         "msg" => "通知发布失败",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
     );
     echo json_encode($result);
 }

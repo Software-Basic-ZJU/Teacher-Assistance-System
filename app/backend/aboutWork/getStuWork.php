@@ -29,7 +29,8 @@ if($fetched = mysqli_fetch_array($query_result)){
             "content" => $fetched['content'],
             "score" => $fetched['score'],
             "attachment" => $fetched['attachment'],
-            "uploader_id" => $fetched['uploader_id']
+            "uploader_id" => $fetched['uploader_id'],
+            "token" => $_SESSION['token']
         )
     );
     echo json_encode($result);
@@ -38,7 +39,9 @@ else{
     $result = array(
         "code" => -1,
         "msg" => "查找失败",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
     );
     echo json_encode($result);
 }

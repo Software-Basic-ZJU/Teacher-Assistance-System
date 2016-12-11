@@ -82,7 +82,6 @@ function loginCheck($token){
             $_SESSION['email']= $fetched['email'];
             $_SESSION['class_id']= $fetched['class_id'];
             $_SESSION['group_id']= $fetched['group_id'];
-
         }
         elseif ($token_array[1]==2){
             $_SESSION['teacher_id'] = $fetched['teacher_id'];

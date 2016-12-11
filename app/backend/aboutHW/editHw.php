@@ -50,7 +50,8 @@ if($query_result){
             "punish_type" => $fetched['punish_type'],
             "punish_rate" => $fetched['punish_rate'],
             "over" => $fetched['over'],
-            "out_of_deadline" => (date('y-m-d :i:s',time())>$deadline)?0:1//0是过期了,1是没过期
+            "out_of_deadline" => (date('y-m-d :i:s',time())>$deadline)?0:1,//0是过期了,1是没过期
+            "token" => $_SESSION['token']
         )
     );
     echo json_encode($result);
@@ -59,7 +60,9 @@ else{
     $result = array(
         "code" => -1,
         "msg" => "修改失败",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
     );
     echo json_encode($result);
 }

@@ -42,7 +42,8 @@ if($query_result){
             "email" => $email,
             "wechat" => $wechat,
             "qq" => $qq,
-            "other_contact" => $other_contact
+            "other_contact" => $other_contact,
+            "token" => $_SESSION['token']
         )
     );
     echo json_encode($result);
@@ -51,7 +52,9 @@ else{
     $result = array(
         "code" => -1,
         "msg" => "修改失败",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
     );
     echo json_encode($result);
 }
