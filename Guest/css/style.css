@@ -123,6 +123,7 @@ section,
 .cd-see-all .btn-1 {
     color: gray;
     border-color:gray;
+    padding-bottom: 10px;;
 }
 audio,
 canvas,
@@ -316,9 +317,9 @@ header .logo a {
 
 
 /* footer -------------------------- */
-footer {
-    padding: 90px 0;
-}
+/*footer {*/
+    /*padding: 90px 0;*/
+/*}*/
 footer .logo {
     float: left;
     margin: 0 95px 0 0;

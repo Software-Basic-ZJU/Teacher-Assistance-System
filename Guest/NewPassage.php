@@ -95,8 +95,12 @@
 						</div>
 					</div>
 					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+					<div class="cd-see-all"><a href="NewPassage.php?art_id=<?php echo $row['art_id']?>" class="btn btn-1" >返回</a></div>
+
 				</div>
+
 			</div>
+
 		</div>
 		<!-- 最新动态 -->
 
