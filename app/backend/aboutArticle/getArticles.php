@@ -25,24 +25,15 @@ if($query_result){
             "title" => $fetched['title'],
             "content" => $fetched['content'],
             "author" => $fetched['author'],
-<<<<<<< HEAD
             "time" => $fetched['time']
-=======
-            "time" => $fetched['time'],
->>>>>>> bc6d40f09c81bfbbab15001f2a42498ff4aa0471
         );
     }
     $result = array(
         "code" => 0,
         "msg" => "查找成功",
         "res" => array(
-<<<<<<< HEAD
-            "token" => $_SESSION['token'],
-            "articles"=> $articles
-=======
-            'articles' => $articles,
-            "token" => $_SESSION['token']
->>>>>>> bc6d40f09c81bfbbab15001f2a42498ff4aa0471
+		'articles' => $articles,
+		"token" => $_SESSION['token']
         )
     );
     echo json_encode($result);

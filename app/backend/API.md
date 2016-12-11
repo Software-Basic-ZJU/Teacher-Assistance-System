@@ -767,11 +767,7 @@ POST——Teacher-Assistance-System/app/backend/aboutQues/getQuesList.php
             "content" => $fetched['content'],
             "should_num" => $should_num,
             "submit_num" => $fetched['submit_num'],
-<<<<<<< HEAD
             "ques_finish" => $fetched['ques_finish']
-=======
-            "ques_finish" => $fetched['ques_finish'],
->>>>>>> bc6d40f09c81bfbbab15001f2a42498ff4aa0471
         );
 ```
 
