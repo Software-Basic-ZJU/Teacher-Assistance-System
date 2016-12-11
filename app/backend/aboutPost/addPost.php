@@ -52,24 +52,23 @@ $query_result = mysqli_query($conn, "INSERT INTO posts
                                       values('$title','$content','$teacher_id','$section','$author_id','$group_id','$time','$time');");
 if($query_result){
     $post_id = mysqli_insert_id($conn);
-    $getName_result = mysqli_query($conn, "select * from student WHERE student_id = '$author_id';");
+
+    $getName_result = mysqli_query($conn,"select * 
+                    from (select student_id as id, name as name from student 
+                          UNION 
+                          select teacher_id as id ,name as name from teacher) as temp
+                    WHERE temp.id = '$author_id';");
     if($fetched_name = mysqli_fetch_array($getName_result)){
         $author_name = $fetched_name['name'];
     }
     else{
-        $getName_result = mysqli_query($conn, "select * from teacher WHERE teacher_id = '$author_id';");
-        if($fetched_name = mysqli_fetch_array($getName_result)){
-            $author_name = $fetched_name['name'];
-        }
-        else{
-            $result = array(
-                "code" => 403,
-                "msg" => "发布者身份非法",
-                "res" => null
-            );
-            echo json_encode($result);
-            exit;
-        }
+        $result = array(
+            "code" => 403,
+            "msg" => "发布者身份非法",
+            "res" => null
+        );
+        echo json_encode($result);
+        exit;
     }
 
     if($resrc_id!=null){

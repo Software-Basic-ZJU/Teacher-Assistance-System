@@ -31,29 +31,25 @@ if($section == 2){
     if($query_result){//当语句正确的时候
         $fetched = mysqli_fetch_array($query_result);
         $postList = array();
-        //
         while($fetched = mysqli_fetch_array($query_result)){//能查到数据的时候
             $author_id = $fetched['author_id'];
             $post_id = $fetched['post_id'];
-
-            $getName_result = mysqli_query($conn, "select * from student WHERE student_id = '$author_id';");//通过id查找姓名
+            $getName_result = mysqli_query($conn,"select * 
+                    from (select student_id as id, name as name from student 
+                          UNION 
+                          select teacher_id as id ,name as name from teacher) as temp
+                    WHERE temp.id = '$author_id';");
             if($fetched_name = mysqli_fetch_array($getName_result)){
                 $author_name = $fetched_name['name'];
             }
             else{
-                $getName_result = mysqli_query($conn, "select * from teacher WHERE teacher_id = '$author_id';");
-                if($fetched_name = mysqli_fetch_array($getName_result)){
-                    $author_name = $fetched_name['name'];
-                }
-                else{
-                    $result = array(
-                        "code" => 403,
-                        "msg" => "发布者身份非法",
-                        "res" => null
-                    );
-                    echo json_encode($result);
-                    exit;
-                }
+                $result = array(
+                    "code" => 403,
+                    "msg" => "发布者身份非法",
+                    "res" => null
+                );
+                echo json_encode($result);
+                exit;
             }
 
             //查询本帖子有多少回帖
