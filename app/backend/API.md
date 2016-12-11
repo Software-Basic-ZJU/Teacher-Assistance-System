@@ -76,7 +76,10 @@ POST——Teacher-Assistance-System/app/backend/aboutNotice/getNotices.php
 ```php
 		"code" => 0,
         "msg" => "查找成功",
-        "res" => $notices
+        "res" => array(
+            'notices' => $notices,
+            'token' => $_SESSION['token']
+        )
           
         //$notices是一个数组
         $notices[] = array(
@@ -85,7 +88,6 @@ POST——Teacher-Assistance-System/app/backend/aboutNotice/getNotices.php
             "level" => $fetched['level'],
             "time" => $fetched['time'],
             "content" => $fetched['content'],
-            "token" => $_SESSION['token']
         );
 ```
 
@@ -138,7 +140,10 @@ POST——Teacher-Assistance-System/app/backend/aboutArticle/getArticles.php
 ```php
 		"code" => 0,
         "msg" => "查找成功",
-        "res" => $articles
+        "res" => array(
+            'articles' => $articles,
+            "token" => $_SESSION['token']
+        )
  //其中$articles为数组的数组
           $articles[] = array(
             "article_id" => $fetched['art_id'],
@@ -146,7 +151,6 @@ POST——Teacher-Assistance-System/app/backend/aboutArticle/getArticles.php
             "content" => $fetched['content'],
             "author" => $fetched['author'],
             "time" => $fetched['time'],
-            "token" => $_SESSION['token']
         );
 ```
 
@@ -697,7 +701,10 @@ POST——Teacher-Assistance-System/app/backend/aboutHW/getHwList.php
 ```php
         "code" => 0,
         "msg" => "查找成功",
-        "res" => $hwList
+        "res" => array(
+            'hwList' => $hwList,
+            'token' => $_SESSION['token']
+        )
           
         $hwList[] = array(
             "hw_id" => $fetched['hw_id'],
@@ -709,7 +716,6 @@ POST——Teacher-Assistance-System/app/backend/aboutHW/getHwList.php
             "punish_rate" => $fetched['punish_rate'],
             "over" => $fetched['over'],//老师是否已经全部批改
             "out_of_deadline" => $out_of_deadline//0是过期了,1是没过期
-            "token" => $_SESSION['token']
         );
 ```
 
@@ -824,7 +830,10 @@ POST——Teacher-Assistance-System/app/backend/aboutQues/getQuesList.php
 ```php
 		"code" => 0,
         "msg" => "查找成功",
-        "res" => $quesList
+        "res" => array(
+            'quesList' => $quesList,
+            'token' => $_SESSION['token']
+        )
           
           $quesList[] = array(
             "ques_id" => $fetched['ques_id'],
@@ -833,8 +842,7 @@ POST——Teacher-Assistance-System/app/backend/aboutQues/getQuesList.php
             "content" => $fetched['content'],
             "should_num" => $should_num,
             "submit_num" => $fetched['submit_num'],
-            "ques_finish" => $fetched['ques_finish']
-            "token" => $_SESSION['token']
+            "ques_finish" => $fetched['ques_finish'],
         );
 ```
 
@@ -1176,7 +1184,7 @@ POST——Teacher-Assistance-System/app/backend/aboutPost/getPostList.php
                 "attachment" => $attachment
             );
 
-       		$attachment[] = array(
+       		$attachment= array(
                         "resrc_id" => $fetched_resource['resrc_id'],
                         "name" => $fetched_resource['name'],
                         "path" => $fetched_resource['path'],
