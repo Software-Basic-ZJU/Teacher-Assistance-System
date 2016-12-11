@@ -94,7 +94,7 @@
 
 				<div id="row" class="container-fluid">
 <?php
-	if($_COOKIE['teacher_num'])
+	if(@$_COOKIE['teacher_num'])
 		$num=$_COOKIE['teacher_num'];
 	else
 		$num=4;

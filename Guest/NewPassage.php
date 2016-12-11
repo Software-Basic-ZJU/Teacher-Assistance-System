@@ -84,18 +84,32 @@
 		<!--New 最新动态-->
 		<div id="fh5co-services-section">
 			<div class="col-md text-center">
-				<div class="container">
-
-				</div>
 				<div class="services">
-					<div class="row">
+<?php
+
+	include dirname(__FILE__).'/backend/connectDB.php';
+	global $conn;
+	connectDB();
+	$art_id = $_GET['art_id'];
+	$query_article = mysqli_query($conn, "SELECT * FROM article WHERE art_id = '$art_id'")  or die(mysqli_error($mysqli));
+	if($fetched = mysqli_fetch_array($query_article)){
+        $title = $fetched['title'];
+        $author = $fetched['author'];
+        $time = $fetched['time'];
+        $content = $fetched['content'];
+    }
+?>
+					
 						<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-							<h2>文章标题</h2>
-							<h4>作者时间等信息</h4>
+							<h2><?php echo $title?></h2>
+							<h4><?php 
+								echo $author;
+								echo "  ";
+								echo $time;
+							      ?></h4>
+<p><?php echo $content?></p>
 						</div>
-					</div>
-					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-					<div class="cd-see-all"><a href="NewPassage.php?art_id=<?php echo $row['art_id']?>" class="btn btn-1" >返回</a></div>
+					
 
 				</div>
 
