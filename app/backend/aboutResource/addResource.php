@@ -29,11 +29,12 @@ else{
 }
 $uploader_id = $_POST['uploader_id'];
 $type = $_POST['type'];
+$post_id=!$type?0:$_POST['post_id'];
 $user_type = $_SESSION['type'];
 //Add resource
 $add_result = mysqli_query($conn,
-    "insert into resource (name,path,size,time,type,uploader_id) 
-     values('$name','$path','$size','$time','$type','$uploader_id')");
+    "insert into resource (name,path,size,time,type,post_id,uploader_id) 
+     values('$name','$path','$size','$time','$type','$post_id','$uploader_id')");
 
 if($add_result){
     $resource_id = mysqli_insert_id($conn);
@@ -52,7 +53,7 @@ if($add_result){
             'name' => $name,
             'time' => $time,
             'size' => $size,
-            'path' => dirname(__FILE__)."/".$path,
+            'path' => $path,
             'uploader_name' => $user_name,
             'uploader_id' => $uploader_id
         )
