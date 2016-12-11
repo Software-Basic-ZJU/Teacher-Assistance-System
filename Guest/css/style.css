@@ -636,6 +636,8 @@ footer .logo img {
 
 
 /* Responsive -------------------------- */
+
+
 @media (max-width: 959px){
     .promo .wrap {
         min-height: 0;
@@ -725,6 +727,10 @@ footer .logo img {
     }
 }
 @media (max-width: 767px){
+    .container{
+        padding-left: 15px;
+        padding-right: 15px;
+    }
     header {
         text-align: center;
     }

@@ -20,6 +20,8 @@
 	<link rel="stylesheet" href="css/style2.css">
 	<link rel="stylesheet" href="css/creative.css">
 	<link rel="stylesheet" href="css/creative.min.css">
+	<link rel="stylesheet" href="css/messageboard.css">
+
 	<!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	
@@ -94,7 +96,7 @@
 		?>
 	</div>
 	
-	<div class="container" style="margin-top: 10px">
+	<div class="container" style="margin-top: 10px;">
 		<div class="well well-lg sr-button">
 			<div class="row text-center">
 				<div class="col-sm-4">
@@ -109,13 +111,11 @@
 			<div id="reply" class="collapse">
 				<form role="form" name="comment" action="?.php" method="post">
 					<div class="row">
-						<div class="col-md">
-							<div class="form-group">
-								<label for="comment">回复:</label>
+						<div class="col-md-6">
 								<textarea class="form-control"　name="comment" rows="5" id="comment"></textarea>
-							</div>
 							<div class="col-lg-12 text-center">
-								<button type="submit" name="commentSubmit" class="btn btn-default btn-xl sr-button" style="background-color:#F05F40">提交</button>
+								</br>
+								<button type="submit" name="commentSubmit" class="btn btn-default btn-xl sr-button" style="background-color:#5bc0de">提交</button>
 							</div>
 						</div>
 					</div>
@@ -123,7 +123,9 @@
 			</div>
 		</div>
 	</div>
-	<div class="container" style="margin-top: 10px">
+
+
+	<div class="container" style="margin-top: 10px;">
 		<div class="well well-lg sr-button">
 			<div class="row text-center">
 				<div class="col-sm-4">
@@ -132,19 +134,17 @@
 				</div>
 				<div class="col-sm-1" style="">
 					<p class="bg-form">内容</p>
-					<a href="#reply" class="btn btn-info" data-toggle="collapse">回复</a>
+					<a href="#reply2" class="btn btn-info" data-toggle="collapse">回复</a>
 				</div>
 			</div>
-			<div id="reply" class="collapse">
+			<div id="reply2" class="collapse">
 				<form role="form" name="comment" action="?.php" method="post">
 					<div class="row">
-						<div class="col-md">
-							<div class="form-group">
-								<label for="comment">回复:</label>
-								<textarea class="form-control"　name="comment" rows="5" id="comment"></textarea>
-							</div>
+						<div class="col-md-6">
+							<textarea class="form-control"　name="comment" rows="5" id="comment"></textarea>
 							<div class="col-lg-12 text-center">
-								<button type="submit" name="commentSubmit" class="btn btn-default btn-xl sr-button" style="background-color:#F05F40">提交</button>
+								</br>
+								<button type="submit" name="commentSubmit" class="btn btn-default btn-xl sr-button" style="background-color:#5bc0de">提交</button>
 							</div>
 						</div>
 					</div>
@@ -168,8 +168,8 @@
 			</div>
 			<div class="row" style="text-ali0px auto">
 				<div class="col-md" >
-					<div id="contact-form">
-						<form name="form1" method="post" action="contact.php" >
+					<div id="contact-form" >
+						<form name="form1" method="post" action="contact.php" style="margin: 0px auto">
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group">
