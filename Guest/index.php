@@ -122,6 +122,7 @@
 							<span><i class="sl-icon-graph"></i></span>
 							<h3>Dashboard</h3>
 							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+							<h5></h5>
 							<div class="cd-see-all" style="padding-top: 90px"><a href="NewPassage.php" class="btn btn-1">See all</a></div>
 						</div>
 					</div>
