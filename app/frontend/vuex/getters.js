@@ -16,9 +16,12 @@ export const articleList=(state)=> {
     return articleList.slice(8*(state.info.articleCurrPage-1),8*state.info.articleCurrPage);
 }
 
-export const resrcList=state=>(
-    state.resource.resrcFilter==1?state.resource.teachResrcList:state.resource.stuResrcList
-);
+export const resrcList=state=>{
+    let resrcList=state.resource.resrcFilter==1?state.resource.teachResrcList:state.resource.stuResrcList
+    return resrcList.sort((itemA,itemB)=>(
+        moment(itemA.uploader_name).valueOf()>moment(itemB.uploader_name).valueOf()
+    ));
+};
 
 export const mailList=state=>(
     !state.mail.mailListType?state.mail.receivedList:state.mail.sendedList

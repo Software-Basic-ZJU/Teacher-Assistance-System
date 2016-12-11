@@ -8,8 +8,6 @@ const state={
         name:'',
         filePath:''
     },
-    editResrc:{
-    },
     teachResrcList:[
     ],
     stuResrcList:[
@@ -20,20 +18,17 @@ const state={
 }
 
 const mutations={
+    resrcLoading(state,signal){
+        state.loading=signal;
+    },
     updateLoading(state,signal){
         state.loading=signal;
     },
     showEditResrc(state,signal){
         state.showEdit=signal;
     },
-    uploadFile(state){
-        //TODO
-    },
     updateResrcList(state,resrcList){
         state.teachResrcList=resrcList;
-    },
-    cancelAddResrc(state){
-        //TODO clear data.remove file.
     },
     resrcFilter(state,index){
         state.resrcFilter=index;

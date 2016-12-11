@@ -30,7 +30,7 @@ function uploadFile($file){
     $user_type = $_SESSION['type'];
     $time = date('y-m-d H:i:s',time());
     $fileName=explode(".",$file['name']);   //分割出文件名和后缀名
-    $path = "upload/" . substr(md5($time . $fileName[0]),8,24) . (count($fileName)>1?("." . $fileName[1]):"");
+    $path = "upload/" . substr(md5($time.$fileName[0]),8,24) . (count($fileName)>1?("." . $fileName[count($fileName)-1]):".txt");
     $size = $file["size"];
     //资源类型：0为教师资源，1为帖子资源，2为跟帖资源
     if($file['error'] > 0)

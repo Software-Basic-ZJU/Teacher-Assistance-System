@@ -25,14 +25,16 @@ if($fetched = mysqli_fetch_array($query_result)){
             "title" => $fetched['title'],
             "content" => $fetched['content'],
             "author" => $fetched['author'],
-            "time" => $fetched['time'],
-            "token" => $_SESSION['token']
+            "time" => $fetched['time']
         );
     }while($fetched = mysqli_fetch_array($query_result));
     $result = array(
         "code" => 0,
         "msg" => "查找成功",
-        "res" => $articles
+        "res" => array(
+            "token" => $_SESSION['token'],
+            "articles"=> $articles
+        )
     );
     echo json_encode($result);
 }

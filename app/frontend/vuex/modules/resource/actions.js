@@ -19,30 +19,58 @@ export const getResrcList=({commit})=>{
     ).then((response)=>{
         let resp=response.body;
         if(!resp.code){
-            commit('updateResrcList',resp.res);
+            commit('updateResrcList',resp.res.resource_list);
         }
     }).then(()=>{
         commit('isLoading',false);
     })
 };
 
-// 上传文件
-export const uploadFile=({commit})=>{
-    commit('uploadFile ');
+// 确认添加或更新资源
+export const uploadResrc=({dispatch,commit},newResrc)=>{
+    commit('resrcLoading',true);
+    Vue.http.post('backend/aboutResource/resourceConfirm.php',
+        {
+            resource_id:newResrc.resrcId,
+            name:newResrc.name
+        }
+    ).then((response)=>{
+        let resp=response.body;
+        if(!resp.code){
+            dispatch('getResrcList');
+            commit('showEditResrc',false);
+        }
+    }).then(()=>{
+        commit('resrcLoading',false);
+        router.replace({name:'resource'});
+    })
 };
 
-// 添加资源
-export const addResrc=({commit})=>{
-
+// 删除文件或资源
+export const removeResrc=({dispatch,commit},file)=>{
+    commit('resrcLoading',true);
+    Vue.http.post('backend/aboutResource/removeResource.php',
+        {
+            resource_id:file.resrcId
+        }
+    ).then((response)=>{
+        let resp=response.body;
+        if(!resp.code){
+            Vue.prototype.$message({
+                type:'success',
+                message:resp.msg
+            })
+        }
+    }).then(()=>{
+        commit('resrcLoading',false);
+        if(file.wholeResrc){
+            dispatch('getResrcList');
+        }
+    })
 }
 
 export const submitResrc=({commit})=>{
     commit('submitResrc');
-};
-
-export const cancelAddResrc=({commit})=>{
-    commit('cancelAddResrc');
-    router.go(-1);
 };
 
 export const resrcFilter=({commit},index)=>{

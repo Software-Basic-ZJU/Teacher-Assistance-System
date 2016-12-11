@@ -19,7 +19,7 @@ $resource_id = test_input(mysqli_escape_string($conn, $_POST['resource_id']));
 $query_result = mysqli_query($conn, "select path FROM resource WHERE resrc_id = '$resource_id';");
 if($fetched = mysqli_fetch_array($query_result)){
     $path = $fetched['path'];
-    if (unlink($path)) {
+   if (unlink($path)) {
         mysqli_query($conn, "delete FROM resource WHERE resrc_id = '$resource_id';");
         $result = array(
             "code" => 0,

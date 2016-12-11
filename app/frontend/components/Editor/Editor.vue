@@ -31,7 +31,9 @@
             </div>
             <el-upload
                 v-if="hasUpload"
-                action="//jsonplaceholder.typicode.com/posts/"
+                action="http://localhost:8000/backend/aboutResource/addResource.php"
+                :data="uploadInfo"
+                :headers="header"
                 :multiple="false"
                 :before-upload="checkUpload"
                 :on-success="finish"
@@ -85,9 +87,13 @@
     import {LS} from "../../helpers/utils";
     export default{
         data(){
+            let userInfo=LS.getItem("userInfo");
             return{
                 editor:null,
-                isUpload:false
+                isUpload:false,
+                header:{        //上传文件的请求头
+                     "X-Access-Token":userInfo.token
+                }
             }
         },
         mounted(){
@@ -137,6 +143,14 @@
                     level:false,
                     authority:false
                 }
+            },
+            uploadInfo:{                //额外参数
+                type:Object,
+                default:{
+                    uploader_id:'',     //上传者id
+                    type:'',             //资源类型，0为教师资源，1为帖子资源
+                    path:''
+                }
             }
         },
         methods:{
@@ -160,7 +174,7 @@
                     level:false
                 }
             },
-            checkUpload(file){
+            checkUpload(file){          //上传前检查上传数量
                 if(this.isUpload) {
                     this.$message({
                         type:'warning',
@@ -170,12 +184,14 @@
                 }
                 console.log(file)
             },
-            finish(response){
+            finish(response){           //上传成功
                 console.log(response);
+                this.data.resrcId=response.res.resource_id;
                 this.isUpload=true;
             },
-            removeFile(file,fileList){
+            removeFile(file,fileList){      //删除文件
                 console.log(fileList);
+                this.$store.dispatch('removeResrc',file);
                 this.isUpload=false;
             }
         }

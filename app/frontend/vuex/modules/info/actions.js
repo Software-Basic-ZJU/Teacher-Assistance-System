@@ -204,7 +204,7 @@ export const getArticleList=({commit})=>{
     ).then((response)=>{
         let resp=response.body;
         if(!resp.code){
-            commit('updateArticleList',resp.res);
+            commit('updateArticleList',resp.res.articles);
         }
     }).then(()=>{
         commit('isLoading',false);

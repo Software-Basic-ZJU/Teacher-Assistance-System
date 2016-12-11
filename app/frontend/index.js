@@ -42,12 +42,18 @@ Vue.http.interceptors.push((req,next)=>{
             });
             return;
         }
-        else if(response.status==408){      //超时回调
+        if(response.status==408){      //超时回调
             Vue.prototype.$message({
                 type:'error',
                 message:'请求超时，请稍后重试'
             });
             return;
+        }
+        if(!response.body){
+            Vue.prototype.$message({
+                type:'error',
+                message:'系统错误，返回体为null值'
+            })
         }
         else if(response.body.code== -1){       //请求错误码统一处理
             Vue.prototype.$message({
