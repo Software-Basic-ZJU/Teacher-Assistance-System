@@ -1,0 +1,27 @@
+@media (min-width: 992px){
+    .col-md-6{
+        width: 100%;
+        padding-left: 100px;
+        padding-right: 100px;
+    }
+    .col-sm-1{
+        width:auto;
+    }
+    .container{
+        padding-left: 100px;
+        padding-right: 100px;
+    }
+}
+@media (min-width: 768px){
+    .col-sm-1{
+        width: auto;
+    }
+    .container{
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+}
+
+.well{
+    background-color: transparent;
+}

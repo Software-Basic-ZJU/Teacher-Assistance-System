@@ -46,8 +46,8 @@ while ($row=mysqli_fetch_array($result)) {
                     echo mb_substr($content,0,50,'utf-8');  //截取文章前51个字作简介       
                 ?>…
                 </p>
-                <h6><?php echo $row['time']?></h5>
-                <div class="cd-see-all"><a href="NewPassage.php?art_id=<?php echo $row['art_id']?>" class="btn btn-1" >详细</a></div>
+                <h5><?php echo $row['time']?></h5>
+                <div class="cd-see-all"><a href="NewPassage.php?art_id=<?php echo $row['art_id']?>" target="_blank" class="btn btn-1" >详细</a></div>
            </div>
         </div>
     
@@ -66,8 +66,8 @@ $page_len = ($page_len%2)?$page_len:$page_len+1;  //页码个数
 $pageoffset = ($page_len-1)/2;  //页码个数左右偏移量
 
 $key='<div class="container" 
-align="center"><div class="pagination">';
-$key.="<li class='disabled'><span>$page/$pages</span></li> "; //第几页,共几页
+align="center"><div class="pagination" >';
+$key.="<li class='disabled'style='background-color: black'><span>$page/$pages</span></li> "; //第几页,共几页
 if($page!=1){
     $key.="<li><a href=\"".$_SERVER['PHP_SELF']."?page=1\">第一页</a></li> "; //第一页
     $key.="<li><a href=\"".$_SERVER['PHP_SELF']."?page=".($page-1)."\">&laquo;</a></li>"; //上一页

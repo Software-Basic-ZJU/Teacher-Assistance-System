@@ -122,7 +122,8 @@
 							<span><i class="sl-icon-graph"></i></span>
 							<h3>Dashboard</h3>
 							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-							<div class="cd-see-all"><a href="NewPassage.php" class="btn btn-1">See all</a></div>
+							<h5></h5>
+							<div class="cd-see-all" style="padding-top: 90px"><a href="NewPassage.php" class="btn btn-1">See all</a></div>
 						</div>
 					</div>
 				</div>
@@ -179,71 +180,50 @@
 		<div class="wrap-footer">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-4 col-footer footer-1">
-						<div class="heading"><h4>About Us</h4></div>
-						<div class="content">
-							<p>关于我们的信息= = </p>
-						</div>
-					</div>
-					<div class="col-md-4 col-footer footer-2">
-						<div class="heading"><h4>Your Email</h4></div>
-						<div class="content">
-							<p>随便写点什么骗她留邮箱 </p>
-							<div class="subcribe-form" >
-								<form method="get" action="/search" id="subcribe">
-									<div class="form-group">
-										<input type="text" class="form-control input-lg" name="subcribe" placeholder="Enter your email address...  " required="required" />
-									</div>
-									<button type="submit" name="Submit" class="btn btn-4 f-left">Subcribe</button>
-								</form>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 col-footer footer-3">
+					<div class="col-md-12 col-footer footer-3">
 						<div class="row">
-							<div class="col-md-6">
+							<div class="col-md-3">
 								<a href="#"><img src="images/15.jpg" /></a>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-3">
 								<a href="#"><img src="images/16.jpg" /></a>
 							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
+							<div class="col-md-3">
 								<a href="#"><img src="images/17.jpg" /></a>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-3">
 								<a href="#"><img src="images/18.jpg" /></a>
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-md-6">
+
+						</div>
+						<div class="row">
+							<div class="col-md-3">
 								<a href="#"><img src="images/19.jpg" /></a>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-3">
 								<a href="#"><img src="images/20.jpg" /></a>
 							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
+							<div class="col-md-3">
 								<a href="#"><img src="images/21.jpg" /></a>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-3">
 								<a href="#"><img src="images/18.jpg" /></a>
 							</div>
 						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 
-		<div class="copyright">
-			<div class="container">
+						<div class="row">
+						</br>
+
+
+				
+			
 				<div class="row">
-					<div class="col-md-4">
-						<p>Copyright &copy; 2016. SRE G11 All rights reserved.<a href="http://www.baidu.com/">G11</a></p>
+					<div class="col-md-5 text-center">
+						<p>Copyright &copy; 2016. SRE G12 All rights reserved.</p>
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-3 text-center">
 						<ul class="list-inline">
 							<li><a href="#"><i class="fa fa-twitter"></i></a>
 							</li>
@@ -252,10 +232,10 @@
 							<li><a href="#"><i class="fa fa-linkedin"></i></a>
 							</li>
 							<li><a href="#"><i class="fa fa-google"></i></a>
-                            </li>
+							</li>
 						</ul>
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-4 text-center">
 						<ul class="list-inline">
 							<li><a href="#">Privacy Policy</a>
 							</li>
@@ -263,9 +243,21 @@
 							</li>
 						</ul>
 					</div>
+
+				</div>
+		
+		
+
+
+
+						</div>
+							
+					</div>
 				</div>
 			</div>
 		</div>
+
+
 	</footer>
 	<!-- Footer -->
 

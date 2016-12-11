@@ -123,6 +123,7 @@ section,
 .cd-see-all .btn-1 {
     color: gray;
     border-color:gray;
+    padding-bottom: 10px;;
 }
 audio,
 canvas,
@@ -316,9 +317,9 @@ header .logo a {
 
 
 /* footer -------------------------- */
-footer {
-    padding: 90px 0;
-}
+/*footer {*/
+    /*padding: 90px 0;*/
+/*}*/
 footer .logo {
     float: left;
     margin: 0 95px 0 0;
@@ -635,6 +636,8 @@ footer .logo img {
 
 
 /* Responsive -------------------------- */
+
+
 @media (max-width: 959px){
     .promo .wrap {
         min-height: 0;
@@ -724,6 +727,10 @@ footer .logo img {
     }
 }
 @media (max-width: 767px){
+    .container{
+        padding-left: 15px;
+        padding-right: 15px;
+    }
     header {
         text-align: center;
     }

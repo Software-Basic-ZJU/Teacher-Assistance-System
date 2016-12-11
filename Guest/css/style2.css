@@ -874,6 +874,7 @@ figure {
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   border-radius: 5px;
+  height: 500px;
 }
 .services span {
   display: block;
@@ -897,6 +898,22 @@ figure {
   -o-transition: 0.3s;
   transition: 0.3s;
 }
+
+.services h4{
+  height: 80px;
+}
+.services h5{
+  height: 20px;
+}
+.services p{
+  height: 100px;
+}
+.pagination>li>a, .pagination>li>span ,.pagination>.disabled>a, .pagination>.disabled>a:focus, .pagination>.disabled>a:hover, .pagination>.disabled>span, .pagination>.disabled>span:focus, .pagination>.disabled>span:hover .pagination>li:first-child>a, .pagination>li:first-child>span{
+  opacity: 0.5;
+  background: #f0f0f0;
+}
+
+
 
 #fh5co-portfolio-section {
   display: -webkit-box;
@@ -1370,7 +1387,7 @@ figure {
 }
 
 .fh5co-heading {
-  margin-bottom: 2.5em;
+  margin-bottom: 5em;
 }
 .fh5co-heading i {
   font-size: 40px;

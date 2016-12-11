@@ -92,21 +92,13 @@
 			</div>
 		</div>
 		<div class="portfolio-row-half">
-			<a href="" class="portfolio-grid-item" style="background-image: url(images/excelicon.png);background-size: 50%;background-position-y: 45px;background-repeat: no-repeat;">
+			<a href="" class="portfolio-grid-item" style="background-image: url(images/excelicon.png);background-size: 30%;background-position-y: 80px;background-repeat: no-repeat; height: 300px">
 				<div class="desc2">
 					<h3>课件1</h3>
 					<span>这是个ppt</span>
 					<i class="sl-icon-heart">more信息</i>
 				</div>
 			</a>
-			<a href="#" class="portfolio-grid-item" style="background-image: url(images/project-3.jpg);">
-				<div class="desc2">
-					<h3>Shoes</h3>
-					<span>Travel</span>
-					<i class="sl-icon-heart"></i>
-				</div>
-			</a>
-
 		</div>
 		<!-- </div> -->
 	</div>
@@ -118,27 +110,13 @@
 		<div class="wrap-footer">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-4 col-footer footer-1">
+					<div class="col-md-5 col-footer footer-1">
 						<div class="heading"><h4>About Us</h4></div>
 						<div class="content">
 							<p>关于我们的信息= = </p>
 						</div>
 					</div>
-					<div class="col-md-4 col-footer footer-2">
-						<div class="heading"><h4>Your Email</h4></div>
-						<div class="content">
-							<p>随便写点什么骗她留邮箱 </p>
-							<div class="subcribe-form" >
-								<form method="get" action="/search" id="subcribe">
-									<div class="form-group">
-										<input type="text" class="form-control input-lg" name="subcribe" placeholder="Enter your email address...  " required="required" />
-									</div>
-									<button type="submit" name="Submit" class="btn btn-4 f-left">Subcribe</button>
-								</form>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 col-footer footer-3">
+					<div class="col-md-6 col-footer footer-3">
 						<div class="row">
 							<div class="col-md-6">
 								<a href="#"><img src="images/15.jpg" /></a>
@@ -180,7 +158,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-4">
-						<p>Copyright &copy; 2016. SRE G11 All rights reserved.<a href="http://www.baidu.com/">G11</a></p>
+						<p>Copyright &copy; 2016. SRE G12 All rights reserved.<a href="http://www.baidu.com/">G12</a></p>
 					</div>
 					<div class="col-md-4">
 						<ul class="list-inline">
@@ -191,7 +169,7 @@
 							<li><a href="#"><i class="fa fa-linkedin"></i></a>
 							</li>
 							<li><a href="#"><i class="fa fa-google"></i></a>
-                            </li>
+							</li>
 						</ul>
 					</div>
 					<div class="col-md-4">
