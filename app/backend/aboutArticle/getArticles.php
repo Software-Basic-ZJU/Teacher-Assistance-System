@@ -17,23 +17,32 @@ loginCheck($_SERVER['HTTP_X_ACCESS_TOKEN']);
 $teacher_id = test_input(mysqli_escape_string($conn, $_POST['teacher_id']));
 $query_result = mysqli_query($conn, "select * from article 
                                          where teacher_id ='$teacher_id'");
-if($fetched = mysqli_fetch_array($query_result)){
+if($query_result){
     $articles = array();
-    do{ //Articles[String](title,content,author,time)
+    while($fetched = mysqli_fetch_array($query_result)){
         $articles[] = array(
             "article_id" => $fetched['art_id'],
             "title" => $fetched['title'],
             "content" => $fetched['content'],
             "author" => $fetched['author'],
+<<<<<<< HEAD
             "time" => $fetched['time']
+=======
+            "time" => $fetched['time'],
+>>>>>>> bc6d40f09c81bfbbab15001f2a42498ff4aa0471
         );
-    }while($fetched = mysqli_fetch_array($query_result));
+    }
     $result = array(
         "code" => 0,
         "msg" => "查找成功",
         "res" => array(
+<<<<<<< HEAD
             "token" => $_SESSION['token'],
             "articles"=> $articles
+=======
+            'articles' => $articles,
+            "token" => $_SESSION['token']
+>>>>>>> bc6d40f09c81bfbbab15001f2a42498ff4aa0471
         )
     );
     echo json_encode($result);

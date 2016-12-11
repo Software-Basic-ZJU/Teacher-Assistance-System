@@ -76,7 +76,10 @@ POST——Teacher-Assistance-System/app/backend/aboutNotice/getNotices.php
 ```php
 		"code" => 0,
         "msg" => "查找成功",
-        "res" => $notices
+        "res" => array(
+            'notices' => $notices,
+            'token' => $_SESSION['token']
+        )
           
         //$notices是一个数组
         $notices[] = array(
@@ -131,7 +134,10 @@ POST——Teacher-Assistance-System/app/backend/aboutArticle/getArticles.php
 ```php
 		"code" => 0,
         "msg" => "查找成功",
-        "res" => $articles
+        "res" => array(
+            'articles' => $articles,
+            "token" => $_SESSION['token']
+        )
  //其中$articles为数组的数组
           $articles[] = array(
             "article_id"
@@ -633,7 +639,10 @@ POST——Teacher-Assistance-System/app/backend/aboutHW/getHwList.php
 ```php
         "code" => 0,
         "msg" => "查找成功",
-        "res" => $hwList
+        "res" => array(
+            'hwList' => $hwList,
+            'token' => $_SESSION['token']
+        )
           
         $hwList[] = array(
             "hw_id" => $fetched['hw_id'],
@@ -746,7 +755,10 @@ POST——Teacher-Assistance-System/app/backend/aboutQues/getQuesList.php
 ```php
 		"code" => 0,
         "msg" => "查找成功",
-        "res" => $quesList
+        "res" => array(
+            'quesList' => $quesList,
+            'token' => $_SESSION['token']
+        )
           
           $quesList[] = array(
             "ques_id" => $fetched['ques_id'],
@@ -755,7 +767,11 @@ POST——Teacher-Assistance-System/app/backend/aboutQues/getQuesList.php
             "content" => $fetched['content'],
             "should_num" => $should_num,
             "submit_num" => $fetched['submit_num'],
+<<<<<<< HEAD
             "ques_finish" => $fetched['ques_finish']
+=======
+            "ques_finish" => $fetched['ques_finish'],
+>>>>>>> bc6d40f09c81bfbbab15001f2a42498ff4aa0471
         );
 ```
 
@@ -1053,7 +1069,7 @@ POST——Teacher-Assistance-System/app/backend/aboutPost/getPostList.php
                 "attachment" => $attachment
             );
 
-       		$attachment[] = array(
+       		$attachment= array(
                         "resrc_id" => $fetched_resource['resrc_id'],
                         "name" => $fetched_resource['name'],
                         "path" => $fetched_resource['path'],
