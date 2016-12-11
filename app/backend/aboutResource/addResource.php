@@ -25,7 +25,7 @@ else{
     $name = $upload_result['res']['name'];
     $time = $upload_result['res']['time'];
     $size = $upload_result['res']['size'];
-    $path = dirname(__FILE__).$upload_result['res']['path'];
+    $path = $upload_result['res']['path'];
 }
 $uploader_id = $_POST['uploader_id'];
 $type = $_POST['type'];
@@ -47,14 +47,14 @@ if($add_result){
         'code' => 0,
         'msg' => '添加成功',
         'res' => array(//Resource_id,name,time,size,uploader_name,uploader_id
+            "token"=>$_SESSION['token'],
             'resource_id' => $resource_id,
             'name' => $name,
             'time' => $time,
             'size' => $size,
-            'path' => $path,
+            'path' => dirname(__FILE__)."/".$path,
             'uploader_name' => $user_name,
-            'uploader_id' => $uploader_id,
-            "token" => $_SESSION['token']
+            'uploader_id' => $uploader_id
         )
     );
     echo json_encode($result);
@@ -63,7 +63,7 @@ if($add_result){
             'code' => -1,
             'msg' => '添加失败,数据库错误',
             'res' => array(
-                "token" => $_SESSION['token']
+                "token"=>$_SESSION['token']
             )
         );
         echo json_encode($result);

@@ -45,7 +45,7 @@ if($fetched = mysqli_fetch_array($getPath_result)){
                 'size' => $size,
                 'uploader_name' => $user_name,
                 'uploader_id' => $uploader_id,
-                'token' => $_SESSION['token']
+                "token"=>$_SESSION['token']
             )
         );
         echo json_encode($result);
@@ -60,7 +60,7 @@ if($fetched = mysqli_fetch_array($getPath_result)){
                 'size' => $size,
                 'uploader_name' => $user_name,
                 'uploader_id' => $uploader_id,
-                'token' => $_SESSION['token']
+                "token"=>$_SESSION['token']
             )
         );
         echo json_encode($result);
@@ -68,11 +68,9 @@ if($fetched = mysqli_fetch_array($getPath_result)){
 }
 else{
     $result = array(
-        "code" => 2,
+        "code" => -1,
         "msg" => "没有这个资源",
-        "res" => array(
-            'token' => $_SESSION['token']
-        )
+        "res" => null
     );
     echo json_encode($result);
 }
