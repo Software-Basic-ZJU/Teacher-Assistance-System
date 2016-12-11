@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import * as actions from './actions';
 
 const state={
@@ -32,7 +31,7 @@ const state={
     ],
     showAction:false,       //对话框弹出和消失state
     actionType:false,       //false为添加作业，true为编辑作业
-    editHwId:'',
+    editHwId:'',            //正在编辑的作业ID
     markForm:{              //教师点评表单state
         score:'',
         review:''
@@ -40,6 +39,9 @@ const state={
 }
 
 const mutations={
+    isHwLoading(state,signal){
+        state.loading=signal;
+    },
     showHwAction(state,signal){
         state.showAction=signal;
     },
@@ -47,8 +49,23 @@ const mutations={
         state.actionType=true;
         state.editHwId=hwId;
     },
+    clearEditHwId(state){       //清楚正在编辑的状态，以让下一次编辑时，vue能够检测到editHwId变化
+        state.editHwId=0;
+    },
+    setActionType(state,signal){
+        state.actionType=signal;
+    },
     updateHwList(state,newHwList){
         state.hwList=newHwList;
+    },
+    deleteHwItem(state,hwId){       //删除作业某项
+        let hwList=state.hwList.slice();
+        let i;
+        for(i=0;hwList.length;i++){
+            if(hwList[i].hw_id==hwId) break;
+        }
+        hwList.splice(i,1);
+        state.hwList=hwList;
     }
 }
 

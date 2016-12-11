@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import {LS} from "../helpers/utils";
 import {
     App,
     Info,
@@ -55,7 +56,7 @@ const routes=[
         children:[
             {
                 path:'/info',
-                name:'Info',
+                name:'info',
                 component:Info,
                 redirect:'/info/notices',
                 children:[
@@ -149,8 +150,9 @@ const routes=[
             },
             {
                 name:'homework',
-                path:'/homework',
+                path:'/homework/:classId',
                 component:Homework,
+                redirect:'/homework/:classId/list',
                 children:[
                     {
                         name:'hwList',
