@@ -9,8 +9,8 @@
                     <el-tag :class="{'group':hwType}">{{hwType?'小组作业':'个人作业'}}</el-tag>
                     <span style="line-height: 36px;">{{title}}</span>
                     <el-button class="fr" type="primary" @click="goHwDetail(hwId)">前往查看</el-button>
-                    <el-button class="fr" v-if="identify==1" icon="edit" :plain="true" type="warning" @click.native="showEditHw(hwId)"></el-button>
-                    <el-button class="fr" v-if="identify==1" type="danger" :plain="true" icon="delete"></el-button>
+                    <el-button class="fr" v-if="idenType!=1" icon="edit" :plain="true" type="warning" @click.native="showEditHw(hwId)"></el-button>
+                    <el-button class="fr" v-if="idenType!=1" type="danger" :plain="true" icon="delete"></el-button>
                 </div>
                 <div class="text item fl">
                     发布时间: &nbsp;&nbsp;{{publishTime}}
@@ -57,7 +57,7 @@
             title:String,
             publishTime:String,
             deadline:String,
-            identify:[String,Number],
+            idenType:[String,Number],
             hwType:[String,Number]
         },
         methods:{

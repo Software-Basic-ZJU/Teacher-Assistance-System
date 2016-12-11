@@ -16,7 +16,7 @@ import router from "../routes";
 Vue.use(Vuex);
 
 const state={
-    loading:false,
+    loading:false,                  //全局loading state,遮盖主体.各组件中有局部loading
     isLogin:false,
     userInfo:{},                    //身份为老师或助教时，class_id为数组
     showCompleteInfo:false,         //补全信息对话框显示开关

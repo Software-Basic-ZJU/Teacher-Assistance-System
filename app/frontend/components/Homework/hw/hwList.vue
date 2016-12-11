@@ -3,14 +3,14 @@
         <div class="homework">
             <div class="header">
                 <h2>作业列表</h2>
-                <el-button type="success" class="fr" @click.navtive="showHwAction">添加作业</el-button>
+                <el-button type="success" class="fr" v-if="idenType!=1" @click.navtive="showHwAction">添加作业</el-button>
             </div>
             <hw-item
                     v-for="item in hwList"
                     :key="item.hwId"
                     :hw-id="item.hwId"
                     :title="item.title"
-                    :publish-time="item.publishTime"
+                    :publish-time="item.publish_time"
                     :deadline="item.deadline"
                     :identify="identify"
                     :hw-type="item.hwType"
@@ -63,10 +63,7 @@
     </div>
 </template>
 <style scoped>
-    .header{
-        border-bottom:1px solid #D3DCE6;
-    }
-    .header>h2{
+    .header>h3{
         color:#475669;
         height:25px;
         margin-top:0px;
@@ -86,11 +83,14 @@
 </style>
 <script>
     import hwItem from "./hwItem.vue";
-    import {mapActions,mapState} from "vuex";
+    import {mapState} from "vuex";
+    import {LS} from "../../../helpers/utils";
+
     export default{
         data(){
+            let userInfo=LS.getItem("userInfo");
             return{
-                identify:1,
+                idenType:userInfo.type,
                 hwType:0,
                 punishType:0,
                 deadline:'',
@@ -125,13 +125,13 @@
             }
         }),
         methods:{
-            ...mapActions([
-                'showHwAction'
-            ]),
+            showHwAction(){
+                this.$store.dispatch('showHwAction',true);
+            },
             closeHwAction(){
                 this.deadline='';
                 this.punishRate='';
-                this.$store.dispatch('closeHwAction');
+                this.$store.dispatch('showHwAction',false);
             },
             submitHwAction(){
                 this.tempHw.hwType=this.hwType;

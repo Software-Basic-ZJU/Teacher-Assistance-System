@@ -151,36 +151,35 @@ const routes=[
                 name:'homework',
                 path:'/homework',
                 component:Homework,
-                redirect:'/homework/list/',
                 children:[
                     {
                         name:'hwList',
-                        path:'/homework/list/',
+                        path:'/homework/:classId/list',
                         component:hwList
                     },
                     {
                         name:'hwDetail',
-                        path:'/homework/:hwId/questions',
+                        path:'/homework/:classId/:hwId/questions',
                         component:hwDetail
                     },
                     {
                         name:'quesDetail',
-                        path:'/homework/:hwId/question/:quesId',
+                        path:'/homework/:classId/:hwId/question/:quesId',
                         component:quesDetail
                     },
                     {
                         name:'addQues',
-                        path:'/homework/:hwId/addques',
+                        path:'/homework/:classId/:hwId/addques',
                         component:addQues
                     },
                     {
                         name:'editQues',
-                        path:'/homework/:hwId/question/edit/:quesId',
+                        path:'/homework/:classId/:hwId/question/edit/:quesId',
                         component:editQues
                     },
                     {
                         name:'correct',
-                        path:'/homework/:hwId/question/:quesId/correct/:sid',
+                        path:'/homework/:classId/:hwId/question/:quesId/correct/:sid',
                         component:correct
                     }
                 ]

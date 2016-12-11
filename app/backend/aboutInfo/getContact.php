@@ -28,8 +28,7 @@ if($fetched = mysqli_fetch_array($query_result)){
             "email" => $fetched['email'],
             "wechat" => $fetched['wechat'],
             "qq" => $fetched['qq'],
-            "other_contact" => $fetched['other_contact'],
-            "token" => $_SESSION['token']
+            "other_contact" => $fetched['other_contact']
         )
     );
     echo json_encode($result);

@@ -4,24 +4,6 @@ import * as actions from './actions';
 const state={
     loading:false,
     hwList:[                //作业列表
-        {
-            hwId:1,
-            title:'第一章作业',
-            publishTime:"2016-11-03",
-            deadline:"2016-12-03",
-            hwType:1,
-            punishType:0,
-            punishRate:1
-        },
-        {
-            hwId:2,
-            title:'第二章作业',
-            publishTime:"2016-11-03",
-            deadline:"2016-12-03",
-            hwType:0,
-            punishType:1,
-            punishRate:0.52
-        }
     ],
     quesList:[
         {
@@ -58,17 +40,16 @@ const state={
 }
 
 const mutations={
-    showHwAction(state){
-        state.showAction=true;
-    },
-    closeHwAction(state){
-        state.showAction=false;
-        state.editHwId='';
+    showHwAction(state,signal){
+        state.showAction=signal;
     },
     showEditHw(state,hwId){
         state.actionType=true;
         state.editHwId=hwId;
     },
+    updateHwList(state,newHwList){
+        state.hwList=newHwList;
+    }
 }
 
 export default {

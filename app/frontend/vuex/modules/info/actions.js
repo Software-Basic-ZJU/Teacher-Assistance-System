@@ -66,7 +66,7 @@ export const getNoticeList=({commit})=>{
     ).then((response)=>{
         let resp=response.body;
         if(!resp.code){
-            commit('updateNoticeList',resp.res);
+            commit('updateNoticeList',resp.res.notices);
         }
     }).then(()=>{
         commit('isLoading',false);
