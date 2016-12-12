@@ -9,7 +9,7 @@
                     <span style="line-height: 36px;" class="fl">{{title}}</span>
                     <div class="statistics fl">
                         <div class="shouldNum">应交人数：{{shouldNum}}</div>
-                        <div class="haveNum">实交人数：{{haveNum}}</div>
+                        <div class="haveNum">实交人数：{{submitNum}}</div>
                     </div>
                     <el-button class="fr" type="primary" @click="goQuesByName(quesId,'quesDetail')">前往查看</el-button>
                     <el-button class="fr" type="warning" :plain="true" @click="goQuesByName(quesId,'editQues')" icon="edit"></el-button>
@@ -45,7 +45,7 @@
             quesId:[String,Number],         //问题id
             title:String,                   //问题标题
             shouldNum:[String,Number],      //问题应交人数
-            haveNum:[String,Number]         //问题已交人数
+            submitNum:[String,Number]         //问题已交人数
         },
         methods:{
             goQuesByName(quesId,name){

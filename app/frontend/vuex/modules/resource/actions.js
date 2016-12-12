@@ -39,6 +39,8 @@ export const uploadResrc=({dispatch,commit},newResrc)=>{
         if(!resp.code){
             dispatch('getResrcList');
             commit('showEditResrc',false);
+            commit('isFileUpload',false);
+            LS.removeItem("resource");
         }
     }).then(()=>{
         commit('resrcLoading',false);
@@ -59,7 +61,9 @@ export const removeResrc=({dispatch,commit},file)=>{
             Vue.prototype.$message({
                 type:'success',
                 message:resp.msg
-            })
+            });
+            commit('isFileUpload',false);
+            LS.removeItem("resource");
         }
     }).then(()=>{
         commit('resrcLoading',false);
@@ -67,7 +71,7 @@ export const removeResrc=({dispatch,commit},file)=>{
             dispatch('getResrcList');
         }
     })
-}
+};
 
 export const submitResrc=({commit})=>{
     commit('submitResrc');

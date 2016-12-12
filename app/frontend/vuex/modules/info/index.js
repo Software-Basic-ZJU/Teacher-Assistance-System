@@ -48,12 +48,12 @@ const mutations={
     },
     addNotice(state,newNotice){
         let userInfo=LS.getItem("userInfo");
-        for(let i=0;i<userInfo.class_id.length;i++){
-            if(userInfo.class_id[i].class_id==newNotice.class_id){
-                newNotice.class_name=userInfo.class_id[i].class_name;
-                break;
+        userInfo.class_id.forEach((item)=>{
+            if(item.class_id==newNotice.class_id){
+                newNotice.class_name=item.class_name;
+                return;
             }
-        }
+        });
         state.noticeList.push(newNotice);
     }
 }

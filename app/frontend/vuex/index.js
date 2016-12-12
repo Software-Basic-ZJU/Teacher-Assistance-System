@@ -20,7 +20,8 @@ const state={
     isLogin:false,
     userInfo:{},                    //身份为老师或助教时，class_id为数组
     showCompleteInfo:false,         //补全信息对话框显示开关
-    editorLoading:false             //编辑器的loading
+    editorLoading:false,             //编辑器的loading
+    isFileUpload:false                //检测编辑器中是否已有文件上传
 };
 
 const mutations={
@@ -38,8 +39,11 @@ const mutations={
         LS.clear();
         router.push({name:'login'});
     },
-    editorLoading(state,signal){
+    editorLoading(state,signal){        //编辑器Loading状态
         state.editorLoading=signal;
+    },
+    isFileUpload(state,signal){
+        state.isFileUpload=signal;
     }
 };
 

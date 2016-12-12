@@ -108,8 +108,7 @@ if($section == 2){
 else{
     $query_result = mysqli_query($conn, "select * from posts WHERE section = '$section' AND teacher_id = '$teacher_id';");
     if($query_result){
-        $fetched = mysqli_fetch_array($query_result);
-        $postList = array();//post_id,title,content,author_id,author_name,publish_time,update_time,reply_num,attachment[String](resource_id,name,path,size)
+        $postList = array();        //post_id,title,content,author_id,author_name,publish_time,update_time,reply_num,attachment[String](resource_id,name,path,size)
         while($fetched = mysqli_fetch_array($query_result)){
             $author_id = $fetched['author_id'];
             $post_id = $fetched['post_id'];
@@ -177,7 +176,7 @@ else{
     }
     else{
         $result = array(
-            "code" => 1,
+            "code" => -1,
             "msg" => "查找失败，错误",
             "res" => array(
                 'token' => $_SESSION['token']

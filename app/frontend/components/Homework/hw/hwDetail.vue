@@ -3,7 +3,7 @@
         <div class="hwDetail">
             <div class="header">
                 <el-breadcrumb separator="/">
-                    <el-breadcrumb-item :to="{name:'homework'}">作业列表</el-breadcrumb-item>
+                    <el-breadcrumb-item :to="{name:'homework'}">{{className}}作业列表</el-breadcrumb-item>
                     <el-breadcrumb-item>{{hwDetail.hwTitle}}</el-breadcrumb-item>
                 </el-breadcrumb>
                 <el-button type="success" class="fr" @click="addQues">添加问题</el-button>
@@ -14,14 +14,14 @@
                 <span class="ddl">截止时间：{{hwDetail.hwDeadline}}</span>
             </div>
             <div class="quesList">
-                <div class="noRes" v-id="hwDetail.quesList.length==0">还没有添加问题~</div>
+                <div class="noRes" v-if="hwDetail.quesList.length==0">还没有添加问题~</div>
                 <ques-item
-                        v-for="item in quesList"
-                        :key="item.quesId"
-                        :ques-id="item.quesId"
+                        v-for="item in hwDetail.quesList"
+                        :key="item.ques_id"
+                        :ques-id="item.ques_id"
                         :title="item.title"
-                        :shouldNum="item.shouldNum"
-                        :haveNum="item.haveNum"
+                        :should-num="item.should_num"
+                        :submit-num="item.submit_num"
                 ></ques-item>
             </div>
         </div>
@@ -47,11 +47,6 @@
     .quesList{
         padding:10px 0px;
     }
-    .quesList .noRes{
-        text-align: center;
-        font-size:20px;
-        color:#c9c9c9;
-    }
     .el-button--success{
         margin-top:-45px;
     }
@@ -59,7 +54,7 @@
 <script>
     import quesItem from "../question/quesItem.vue";
     import router from "../../../routes";
-    import {mapState} from "vuex";
+    import {LS} from "../../../helpers/utils";
 
     export default{
         data(){
@@ -68,9 +63,20 @@
             }
         },
         computed:{
-            ...mapState({
-                hwDetail:state=>state.homework.hwDetail,        //作业详情
-            })
+            hwDetail(){
+                return this.$store.state.homework.hwDetail;
+            },
+            className(){        //班级名称
+                let className="";
+                let userInfo=LS.getItem("userInfo");
+                for(let i=0;userInfo.type!=1 && i<userInfo.class_id.length;i++){
+                    if(userInfo.class_id[i].class_id==this.$route.params.classId){
+                        className=userInfo.class_id[i].class_name+" - ";
+                        break;
+                    }
+                }
+                return className;
+            }
         },
         methods:{
             addQues(){
