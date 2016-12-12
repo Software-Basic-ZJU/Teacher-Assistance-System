@@ -26,6 +26,17 @@ if($_SESSION['type']!=2){
 }
 $query_result = mysqli_query($conn, "delete from article WHERE art_id = '$article_id';");
 if($query_result){
+    if(!deleteComment($conn,$article_id)){
+        $result = array(
+            "code" => -1,
+            "msg" => "删除评论失败",
+            "res" => array(
+                "token" => $_SESSION['token']
+            )
+        );
+        echo json_encode($result);
+        exit;
+    }
     $result = array(
         "code" => 0,
         "msg" => "删除成功",

@@ -14,7 +14,6 @@ connectDB();
 //Verify token
 loginCheck($_SERVER['HTTP_X_ACCESS_TOKEN']);
 //Get information
-//Title,content,teacher_id,section,attachment[]
 $title = test_input(mysqli_escape_string($conn, $_POST['title']));
 $content = test_input(mysqli_escape_string($conn, $_POST['content']));
 $teacher_id = test_input(mysqli_escape_string($conn, $_POST['teacher_id']));
@@ -38,38 +37,26 @@ if($_SESSION['type']==1){
             echo json_encode($result);
             exit;
         }
+        
     }
 
 }
 elseif ($_SESSION['type'] == 2){
     $author_id = $_SESSION['teacher_id'];
+
 }
 elseif ($_SESSION['type'] == 3){
     $author_id = $_SESSION['assist_id'];
+
 }
 $query_result = mysqli_query($conn, "INSERT INTO posts 
                                      (title,content,teacher_id,section,author_id,group_id,publish_time,update_time) 
                                       values('$title','$content','$teacher_id','$section','$author_id','$group_id','$time','$time');");
+									  
 if($query_result){
     $post_id = mysqli_insert_id($conn);
 
-    $getName_result = mysqli_query($conn,"select * 
-                    from (select student_id as id, name as name from student 
-                          UNION 
-                          select teacher_id as id ,name as name from teacher) as temp
-                    WHERE temp.id = '$author_id';");
-    if($fetched_name = mysqli_fetch_array($getName_result)){
-        $author_name = $fetched_name['name'];
-    }
-    else{
-        $result = array(
-            "code" => 403,
-            "msg" => "发布者身份非法",
-            "res" => null
-        );
-        echo json_encode($result);
-        exit;
-    }
+    $getName_result = getAuthorName($conn,$author_id);
 
     if($resrc_id!=null){
         $updateResource_result = mysqli_query($conn, "update resource
@@ -78,7 +65,7 @@ if($query_result){
         if(!$updateResource_result){
             $result = array(
                 "code" => -1,
-                "msg" => "插入附件失败",
+                "msg" => "附件更新所属帖子失败",
                 "res" => array(
                     'token' => $_SESSION['token']
                 )

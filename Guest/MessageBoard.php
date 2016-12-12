@@ -20,11 +20,11 @@
 	<link rel="stylesheet" href="css/style2.css">
 	<link rel="stylesheet" href="css/creative.css">
 	<link rel="stylesheet" href="css/creative.min.css">
-	<link rel="stylesheet" href="css/messageboard.css">
 
 	<!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	
+	<link rel="stylesheet" href="css/messageboard.css">
+
 	<!-- Js -->
 	<script src="js/modernizr.js"></script> <!-- Modernizr -->
 	
@@ -82,7 +82,7 @@
         <!-- /.container-fluid -->
     </nav>
 
-	<div class="container" style="margin-top:150px">
+	<div class="container" style="margin-top:120px">
 		<div class="row">
 			<div class="col-lg-4 col-lg-offset-4">
 				<div class="text-center">
@@ -96,64 +96,6 @@
 		?>
 	</div>
 	
-	<div class="container" style="margin-top: 10px;">
-		<div class="well well-lg sr-button">
-			<div class="row text-center">
-				<div class="col-sm-4">
-					<p class="text-success">留言标题
-					<p>时间</p>
-				</div>
-				<div class="col-sm-1" style="">
-					<p class="bg-form">内容</p>
-					<a href="#reply" class="btn btn-info" data-toggle="collapse">回复</a>
-				</div>
-			</div>
-			<div id="reply" class="collapse">
-				<form role="form" name="comment" action="?.php" method="post">
-					<div class="row">
-						<div class="col-md-6">
-								<textarea class="form-control"　name="comment" rows="5" id="comment"></textarea>
-							<div class="col-lg-12 text-center">
-								</br>
-								<button type="submit" name="commentSubmit" class="btn btn-default btn-xl sr-button" style="background-color:#5bc0de">提交</button>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-
-
-	<div class="container" style="margin-top: 10px;">
-		<div class="well well-lg sr-button">
-			<div class="row text-center">
-				<div class="col-sm-4">
-					<p class="text-success">留言标题
-					<p>时间</p>
-				</div>
-				<div class="col-sm-1" style="">
-					<p class="bg-form">内容</p>
-					<a href="#reply2" class="btn btn-info" data-toggle="collapse">回复</a>
-				</div>
-			</div>
-			<div id="reply2" class="collapse">
-				<form role="form" name="comment" action="?.php" method="post">
-					<div class="row">
-						<div class="col-md-6">
-							<textarea class="form-control"　name="comment" rows="5" id="comment"></textarea>
-							<div class="col-lg-12 text-center">
-								</br>
-								<button type="submit" name="commentSubmit" class="btn btn-default btn-xl sr-button" style="background-color:#5bc0de">提交</button>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-
-
 	
 	
 
@@ -161,22 +103,24 @@
 	<section class="box-content box-5" id="contact">
 		<div class="container">
 			<div class="row heading">
-				<div class="col-lg-12">
-					<h2>我要留言</h2>
+				<div class="col-lg-12" >
+					<h2 style="font-size: 26px;">我要留言</h2>
 					<hr>
 				</div>
 			</div>
 			<div class="row" style="text-ali0px auto">
 				<div class="col-md" >
 					<div id="contact-form" >
-						<form name="form1" method="post" action="contact.php" style="margin: 0px auto">
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group">
-										<input type="text" class="form-control input-lg" name="subject" id="subject" placeholder="Subject" required="required" />
-									</div>
-								</div>
-							</div>
+						<form name="form1" method="post" action="./backend/MessageBoard/Send.php" style="margin: 0px auto">
+<?php
+$ip=$_SERVER["REMOTE_ADDR"];
+$author = "游客(".$ip.")";
+
+date_default_timezone_set("Asia/Shanghai");
+$time = date("Y-m-d H:i:s"); 
+?>
+				<input type="hidden" name="author" value="<?php echo $author?>">
+				<input type="hidden" name="time" value="<?php echo $time?>">
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group">
@@ -184,7 +128,7 @@
 													  placeholder="Message"></textarea>
 									</div>
 									<button type="submit" class="btn btn-3 btn-block" name="btnContactUs" id="btnContactUs">
-										Submit</button>
+										提交</button>
 								</div>
 							</div>
 						</form>
@@ -202,43 +146,46 @@
 		<div class="wrap-footer">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-5 col-footer footer-1">
-						<div class="heading"><h4>About Us</h4></div>
-						<div class="content">
-							<p>关于我们的信息= = </p>
-						</div>
-					</div>
-					<div class="col-md-6 col-footer footer-3">
+					<div class="col-md-12 col-footer footer-3">
 						<div class="row">
-							<div class="col-md-6">
-								<a href="#"><img src="images/15.jpg" /></a>
+							<div class="col-md-3 text-center">
+								<a href="#">教务网</a>
 							</div>
-							<div class="col-md-6">
-								<a href="#"><img src="images/16.jpg" /></a>
+							<div class="col-md-3 text-center">
+								<a href="#">计算机学院</a>
 							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<a href="#"><img src="images/17.jpg" /></a>
+							<div class="col-md-3 text-center">
+								<a href="#">本科生院</a>
 							</div>
-							<div class="col-md-6">
-								<a href="#"><img src="images/18.jpg" /></a>
+							<div class="col-md-3 text-center">
+								<a href="#">友情课程</a>
 							</div>
 						</div>
+
+
 						<div class="row">
-							<div class="col-md-6">
-								<a href="#"><img src="images/19.jpg" /></a>
+							<div class="col-md-5 text-center">
+								<p>Copyright &copy; 2016. SRE G12 All rights reserved.</p>
 							</div>
-							<div class="col-md-6">
-								<a href="#"><img src="images/20.jpg" /></a>
+							<div class="col-md-3 text-center">
+								<ul class="list-inline">
+									<li><a href="#"><i class="fa fa-twitter"></i></a>
+									</li>
+									<li><a href="#"><i class="fa fa-facebook"></i></a>
+									</li>
+									<li><a href="#"><i class="fa fa-linkedin"></i></a>
+									</li>
+									<li><a href="#"><i class="fa fa-google"></i></a>
+									</li>
+								</ul>
 							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<a href="#"><img src="images/21.jpg" /></a>
-							</div>
-							<div class="col-md-6">
-								<a href="#"><img src="images/18.jpg" /></a>
+							<div class="col-md-4 text-center">
+								<ul class="list-inline">
+									<li><a href="#">Privacy Policy</a>
+									</li>
+									<li><a href="#">Terms of Use</a>
+									</li>
+								</ul>
 							</div>
 						</div>
 					</div>
@@ -246,35 +193,7 @@
 			</div>
 		</div>
 
-		<div class="copyright">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4">
-						<p>Copyright &copy; 2016. SRE G12 All rights reserved.<a href="http://www.baidu.com/">G12</a></p>
-					</div>
-					<div class="col-md-4">
-						<ul class="list-inline">
-							<li><a href="#"><i class="fa fa-twitter"></i></a>
-							</li>
-							<li><a href="#"><i class="fa fa-facebook"></i></a>
-							</li>
-							<li><a href="#"><i class="fa fa-linkedin"></i></a>
-							</li>
-							<li><a href="#"><i class="fa fa-google"></i></a>
-							</li>
-						</ul>
-					</div>
-					<div class="col-md-4">
-						<ul class="list-inline">
-							<li><a href="#">Privacy Policy</a>
-							</li>
-							<li><a href="#">Terms of Use</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
+
 	</footer>
 	<!-- Footer -->
 

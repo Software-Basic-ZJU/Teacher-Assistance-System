@@ -83,26 +83,24 @@
 	<!-- Main Part-->
 	<div id="fh5co-portfolio-section" class="fh5co-portfolio-section">
 		<div class="container">
-			<div class="row">
+			<div class="row" style="padding-top: 50px;">
 				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-					<i class="sl-icon-briefcase"></i>
-					<h2>Our Services</h2>
-					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+					<h2>课件</h2>
 				</div>
 			</div>
 		</div>
+
+
+		<?php include dirname(__FILE__).'/backend/Resource/GetResource.php';?>
 		<div class="portfolio-row-half">
-			<a href="" class="portfolio-grid-item" style="background-image: url(images/excelicon.png);background-size: 30%;background-position-y: 80px;background-repeat: no-repeat; height: 300px">
+			<a href="" class="portfolio-grid-item" style="background-image: url(images/excelicon.png);background-size: 30%;background-position-y: 50px;background-repeat: no-repeat; height: 200px;width: 200px;">
 				<div class="desc2">
-					<h3>课件1</h3>
-					<span>这是个ppt</span>
-					<i class="sl-icon-heart">more信息</i>
+					<h3 style="font-size: 16px;">课件1</h3>
 				</div>
 			</a>
 		</div>
 		<!-- </div> -->
 	</div>
-
 	</div>
 
 	<!--底-->

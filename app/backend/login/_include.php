@@ -7,7 +7,6 @@
  */
 date_default_timezone_set('Asia/Shanghai');
 header('Content-type: application/json;charset=utf-8');
-session_start();
 
 include 'loginCheck.php';
 
@@ -95,6 +94,49 @@ function uploadFile($file){
             'res' => null
         );
         return $result;
+    }
+}
+//删除特定文章或者回帖的所有评论,传入repost_id或者article_id
+function deleteComment($conn,$target_id){
+    $query_result = mysqli_query($conn, "delete from comment WHERE target_id = '$target_id';");
+    if($query_result) return 1;
+    else return 0;
+}
+//删除特定帖子的所有回帖及回帖下的评论
+function deleteReplyPost($conn,$post_id){
+    $query_repost = mysqli_query($conn,"select repost_id from reply_post WHERE post_id = '$post_id';");
+    if($query_repost){
+        while($fetched_repost = mysqli_fetch_array($query_repost)){
+            $repost_id = $fetched_repost['repost_id'];
+            deleteComment($conn,$repost_id);
+        }
+    }
+    $query_result = mysqli_query($conn, "delete from reply_post WHERE post_id = '$post_id';");
+    if($query_result) return 1;
+    else return 0;
+}
+function deleteResource($conn,$post_id){
+    $query_result = mysqli_query($conn, "delete from resource WHERE type = 1 AND post_id = '$post_id';");
+    if($query_result) return 1;
+    else return 0;
+}
+function getAuthorName($conn,$author_id){
+    $getName_result = mysqli_query($conn,"select * 
+                    from (select student_id as id, name as name from student 
+                          UNION 
+                          select teacher_id as id ,name as name from teacher) as temp
+                    WHERE temp.id = '$author_id';");
+    if($fetched_name = mysqli_fetch_array($getName_result)){
+        return $fetched_name['name'];
+    }
+    else{
+        $result = array(
+            "code" => 403,
+            "msg" => "发布者身份非法",
+            "res" => null
+        );
+        echo json_encode($result);
+        exit;
     }
 }
 ?>
