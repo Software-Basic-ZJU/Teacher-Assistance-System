@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2016-12-12 16:23:41
+Date: 2016-12-12 17:30:52
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -301,6 +301,7 @@ CREATE TABLE `questions` (
   `submit_num` int(11) DEFAULT NULL,
   `average_score` int(11) DEFAULT NULL,
   `type` varchar(1) NOT NULL,
+  `ques_finish` varchar(1) NOT NULL,
   PRIMARY KEY (`ques_id`),
   UNIQUE KEY `ques_id` (`ques_id`) USING BTREE,
   KEY `hw_id` (`hw_id`) USING BTREE
