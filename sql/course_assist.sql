@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2016-12-10 00:46:06
+Date: 2016-12-12 16:23:41
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -26,7 +26,7 @@ CREATE TABLE `admin` (
   PRIMARY KEY (`uid`),
   UNIQUE KEY `uid` (`uid`) USING BTREE,
   KEY `admin_id` (`admin_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of admin
@@ -74,7 +74,7 @@ CREATE TABLE `assists` (
   PRIMARY KEY (`uid`),
   UNIQUE KEY `uid` (`uid`) USING BTREE,
   KEY `assist_id` (`assist_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of assists
@@ -129,7 +129,7 @@ CREATE TABLE `comment` (
   PRIMARY KEY (`com_id`),
   UNIQUE KEY `com_id` (`com_id`) USING BTREE,
   KEY `target_id` (`target_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of comment
@@ -164,7 +164,7 @@ CREATE TABLE `group` (
   `class_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`group_id`),
   UNIQUE KEY `group_id` (`group_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of group
@@ -187,11 +187,13 @@ CREATE TABLE `homework` (
   PRIMARY KEY (`hw_id`),
   UNIQUE KEY `hw_id` (`hw_id`) USING BTREE,
   KEY `class_id` (`class_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10005 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of homework
 -- ----------------------------
+INSERT INTO `homework` VALUES ('10001', '第二次作业', '2016-12-10 21:36:52', '2016-12-17 21:36:55', '10002', '1', '0', '0', '0.8');
+INSERT INTO `homework` VALUES ('10004', '实验一', '2016-12-12 01:14:07', '2016-12-06 01:13:57', '10001', '0', '0', '1', '0.2');
 
 -- ----------------------------
 -- Table structure for `mail`
@@ -210,7 +212,7 @@ CREATE TABLE `mail` (
   UNIQUE KEY `mail_id` (`mail_id`) USING BTREE,
   KEY `src_id` (`src_id`) USING BTREE,
   KEY `dest_id` (`dest_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of mail
@@ -228,7 +230,7 @@ CREATE TABLE `message` (
   `msg_state` varchar(1) NOT NULL,
   PRIMARY KEY (`msg_id`),
   UNIQUE KEY `msg_id` (`msg_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of message
@@ -248,29 +250,21 @@ CREATE TABLE `notification` (
   PRIMARY KEY (`noti_id`),
   UNIQUE KEY `noti_id` (`noti_id`) USING BTREE,
   KEY `class_id` (`teacher_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=10023 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10024 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of notification
 -- ----------------------------
-INSERT INTO `notification` VALUES ('10000', '今天教师变更', '今天由梁鸿业老师代为上课', '0', '2016-12-09 10:24:02', '1234567');
 INSERT INTO `notification` VALUES ('10001', 'asdf', '&lt;p&gt;fsdfs&lt;/p&gt;', '0', '2016-12-09 16:27:00', '1234567');
 INSERT INTO `notification` VALUES ('10002', 'fasdf', '&lt;p&gt;fsdaf&lt;/p&gt;', '0', '2016-12-09 16:27:39', '1234567');
-INSERT INTO `notification` VALUES ('10003', 'testtest', '&lt;p&gt;fdsfds&lt;/p&gt;', '0', '2016-12-09 16:32:35', '1234567');
 INSERT INTO `notification` VALUES ('10004', 'fadsfas', '&lt;p&gt;fsdfsd&lt;/p&gt;', '0', '2016-12-09 16:33:10', '1234567');
 INSERT INTO `notification` VALUES ('10008', '反倒是反倒是', '&lt;p&gt;范德萨发的&lt;/p&gt;', '0', '2016-12-09 18:09:15', '1234567');
 INSERT INTO `notification` VALUES ('10011', '的所得税法', '&lt;p&gt;鼎折覆餗的&lt;/p&gt;', '1', '2016-12-09 21:55:43', '1234567');
-INSERT INTO `notification` VALUES ('10012', 'sadfsd', '&lt;p&gt;fasdf第三方&lt;/p&gt;', '0', '2016-12-09 22:39:53', '1234567');
-INSERT INTO `notification` VALUES ('10013', 'sadfsd', '&lt;p&gt;fasdf第三方fsadfs d&lt;/p&gt;', '0', '2016-12-09 22:39:59', '1234567');
-INSERT INTO `notification` VALUES ('10014', 'sadfsd', '&lt;p&gt;fasdf第三方fsadfs dfsdfsad&lt;/p&gt;', '0', '2016-12-09 22:40:03', '1234567');
-INSERT INTO `notification` VALUES ('10015', 'sadfsd', '&lt;p&gt;fasdf第三方fsadfs dfsdfsadSDfds&amp;nbsp;&lt;/p&gt;', '0', '2016-12-09 22:40:05', '1234567');
-INSERT INTO `notification` VALUES ('10016', 'sadfsd', '&lt;p&gt;fasdf第三方fsadfs dfsdfsadSDsadfsa dfds&amp;nbsp;&lt;/p&gt;', '0', '2016-12-09 22:40:07', '1234567');
-INSERT INTO `notification` VALUES ('10017', 'sadfsd', '&lt;p&gt;fasdf第三方fsadfs dfsdfsadSDsadfsa dfds sdfsDsf sfd第三方&lt;/p&gt;', '0', '2016-12-09 22:40:11', '1234567');
-INSERT INTO `notification` VALUES ('10018', 'sadfsd', '&lt;p&gt;fasdf第三方fsadfs dfsdfsadSDsadfsa dfds sdfsDsf sfd第三方水电费上的&lt;/p&gt;', '0', '2016-12-09 22:40:16', '1234567');
 INSERT INTO `notification` VALUES ('10019', 'fsdfsd撒旦法撒旦', '&lt;p&gt;发送到&lt;/p&gt;', '0', '2016-12-09 22:40:56', '1234567');
 INSERT INTO `notification` VALUES ('10020', 'fsdfsd撒旦法撒旦', '&lt;p&gt;发送到发生的发生的&lt;/p&gt;', '0', '2016-12-09 22:41:05', '1234567');
 INSERT INTO `notification` VALUES ('10021', 'fsdfsd', '&lt;p&gt;水电费&lt;/p&gt;', '0', '2016-12-09 22:42:35', '1234567');
 INSERT INTO `notification` VALUES ('10022', 'testtset', '&lt;p&gt;水电费&lt;/p&gt;', '0', '2016-12-09 22:42:47', '1234567');
+INSERT INTO `notification` VALUES ('10023', '范德萨范德萨', '&lt;p&gt;fdsfs 等等&lt;/p&gt;', '1', '2016-12-11 17:51:34', '1234567');
 
 -- ----------------------------
 -- Table structure for `posts`
@@ -289,7 +283,7 @@ CREATE TABLE `posts` (
   PRIMARY KEY (`post_id`),
   UNIQUE KEY `post_id` (`post_id`) USING BTREE,
   KEY `teacher_id` (`teacher_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of posts
@@ -310,7 +304,7 @@ CREATE TABLE `questions` (
   PRIMARY KEY (`ques_id`),
   UNIQUE KEY `ques_id` (`ques_id`) USING BTREE,
   KEY `hw_id` (`hw_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of questions
@@ -329,7 +323,7 @@ CREATE TABLE `reply_post` (
   PRIMARY KEY (`repost_id`),
   UNIQUE KEY `repost_id` (`repost_id`) USING BTREE,
   KEY `post_id` (`post_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of reply_post
@@ -351,7 +345,7 @@ CREATE TABLE `resource` (
   PRIMARY KEY (`resrc_id`),
   UNIQUE KEY `resrc_id` (`resrc_id`) USING BTREE,
   KEY `post_id` (`post_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10036 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of resource
@@ -429,7 +423,7 @@ CREATE TABLE `works` (
   UNIQUE KEY `work_id` (`work_id`) USING BTREE,
   KEY `ques_id` (`ques_id`) USING BTREE,
   KEY `uploader_id` (`uploader_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of works
