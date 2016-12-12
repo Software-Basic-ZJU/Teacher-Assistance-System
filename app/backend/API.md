@@ -313,7 +313,7 @@ POST——Teacher-Assistance-System/app/backend/aboutResource/getResourceList.ph
         )
 ```
 
-## 10、上传文件到服务器并插入resource表
+## 10、上传文件到服务器并插入resource表(若是帖子资源，post_id为空)
 
 POST——Teacher-Assistance-System/app/backend/aboutResource/addResource.php
 
@@ -1271,5 +1271,356 @@ POST——Teacher-Assistance-System/app/backend/aboutPost/addPost.php
             "res" => array(
                 'token' => $_SESSION['token']
             )
+```
+
+## 39、修改帖子
+
+POST——Teacher-Assistance-System/app/backend/aboutPost/editPost.php
+
+参数：post_id,title,content
+
+返回:
+
+```php
+		"code" => 0,
+        "msg" => "修改成功",
+        "res" => array(
+            'post_id' => $post_id,
+            'title' => $title,
+            'content' => $content,
+            'author_id' => $fetched['author_id'],
+            'author_name' => $fetched['name'],
+            'publish_time' => $fetched['publish_time'],
+            'update_time' => $time,
+            'token' => $_SESSION['token']
+        )
+```
+
+```php
+        "code" => -1,
+        "msg" => "修改失败",
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
+```
+
+## 40、删除帖子（同时删除此帖子下的资源、回帖、评论）
+
+POST——Teacher-Assistance-System/app/backend/aboutPost/removePost.php
+
+参数：post_id
+
+返回:
+
+```php
+    $result = array(
+        "code" => 403,
+        "msg" => "无效用户尝试删除",
+        "res" => null
+    );
+```
+
+```php
+        $result = array(
+            "code" => 0,
+            "msg" => "删除成功",
+            "res" => array(
+                "token" => $_SESSION['token']
+            )
+```
+
+```php
+            "code" => 0,
+            "msg" => "帖子删除成功,回帖或者资源删除失败",
+            "res" => array(
+                "token" => $_SESSION['token']
+            )
+```
+
+```php
+        "code" => -1,
+        "msg" => "帖子删除失败",
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
+```
+
+## 41、获取回帖
+
+POST——Teacher-Assistance-System/app/backend/aboutReplyPost/getReplyPosts.php
+
+参数：post_id
+
+返回:
+
+```php
+				"code" => -1,
+                "msg" => "回帖评论查找失败",
+                "res" => array(
+                    "token" => $_SESSION['token']
+                )
+```
+
+```php
+		"code" => -1,
+        "msg" => "查找失败，post_id错误",
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
+```
+
+```php
+        "code" => 0,
+        "msg" => "查找成功",
+        "res" => array(
+            'reposts' => $reposts,
+            "token" => $_SESSION['token']
+        )
+          
+          $reposts[] = array(
+            "repost_id" => $fetched['repost_id'],
+            "content" => $fetched['content'],
+            "author_id" => $fetched['author_id'],
+            "author_name" => getAuthorName($conn , $fetched['author_id']),
+            "time" => $fetched['time'],
+            "commentList" => $comment
+        );
+
+               $comment[] = array(
+                    "com_id" => $fetched_comment['com_id'],
+                    "content" => $fetched_comment['content'],
+                    "author_id" => $fetched_comment['author_id'],
+                    "author_name" => getAuthorName($conn,$fetched_comment['author_id']),
+                    "time" => $fetched_comment['time']
+                );
+```
+
+## 42、增加回帖
+
+POST——Teacher-Assistance-System/app/backend/aboutReplyPost/addReplyPost.php
+
+参数：post_id、content、author_id
+
+返回:
+
+```php
+		"code" => 0,
+        "msg" => "回帖成功",
+        "res" => array(
+            'repost_id' => mysqli_insert_id($conn),
+            'time' => $time,
+            'content' => $content,
+            'author_id' => $author_id,
+            'author_name' => $_SESSION['type']==1?$_SESSION['sname']:$_SESSION['tname'],
+            "token" => $_SESSION['token']
+        )
+```
+
+```php
+        "code" => -1,
+        "msg" => "回帖失败",
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
+```
+
+## 43、修改回帖
+
+POST——Teacher-Assistance-System/app/backend/aboutReplyPost/editReplyPost.php
+
+参数：repost_id、content、author_id
+
+返回:
+
+```php
+        "code" => 0,
+        "msg" => "修改成功",
+        "res" => array(
+            'repost_id' => $repost_id,
+            'time' => $time,
+            'content' => $content,
+            'author_id' => $author_id,
+            'author_name' => $_SESSION['type']==1?$_SESSION['sname']:$_SESSION['tname'],
+            "token" => $_SESSION['token']
+        )
+```
+
+```php
+        "code" => -1,
+        "msg" => "修改失败",
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
+```
+
+## 43、删除回帖
+
+POST——Teacher-Assistance-System/app/backend/aboutReplyPost/removeReplyPost.php
+
+参数：repost_id
+
+返回:
+
+```php
+        $result = array(
+            "code" => 0,
+            "msg" => "删除成功",
+            "res" => array(
+                "token" => $_SESSION['token']
+            )
+        );
+```
+
+```php
+            "code" => 0,
+            "msg" => "回帖删除成功,评论删除失败",
+            "res" => array(
+                "token" => $_SESSION['token']
+            )
+        );
+```
+
+```php
+        "code" => -1,
+        "msg" => "回帖删除失败",
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
+```
+
+```php
+    $result = array(
+        "code" => 403,
+        "msg" => "无效用户尝试删除",
+        "res" => null
+    );
+```
+
+## 44、发表评论
+
+POST——Teacher-Assistance-System/app/backend/aboutComment/addComment.php
+
+参数：target_id、content、author_id、type：评论所属类型，0:文章 1:回帖 2:留言板
+
+返回:
+
+```php
+        "code" => 0,
+        "msg" => "评论发表成功",
+        "res" => array(
+            'com_id' => mysqli_insert_id($conn),
+            'target_id' => $target_id,
+            'time' => $time,
+            'content' => $content,
+            'author_id' => $author_id,
+            'type' => $type,
+            'author_name' => $_SESSION['type']==1?$_SESSION['sname']:$_SESSION['tname'],
+            "token" => $_SESSION['token']
+        )
+```
+
+```php
+        "code" => -1,
+        "msg" => "发表失败",
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
+```
+
+## 45、删除评论
+
+POST——Teacher-Assistance-System/app/backend/aboutComment/deleteComment.php
+
+参数：com_id
+
+返回:
+
+```php
+    $result = array(
+        "code" => 0,
+        "msg" => "删除成功",
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
+    );
+```
+
+```php
+        "code" => -1,
+        "msg" => "评论删除失败",
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
+```
+
+## 46、查看收到的邮件
+
+POST——Teacher-Assistance-System/app/backend/aboutMail/getRecMail.php
+
+参数：dest_id
+
+返回:
+
+```php
+        "code" => 0,
+        "msg" => "查找成功",
+        "res" => array(
+            'mails' => $mailList,
+            "token" => $_SESSION['token']
+        )
+        
+         $mailList[] = array(
+            "mail_id" => $fetched['mail_id'],
+            "title" => $fetched['title'],
+            "content" => $fetched['content'],
+            "time" => $fetched['time'],
+            "src_id" => $fetched['src_id'],
+            "src_name" => getAuthorName($conn,$fetched['src_id']),
+            "dest_id" => $dest_id,
+            "is_read" => $fetched['is_read']
+        );
+```
+
+```php
+        "code" => -1,
+        "msg" => "收件箱打开失败",
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
+```
+
+## 47、查看发出的邮件
+
+POST——Teacher-Assistance-System/app/backend/aboutMail/getSendMail.php
+
+参数：src_id
+
+返回:
+
+```php
+        "code" => 0,
+        "msg" => "查找成功",
+        "res" => array(
+            'mails' => $mailList,
+            "token" => $_SESSION['token']
+        )
+          
+        $mailList[] = array(
+            "mail_id" => $fetched['mail_id'],
+            "title" => $fetched['title'],
+            "content" => $fetched['content'],
+            "time" => $fetched['time'],
+            "src_id" => $src_id,
+            "dest_id" => $fetched['dest_id'],
+            "dest_name" => getAuthorName($conn,$fetched['dest_id'])
+        );
+```
+
+```php
+        "code" => -1,
+        "msg" => "发件箱打开失败",
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
 ```
 
