@@ -113,20 +113,16 @@
 					<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
 						<i class="sl-icon-paper-plane"></i>
 						<h2>最新动态</h2>
-						<p><a href="NewList.php"> 相关文章,顶尖会议,知名论文</a></p>
+						<p style="font-family:'Microsoft YaHei'"><a href="NewList.php" > 相关文章,顶尖会议,知名论文</a></p>
 					</div>
 				</div>
+
 				<div class="row">
-					<div class="col-md-4 text-center">
-						<div class="services">
-							<span><i class="sl-icon-graph"></i></span>
-							<h3>Dashboard</h3>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-							<h5></h5>
-							<div class="cd-see-all" style="padding-top: 90px"><a href="NewPassage.php" class="btn btn-1">See all</a></div>
-						</div>
-					</div>
+					<?php
+						include 'backend/Articles/IndexGetArticle.php';
+					?>
 				</div>
+
 			</div>
 		</div>
 		<!-- 最新动态 -->
@@ -135,7 +131,10 @@
 		<section id="Classes" class="box-content box-2 box-style">
 			<div class="container">
 				<div class="row">
-					<blockquote><a href="Classes.php">这是坠吼的课程</a> </blockquote>
+					<blockquote>
+						<h3 style="color:#F0F0F0;">项目管理与软件需求，作为软件工程当中最为重要的组成几个部分，已经引起业内人士的高度重视，项目管理和需求工程概念的提出，就是为了把软件工程化，以更有效地开发需求，开发软件并实现有效的管理。</h3>
+						<a style="color:#F0F0F0; float:right; font-size:0.7em;" href="Classes.php">>> More</a> 
+					</blockquote>
 				</div>
 			</div>
 		</section>
@@ -148,29 +147,14 @@
 				<div class="cd-testimonials-wrapper cd-container">
 					<ul class="cd-testimonials">
 						<!--人物信息单元-->
-						<li>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-							<div class="cd-author">
-								<img src="images/avatar-1.jpg" alt="Author image">
-								<ul class="cd-author-info">
-									<li>MyName</li>
-									<li>CEO, AmberCreative</li>
-								</ul>
-							</div>
-						</li>
-						<li>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-							<div class="cd-author">
-								<img src="images/avatar-1.jpg" alt="Author image">
-								<ul class="cd-author-info">
-									<li>僵硬</li>
-									<li>坠棒的</li>
-								</ul>
-							</div>
-						</li>
+					<?php
+						include 'backend/TeacherInfo/IndexGetTeacher.php';
+					?>
+						
 					</ul> <!-- cd-testimonials -->	
+
 				</div> <!-- cd-testimonials-wrapper -->
-				<div class="cd-see-all"><a href="TeacherList.php" class="btn btn-1">See all</a></div>
+				<div class="cd-see-all"><a href="TeacherList.php" class="btn btn-1">More</a></div>
 			</div>
 		</section>
 	</div>
@@ -183,19 +167,20 @@
 					<div class="col-md-12 col-footer footer-3">
 						<div class="row">
 							<div class="col-md-3 text-center">
-								<a href="#">教务网</a>
+								<a style="color:#C3C3C3"  href="#">>>教务网</a>
 							</div>
 							<div class="col-md-3 text-center">
-								<a href="#">计算机学院</a>
+								<a style="color:#C3C3C3" href="#">>>计算机学院</a>
 							</div>
 							<div class="col-md-3 text-center">
-								<a href="#">本科生院</a>
+								<a style="color:#C3C3C3" href="#">>>本科生院</a>
 							</div>
 							<div class="col-md-3 text-center">
-								<a href="#">友情课程</a>
+								<a style="color:#C3C3C3" href="#">>>友情课程</a>
 							</div>
 						</div>
 
+						<div class="row"><div class="line_1"></div></div>
 
 						<div class="row">
 							<div class="col-md-5 text-center">
@@ -215,9 +200,9 @@
 							</div>
 							<div class="col-md-4 text-center">
 								<ul class="list-inline">
-									<li><a href="#">Privacy Policy</a>
+									<li><a style="color:#C3C3C3" href="#">Privacy Policy</a>
 									</li>
-									<li><a href="#">Terms of Use</a>
+									<li><a style="color:#C3C3C3" href="#">Terms of Use</a>
 									</li>
 								</ul>
 							</div>

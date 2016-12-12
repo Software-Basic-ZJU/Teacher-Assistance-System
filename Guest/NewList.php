@@ -85,17 +85,17 @@
 	<div id="page-content" class="index-page">
 		<!--New 最新动态-->
 		<div id="fh5co-services-section">
-			<div class="container-full">
+			<div class="container">
 				<div class="row ">
 					<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
 						<i class="sl-icon-paper-plane"></i>
-						<h2>最新动态</h2>
-						<p> 相关文章,顶尖会议,知名论文</a></p>
+						<h2 >最新动态</h2>
+						<p style="font-family:'Microsoft YaHei'"> 相关文章,顶尖会议,知名论文</a></p>
 					</div>
 				</div>
 
 				<?php
-				include 'backend/Articles/GetArticleListLM.php';
+				include 'backend/Articles/GetArticleList.php';
 				?>
 
 			</div>
@@ -113,19 +113,20 @@
 					<div class="col-md-12 col-footer footer-3">
 						<div class="row">
 							<div class="col-md-3 text-center">
-								<a href="#">教务网</a>
+								<a style="color:#C3C3C3"  href="#">>>教务网</a>
 							</div>
 							<div class="col-md-3 text-center">
-								<a href="#">计算机学院</a>
+								<a style="color:#C3C3C3" href="#">>>计算机学院</a>
 							</div>
 							<div class="col-md-3 text-center">
-								<a href="#">本科生院</a>
+								<a style="color:#C3C3C3" href="#">>>本科生院</a>
 							</div>
 							<div class="col-md-3 text-center">
-								<a href="#">友情课程</a>
+								<a style="color:#C3C3C3" href="#">>>友情课程</a>
 							</div>
 						</div>
 
+						<div class="row"><div class="line_1"></div></div>
 
 						<div class="row">
 							<div class="col-md-5 text-center">
@@ -145,9 +146,9 @@
 							</div>
 							<div class="col-md-4 text-center">
 								<ul class="list-inline">
-									<li><a href="#">Privacy Policy</a>
+									<li><a style="color:#C3C3C3" href="#">Privacy Policy</a>
 									</li>
-									<li><a href="#">Terms of Use</a>
+									<li><a style="color:#C3C3C3" href="#">Terms of Use</a>
 									</li>
 								</ul>
 							</div>
