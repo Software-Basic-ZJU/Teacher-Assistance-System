@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: Wu
- * Date: 2016/11/28
- * Time: 09:10
+ * Date: 2016/12/12
+ * Time: 12:08
  */
 header('Content-type: application/json');
 session_start();
@@ -14,7 +14,7 @@ connectDB();
 //Verify token
 loginCheck($_SERVER['HTTP_X_ACCESS_TOKEN']);
 //Get information
-$article_id = test_input(mysqli_escape_string($conn, $_POST['article_id']));
+$repost_id = test_input(mysqli_escape_string($conn, $_POST['repost_id']));
 if($_SESSION['type']!=2){
     $result = array(
         "code" => 403,
@@ -24,37 +24,41 @@ if($_SESSION['type']!=2){
     echo json_encode($result);
     exit;
 }
-$query_result = mysqli_query($conn, "delete from article WHERE art_id = '$article_id';");
+
+$query_result = mysqli_query($conn, "delete from reply_post WHERE repost_id = '$repost_id';");
 if($query_result){
-    if(!deleteComment($conn,$article_id)){
+    $delete_result = deleteComment($conn,$repost_id);
+    if($delete_result){
         $result = array(
-            "code" => -1,
-            "msg" => "删除评论失败",
+            "code" => 0,
+            "msg" => "删除成功",
             "res" => array(
                 "token" => $_SESSION['token']
             )
         );
-        echo json_encode($result);
-        exit;
     }
-    $result = array(
-        "code" => 0,
-        "msg" => "删除成功",
-        "res" => array(
-            "token" => $_SESSION['token']
-        )
-    );
+    else{
+        $result = array(
+            "code" => 0,
+            "msg" => "回帖删除成功,评论删除失败",
+            "res" => array(
+                "token" => $_SESSION['token']
+            )
+        );
+    }
     echo json_encode($result);
+    exit;
 }
 else{
     $result = array(
         "code" => -1,
-        "msg" => "删除失败",
+        "msg" => "回帖删除失败",
         "res" => array(
             "token" => $_SESSION['token']
         )
     );
     echo json_encode($result);
+    exit;
 }
 mysqli_close($conn);
 ?>
