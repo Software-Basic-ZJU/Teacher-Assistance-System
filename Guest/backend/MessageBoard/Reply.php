@@ -16,7 +16,7 @@ if(isset($_POST['replySubmit'])){
 include dirname(dirname(__FILE__)).'/connectDB.php';
 global $conn;
 connectDB();
-$reply_message = mysqli_query($conn, "UPDATE message SET reply_content = '$reply' WHERE msg_id = '$msg_id'") or die("更新失败".mysql_error());
-echo "<script>alert(\"更新成功!\");history.back(-1)</script>";
+$reply_message = mysqli_query($conn, "UPDATE message SET reply_content = '$reply' WHERE msg_id = '$msg_id'") or die("回复失败".mysql_error());
+echo "<script>alert(\"回复成功!\");history.go(-1)</script>";
 mysqli_close($conn);
 ?>
