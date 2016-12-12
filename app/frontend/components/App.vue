@@ -3,8 +3,8 @@
         <Header></Header>
         <div class="container">
             <div class="menuBox fl">
-                <el-menu :default-active="'/'+$route.path.split('/')[1]" class="el-menu-vertical-demo" router="true">
-                    <el-menu-item v-for="item in menu" :index="item.path">
+                <el-menu :default-active="'/'+$route.path.split('/')[1]" class="el-menu-vertical-demo" :router="true">
+                    <el-menu-item v-for="item in menu" :index="item.root || item.path" :route="{path:item.path}">
                         <i class="iconfont" :class="item.icon"></i>{{item.linkName}}
                     </el-menu-item>
                 </el-menu>
@@ -83,7 +83,6 @@
 </style>
 <script>
     import Header from "./Header/Header.vue";
-    import store from "../vuex"
     import router from "../routes";
     import {LS} from "../helpers/utils";
 
@@ -98,11 +97,12 @@
                 menu: [
                     {
                         linkName: "重要信息",
-                        path: "/info",
+                        path:"/info",
                         icon: "icon-tongzhi",
                     },
                     {
                         linkName: "课程介绍",
+                        root: "/intro",
                         path: "/intro",
                         icon: "icon-jieshao",
                     },
@@ -113,7 +113,8 @@
                     },
                     {
                         linkName: "作业列表",
-                        path: "/homework",
+                        root: "/homework",
+                        path: "/homework/"+(userInfo.type==1?userInfo.class_id:userInfo.class_id[0].class_id),
                         icon: "icon-zuoye",
                     },
                     {
@@ -125,6 +126,7 @@
                         linkName:"小组名单",
                         path:"/member",
                         icon:"icon-group"
+
                     }
                 ]
             }

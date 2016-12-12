@@ -22,6 +22,7 @@ export const getContact=({commit})=>{
     ).then((response)=>{
         let resp=response.body;
         if(!resp.code){
+            delete resp.res.token;      //移除token项
             commit('updateContact',resp.res);
         }
     }).then(()=>{
@@ -46,6 +47,7 @@ export const editContact=({commit},contact)=>{
     ).then((response)=>{
         let resp=response.body;
         if(!resp.code){
+            delete resp.res.token;
             commit('updateContact',resp.res);
             router.replace({name:'contact'});
         }

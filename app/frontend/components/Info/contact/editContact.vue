@@ -42,7 +42,7 @@
         },
         computed:{
             contact(){
-                return this.$store.state.info.contact;
+                return Object.assign({},this.$store.state.info.contact);
             }
         },
         methods:{

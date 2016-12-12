@@ -4,16 +4,17 @@
             <div class="header">
                 <el-breadcrumb separator="/">
                     <el-breadcrumb-item :to="{name:'homework'}">作业列表</el-breadcrumb-item>
-                    <el-breadcrumb-item>{{hwDetail.title}}</el-breadcrumb-item>
+                    <el-breadcrumb-item>{{hwDetail.hwTitle}}</el-breadcrumb-item>
                 </el-breadcrumb>
                 <el-button type="success" class="fr" @click="addQues">添加问题</el-button>
             </div>
             <div class="infoBox">
                 <span class="type">作业类型：{{hwDetail.hwType?'小组作业':'个人作业'}}</span>
-                <span class="publish">发布时间：{{hwDetail.publishTime}}</span>
-                <span class="ddl">截止时间：{{hwDetail.deadline}}</span>
+                <span class="publish">发布时间：{{hwDetail.hwPublishTime}}</span>
+                <span class="ddl">截止时间：{{hwDetail.hwDeadline}}</span>
             </div>
             <div class="quesList">
+                <div class="noRes" v-id="hwDetail.quesList.length==0">还没有添加问题~</div>
                 <ques-item
                         v-for="item in quesList"
                         :key="item.quesId"
@@ -44,7 +45,12 @@
         color:#FF4949;
     }
     .quesList{
-        padding-top:10px;
+        padding:10px 0px;
+    }
+    .quesList .noRes{
+        text-align: center;
+        font-size:20px;
+        color:#c9c9c9;
     }
     .el-button--success{
         margin-top:-45px;
@@ -53,24 +59,18 @@
 <script>
     import quesItem from "../question/quesItem.vue";
     import router from "../../../routes";
+    import {mapState} from "vuex";
+
     export default{
         data(){
+            this.$store.dispatch('getQuesList',this.$route.params.hwId);
             return{
             }
         },
         computed:{
-            hwDetail(){                             //作业详情
-                let hwId=this.$route.params.hwId;
-                let list=this.$store.state.homework.hwList;
-                for(let i=0;i<list.length;i++){
-                    if(list[i].hwId==hwId){
-                        return list[i];
-                    }
-                }
-            },
-            quesList(){
-                return this.$store.state.homework.quesList
-            }
+            ...mapState({
+                hwDetail:state=>state.homework.hwDetail,        //作业详情
+            })
         },
         methods:{
             addQues(){

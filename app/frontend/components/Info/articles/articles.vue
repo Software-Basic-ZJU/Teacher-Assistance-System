@@ -2,6 +2,7 @@
     <div>
         <el-button type="success" class="fr" icon="plus" @click="addArticle"></el-button>
         <div class="articleBox">
+            <div class="noRes" v-if="articleList.length==0">还没有发表文章~</div>
             <article-item
                     v-for="item in articleList"
                     :key="item.article_id"
@@ -26,6 +27,10 @@
 </template>
 <style scoped>
     .articleBox{
+    }
+    .articleBox .noRes{
+        padding:20px 0px 10px 0px;
+        text-align: center;
     }
     .el-button--success{
         margin-top:-62px;

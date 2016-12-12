@@ -2,7 +2,7 @@
 <template>
     <div>
         <div>
-            <el-menu @select="goClassPath" :default-active="$route.params.classId" class="el-menu-vertical-demo">
+            <el-menu @select="goClassPath" :default-active="$route.params.classId" class="el-menu-vertical-demo" v-if="idenType!=1">
                 <el-menu-item v-for="item in classArr" :key="item.class_id" :index="item.class_id">{{item.class_name}}</el-menu-item>
             </el-menu>
             <router-view></router-view>
@@ -29,14 +29,6 @@
     export default{
         data(){
             let userInfo=LS.getItem("userInfo");
-            if(!this.$route.params.classId) {       //若路由中不带参数，则自动重定向
-                router.push({
-                    name: 'hwList',
-                    params: {
-                        classId: userInfo.type == 1 ? userInfo.class_id : userInfo.class_id[0].class_id
-                    }
-                });
-            }
             return{
                 idenType:userInfo.type,
                 classArr:userInfo.class_id
@@ -47,7 +39,6 @@
         },
         methods:{
             goClassPath(index){
-                console.log(index);
                 this.$store.dispatch('getHwList',index);
                 router.push({
                     name:'hwList',
