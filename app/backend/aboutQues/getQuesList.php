@@ -16,6 +16,24 @@ loginCheck($_SERVER['HTTP_X_ACCESS_TOKEN']);
 //Get information
 $hw_id = test_input(mysqli_escape_string($conn, $_POST['hw_id']));
 //quesList[String](ques_id,type,title,content,should_num(应交人数),submit_num(实交人数))
+$query_result=mysqli_query($conn,"select * from homework where hw_id='$hw_id'");
+if($fetched=mysqli_fetch_array($query_result)){
+    $hwTitle=$fetched['title'];     //获取作业名称
+    $hwType=$fetched['type']==0?'个人作业':'小组作业';
+    $hwPublishTime=$fetched['publish_time'];
+    $hwDeadline=$fetched['deadline'];
+}
+else{
+    $result = array(
+        "code" => -1,
+        "msg" => "没有找到该作业",
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
+    );
+    echo json_encode($result);
+    exit;
+}
 $query_result = mysqli_query($conn, "select * from questions WHERE hw_id = '$hw_id';");
 if($query_result){
     $quesList = array();
@@ -59,6 +77,10 @@ if($query_result){
         "code" => 0,
         "msg" => "查找成功",
         "res" => array(
+            'hwTitle'=>$hwTitle,
+            'hwType'=>$hwType,
+            'hwPublishTime'=>$hwPublishTime,
+            'hwDeadline'=>$hwDeadline,
             'quesList' => $quesList,
             'token' => $_SESSION['token']
         )
@@ -70,8 +92,8 @@ else{
         "code" => -1,
         "msg" => "查找失败",
         "res" => array(
-            "token" => $_SESSION['token']
-        )
+        "token" => $_SESSION['token']
+    )
     );
     echo json_encode($result);
 }

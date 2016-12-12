@@ -1,6 +1,5 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import {LS} from "../helpers/utils";
 import {
     App,
     Info,
