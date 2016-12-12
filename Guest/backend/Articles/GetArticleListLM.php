@@ -37,7 +37,7 @@ while ($row=mysqli_fetch_array($result)) {
 ?> 
         <div class="col-md-4 text-center">
             <div class="services">
-                <span><i class="sl-icon-graph"></i></span>
+                <span></span>
                 <h4><?php echo $row['title']?></h3>
                 <h5><?php echo $row['author']?></h4>
                 <p>

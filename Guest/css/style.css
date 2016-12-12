@@ -1,7 +1,26 @@
 /*!
  izBootstrap
  */
- 
+/*@media (max-width: 992px) {*/
+    /*.col-md-3{*/
+        /*padding-left: 300px;*/
+    /*}*/
+/*}*/
+/*@media (max-width: 600px) {*/
+    /*.col-md-3{*/
+        /*padding-left: 200px;*/
+    /*}*/
+/*}*/
+/*@media (max-width: 400px) {*/
+    /*.col-md-3{*/
+        /*padding-left: 80px;*/
+    /*}*/
+/*}*/
+/*@media (max-width: 200px) {*/
+    /*.col-md-3{*/
+        /*padding-left: 0;*/
+    /*}*/
+/*}*/
  /* ---------------------------------------------------------------------------- */
 /* ------------------------------------Html-Body------------------------------- */
 /* ---------------------------------------------------------------------------- */
@@ -836,7 +855,7 @@ p{letter-spacing:1px;font-size: 16px;}
 }
 /* --Line-- */
 
-hr { margin: 15px auto; padding: 0; max-width: 130px;border: 0; border-top: solid 3px #333;text-align: center;}
+hr { margin: 15px auto; padding: 0; max-width: 100px;border: 0; border-top: solid 3px #333;text-align: center;}
 hr:after {content: url(../images/dots.png);display: inline-block;position: relative;top: -.8em;padding: 0 .55em;font-family: FontAwesome;color: #333;background-color: #F0F0F0;}
 
 /* --Color-- */
@@ -932,8 +951,9 @@ header .intro-text .intro-lead-in {margin-bottom: 30px;font-family: 'Shadows Int
 /* ------------------------------Services(box-1)------------------------------- */
 /* ---------------------------------------------------------------------------- */
 .box-content.box-1 {text-align: center;}
-.box-content.box-1 h3 {margin-bottom:15px;font-size: 25px;}
-.box-content.box-1 .wrap-img{margin-bottom:40px;}
+.box-content.box-1 p{height:80px;}
+.box-content.box-1 h3 {margin-bottom:15px;font-size: 25px;height:40px;}
+.box-content.box-1 .wrap-img{margin-bottom:40px;height:60px;}
 .box-content.box-1 .box-item {}
 
 /* ---------------------------------------------------------------------------- */

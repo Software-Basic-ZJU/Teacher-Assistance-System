@@ -22,6 +22,16 @@
     }
 }
 
+
 .well{
     background-color: transparent;
+}
+.well p{
+    font-size: 14px;
+}
+.btn.btn-info {
+    font-size: 14px;
+}
+.section-heading{
+    font-size: 26px;
 }

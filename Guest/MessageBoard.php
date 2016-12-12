@@ -20,11 +20,11 @@
 	<link rel="stylesheet" href="css/style2.css">
 	<link rel="stylesheet" href="css/creative.css">
 	<link rel="stylesheet" href="css/creative.min.css">
-	<link rel="stylesheet" href="css/messageboard.css">
 
 	<!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	
+	<link rel="stylesheet" href="css/messageboard.css">
+
 	<!-- Js -->
 	<script src="js/modernizr.js"></script> <!-- Modernizr -->
 	
@@ -82,7 +82,7 @@
         <!-- /.container-fluid -->
     </nav>
 
-	<div class="container" style="margin-top:150px">
+	<div class="container" style="margin-top:120px">
 		<div class="row">
 			<div class="col-lg-4 col-lg-offset-4">
 				<div class="text-center">
@@ -161,8 +161,8 @@
 	<section class="box-content box-5" id="contact">
 		<div class="container">
 			<div class="row heading">
-				<div class="col-lg-12">
-					<h2>我要留言</h2>
+				<div class="col-lg-12" >
+					<h2 style="font-size: 26px;">我要留言</h2>
 					<hr>
 				</div>
 			</div>
@@ -202,43 +202,46 @@
 		<div class="wrap-footer">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-5 col-footer footer-1">
-						<div class="heading"><h4>About Us</h4></div>
-						<div class="content">
-							<p>关于我们的信息= = </p>
-						</div>
-					</div>
-					<div class="col-md-6 col-footer footer-3">
+					<div class="col-md-12 col-footer footer-3">
 						<div class="row">
-							<div class="col-md-6">
-								<a href="#"><img src="images/15.jpg" /></a>
+							<div class="col-md-3 text-center">
+								<a href="#">教务网</a>
 							</div>
-							<div class="col-md-6">
-								<a href="#"><img src="images/16.jpg" /></a>
+							<div class="col-md-3 text-center">
+								<a href="#">计算机学院</a>
 							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<a href="#"><img src="images/17.jpg" /></a>
+							<div class="col-md-3 text-center">
+								<a href="#">本科生院</a>
 							</div>
-							<div class="col-md-6">
-								<a href="#"><img src="images/18.jpg" /></a>
+							<div class="col-md-3 text-center">
+								<a href="#">友情课程</a>
 							</div>
 						</div>
+
+
 						<div class="row">
-							<div class="col-md-6">
-								<a href="#"><img src="images/19.jpg" /></a>
+							<div class="col-md-5 text-center">
+								<p>Copyright &copy; 2016. SRE G12 All rights reserved.</p>
 							</div>
-							<div class="col-md-6">
-								<a href="#"><img src="images/20.jpg" /></a>
+							<div class="col-md-3 text-center">
+								<ul class="list-inline">
+									<li><a href="#"><i class="fa fa-twitter"></i></a>
+									</li>
+									<li><a href="#"><i class="fa fa-facebook"></i></a>
+									</li>
+									<li><a href="#"><i class="fa fa-linkedin"></i></a>
+									</li>
+									<li><a href="#"><i class="fa fa-google"></i></a>
+									</li>
+								</ul>
 							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<a href="#"><img src="images/21.jpg" /></a>
-							</div>
-							<div class="col-md-6">
-								<a href="#"><img src="images/18.jpg" /></a>
+							<div class="col-md-4 text-center">
+								<ul class="list-inline">
+									<li><a href="#">Privacy Policy</a>
+									</li>
+									<li><a href="#">Terms of Use</a>
+									</li>
+								</ul>
 							</div>
 						</div>
 					</div>
@@ -246,35 +249,7 @@
 			</div>
 		</div>
 
-		<div class="copyright">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4">
-						<p>Copyright &copy; 2016. SRE G12 All rights reserved.<a href="http://www.baidu.com/">G12</a></p>
-					</div>
-					<div class="col-md-4">
-						<ul class="list-inline">
-							<li><a href="#"><i class="fa fa-twitter"></i></a>
-							</li>
-							<li><a href="#"><i class="fa fa-facebook"></i></a>
-							</li>
-							<li><a href="#"><i class="fa fa-linkedin"></i></a>
-							</li>
-							<li><a href="#"><i class="fa fa-google"></i></a>
-							</li>
-						</ul>
-					</div>
-					<div class="col-md-4">
-						<ul class="list-inline">
-							<li><a href="#">Privacy Policy</a>
-							</li>
-							<li><a href="#">Terms of Use</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
+
 	</footer>
 	<!-- Footer -->
 
