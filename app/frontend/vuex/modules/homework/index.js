@@ -4,15 +4,7 @@ const state={
     loading:false,
     hwList:[                //作业列表
     ],
-    quesList:[
-        {
-            quesId:1,
-            title:'Java计算器编写',
-            content:'hEE',
-            shouldNum:20,
-            haveNum:15
-        }
-    ],
+    hwDetail:{},            //作业详情,包含作业标题和问题列表
     stuList:[
         {
             sid:'111',
@@ -66,6 +58,10 @@ const mutations={
         }
         hwList.splice(i,1);
         state.hwList=hwList;
+    },
+    updateHwDetail(state,hwDetail){
+        state.hwDetail=hwDetail;
+        delete state.hwDetail.token;
     }
 }
 

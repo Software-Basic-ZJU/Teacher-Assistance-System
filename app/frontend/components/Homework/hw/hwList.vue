@@ -27,6 +27,7 @@
                                 type="datetime"
                                 placeholder="选择截止日期"
                                 format="yyyy-MM-dd HH-mm-ss"
+                                :picker-options="dateFilter"
                                 :onClick="pickTime"
                         ></el-date-picker>
                     </el-form-item>
@@ -105,7 +106,12 @@
                 hwType:0,
                 punishType:0,
                 deadline:'',
-                punishRate:''
+                punishRate:'',
+                dateFilter:{
+                    disabledDate(time){         //截止日期必须为今天之后
+                        return time.getTime()<Date.now()
+                    }
+                }
             }
         },
         computed:{

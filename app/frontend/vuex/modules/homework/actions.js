@@ -90,7 +90,24 @@ export const deleteHw=({commit},hwId)=>{
     }).then(()=>{
         commit('isHwLoading',false);
     })
-}
+};
+
+// 获取问题列表
+export const getQuesList=({commit},hwId)=>{
+    commit('isLoading',true);
+    Vue.http.post('backend/aboutQues/getQuesList.php',
+        {
+            hw_id:hwId
+        }
+    ).then((response)=>{
+        let resp=response.body;
+        if(!resp.code){
+            commit('updateHwDetail',resp.res);
+        }
+    }).then(()=>{
+        commit('isLoading',false);
+    })
+};
 
 export const submitReview=({commit},markForm)=>{
     console.log(markForm);
