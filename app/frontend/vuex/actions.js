@@ -46,11 +46,14 @@ export const login=({commit},loginForm)=>{
             Vue.prototype.$message({
                 type: 'success',
                 message: resp.msg
-            })
+            });
+            if(userInfo.class_id instanceof Array && userInfo.class_id.length) {
+                router.replace({name: 'App'});
+            }
+
         }
     }).then(()=>{
         commit('isLoading',false);
-        router.replace({name:'App'});
     });
     // console.log(loginForm);
 };
