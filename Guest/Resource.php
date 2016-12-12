@@ -91,15 +91,9 @@
 				</div>
 			</div>
 		</div>
-		<div class="portfolio-row-half">
-			<a href="" class="portfolio-grid-item" style="background-image: url(images/excelicon.png);background-size: 30%;background-position-y: 80px;background-repeat: no-repeat; height: 300px">
-				<div class="desc2">
-					<h3>课件1</h3>
-					<span>这是个ppt</span>
-					<i class="sl-icon-heart">more信息</i>
-				</div>
-			</a>
-		</div>
+
+
+		<?php include dirname(__FILE__).'/backend/Resource/GetResource.php';?>
 		<!-- </div> -->
 	</div>
 
