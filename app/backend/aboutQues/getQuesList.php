@@ -19,17 +19,30 @@ $hw_id = test_input(mysqli_escape_string($conn, $_POST['hw_id']));
 $query_result = mysqli_query($conn, "select * from questions WHERE hw_id = '$hw_id';");
 if($query_result){
     $quesList = array();
+    $indiviNum=0;   //个人作业的应交人数
+    $groupNum=0;    //小组作业的应交人数
     while($fetched = mysqli_fetch_array($query_result)){
         if($fetched['type'] == 0){
-            $count_num = mysqli_query($conn, "select COUNT(DISTINCT student_id ) AS num from homework JOIN student on homework.class_id = student.class_id WHERE homework.hw_id = '$hw_id';");
-            if($fetched2 = mysqli_fetch_array($count_num)){
-                $should_num = $fetched2['num'];
+            if($indiviNum==0) {
+                $count_num = mysqli_query($conn, "select COUNT(DISTINCT student_id ) AS num from homework JOIN student on homework.class_id = student.class_id WHERE homework.hw_id = '$hw_id';");
+                if ($fetched2 = mysqli_fetch_array($count_num)) {
+                    $indiviNum=0;
+                    $should_num = $fetched2['num'];
+                }
+            }
+            else{
+                $should_num=$indiviNum;
             }
         }
         elseif ($fetched['type'] == 1){
-            $count_num = mysqli_query($conn, "select COUNT(DISTINCT group_id ) AS num from homework JOIN student on homework.class_id = student.class_id  WHERE homework.hw_id = '$hw_id';");
-            if($fetched2 = mysqli_fetch_array($count_num)){
-                $should_num = $fetched2['num'];
+            if($groupNum==0) {
+                $count_num = mysqli_query($conn, "select COUNT(DISTINCT group_id ) AS num from homework JOIN student on homework.class_id = student.class_id  WHERE homework.hw_id = '$hw_id';");
+                if ($fetched2 = mysqli_fetch_array($count_num)) {
+                    $should_num = $fetched2['num'];
+                }
+            }
+            else{
+                $should_num=$groupNum;
             }
         }
         $quesList[] = array(
