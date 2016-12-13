@@ -8,14 +8,15 @@ $count = 1;
 while($fetched = mysqli_fetch_array($query_message))
 {
 ?>
-    <div class="container" style="margin-top: 10px">
-        <div class="well well-lg sr-button">
+    <div class="container">
+        <div id="board" class="well well-lg sr-button">
             <div class="row text-center">
                 <div class="col-sm-2">
+                    <img src="./images/default.jpg" class="img-circle" style="height: 80px; width: 80px;">
                     <p class="text-info"><?php echo $fetched['time']; ?>
                 </div>
                 <div class="col-sm-8">
-                    <p class="bg-form"  align="left"><?php echo $fetched['content']; ?></p>
+                    <p class="bg-form" align="left"><?php echo $fetched['content']; ?></p>
                 </div>
                 <?php 
                 if(!$fetched['reply_content']){
@@ -27,8 +28,8 @@ while($fetched = mysqli_fetch_array($query_message))
                 }
                 else{
                     ?>
-                <div class="col-sm-8">
-                    <p class="bg-form"  align="left">回复:<?php echo $fetched['reply_content']; ?></p>
+                <div id="replyboard" class="col-sm-9">
+                    <p  class="bg-form"  align="left">回复:<?php echo $fetched['reply_content']; ?></p>
                 </div>
                 <?php
                 }
@@ -37,11 +38,12 @@ while($fetched = mysqli_fetch_array($query_message))
             <div id="reply<?php echo $count?>" class="collapse">
                 <form role="form" action="./backend/MessageBoard/Reply.php" method="post">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 ">
                             <div class="form-group">
                                 
                                 <textarea class="form-control" name="reply" rows="4" value=""></textarea>
                             </div>
+
                             <input type="hidden" name="msg_id" value="<?php echo $fetched['msg_id']?>">
                             <div class="col-lg-12 text-center">
                                 <button type="submit" name="replySubmit" class="btn btn-default btn-xl sr-button" style="background-color:#5bc0de">提交</button>

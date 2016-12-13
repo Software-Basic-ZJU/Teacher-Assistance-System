@@ -20,10 +20,10 @@
 	<link rel="stylesheet" href="css/style2.css">
 	<link rel="stylesheet" href="css/creative.css">
 	<link rel="stylesheet" href="css/creative.min.css">
-<link rel="stylesheet" href="css/messageboard.css">
+	
 	<!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	
+	<link rel="stylesheet" href="css/messageboard.css">
 
 	<!-- Js -->
 	<script src="js/modernizr.js"></script> <!-- Modernizr -->
@@ -86,8 +86,8 @@
 			<div class="row">
 				<div class="col-lg-4 col-lg-offset-4">
 					<div class="text-center">
-						<h2 class="section-heading">留言板</h2>
-						<hr class="light">
+						<h2 class="row heading">留言板</h2>
+						<hr style="margin-bottom: 70px">
 					</div>
 				</div>
 			</div>

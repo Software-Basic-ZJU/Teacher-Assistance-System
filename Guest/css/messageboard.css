@@ -25,18 +25,100 @@
 
 .well{
     background-color: #ffffff;
-    border-color: #959595;
+    border-color: #ffffff;
+    border-width: 5px;
+    border-style: inset;
 }
 .well p{
     font-size: 14px;
 }
-.btn.btn-info {
-    font-size: 14px;
-}
+
 .section-heading{
     font-size: 26px;
 }
 .well.well-lg.sr-button{
     margin-right: 84px;
     margin-left: -32px;
+}
+
+#board{
+    margin-top: 0px;
+    border:none;
+        background-color: #EBEBEB;
+        background-image: none;
+        background-repeat: repeat;
+        background-attachment: scroll;
+        background-clip: border-box;
+        background-origin: padding-box;
+        background-position-x: 0%;
+        background-position-y: 0%;
+        background-size: auto auto;
+    border-radius: 30px;
+    box-shadow: 0 7px #E0DFDF;
+}
+
+.col-sm-2 p{
+    padding-top: 20px;
+    font-size: 14px;
+}
+
+.col-sm-8 p{
+    padding-top: 20px;
+    padding-bottom: -5px;
+    font-size: 30px;
+    font-family: Microsoft YaHei;
+}
+.col-sm-9 p{
+    padding-top: 20px;
+    font-size: 22px;
+    font-family: Microsoft YaHei;
+}
+
+#replyboard{
+    margin-top: 0px;
+    border:none;
+        background-color: #E5E5E5;
+        background-image: none;
+        background-repeat: repeat;
+        background-attachment: scroll;
+        background-clip: border-box;
+        background-origin: padding-box;
+        background-position-x: 0%;
+        background-position-y: 0%;
+        background-size: auto auto;
+    border-radius: 5px;
+    box-shadow: 0 5px #E0E0E0;
+}
+
+.btn.btn-info {
+        margin-top: 0px;
+    border:none;
+        background-color: #E0E0E0;
+        background-image: none;
+        background-repeat: repeat;
+        background-attachment: scroll;
+        background-clip: border-box;
+        background-origin: padding-box;
+        background-position-x: 0%;
+        background-position-y: 0%;
+        background-size: auto auto;
+    border-radius: 5px;
+    box-shadow: 0 5px #D6D6D6;
+}
+
+.btn.btn-info:hover{
+    color: #8E8486;
+        margin-top: 0px;
+    border:none;
+        background-color: #E5E5E5;
+        background-image: none;
+        background-repeat: repeat;
+        background-attachment: scroll;
+        background-clip: border-box;
+        background-origin: padding-box;
+        background-position-x: 0%;
+        background-position-y: 0%;
+        background-size: auto auto;
+    border-radius: 5px;
+    box-shadow: 0 5px #E0E0E0;
 }
