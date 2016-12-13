@@ -14,25 +14,13 @@
     import router from "../../../routes";
     export default{
         data(){
+            this.$store.dispatch('getQuesDetail',this.$route.params.quesId);
             return{
             }
         },
         computed:{
             question(){
-                let quesList=this.$store.state.homework.quesList;
-                let i;
-                for(i=0;i<quesList.length;i++){
-                    if(quesList[i].quesId=this.$route.params.quesId){
-                        return quesList[i];
-                    }
-                }
-                if(i==list.length){
-                    router.go(-1);
-                    return this.$message({
-                        type:'error',
-                        message:'该问题不存在!'
-                    })
-                }
+                return this.$store.state.homework.quesDetail;
             }
         },
         components:{

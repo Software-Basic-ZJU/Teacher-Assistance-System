@@ -96,9 +96,6 @@
         data(){
 //            router.replace({name:'login'});
             let userInfo=LS.getItem("userInfo");
-            if(!userInfo||!userInfo.token){
-                router.push({name:'login'});
-            }
             return {
                 menu: [
                     {

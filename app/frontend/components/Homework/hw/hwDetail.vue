@@ -6,7 +6,7 @@
                     <el-breadcrumb-item :to="{name:'homework'}">{{className}}作业列表</el-breadcrumb-item>
                     <el-breadcrumb-item>{{hwDetail.hwTitle}}</el-breadcrumb-item>
                 </el-breadcrumb>
-                <el-button type="success" class="fr" @click="addQues">添加问题</el-button>
+                <el-button v-if="idenType!=1" type="success" class="fr" @click="addQues">添加问题</el-button>
             </div>
             <div class="infoBox">
                 <span class="type">作业类型：{{hwDetail.hwType?'小组作业':'个人作业'}}</span>
@@ -16,6 +16,7 @@
             <div class="quesList">
                 <div class="noRes" v-if="hwDetail.quesList.length==0">还没有添加问题~</div>
                 <ques-item
+                        class="item"
                         v-for="item in hwDetail.quesList"
                         :key="item.ques_id"
                         :ques-id="item.ques_id"
@@ -37,6 +38,7 @@
     }
     .infoBox>span{
         margin-right:30px;
+
     }
     .infoBox>.publish{
         color:#8492A6;
@@ -45,7 +47,7 @@
         color:#FF4949;
     }
     .quesList{
-        padding:10px 0px;
+        padding-bottom:10px;
     }
     .el-button--success{
         margin-top:-45px;
@@ -58,8 +60,10 @@
 
     export default{
         data(){
+            let userInfo=LS.getItem('userInfo');
             this.$store.dispatch('getQuesList',this.$route.params.hwId);
             return{
+                idenType:userInfo.type
             }
         },
         computed:{

@@ -30,7 +30,7 @@ export const getHwList=({commit},classId)=>{
 };
 
 // 添加或编辑作业
-export const submitHw=({dispatch,commit,state},newHw)=>{
+export const addHw=({dispatch,commit,state},newHw)=>{
     console.log(newHw);
     commit('isHwLoading',true);
     if(!state.actionType) {
@@ -122,6 +122,24 @@ export const getQuesList=({commit},hwId)=>{
     })
 };
 
+// 查看单个问题
+export const getQuesDetail=({commit},quesId)=>{
+    commit('isLoading',true);
+    Vue.http.post('backend/aboutQues/getQuesDetail.php',
+        {
+            ques_id:quesId
+        }
+    ).then((response)=>{
+        let resp=response.body;
+        if(!resp.code){
+            console.log(resp.res);
+            commit('updateQuesDetail',resp.res);
+        }
+    }).then(()=>{
+        commit('isLoading',false);
+    })
+};
+
 // 添加问题
 export const addQues=({dispatch,commit},payload)=>{
     commit('editorLoading',true);
@@ -149,13 +167,14 @@ export const addQues=({dispatch,commit},payload)=>{
 };
 
 // 编辑问题
-export const editQues=({dispatch,commit})=>{
+export const editQues=({dispatch,commit},payload)=>{
     commit('editorLoading',true);
     Vue.http.post('backend/aboutQues/addQues.php',
         {
-            hw_id:payload.routeParams.hwId,
+            ques_id:payload.ques_id,
             title:payload.data.title,
-            content:payload.data.content
+            content:payload.data.content,
+            type:payload.data.type
         }
     ).then((response)=>{
         let resp=response.body;
@@ -172,6 +191,73 @@ export const editQues=({dispatch,commit})=>{
     }).then(()=>{
         commit('editorLoading',false);
     })
+};
+
+//删除问题
+export const removeQues=({commit},quesId)=>{
+    commit('isLoading',true);
+    Vue.http.post('backend/aboutQues/removeQues.php',
+        {
+            ques_id:quesId
+        }
+    ).then((response)=>{
+        let resp=response.body;
+        if(!resp.code){
+            commit('removeQues',quesId);
+        }
+    }).then(()=>{
+        commit('isLoading',false);
+    })
+};
+
+// 获得某个学生的作业
+export const getStuWork=({commit},payload)=>{
+    commit('isLoading',true);
+    Vue.http.post('backend/aboutWork/getStuWork.php',
+        {
+            ques_id:payload.quesId,
+            uploader_id:payload.sid
+        }
+    ).then((response)=>{
+        let resp=response.body;
+        if(!resp.code){
+            console.log(resp.res);
+            commit('updateStuWork',resp.res);
+        }
+    }).then(()=>{
+        commit('isLoading',false);
+    })
+};
+
+// 提交作业
+export const submitHw=({commit},payload)=>{
+    let userInfo=LS.getItem('userInfo');
+    if(!userInfo || !userInfo.token) return commit('logout');
+    commit('editorLoading',true);
+    Vue.http.post('backend/aboutWork/submitWork.php',
+        {
+            ques_id:payload.routeParams.quesId,
+            uploader_id:userInfo.id,
+            content:payload.data.content,
+            resrc_id:payload.data.resrcId
+        }
+    ).then((response)=>{
+        let resp=response.body;
+        if(!resp.code){
+            Vue.prototype.$message({
+                type:'success',
+                message:'提交成功'
+            });
+            commit('isSubmitFile',false);
+        }
+    }).then(()=>{
+        commit('editorLoading',false);
+    })
+};
+
+// 更新是否上传附件的状态
+export const isSubmitFile=({commit},signal)=>{
+    commit('isSubmitFile',signal);
 };
 
 export const submitReview=({commit},markForm)=>{

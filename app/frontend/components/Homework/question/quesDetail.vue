@@ -12,13 +12,16 @@
                         {{question.title}}
                     </div>
                     <div class="content" v-html="question.content"></div>
-                    <div class="submitBox" v-if="!identify">
+                    <div class="submitBox" v-if="idenType==1">
                         <h3>提交作业</h3>
                         <Editor
                                 method="submitHw"
                                 btn-name="提交"
+                                :data="stuWork"
                                 :has-title="false"
                                 :has-upload="true"
+                                :upload-info="uploadInfo"
+                                :default-file-list="defaultFile"
                         ></Editor>
                     </div>
                 </div>
@@ -29,7 +32,7 @@
                                 border
                         >
                             <el-table-column
-                                    prop="sid"
+                                    prop="id"
                                     label="学号"
                                     min-width="100"
                                     show-overflow-tooltip="true"
@@ -56,7 +59,7 @@
                                     label="操作"
                                     min-width="80">
                               <span>
-                                <el-button @click="checkHw($index,row)" type="text" size="small">查看作业</el-button>
+                                <el-button @click="checkHw($index,row)" type="text" :disabled="!row.isSubmit" size="small">查看作业</el-button>
                               </span>
                             </el-table-column>
                         </el-table>
@@ -77,6 +80,7 @@
         border-right:1px solid #E5E9F2;
     }
     .main .title{
+        margin-top:15px;
         text-align: center;
         font-size:24px;
     }
@@ -101,41 +105,68 @@
     import Editor from "../../Editor/Editor.vue";
     import router from "../../../routes";
     import {mapState} from "vuex";
+    import {LS} from "../../../helpers/utils";
+
     export default{
         data(){
+            let userInfo=LS.getItem("userInfo");
+            this.$store.dispatch('getQuesDetail',this.$route.params.quesId);
+            if(userInfo.type==1){
+                this.$store.dispatch('getStuWork',{
+                    quesId:this.$route.params.quesId,
+                    sid:userInfo.id
+                })
+            }
             return{
-                identify:1
+                idenType:userInfo.type,
+                hwName:'',
+                uploadInfo:{    //上传附件的额外参数
+                    uploader_id:userInfo.id,
+                    type:2
+                }
             }
         },
-        computed:mapState({
-            hwName(state){
-                let hwId=this.$route.params.hwId;
-                let list=state.homework.hwList;
-                for(let i=0;i<list.length;i++){
-                    if(list[i].hwId==hwId){
-                        return list[i].title;
-                    }
-                }
-            },
-            question(state){
-                let quesId=this.$route.params.quesId;
-                let list=state.homework.quesList;
-                for(let i=0;i<list.length;i++){
-                    if(list[i].quesId==quesId){
-                        return list[i];
-                    }
-                }
-            },
-            stuList(state){
-                return state.homework.stuList;
+        beforeRouteLeave(to,from,next){
+            if(this.isSubmitFile){
+                this.$store.dispatch('removeResrc',this.stuWork);
             }
-        }),
+            next();
+        },
+        computed:{
+            ...mapState({
+                question(state){
+                    let question=state.homework.quesDetail
+                    this.hwName=question.hw_title;
+                    return question;
+                },
+                stuList:state=>state.homework.quesDetail.shouldList,
+                stuWork:state=>state.homework.stuWork,
+                isSubmitFile:state=>state.homework.isSubmitFile
+            }),
+            defaultFile(){
+                let resource=LS.getItem('stuWorkFile');
+                if(resource){
+                    this.stuWork.resrcId=resource.resource_id;
+                    return [{
+                        name:resource.name,
+                        path:resource.path
+                    }]
+                }
+                if(this.stuWork.resrc_id) {
+                    return [{
+                        name: this.stuWork.resrc_name,
+                        path: this.stuWork.path
+                    }];
+                }
+                else return [];
+            }
+        },
         methods:{
             checkHw(index,row){
 //                console.log(index,row.sid);
                 let hwId=this.$route.params.hwId;
                 let quesId=this.$route.params.quesId;
-                router.push({name:'correct',params:{hwId:hwId,quesId:quesId,sid:row.sid}});
+                router.push({name:'correct',params:{hwId:hwId,quesId:quesId,sid:row.id}});
             }
         },
         components:{

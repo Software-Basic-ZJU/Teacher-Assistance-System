@@ -16,7 +16,7 @@
             </div>
             <div class="main">
                 <div class="content">{{hostPost.content}}</div>
-                <div class="reseource" v-if="hostPost.resrcId">
+                <div class="resource" v-if="hostPost.resrcId">
                     <a :href="hostPost.resource.path" download="hostPost.resource.name">
                         {{hostPost.resource.name}}
                     </a>
@@ -76,6 +76,9 @@
     }
     .hostPost>.main{
         padding:10px 0px;
+    }
+    .hostPost>.main .resource{
+        margin-top:10px;
     }
     .hostPost>.footer{
         padding-top:5px;

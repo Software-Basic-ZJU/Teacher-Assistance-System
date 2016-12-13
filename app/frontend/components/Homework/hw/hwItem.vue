@@ -36,6 +36,7 @@
     .el-tag.group{
         background-color: #6ECADC;
         border-color:#6ECADC;
+
     }
     .text.item{
         font-size:14px;
@@ -44,12 +45,15 @@
 </style>
 <script>
     import router from "../../../routes";
+    import {LS} from "../../../helpers/utils";
     export default{
         data(){
+            let userInfo=LS.getItem("userInfo");
             return{
                 bodyStyle:{
                     backgroundColor:"#F0F0F0"
-                }
+                },
+                idenType:userInfo.type
             }
         },
         props:{
@@ -57,7 +61,6 @@
             title:String,
             publishTime:String,
             deadline:String,
-            idenType:[String,Number],
             hwType:[String,Number]
         },
         methods:{

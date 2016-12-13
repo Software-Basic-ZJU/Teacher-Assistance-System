@@ -52,10 +52,10 @@ export const login=({commit},loginForm)=>{
                 type: 'success',
                 message: resp.msg
             });
-            if(userInfo.class_id instanceof Array && userInfo.class_id.length) {
-                router.replace({name: 'App'});
-            }
-
+            // if(userInfo.class_id instanceof Array && userInfo.class_id.length) {
+            //     router.replace({name: 'App'});
+            // }
+            router.replace({name: 'App'});
         }
     }).then(()=>{
         commit('isLoading',false);

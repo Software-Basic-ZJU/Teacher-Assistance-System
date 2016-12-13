@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div>
+        <div class="quesItem">
             <el-card
                     class="box-card"
                     :body-style="bodyStyle"
@@ -12,14 +12,17 @@
                         <div class="haveNum">实交人数：{{submitNum}}</div>
                     </div>
                     <el-button class="fr" type="primary" @click="goQuesByName(quesId,'quesDetail')">前往查看</el-button>
-                    <el-button class="fr" type="warning" :plain="true" @click="goQuesByName(quesId,'editQues')" icon="edit"></el-button>
-                    <el-button class="fr" type="danger" :plain="true" icon="delete"></el-button>
+                    <el-button class="fr" v-if="idenType!=1" type="warning" :plain="true" @click="goQuesByName(quesId,'editQues')" icon="edit"></el-button>
+                    <el-button class="fr" v-if="idenType!=1" type="danger" :plain="true" icon="delete" @click="removeQues(quesId)"></el-button>
                 </div>
             </el-card>
         </div>
     </div>
 </template>
 <style scoped>
+    .quesItem{
+        margin-top:15px;
+    }
     .statistics{
         background-color: #F0F0F0;
         margin-top:-10px;
@@ -36,9 +39,13 @@
 </style>
 <script>
     import router from "../../../routes";
+    import {LS} from "../../../helpers/utils";
+
     export default{
         data(){
+            let userInfo=LS.getItem("userInfo");
             return{
+                idenType:userInfo.type
             }
         },
         props:{
@@ -51,6 +58,9 @@
             goQuesByName(quesId,name){
                 let hwId=this.$route.params.hwId;
                 router.push({name:name,params:{hwId:hwId,quesId:quesId}});
+            },
+            removeQues(quesId){
+                this.$store.dispatch("removeQues",quesId);
             }
         }
     }
