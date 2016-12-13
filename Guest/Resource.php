@@ -18,6 +18,7 @@
 	<link rel="stylesheet" href="css/our-team.css"> <!-- Resource style -->
 	<link rel="stylesheet" href="css/simple-line-icons.css">
 	<link rel="stylesheet" href="css/style2.css">
+    <link rel="stylesheet" href="css/Resource.css">
 	<!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	
@@ -80,33 +81,103 @@
 	<!-- Navigation -->
 
 
-	<!-- Main Part-->
-	<div id="fh5co-portfolio-section" class="fh5co-portfolio-section">
-		<div class="container">
-			<div class="row" style="padding-top: 50px;">
-				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-					<h2>课件</h2>
-				</div>
-			</div>
-		</div>
+    <!-- Main Part-->
+    <div id="page-content" class="index-page">
+        <div id="fh5co-services-section">
+            <div class="container">
+                <div class="row ">
+                    <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
+                        <i class="sl-icon-paper-plane"></i>
+                        <h2 >课件</h2>
+                    </div>
+                </div>
 
 
-		<?php include dirname(__FILE__).'/backend/Resource/GetResource.php';?>
-		<div class="portfolio-row-half">
-			<a href="openResource.php" target="view_frame" class="portfolio-grid-item" style="background-image: url(images/excelicon.png);background-size: 30%;background-position-y: 50px;background-repeat: no-repeat; height: 200px;width: 200px;">
-				<div class="desc2">
-					<h3 style="font-size: 16px;">课件1</h3>
-				</div>
-			</a>
-		</div>
-		<!-- </div> -->
-	</div>
-	</div>
+
+                <div class="row">
+                    <div class="col-md-6 text-center">
+                        <div class="row">
+                            <div class="col-md-6 text-center">
+                                <div class="resources-1">
+                                    <span></span>
+                                    <img src="images/ppticon.png" class="ppticon">
+                                    </br>
+                                    </br>
+                                    <a style="font-family:'Microsoft YaHei'">第一章1.112321312312</a>
+                                    <p>
+                                        a上传
+                                        </br>
+                                        具体内容
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 text-center">
+
+                                <div class="resources-1">
+                                    <span></span>
+                                    <img src="images/ppticon.png" class="ppticon">
+                                    </br>
+                                    </br>
+                                    <a style="font-family:'Microsoft YaHei'">第一章1.112321312312</a>
+                                    <p>
+                                        a上传
+                                        </br>
+                                        具体内容
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <div class="row">
+                            <div class="col-md-6 text-center">
+                                <div class="resources-1">
+                                    <span></span>
+                                    <img src="images/ppticon.png" class="ppticon">
+                                    </br>
+                                    </br>
+                                    <a style="font-family:'Microsoft YaHei'">第一章1.112321312312</a>
+                                    <p>
+                                        a上传
+                                        </br>
+                                        具体内容
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 text-center">
+
+                                <div class="resources-1">
+                                    <span></span>
+                                    <img src="images/ppticon.png" class="ppticon">
+                                    </br>
+                                    </br>
+                                    <a style="font-family:'Microsoft YaHei'">第一章1.112321312312</a>
+                                    <p>
+                                        a上传
+                                        </br>
+                                        具体内容
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <!-- 最新动态 -->
+
+
+    </div>
+
+
+    </div>
 
 	<!--底-->
-		<?php
-			include "footer.php"
-		?>
+        <?php
+        include "footer.php"
+        ?>
 	<!-- Footer -->
 
 	

@@ -1,3 +1,16 @@
+<!--额= =课件-->
+<section class="box-content box-1"  >
+    <div class="row heading">
+        <div class="portfolio-row-half">
+            <a href="openResource.php" target="view_frame" class="portfolio-grid-item" style="background-image: url(images/excelicon.png);background-size: 30%;background-position-y: 50px;background-repeat: no-repeat; height: 150px;width: 150px;">
+                <div class="desc2">
+                    <h3 style="font-size: 16px;">课件1</h3>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
 <!--左右小圆点滚动元素-->
 <section class="tabsblock">
     <div class="wrap">
