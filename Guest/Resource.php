@@ -95,70 +95,60 @@
 
 
                 <div class="row">
-                    <div class="col-md-6 text-center">
-                        <div class="row">
-                            <div class="col-md-6 text-center">
-                                <div class="resources-1">
-                                    <span></span>
-                                    <img src="images/ppticon.png" class="ppticon">
+                    <div class="col-md-3 text-center">
+                            <div class="resources-1">
+                                <span></span>
+                                <img src="images/ppticon.png" class="ppticon">
+                                </br>
+                                </br>
+                                <a style="font-family:'Microsoft YaHei'">第一章1.112321312312</a>
+                                <p>
+                                    a上传
                                     </br>
-                                    </br>
-                                    <a style="font-family:'Microsoft YaHei'">第一章1.112321312312</a>
-                                    <p>
-                                        a上传
-                                        </br>
-                                        具体内容
-                                    </p>
-                                </div>
+                                    具体内容
+                                </p>
                             </div>
-                            <div class="col-md-6 text-center">
-
-                                <div class="resources-1">
-                                    <span></span>
-                                    <img src="images/ppticon.png" class="ppticon">
-                                    </br>
-                                    </br>
-                                    <a style="font-family:'Microsoft YaHei'">第一章1.112321312312</a>
-                                    <p>
-                                        a上传
-                                        </br>
-                                        具体内容
-                                    </p>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <div class="resources-1">
+                            <span></span>
+                            <img src="images/ppticon.png" class="ppticon">
+                            </br>
+                            </br>
+                            <a style="font-family:'Microsoft YaHei'">第一章1.112321312312</a>
+                            <p>
+                                a上传
+                                </br>
+                                具体内容
+                            </p>
                         </div>
                     </div>
-                    <div class="col-md-6 text-center">
-                        <div class="row">
-                            <div class="col-md-6 text-center">
-                                <div class="resources-1">
-                                    <span></span>
-                                    <img src="images/ppticon.png" class="ppticon">
-                                    </br>
-                                    </br>
-                                    <a style="font-family:'Microsoft YaHei'">第一章1.112321312312</a>
-                                    <p>
-                                        a上传
-                                        </br>
-                                        具体内容
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="col-md-6 text-center">
-
-                                <div class="resources-1">
-                                    <span></span>
-                                    <img src="images/ppticon.png" class="ppticon">
-                                    </br>
-                                    </br>
-                                    <a style="font-family:'Microsoft YaHei'">第一章1.112321312312</a>
-                                    <p>
-                                        a上传
-                                        </br>
-                                        具体内容
-                                    </p>
-                                </div>
-                            </div>
+                    <div class="col-md-3 text-center">
+                        <div class="resources-1">
+                            <span></span>
+                            <img src="images/ppticon.png" class="ppticon">
+                            </br>
+                            </br>
+                            <a style="font-family:'Microsoft YaHei'">第一章1.112321312312</a>
+                            <p>
+                                a上传
+                                </br>
+                                具体内容
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <div class="resources-1">
+                            <span></span>
+                            <img src="images/ppticon.png" class="ppticon">
+                            </br>
+                            </br>
+                            <a style="font-family:'Microsoft YaHei'">第一章1.112321312312</a>
+                            <p>
+                                a上传
+                                </br>
+                                具体内容
+                            </p>
                         </div>
                     </div>
                 </div>
