@@ -66,7 +66,7 @@
 						<a class="page-scroll" href="TeacherList.php">教师信息</a>
 					</li>
 					<li>
-						<a class="page-scroll" href="#fh5co-services-section">课件</a>
+						<a class="page-scroll" href="#fh5co-portfolio-section">课件</a>
 					</li>
 					<li>
 						<a class="page-scroll" href="MessageBoard.php">留言板</a>
@@ -93,7 +93,7 @@
 
 		<?php include dirname(__FILE__).'/backend/Resource/GetResource.php';?>
 		<div class="portfolio-row-half">
-			<a href="" class="portfolio-grid-item" style="background-image: url(images/excelicon.png);background-size: 30%;background-position-y: 50px;background-repeat: no-repeat; height: 200px;width: 200px;">
+			<a href="openResource.php" target="view_frame" class="portfolio-grid-item" style="background-image: url(images/excelicon.png);background-size: 30%;background-position-y: 50px;background-repeat: no-repeat; height: 200px;width: 200px;">
 				<div class="desc2">
 					<h3 style="font-size: 16px;">课件1</h3>
 				</div>

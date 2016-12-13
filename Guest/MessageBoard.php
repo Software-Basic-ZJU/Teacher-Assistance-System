@@ -73,7 +73,7 @@
 						<a class="page-scroll" href="Resource.php">课件</a>
 					</li>
 					<li>
-						<a class="page-scroll" href="">留言板</a>
+						<a class="page-scroll" href="#messageboard">留言板</a>
 					</li>
                 </ul>
             </div>
@@ -81,21 +81,21 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
-
-	<div class="container" style="margin-top:120px">
-		<div class="row">
-			<div class="col-lg-4 col-lg-offset-4">
-				<div class="text-center">
-					<h2 class="section-heading">留言板</h2>
-					<hr class="light">
+	<div id="messageboard" class="fh5co-portfolio-section">
+		<div  class="container" style="margin-top:10px">
+			<div class="row">
+				<div class="col-lg-4 col-lg-offset-4">
+					<div class="text-center">
+						<h2 class="section-heading">留言板</h2>
+						<hr class="light">
+					</div>
 				</div>
 			</div>
+			<?php
+			include dirname(__FILE__).'/backend/MessageBoard/Get.php';
+			?>
 		</div>
-		<?php
-		include dirname(__FILE__).'/backend/MessageBoard/Get.php';
-		?>
 	</div>
-	
 	
 	
 

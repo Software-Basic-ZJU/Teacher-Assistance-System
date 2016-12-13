@@ -1083,7 +1083,7 @@ header .intro-text .intro-lead-in {margin-bottom: 30px;font-family: 'Shadows Int
 /* ---------------------------------------------------------------------------- */
 /* ------------------------------Contact(box-5)-------------------------------- */
 /* ---------------------------------------------------------------------------- */
-.box-content.box-5 {padding:110px 0 ;}
+.box-content.box-5 {padding:110px 0 ;background-color: #f0f0f0;}
 .box-content.box-5 .box-item{margin: 5px; }
 .box-content.box-5 h3 {margin-bottom: 30px;font-size: 35px;}
 .box-content.box-5 p {margin-bottom: 20px;}

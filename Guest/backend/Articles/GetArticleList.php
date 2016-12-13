@@ -38,7 +38,7 @@ while ($row=mysqli_fetch_array($result)) {
         <div class="col-md-4 text-center">
             <div class="services">
                 <span></span>
-                <h5 style="width: 300px;"><?php echo $row['title']?></h5>
+                <h5 style=""><?php echo $row['title']?></h5>
                 </br>
                 <h6 style="font-family:'Microsoft YaHei'"><?php echo $row['author']?></h6>
                 <?php echo $row['time']?>

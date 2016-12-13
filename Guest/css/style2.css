@@ -695,6 +695,7 @@ figure {
 
 .fh5co-portfolio-section {
   padding-top: 7em;
+  background-color: #f0f0f0;
 }
 
 .grey-bg {
@@ -934,6 +935,7 @@ figure {
   -webkit-flex-wrap: wrap;
   -moz-flex-wrap: wrap;
   width: 100%;
+  background-color: #f0f0f0;
 }
 #fh5co-portfolio-section .portfolio-row-half .portfolio-grid-item {
   background-size: cover;
