@@ -83,7 +83,7 @@
 	<div id="page-content" class="index-page">
 
 		<!--课程信息-->
-		<section class="tabsblock">
+		<section class="tabsblock" style="margin-bottom: 60px">
 			<div class="wrap" style="padding-top: 120px">
 				<div class="tab">
 
