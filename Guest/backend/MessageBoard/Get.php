@@ -37,14 +37,14 @@ while($fetched = mysqli_fetch_array($query_message))
             <div id="reply<?php echo $count?>" class="collapse">
                 <form role="form" action="./backend/MessageBoard/Reply.php" method="post">
                     <div class="row">
-                        <div class="col-md">
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <label for="reply">回复:</label>
+                                
                                 <textarea class="form-control" name="reply" rows="4" value=""></textarea>
                             </div>
                             <input type="hidden" name="msg_id" value="<?php echo $fetched['msg_id']?>">
-                            <div class="col-sm-12 text-center">
-                                <button type="submit" name="replySubmit" class="btn btn-default btn-xl sr-button" style="background-color:#F05F40">提交</button>
+                            <div class="col-lg-12 text-center">
+                                <button type="submit" name="replySubmit" class="btn btn-default btn-xl sr-button" style="background-color:#5bc0de">提交</button>
                             </div>
                         </div>
                     </div>

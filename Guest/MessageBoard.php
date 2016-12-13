@@ -20,10 +20,10 @@
 	<link rel="stylesheet" href="css/style2.css">
 	<link rel="stylesheet" href="css/creative.css">
 	<link rel="stylesheet" href="css/creative.min.css">
-
+<link rel="stylesheet" href="css/messageboard.css">
 	<!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" href="css/messageboard.css">
+	
 
 	<!-- Js -->
 	<script src="js/modernizr.js"></script> <!-- Modernizr -->
@@ -137,7 +137,6 @@ $time = date("Y-m-d H:i:s");
 			</div>
 		</div>
 	</section>
-
 
 	
 	<!--底-->
