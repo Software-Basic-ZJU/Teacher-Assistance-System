@@ -695,6 +695,7 @@ figure {
 
 .fh5co-portfolio-section {
   padding-top: 7em;
+  background-color: #f0f0f0;
 }
 
 .grey-bg {
@@ -907,7 +908,7 @@ figure {
   height: 20px;
 }
 .services p{
-  height: 100px;
+  height: 120px;
 }
 .pagination>li>a, .pagination>li>span ,.pagination>.disabled>a, .pagination>.disabled>a:focus, .pagination>.disabled>a:hover, .pagination>.disabled>span, .pagination>.disabled>span:focus, .pagination>.disabled>span:hover .pagination>li:first-child>a, .pagination>li:first-child>span{
   opacity: 0.5;
@@ -934,6 +935,7 @@ figure {
   -webkit-flex-wrap: wrap;
   -moz-flex-wrap: wrap;
   width: 100%;
+  background-color: #f0f0f0;
 }
 #fh5co-portfolio-section .portfolio-row-half .portfolio-grid-item {
   background-size: cover;
@@ -1652,11 +1654,12 @@ figure {
 }
 
 
-.line_1{
-      padding: 0 20px 0;
+.line_1 {
+    padding: 0 20px 0;
     margin: 20px 0;
     height: 1px;
     border-top: 1px solid #ddd;
     text-align: center;
+}
 
-/*# sourceMappingURL=style.css.map */
+

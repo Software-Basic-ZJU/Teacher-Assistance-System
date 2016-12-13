@@ -132,7 +132,7 @@
 			<div class="container">
 				<div class="row">
 					<blockquote>
-						<h3 style="color:#F0F0F0;">项目管理与软件需求，作为软件工程当中最为重要的组成几个部分，已经引起业内人士的高度重视，项目管理和需求工程概念的提出，就是为了把软件工程化，以更有效地开发需求，开发软件并实现有效的管理。</h3>
+						<h3 style="color:#F0F0F0;font-family:Microsoft YaHei;">项目管理与软件需求，作为软件工程当中最为重要的组成几个部分，已经引起业内人士的高度重视，项目管理和需求工程概念的提出，就是为了把软件工程化，以更有效地开发需求，开发软件并实现有效的管理。</h3>
 						<a style="color:#F0F0F0; float:right; font-size:0.7em;" href="Classes.php">>> More</a> 
 					</blockquote>
 				</div>
@@ -160,60 +160,9 @@
 	</div>
 
 	<!--底-->
-	<footer>
-		<div class="wrap-footer">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12 col-footer footer-3">
-						<div class="row">
-							<div class="col-md-3 text-center">
-								<a style="color:#C3C3C3"  href="#">>>教务网</a>
-							</div>
-							<div class="col-md-3 text-center">
-								<a style="color:#C3C3C3" href="#">>>计算机学院</a>
-							</div>
-							<div class="col-md-3 text-center">
-								<a style="color:#C3C3C3" href="#">>>本科生院</a>
-							</div>
-							<div class="col-md-3 text-center">
-								<a style="color:#C3C3C3" href="#">>>友情课程</a>
-							</div>
-						</div>
-
-						<div class="row"><div class="line_1"></div></div>
-
-						<div class="row">
-							<div class="col-md-5 text-center">
-								<p>Copyright &copy; 2016. SRE G12 All rights reserved.</p>
-							</div>
-							<div class="col-md-3 text-center">
-								<ul class="list-inline">
-									<li><a href="#"><i class="fa fa-twitter"></i></a>
-									</li>
-									<li><a href="#"><i class="fa fa-facebook"></i></a>
-									</li>
-									<li><a href="#"><i class="fa fa-linkedin"></i></a>
-									</li>
-									<li><a href="#"><i class="fa fa-google"></i></a>
-									</li>
-								</ul>
-							</div>
-							<div class="col-md-4 text-center">
-								<ul class="list-inline">
-									<li><a style="color:#C3C3C3" href="#">Privacy Policy</a>
-									</li>
-									<li><a style="color:#C3C3C3" href="#">Terms of Use</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-
-	</footer>
+		<?php
+			include "footer.php"
+		?>
 	<!-- Footer -->
 
 	

@@ -108,10 +108,10 @@
 					<!--老师列表-->
 					<div id="one-teacher" class="col-sm-3 box-item">
 						<div class="wrap-img">
-							<img id="<?php echo $i?>_photo" src="images/Html.png" />
+							<img id="<?php echo $i?>_photo" src="images/Html.png" class="img-circle" style="height: 110px; width: 110px;">
 						</div>
-						<h3 id="<?php echo $i?>_name" class="blue">虚位以待</h3>
-						<p id="<?php echo $i?>_intro">虚位以待</p>
+						<h3 id="<?php echo $i?>_name" class="blue"></h3>
+						<p id="<?php echo $i?>_intro"></p>
 						<div class="cd-see-all"><a href="#00<?php echo $i?>" class="btn btn-3">Detail</a></div>
 						<br>
 						<br>
@@ -132,7 +132,7 @@
 		{
 		?>
 				<!--带小点的表-->
-				<section id="00<?php echo $i?>" class="tabsblock">
+				<section id="00<?php echo $i?>" class="tabsblock" style="padding-top: 200px;">
 					<div class="wrap">
 						<div class="tab">
 							<!--教学经历	-->
@@ -141,34 +141,9 @@
 									<h2>个人简介</h2>
 									<hr>
 									<br>
-									<p id="<?php echo $i?>_profile">此处显示课个人简介<?php echo $i?>.</p>
+									<p id="<?php echo $i?>_teacherInfo">此处显示教师简介<?php echo $i?>.</p>
 								</div>
 							</div><!-- box -->
-
-							<div class="box">
-								<div class="box-text">
-									<h2>教学经历</h2>
-									<hr>
-									<br>
-									<p id='<?php echo $i?>_teach-exp'>此处显示教学经历</p> 
-								</div>
-							</div><!-- box -->
-
-							<div class="box">
-								<div class="box-text">
-									<h2>荣誉&出版物</h2>
-									<hr>
-									<br>
-									<p id='<?php echo $i?>_honor'>此处显示个人荣誉&出版物.</p>
-								</div>
-							</div><!-- box -->
-
-							<ul class="tabs clearfix">
-								<li class="active"></li>
-								<li></li>
-								<li></li>
-							</ul><!-- tabs -->
-
 						</div><!-- tab -->
 					</div><!-- wrap -->
 				</section><!--  -->
@@ -183,63 +158,12 @@
 
 
 
-
 	<!--底-->
-		<footer>
-			<div class="wrap-footer">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12 col-footer footer-3">
-							<div class="row">
-								<div class="col-md-3 text-center">
-									<a href="#">教务网</a>
-								</div>
-								<div class="col-md-3 text-center">
-									<a href="#">计算机学院</a>
-								</div>
-								<div class="col-md-3 text-center">
-									<a href="#">本科生院</a>
-								</div>
-								<div class="col-md-3 text-center">
-									<a href="#">友情课程</a>
-								</div>
-							</div>
-
-
-							<div class="row">
-								<div class="col-md-5 text-center">
-									<p>Copyright &copy; 2016. SRE G12 All rights reserved.</p>
-								</div>
-								<div class="col-md-3 text-center">
-									<ul class="list-inline">
-										<li><a href="#"><i class="fa fa-twitter"></i></a>
-										</li>
-										<li><a href="#"><i class="fa fa-facebook"></i></a>
-										</li>
-										<li><a href="#"><i class="fa fa-linkedin"></i></a>
-										</li>
-										<li><a href="#"><i class="fa fa-google"></i></a>
-										</li>
-									</ul>
-								</div>
-								<div class="col-md-4 text-center">
-									<ul class="list-inline">
-										<li><a href="#">Privacy Policy</a>
-										</li>
-										<li><a href="#">Terms of Use</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-
-		</footer>
+		<?php
+			include "footer.php"
+		?>
 	<!-- Footer -->
-
+	
 	<script type="text/javascript">
     // PHP 后端交互所用到的
     function Get_TeacherList(){
@@ -251,18 +175,24 @@
       			//获取教师列表介绍
 		    	$("#" + i +"_name").html("");
 	    		$("#" + i +"_intro").html("");
-	    		$("#" + i +"_photo").html("");
-	        	$("#" + i +"_name").append(json.res[i].name);
+	 	        $("#" + i +"_name").append(json.res[i].name);
 	        	$("#" + i +"_intro").append(json.res[i].brief_intro);
-				$("#" + i +"_photo").append(json.res[i].photo);
+	        	if(json.res[i].photo_path)
+	        	{
+	        		$("#" + i +"_photo").html("");
+	        		$("#" + i +"_photo").attr("src",json.res[i].photo_path);
 
+	        	}
+				
 				//获取教师详细介绍
-				$("#" + i +"_teach-exp").html("");
-	    		$("#" + i +"_profile").html("");
-	    		$("#" + i +"_honor").html("");
-	        	$("#" + i +"_teach-exp").append(json.res[i].teach_experience);
-	        	$("#" + i +"_profile").append(json.res[i].profile);
-				$("#" + i +"_honor").append(json.res[i].honor);
+				$("#" + i +"_teacherInfo").html("");
+				$("#" + i +"_teacherInfo").append(json.res[i].teacher_info);
+				//$("#" + i +"_teach-exp").html("");
+	    		//$("#" + i +"_profile").html("");
+	    		//$("#" + i +"_honor").html("");
+	        	//$("#" + i +"_teach-exp").append(json.res[i].teach_experience);
+	        	//$("#" + i +"_profile").append(json.res[i].profile);
+				//$("#" + i +"_honor").append(json.res[i].honor);
       		}
       		
  		var date=new Date();
