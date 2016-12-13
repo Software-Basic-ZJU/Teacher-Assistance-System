@@ -94,7 +94,7 @@
 							<h2>课程背景</h2>
 							<hr>
 							<br>
-							<p  id='back_ground'>此处显示课程背景.</p>
+							<p style="font-family:'Microsoft YaHei'" id='back_ground'>此处显示课程背景.</p>
 						</div>
 					</div><!-- box -->
 					<div class="box">
@@ -104,14 +104,14 @@
 							<br>
 							<!-- <p id='courseplan'>此处显示教学计划</p> -->
 						</div>
-						<img id="img_address" src="" alt="此外应该是教学计划表">
+						<img  id="img_address" src="" alt="此外应该是教学计划表">
 					</div><!-- box -->
 					<div class="box">
 						<div class="box-text">
 							<h2>教材&预修要求</h2>
 							<hr>
 							<br>
-							<p id='text-pre'>此处显示教材&预修要求.</p>
+							<p style="font-family:'Microsoft YaHei'" id='text-pre'>此处显示教材&预修要求.</p>
 						</div>
 					</div><!-- box -->
 					<div class="box">
@@ -119,7 +119,7 @@
 							<h2>考核方式</h2>
 							<hr>
 							<br>
-							<p id='exam'>此处显示考核方式.</p>
+							<p style="font-family:'Microsoft YaHei'" id='exam'>此处显示考核方式.</p>
 						</div>
 					</div><!-- box -->
 					<ul class="tabs clearfix">

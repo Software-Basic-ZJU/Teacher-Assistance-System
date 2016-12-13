@@ -48,7 +48,7 @@ pre,
 form,
 dfn,
 del,
-p,
+p{font-family:Microsoft YaHei;},
 blockquote,
 fieldset,
 input,
@@ -142,7 +142,8 @@ section,
 .cd-see-all .btn-1 {
     color: gray;
     border-color:gray;
-    padding-bottom: 10px;;
+    padding-bottom: 10px;
+    font-family:Microsoft YaHei; 
 }
 audio,
 canvas,
