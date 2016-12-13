@@ -19,6 +19,7 @@ $query_result = mysqli_query($conn, "select * from posts
                                          where post_id ='$post_id'");
 if($fetched = mysqli_fetch_array($query_result)){
     $query_resource = mysqli_query($conn,"select * from resource where type = 1 AND post_id = '$post_id';");
+    $resource = array();
     if($fetched2 = mysqli_fetch_array($query_resource)){
         $resource = array(
             "resrc_id" => $fetched2['resrc_id'],
@@ -31,9 +32,7 @@ if($fetched = mysqli_fetch_array($query_result)){
             "uploader_id" => $fetched2['uploader_id']
         );
     }
-    else{
-        $resource = null;
-    }
+
     $result = array(
         "code" => 0,
         "msg" => "查找成功",

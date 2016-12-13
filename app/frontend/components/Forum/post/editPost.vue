@@ -5,7 +5,7 @@
             <Editor
                     method="editPost"
                     btn-name="更新"
-                    :data="hostPost"
+                    :data="currPost"
                     :has-upload="true"
                     :upload-info="uploadInfo"
                     :default-file-list="currPost.defaultFile"
@@ -22,6 +22,7 @@
     export default{
         data(){
             let userInfo=LS.getItem("userInfo");
+            this.$store.dispatch('getPostDetail',this.$route.params.pid);
             return{
                 uploadInfo:{  //上传文件额外的参数
                     uploader_id:userInfo.id,
@@ -33,12 +34,13 @@
         computed:{
             currPost(){
                 let post=this.$store.state.forum.currPost;
-                if(post.defaultFile.length) this.$store.dispatch("isFileUpload",true);
-                return this.$store.state.forum.currPost;
+                if(post.defaultFile && post.defaultFile.length) this.$store.dispatch("isFileUpload",true);
+                return Object.assign({},post);
             }
         },
         beforeRouteLeave(to,from,next){
             this.$store.dispatch("isFileUpload",false);
+            next();
         },
         components:{
             Editor

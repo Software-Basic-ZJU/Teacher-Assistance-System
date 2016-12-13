@@ -2,7 +2,7 @@
     <div>
         <div class="post">
             <div class="header">
-                <span class="author">{{author}}</span>
+                <span class="author">{{authorName}}</span>
                 <span class="time">发表于：{{time}}</span>
             </div>
             <div class="main">
@@ -57,7 +57,8 @@
         },
         props:{
             rpid:[String,Number],
-            author:String,
+            authorId:[String,Number],
+            authorName:[String],
             content:String,
             time:String,                         //发表时间
             replyNum:[String,Number],            //评论数量

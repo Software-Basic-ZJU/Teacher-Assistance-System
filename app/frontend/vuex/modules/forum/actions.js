@@ -62,16 +62,14 @@ export const getPostList=({commit},type)=>{
 //获取单个帖子
 export const getPostDetail=({commit},postId)=>{
     commit('isLoading', true);
-    Vue.http.post("backend/aboutPost/getPostList.php",
+    Vue.http.post("backend/aboutPost/getPostDetail.php",
         {
-            section:type,
-            teacher_id: userInfo.teacher_id,
-            group_id:userInfo.group_id
+            post_id:postId
         }
     ).then((response)=> {
         let resp = response.body;
         if (!resp.code) {
-            commit('updatePostList', resp.res.postList);
+            commit('updateCurrPost', resp.res);
         }
     }).then(()=> {
         commit('isLoading', false);
@@ -134,7 +132,7 @@ export const editPost=({commit},payload)=>{
         if(!resp.code){
             commit('isFileUpload',false);
             router.replace({
-                name:'section',
+                name:'post',
                 params:{
                     section:payload.routeParams.section,
                     pid:payload.routeParams.pid
@@ -171,14 +169,14 @@ export const removePost=({commit},payload)=>{
 //获取回帖
 export const getReplyPost=({commit},postId)=>{
     commit('replyPostLoading',true);
-    Vue.http.post("backend/aboutPost/removePost.php",
+    Vue.http.post("backend/aboutReplyPost/getReplyPosts.php",
         {
             post_id:postId
         }
     ).then((response)=>{
         let resp=response.body;
         if(!resp.code){
-            commit('updateRepostList',resp.res.reposts);
+            commit('updateRepostList',resp.res.repostList);
         }
     }).then(()=>{
         commit('replyPostLoading',false);
@@ -186,8 +184,34 @@ export const getReplyPost=({commit},postId)=>{
 };
 
 //增加回帖
-export const addReplyPost=({commit},)=>{
+export const addReplyPost=({dispatch,commit},payload)=>{
+    let userInfo=LS.getItem('userInfo');
+    if(!userInfo || !userInfo.token) return commit('logout');
+    commit('postLoading',true);
+    Vue.http.post("backend/aboutReplyPost/addReplyPost.php",
+        {
+            post_id:payload.postId,
+            author_id:userInfo.id,
+            content:payload.content
+        }
+    ).then((response)=>{
+        let resp=response.body;
+        if(!resp.code){
+            Vue.prototype.$message({
+                type:"success",
+                message:"回帖成功"
+            });
+            commit('isReplyShow',false);
+            dispatch('getReplyPost',payload.postId);
+        }
+    }).then(()=>{
+        commit('postLoading',false);
+    })
+};
 
+// 显示回帖框状态
+export const isReplyShow=({commit},signal)=>{
+    commit('isReplyShow',signal);
 }
 
 export const publish=({commit},info)=>{

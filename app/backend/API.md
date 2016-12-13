@@ -1373,11 +1373,11 @@ POST——Teacher-Assistance-System/app/backend/aboutReplyPost/getReplyPosts.php
         "code" => 0,
         "msg" => "查找成功",
         "res" => array(
-            'reposts' => $reposts,
+            'repostList' => $repostList,
             "token" => $_SESSION['token']
         )
           
-          $reposts[] = array(
+          $repostList[] = array(
             "repost_id" => $fetched['repost_id'],
             "content" => $fetched['content'],
             "author_id" => $fetched['author_id'],

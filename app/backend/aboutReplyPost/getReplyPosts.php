@@ -18,7 +18,7 @@ $post_id = test_input(mysqli_escape_string($conn, $_POST['post_id']));
 $query_result = mysqli_query($conn, "select * from reply_post 
                                      where post_id ='$post_id';");
 if($query_result){
-    $reposts = array();
+    $repostList = array();
     while($fetched = mysqli_fetch_array($query_result)){
         $repost_id = $fetched['repost_id'];
         //get comment
@@ -46,7 +46,7 @@ if($query_result){
             echo json_encode($result);
             exit;
         }
-        $reposts[] = array(
+        $repostList[] = array(
             "repost_id" => $fetched['repost_id'],
             "content" => $fetched['content'],
             "author_id" => $fetched['author_id'],
@@ -59,7 +59,7 @@ if($query_result){
         "code" => 0,
         "msg" => "查找成功",
         "res" => array(
-            'reposts' => $reposts,
+            'repostList' => $repostList,
             "token" => $_SESSION['token']
         )
     );
