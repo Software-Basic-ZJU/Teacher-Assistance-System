@@ -208,10 +208,11 @@ article:after,
 html {
     height: 100%;
     background: #ffffff;
+    font-family: "Mircosoft YaHei";
 }
 body {
     height: 100%;
-    font: 17px/26px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font: 17px/26px "Mircosoft YaHei", Helvetica, Arial, sans-serif;
     color: #6a6a6a;
     -webkit-font-smoothing: antialiased;
     -webkit-backface-visibility: hidden;

@@ -104,84 +104,9 @@
 	</div>
 
 	<!--底-->
-	<footer>
-		<div class="wrap-footer">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-5 col-footer footer-1">
-						<div class="heading"><h4>About Us</h4></div>
-						<div class="content">
-							<p>关于我们的信息= = </p>
-						</div>
-					</div>
-					<div class="col-md-6 col-footer footer-3">
-						<div class="row">
-							<div class="col-md-6">
-								<a href="#"><img src="images/15.jpg" /></a>
-							</div>
-							<div class="col-md-6">
-								<a href="#"><img src="images/16.jpg" /></a>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<a href="#"><img src="images/17.jpg" /></a>
-							</div>
-							<div class="col-md-6">
-								<a href="#"><img src="images/18.jpg" /></a>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<a href="#"><img src="images/19.jpg" /></a>
-							</div>
-							<div class="col-md-6">
-								<a href="#"><img src="images/20.jpg" /></a>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<a href="#"><img src="images/21.jpg" /></a>
-							</div>
-							<div class="col-md-6">
-								<a href="#"><img src="images/18.jpg" /></a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="copyright">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4">
-						<p>Copyright &copy; 2016. SRE G12 All rights reserved.<a href="http://www.baidu.com/">G12</a></p>
-					</div>
-					<div class="col-md-4">
-						<ul class="list-inline">
-							<li><a href="#"><i class="fa fa-twitter"></i></a>
-							</li>
-							<li><a href="#"><i class="fa fa-facebook"></i></a>
-							</li>
-							<li><a href="#"><i class="fa fa-linkedin"></i></a>
-							</li>
-							<li><a href="#"><i class="fa fa-google"></i></a>
-							</li>
-						</ul>
-					</div>
-					<div class="col-md-4">
-						<ul class="list-inline">
-							<li><a href="#">Privacy Policy</a>
-							</li>
-							<li><a href="#">Terms of Use</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
+		<?php
+			include "footer.php"
+		?>
 	<!-- Footer -->
 
 	
