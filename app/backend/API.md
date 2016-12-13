@@ -1373,11 +1373,11 @@ POST——Teacher-Assistance-System/app/backend/aboutReplyPost/getReplyPosts.php
         "code" => 0,
         "msg" => "查找成功",
         "res" => array(
-            'reposts' => $reposts,
+            'repostList' => $repostList,
             "token" => $_SESSION['token']
         )
           
-          $reposts[] = array(
+          $repostList[] = array(
             "repost_id" => $fetched['repost_id'],
             "content" => $fetched['content'],
             "author_id" => $fetched['author_id'],
@@ -1619,6 +1619,44 @@ POST——Teacher-Assistance-System/app/backend/aboutMail/getSendMail.php
 ```php
         "code" => -1,
         "msg" => "发件箱打开失败",
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
+```
+
+## 48、查看一个问题
+
+POST——Teacher-Assistance-System/app/backend/aboutQues/getQuesDetail.php
+
+参数：ques_id
+
+返回:
+
+```php
+        "code" => 0,
+        "msg" => "查找成功",
+        "res" => array(
+            'ques_id' => $fetched['ques_id'],
+            'title' => $fetched['title'],
+            'content' => $fetched['content'],
+            'hw_id' => $fetched['hw_id'],
+            'submit_num' => $fetched['submit_num'],
+            'average_score' => $fetched['average_score'],
+            'type' => $type,
+            'ques_finish' => $fetched['ques_finish'],
+            'shouldList' => $shouldList,
+            "token" => $_SESSION['token']
+          
+        $shouldList[] = array(
+                    "name" 个人名或者小组名
+                    "id" => 个人id或者小组id
+                    "submitted" 已交为1，未交为0
+        );
+```
+
+```php
+        "code" => -1,
+        "msg" => "查找失败",
         "res" => array(
             "token" => $_SESSION['token']
         )

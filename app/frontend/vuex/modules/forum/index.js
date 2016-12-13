@@ -2,7 +2,9 @@ import Vue from 'vue';
 import * as actions from "./actions";
 
 const state={
-    loading:false,
+    loading:false,      //按钮上显示的loading
+    replyPostLoading:false,      //获取回帖的Loading
+    isReplyShow:false,            //回帖表单显示状态
     sectionList:[       //论坛首页信息
         {
             secId:0,
@@ -27,38 +29,44 @@ const state={
         }
     ],
     postList:[],
-    repostList:[
-        {
-            rpid:1,
-            content:'Test postTest postTest hostPost',
-            author:'LowesYang',
-            time:'2016-11-03',
-            replyNum:10
-        },
-        {
-            rpid:2,
-            content:'Test postTest postTest hostPost',
-            author:'LowesYang',
-            time:'2016-11-03',
-            replyNum:10
-        }
-    ]
+    currPost:{
+        title:'',
+        content:'',
+        resrcId:'',
+        resource:{},
+        defaultFile:[],
+        repostList:[]
+    }
 };
 
 const mutations={
+    postLoading(state,signal){
+        state.loading=signal;
+    },
     updateForumInfo(state,sectionList){
         sectionList.forEach((item,index)=>{
-            if(item.secId==state.sectionList[index].section){
-                state.sectionList[index].postNum=item.total_num;
-                state.sectionList[index].todayNum=item.today_num;
-            }
+            state.sectionList[item.section].postNum=item.total_num;
+            state.sectionList[item.section].todayNum=item.today_num;
         })
     },
     updatePostList(state,postList){
         state.postList=postList;
     },
+    updateCurrPost(state,currPost){
+        state.currPost=currPost;
+        state.currPost.resrcId=currPost.resource.resrc_id;
+    },
     publish(state,info){
         console.log(info)
+    },
+    replyPostLoading(state,signal){
+        state.replyPostLoading=signal;
+    },
+    updateRepostList(state,repostList){
+        state.currPost.repostList=repostList;
+    },
+    isReplyShow(state,signal){
+        state.isReplyShow=signal;
     }
 };
 

@@ -28,7 +28,7 @@
 </template>
 <style scoped>
     .header{
-        padding:10px 0px;
+        padding-top:10px;
     }
     .el-button--success{
         margin-top:-45px;

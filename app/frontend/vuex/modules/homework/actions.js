@@ -38,18 +38,22 @@ export const submitHw=({dispatch,commit,state},newHw)=>{
             {
                 class_id: newHw.classId,
                 title: newHw.title,
-                deadline:newHw.deadline,
-                type:newHw.hwType,
-                punish_type:newHw.punishType,
-                punish_rate:newHw.punishRate
+                deadline: newHw.deadline,
+                type: newHw.hwType,
+                punish_type: newHw.punishType,
+                punish_rate: newHw.punishRate
             }
-        ).then((response)=> {
+        ).then((response) => {
             let resp = response.body;
             if (!resp.code) {
-                dispatch('showHwAction',false);
-                dispatch('getHwList',newHw.classId);
+                dispatch('showHwAction', false);
+                dispatch('getHwList', newHw.classId);
+                Vue.prototype.$message({
+                    type: 'success',
+                    message: '添加作业成功'
+                })
             }
-        }).then(()=> {
+        }).then(() => {
             commit('isHwLoading', false);
         })
     }
@@ -69,6 +73,10 @@ export const submitHw=({dispatch,commit,state},newHw)=>{
             if (!resp.code) {
                 dispatch('showHwAction',false);
                 dispatch('getHwList',newHw.classId);
+                Vue.prototype.$message({
+                    type:'success',
+                    message:'修改作业成功'
+                })
             }
         }).then(()=> {
             commit('isHwLoading', false);
@@ -87,6 +95,10 @@ export const deleteHw=({commit},hwId)=>{
         let resp=response.body;
         if(!resp.code){
             commit('deleteHwItem',hwId);
+            Vue.prototype.$message({
+                type:'success',
+                message:'删除成功'
+            })
         }
     }).then(()=>{
         commit('isHwLoading',false);

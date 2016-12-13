@@ -5,9 +5,10 @@
             <Editor
                     method="editPost"
                     btn-name="更新"
-                    :data="hostPost"
+                    :data="currPost"
                     :has-upload="true"
-                    :default-file-list="fileList"
+                    :upload-info="uploadInfo"
+                    :default-file-list="currPost.defaultFile"
             ></Editor>
         </div>
     </div>
@@ -17,27 +18,29 @@
 </style>
 <script>
     import Editor from "../../Editor/Editor.vue"
+    import {LS} from "../../../helpers/utils";
     export default{
         data(){
+            let userInfo=LS.getItem("userInfo");
+            this.$store.dispatch('getPostDetail',this.$route.params.pid);
             return{
-                fileList:[
-                    {
-                        name:'food.jpeg',
-                        url:'https://dsfsdds'
-                    }
-                ]
+                uploadInfo:{  //上传文件额外的参数
+                    uploader_id:userInfo.id,
+                    type:1,
+                    post_id:this.$route.params.pid
+                }
             }
         },
         computed:{
-            hostPost(){
-                let pid=this.$route.params.pid;
-                let list=this.$store.state.forum.postList;
-                for(let i=0;i<list.length;i++){
-                    if(list[i].pid==pid){
-                        return list[i];
-                    }
-                }
+            currPost(){
+                let post=this.$store.state.forum.currPost;
+                if(post.defaultFile && post.defaultFile.length) this.$store.dispatch("isFileUpload",true);
+                return Object.assign({},post);
             }
+        },
+        beforeRouteLeave(to,from,next){
+            this.$store.dispatch("isFileUpload",false);
+            next();
         },
         components:{
             Editor

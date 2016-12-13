@@ -9,9 +9,9 @@
 
 <!--teacher_id,email,phone,qq,wechar,other_contact-->
 <h2>PHP 验证实例</h2>
-<form method="post" action="aboutMail/getSendMail.php">
+<form method="post" action="aboutPost/getPostDetail.php">
     <br><br>
-    src_id：<input type="text" name="src_id">
+    post_id：<input type="text" name="post_id">
     <br><br>
     author_id：<input type="text" name="author_id">
     <br><br>
