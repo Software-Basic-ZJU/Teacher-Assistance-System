@@ -42,7 +42,14 @@ const state={
             time:'2016-11-03',
             replyNum:10
         }
-    ]
+    ],
+    currPost:{
+        title:'',
+        content:'',
+        resrcId:'',
+        defaultFile:[]
+    },
+    replyPostLoading:false      //获取回帖的Loading
 };
 
 const mutations={
@@ -59,6 +66,12 @@ const mutations={
     },
     publish(state,info){
         console.log(info)
+    },
+    replyPostLoading(state,signal){
+        state.replyPostLoading=signal;
+    },
+    updateRepostList(state,repostList){
+        state.repostList=repostList;
     }
 };
 

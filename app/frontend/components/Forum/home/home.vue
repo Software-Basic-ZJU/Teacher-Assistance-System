@@ -29,7 +29,7 @@
         margin-top:0px;
     }
     .sectionBox{
-        margin-top:20px;
+        margin:20px 0px 10px 0px;
         text-align: center;
     }
     .section{
