@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2016-12-12 17:30:52
+Date: 2016-12-12 22:54:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -193,7 +193,6 @@ CREATE TABLE `homework` (
 -- Records of homework
 -- ----------------------------
 INSERT INTO `homework` VALUES ('10001', '第二次作业', '2016-12-10 21:36:52', '2016-12-17 21:36:55', '10002', '1', '0', '0', '0.8');
-INSERT INTO `homework` VALUES ('10004', '实验一', '2016-12-12 01:14:07', '2016-12-06 01:13:57', '10001', '0', '0', '1', '0.2');
 
 -- ----------------------------
 -- Table structure for `mail`
@@ -283,11 +282,13 @@ CREATE TABLE `posts` (
   PRIMARY KEY (`post_id`),
   UNIQUE KEY `post_id` (`post_id`) USING BTREE,
   KEY `teacher_id` (`teacher_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10002 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of posts
 -- ----------------------------
+INSERT INTO `posts` VALUES ('10000', '1234567', '0', '第一次发帖', '请多多关照', '1234567', null, '2016-12-12 18:39:11', '2016-12-12 18:39:15');
+INSERT INTO `posts` VALUES ('10001', '1234567', '0', '的神烦大叔', '&lt;p&gt;的神烦大叔&lt;/p&gt;', '1234567', '0', '2016-12-12 22:11:48', '2016-12-12 22:11:48');
 
 -- ----------------------------
 -- Table structure for `questions`
@@ -305,11 +306,12 @@ CREATE TABLE `questions` (
   PRIMARY KEY (`ques_id`),
   UNIQUE KEY `ques_id` (`ques_id`) USING BTREE,
   KEY `hw_id` (`hw_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10001 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of questions
 -- ----------------------------
+INSERT INTO `questions` VALUES ('10000', '第三方', '&lt;p&gt;辅导辅导地方的&lt;/p&gt;', '10004', '0', '0', '0', '0');
 
 -- ----------------------------
 -- Table structure for `reply_post`
@@ -336,7 +338,7 @@ CREATE TABLE `reply_post` (
 DROP TABLE IF EXISTS `resource`;
 CREATE TABLE `resource` (
   `resrc_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) NOT NULL,
+  `name` varchar(255) NOT NULL,
   `path` text NOT NULL,
   `size` int(11) NOT NULL,
   `time` datetime NOT NULL,
@@ -346,11 +348,14 @@ CREATE TABLE `resource` (
   PRIMARY KEY (`resrc_id`),
   UNIQUE KEY `resrc_id` (`resrc_id`) USING BTREE,
   KEY `post_id` (`post_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=10036 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10072 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of resource
 -- ----------------------------
+INSERT INTO `resource` VALUES ('10036', '水电费', 'upload/7e387ccf52427d520dcea284.docx', '13401', '2016-12-12 19:10:43', '0', null, '1234567');
+INSERT INTO `resource` VALUES ('10066', 'SQL', 'upload/155655abc56e24d6c6522575.sql', '20053', '2016-12-12 22:51:26', '0', null, '1234567');
+INSERT INTO `resource` VALUES ('10067', '360Safe.exe', 'upload/89a2452b5ae5f65599d7bd03.exe', '962984', '2016-12-12 22:51:36', '0', null, '1234567');
 
 -- ----------------------------
 -- Table structure for `student`

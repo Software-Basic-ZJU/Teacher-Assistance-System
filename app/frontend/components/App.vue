@@ -61,6 +61,12 @@
     }
 </style>
 <style>
+    .noRes{
+        padding:10px 0px;
+        text-align: center;
+        font-size:20px;
+        color:#c9c9c9;
+    }
     .el-breadcrumb{
         margin-top:0px;
         padding-bottom:5px;

@@ -3,26 +3,30 @@ import * as actions from "./actions";
 
 const state={
     loading:false,
-    postList:[
+    sectionList:[       //论坛首页信息
         {
-            pid:1,
-            title:'Test postTest postTest post',
-            content:'ddfd',
-            author:'LowesYang',
-            publishTime:'2016-11-03',
-            updateTime:'2016-11-03',
-            replyNum:10
+            secId:0,
+            to:'teacherQA',
+            name:'教师答疑区',
+            postNum:0,
+            todayNum:0,
         },
         {
-            pid:2,
-            title:'Test postTest postTest post',
-            content:'aaaa',
-            author:'LowesYang',
-            publishTime:'2016-11-03',
-            updateTime:'2016-11-03',
-            replyNum:10
+            secId:1,
+            to:'public',
+            name:'公共讨论区',
+            postNum:0,
+            todayNum:0,
+        },
+        {
+            secId:2,
+            to:'group',
+            name:'小组讨论区',
+            postNum:0,
+            todayNum:0,
         }
     ],
+    postList:[],
     repostList:[
         {
             rpid:1,
@@ -42,8 +46,16 @@ const state={
 };
 
 const mutations={
-    updatePostList(state,info){
-        console.log(info);
+    updateForumInfo(state,sectionList){
+        sectionList.forEach((item,index)=>{
+            if(item.secId==state.sectionList[index].section){
+                state.sectionList[index].postNum=item.total_num;
+                state.sectionList[index].todayNum=item.today_num;
+            }
+        })
+    },
+    updatePostList(state,postList){
+        state.postList=postList;
     },
     publish(state,info){
         console.log(info)

@@ -42,7 +42,7 @@ export const editContact=({commit},contact)=>{
             phone:contact.phone,
             qq:contact.qq,
             wechat:contact.wechat,
-            other_contact:contact.otherContact
+            other_contact:contact.other_contact
         }
     ).then((response)=>{
         let resp=response.body;

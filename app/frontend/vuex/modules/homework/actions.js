@@ -1,5 +1,6 @@
 import Vue from "vue";
 import {LS} from "../../../helpers/utils";
+import router from "../../../routes";
 
 export const showHwAction=({commit},signal)=>{
     commit('clearEditHwId');
@@ -106,6 +107,58 @@ export const getQuesList=({commit},hwId)=>{
         }
     }).then(()=>{
         commit('isLoading',false);
+    })
+};
+
+// 添加问题
+export const addQues=({dispatch,commit},payload)=>{
+    commit('editorLoading',true);
+    Vue.http.post('backend/aboutQues/addQues.php',
+        {
+            hw_id:payload.routeParams.hwId,
+            title:payload.data.title,
+            content:payload.data.content
+        }
+    ).then((response)=>{
+        let resp=response.body;
+        if(!resp.code){
+            dispatch('getQuesList',payload.routeParams.hwId);
+            router.replace({
+                name:'hwDetail',
+                params:{
+                    classId:payload.routeParams.classId,
+                    hwId:payload.routeParams.hwId
+                }
+            })
+        }
+    }).then(()=>{
+        commit('editorLoading',false);
+    })
+};
+
+// 编辑问题
+export const editQues=({dispatch,commit})=>{
+    commit('editorLoading',true);
+    Vue.http.post('backend/aboutQues/addQues.php',
+        {
+            hw_id:payload.routeParams.hwId,
+            title:payload.data.title,
+            content:payload.data.content
+        }
+    ).then((response)=>{
+        let resp=response.body;
+        if(!resp.code){
+            dispatch('getQuesList',payload.routeParams.hwId);
+            router.replace({
+                name:'hwDetail',
+                params:{
+                    classId:payload.routeParams.classId,
+                    hwId:payload.routeParams.hwId
+                }
+            })
+        }
+    }).then(()=>{
+        commit('editorLoading',false);
     })
 };
 

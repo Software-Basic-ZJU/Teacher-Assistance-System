@@ -29,12 +29,12 @@ else{
 }
 $uploader_id = $_POST['uploader_id'];
 $type = $_POST['type'];
-$post_id=!$type?0:$_POST['post_id'];
 $user_type = $_SESSION['type'];
+
 //Add resource
 $add_result = mysqli_query($conn,
-    "insert into resource (name,path,size,time,type,post_id,uploader_id) 
-     values('$name','$path','$size','$time','$type','$post_id','$uploader_id')");
+    "insert into resource (name,path,size,time,type,uploader_id) 
+     values('$name','$path','$size','$time','$type','$uploader_id')");
 
 if($add_result){
     $resource_id = mysqli_insert_id($conn);
@@ -62,7 +62,7 @@ if($add_result){
 } else{
         $result = array(
             'code' => -1,
-            'msg' => '添加失败,数据库错误',
+            'msg' => '添加失败,数据库错误,可能有命名错误',
             'res' => array(
                 "token"=>$_SESSION['token']
             )

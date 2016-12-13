@@ -41,7 +41,7 @@
                 :default-file-list="defaultFileList"
             >
                 <el-button size="small" type="primary">点击上传</el-button>
-                <span class="el-upload__tip" slot="tip">只能上传一个文件，且大小不能超过15MB。</span>
+                <span class="el-upload__tip" slot="tip">只能上传一个文件，且大小不能超过2MB。</span>
             </el-upload>
             <div class="btnGroup">
                 <el-button type="primary" @click="publish" :loading="isLoading">{{btnName}}</el-button>
@@ -90,7 +90,6 @@
             let userInfo=LS.getItem("userInfo");
             return{
                 editor:null,
-                isUpload:false,
                 header:{        //上传文件的请求头
                      "X-Access-Token":userInfo.token
                 }
@@ -104,6 +103,9 @@
         computed:{
             isLoading(){
                 return this.$store.state.editorLoading
+            },
+            isUpload(){
+                return this.$store.state.isFileUpload
             }
         },
         props:{
@@ -139,7 +141,6 @@
                     title:'',
                     author:'',
                     content:'',
-                    filePath:'',
                     level:false,
                     authority:false
                 }
@@ -148,8 +149,7 @@
                 type:Object,
                 default:{
                     uploader_id:'',     //上传者id
-                    type:'',             //资源类型，0为教师资源，1为帖子资源
-                    path:''
+                    type:'',            //资源类型，0为教师资源，1为帖子资源
                 }
             }
         },
@@ -170,7 +170,6 @@
                     title:'',
                     author:'',
                     content:'',
-                    filePath:'',
                     level:false
                 }
             },
@@ -179,20 +178,21 @@
                     this.$message({
                         type:'warning',
                         message:'一次只能上传一个文件'
-                    })
+                    });
                     return false;
                 }
                 console.log(file)
             },
             finish(response){           //上传成功
                 console.log(response);
-                this.data.resrcId=response.res.resource_id;
-                this.isUpload=true;
+                this.data.resrcId=response.res.resource_id;     //resource_id为必须项
+                LS.setItem("resource",response.res);
+                this.$store.dispatch('isFileUpload',true);
             },
             removeFile(file,fileList){      //删除文件
-                console.log(fileList);
-                this.$store.dispatch('removeResrc',file);
-                this.isUpload=false;
+                console.log(file);
+                this.$store.dispatch('removeResrc',this.data);
+                this.$store.dispatch('isFileUpload',false);
             }
         }
     }

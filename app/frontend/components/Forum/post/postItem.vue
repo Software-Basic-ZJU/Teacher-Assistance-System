@@ -4,7 +4,7 @@
     <div>
         <div class="box-card postItem" @click="goPath('post')">
             <div class="header">
-                <span class="author">{{author}}</span>
+                <span class="author">{{authorName}}</span>
                 <span class="time">最后更新：{{updateTime}}</span>
                 <span class="time">发表于：{{publishTime}}</span>
             </div>
@@ -72,7 +72,8 @@
         },
         props:{
             pid:[String,Number],                    //帖子id
-            author:String,                          //帖子作者
+            authorName:String,                          //帖子作者名称
+            authorId:[String,Number],               //帖子作者ID
             title:String,                           //帖子标题
             publishTime:String,                      //发表时间
             updateTime:String,                      //最后更新时间

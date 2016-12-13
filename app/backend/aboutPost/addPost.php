@@ -20,7 +20,7 @@ $teacher_id = test_input(mysqli_escape_string($conn, $_POST['teacher_id']));
 $section = test_input(mysqli_escape_string($conn, $_POST['section']));
 $resrc_id = test_input(mysqli_escape_string($conn, $_POST['resrc_id']));
 $time = date('y-m-d H:i:s',time());
-$group_id = null;
+$group_id = 0;
 if($_SESSION['type']==1){
     $author_id = $_SESSION['student_id'];
     if($section == 2){
@@ -37,25 +37,22 @@ if($_SESSION['type']==1){
             echo json_encode($result);
             exit;
         }
-        $query_result = mysqli_query($conn, "INSERT INTO posts 
-                                     (title,content,teacher_id,section,author_id,group_id,publish_time,update_time) 
-                                      values('$title','$content','$teacher_id','$section','$author_id','$group_id','$time','$time');");
+        
     }
 
 }
 elseif ($_SESSION['type'] == 2){
     $author_id = $_SESSION['teacher_id'];
-    $query_result = mysqli_query($conn, "INSERT INTO posts 
-                                     (title,content,teacher_id,section,author_id,publish_time,update_time) 
-                                      values('$title','$content','$teacher_id','$section','$author_id','$time','$time');");
+
 }
 elseif ($_SESSION['type'] == 3){
     $author_id = $_SESSION['assist_id'];
-    $query_result = mysqli_query($conn, "INSERT INTO posts 
-                                     (title,content,teacher_id,section,author_id,publish_time,update_time) 
-                                      values('$title','$content','$teacher_id','$section','$author_id','$time','$time');");
-}
 
+}
+$query_result = mysqli_query($conn, "INSERT INTO posts 
+                                     (title,content,teacher_id,section,author_id,group_id,publish_time,update_time) 
+                                      values('$title','$content','$teacher_id','$section','$author_id','$group_id','$time','$time');");
+									  
 if($query_result){
     $post_id = mysqli_insert_id($conn);
 

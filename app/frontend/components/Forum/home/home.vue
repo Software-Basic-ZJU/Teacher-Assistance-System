@@ -6,7 +6,7 @@
         <div class="sectionBox">
             <div
                 class="section"
-                v-for="item in sections"
+                v-for="item in sectionList"
                 :key="item.secId"
                 @click="goPath(item.to)"
             >
@@ -73,34 +73,14 @@
     import router from "../../../routes";
     export default{
         data(){
+            this.$store.dispatch('getForumInfo');
             return{
-                sections:[
-                    {
-                        secId:1,
-                        to:'teacherQA',
-                        name:'教师答疑区',
-                        postNum:20,
-                        todayNum:10,
-                        replyNum:8
-                    },
-                    {
-                        secId:2,
-                        to:'public',
-                        name:'公共讨论区',
-                        postNum:20,
-                        todayNum:10,
-                        replyNum:8
-                    },
-                    {
-                        secId:3,
-                        to:'group',
-                        name:'小组讨论区',
-                        postNum:20,
-                        todayNum:10,
-                        replyNum:8
-                    }
-                ],
                 identify:1
+            }
+        },
+        computed:{
+            sectionList(){
+                return this.$store.state.forum.sectionList
             }
         },
         methods:{

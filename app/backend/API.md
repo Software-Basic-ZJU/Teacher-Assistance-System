@@ -867,7 +867,7 @@ POST——Teacher-Assistance-System/app/backend/aboutQues/getQuesList.php
 
 POST——Teacher-Assistance-System/app/backend/aboutQues/addQues.php
 
-参数：Hw_id,title,content,type
+参数：hw_id,title,content
 
 返回:
 

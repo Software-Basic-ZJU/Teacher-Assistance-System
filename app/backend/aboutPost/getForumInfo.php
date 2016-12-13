@@ -17,15 +17,15 @@ loginCheck($_SERVER['HTTP_X_ACCESS_TOKEN']);
 $teacher_id = test_input(mysqli_escape_string($conn, $_POST['teacher_id']));
 
 $query_result = mysqli_query($conn, "select section,count(post_id) as total_num,COUNT( CASE WHEN to_days(publish_time) = to_days(now()) THEN 1 ELSE NULL END ) as today_num from posts where teacher_id = '$teacher_id' group by section;");
-if($fetched = mysqli_fetch_array($query_result)){
+if($query_result){
     $sectionList = array();
-    do{
+    while($fetched = mysqli_fetch_array($query_result)){
         $sectionList[] = array(
             "section" => $fetched['section'],
             "total_num" => $fetched['total_num'],
             "today_num" => $fetched['today_num']
         );
-    }while($fetched = mysqli_fetch_array($query_result));
+    }
     $result = array(
         "code" => 0,
         "msg" => "查找成功",

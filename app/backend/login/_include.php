@@ -64,7 +64,7 @@ function uploadFile($file){
         return $result;
     }
     if($user_type == 1){//如果是学生
-        if ($size >= 2000000){
+        if ($size >= 2*1024*1024){
             $result = array(
                 'code' => -1,
                 'msg' => '上传失败,文件大于2M',
@@ -82,7 +82,7 @@ function uploadFile($file){
                 'path' => $path,
                 'time' => $time,
                 'size' => $size,
-                'name' => $file["name"]
+                'name' => test_input($file["name"])
             )
         );
         return $result;

@@ -16,7 +16,7 @@
                     <el-input v-model="contact.wechat"></el-input>
                 </el-form-item>
                 <el-form-item label="其他联系方式">
-                    <el-input type="textarea" v-model="contact.otherContact"></el-input>
+                    <el-input type="textarea" v-model="contact.other_contact"></el-input>
                 </el-form-item>
                 <el-button type="primary" @click="submitContact">确认修改</el-button>
                 <el-button @click="goBack">取消</el-button>

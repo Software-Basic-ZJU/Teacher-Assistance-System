@@ -67,9 +67,6 @@
 <style scoped>
     .noRes{
         margin:20px 0px 10px 0px;
-        text-align: center;
-        font-size:20px;
-        color:#c9c9c9;
     }
     .header{
         border-bottom:1px solid #D3DCE6;

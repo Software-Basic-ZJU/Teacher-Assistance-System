@@ -4,7 +4,9 @@ const state={
     loading:false,
     hwList:[                //作业列表
     ],
-    hwDetail:{},            //作业详情,包含作业标题和问题列表
+    hwDetail:{              //作业详情,包含作业标题和问题列表
+        quesList:[]
+    },
     stuList:[
         {
             sid:'111',
@@ -61,9 +63,8 @@ const mutations={
     },
     updateHwDetail(state,hwDetail){
         state.hwDetail=hwDetail;
-        delete state.hwDetail.token;
     }
-}
+};
 
 export default {
     state,

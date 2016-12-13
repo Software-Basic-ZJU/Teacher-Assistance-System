@@ -15,6 +15,7 @@
                         :before-upload="checkUpload"
                         :on-remove="removeFile"
                         :on-success="finish"
+                        :default-file-list="defaultFileList"
                 >
                     <i class="el-icon-upload"></i>
                     <div class="el-dragger__text">将文件拖到此处，或<em>点击上传</em></div>
@@ -47,7 +48,6 @@
         data(){
             let userInfo=LS.getItem("userInfo");
             return{
-                isUpload:false,
                 header:{        //上传文件的请求头
                     "X-Access-Token":userInfo.token
                 },
@@ -58,12 +58,27 @@
                 newResrc:{
                     resrcId:'',
                     name:''
-                }
+                },
+                defaultFileList:[]
             }
         },
         computed:{
             resrcLoading(){
                 return this.$store.state.resource.loading;
+            },
+            defaultFileList(){
+                let resource=LS.getItem("resource");
+                if(resource) {
+                    this.newResrc.resrcId=resource.resource_id;
+                    return [{
+                        name: resource.name,
+                        path: resource.path
+                    }];
+                }
+                return [];
+            },
+            isUpload(){
+                return this.$store.state.isFileUpload
             }
         },
         methods:{
@@ -72,7 +87,7 @@
                     this.$message({
                         type:'warning',
                         message:'一次只能上传一个文件'
-                    })
+                    });
                     return false;
                 }
                 console.log(file)
@@ -80,13 +95,14 @@
             finish(response){
                 console.log(response);
                 this.newResrc.resrcId=response.res.resource_id;
-                this.isUpload=true;
+                LS.setItem("resource",response.res);
+                this.$store.dispatch('isFileUpload',true);
             },
             removeFile(file,fileList){
                 console.log(file);
                 file.resrcId=this.newResrc.resrcId;
                 this.$store.dispatch('removeResrc',file);
-                this.isUpload=false;
+                this.$store.dispatch('isFileUpload',false);
             },
             submitResrc(){
                 if(!this.isUpload) {
