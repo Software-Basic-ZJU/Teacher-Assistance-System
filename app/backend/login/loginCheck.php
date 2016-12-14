@@ -7,7 +7,7 @@
  */
 function connectDB(){
     global $conn;
-    $conn = mysqli_connect("127.0.0.1","root","","course_assist");
+    $conn = mysqli_connect("127.0.0.1","root","root","course_assist");
     $conn->query("set names 'utf8'");
     if(mysqli_connect_errno()){
         printf("Connect failed: %s\n", mysqli_connect_errno());

@@ -32,6 +32,7 @@ if($query_result){
             'content' => $content,
             'author_id' => $author_id,
             'author_name' => $_SESSION['type']==1?$_SESSION['sname']:$_SESSION['tname'],
+            'commentList'=>array(),
             "token" => $_SESSION['token']
         )
     );

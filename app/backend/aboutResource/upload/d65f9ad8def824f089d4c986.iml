@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="EclipseModuleManager">
+    <libelement value="file://C:/Users/Administrator/Desktop/markdownj-1.0.2b4-0.3.0.jar" />
+    <libelement value="file://C:/Users/Administrator/Desktop/MigLayout.jar" />
+    <libelement value="file://C:/Users/Administrator/Desktop/commons-io-2.2/commons-io-2.2.jar" />
+    <libelement value="file://D:/Eclipse35/Java_MyFile1/test/src/md2html/commons-io-2.2.jar" />
+    <libelement value="file://D:/Eclipse35/Java_MyFile1/test/src/md2html/markdownj-1.0.2b4-0.3.0.jar" />
+    <libelement value="file://D:/Eclipse35/Java_MyFile1/test/src/md2html/MigLayout.jar" />
+    <src_description expected_position="0">
+      <src_folder value="file://$MODULE_DIR$/src" expected_position="0" />
+    </src_description>
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="false">
+    <output url="file://$MODULE_DIR$/bin" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+    </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/bin/md2html/commons-io-2.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/bin/md2html/markdownj-1.0.2b4-0.3.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/bin/md2html/MigLayout.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+  </component>
+</module>

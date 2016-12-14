@@ -2,7 +2,7 @@ import Vue from 'vue';
 import * as actions from "./actions";
 
 const state={
-    loading:false,      //按钮上显示的loading
+    loading:false,              //按钮上显示的loading
     replyPostLoading:false,      //获取回帖的Loading
     isReplyShow:false,            //回帖表单显示状态
     sectionList:[       //论坛首页信息
@@ -29,6 +29,7 @@ const state={
         }
     ],
     postList:[],
+    repostList:[],      //回帖列表
     currPost:{
         title:'',
         content:'',
@@ -63,10 +64,42 @@ const mutations={
         state.replyPostLoading=signal;
     },
     updateRepostList(state,repostList){
-        state.currPost.repostList=repostList;
+        state.repostList=repostList;
     },
     isReplyShow(state,signal){
         state.isReplyShow=signal;
+    },
+    addRepost(state,newRepost){
+        state.repostList.push(newRepost);
+    },
+    removeRepost(state,rpid){
+        state.repostList.forEach((item,index)=>{
+            if(item.repost_id==rpid){
+                state.repostList.splice(index,1);
+                return;
+            }
+        })
+    },
+    addPostComment(state,payload){        //添加某回帖中的评论列表
+        state.repostList.forEach((item)=>{
+            if(item.repost_id==payload.repostId){
+                item.commentList.push(payload.newComm);
+                return;
+            }
+        });
+    },
+    removePostComment(state,payload){
+        state.repostList.forEach((item)=>{
+            if(item.repost_id==payload.repostId){
+                item.commentList.forEach((comm,index)=>{
+                    if(comm.com_id==payload.comId){
+                        item.commentList.splice(index,1);
+                        return;
+                    }
+                })
+                return;
+            }
+        })
     }
 };
 

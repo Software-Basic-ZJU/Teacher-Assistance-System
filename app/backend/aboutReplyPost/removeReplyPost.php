@@ -15,15 +15,6 @@ connectDB();
 loginCheck($_SERVER['HTTP_X_ACCESS_TOKEN']);
 //Get information
 $repost_id = test_input(mysqli_escape_string($conn, $_POST['repost_id']));
-if($_SESSION['type']!=2){
-    $result = array(
-        "code" => 403,
-        "msg" => "无效用户尝试删除",
-        "res" => null
-    );
-    echo json_encode($result);
-    exit;
-}
 
 $query_result = mysqli_query($conn, "delete from reply_post WHERE repost_id = '$repost_id';");
 if($query_result){

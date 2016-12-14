@@ -40,9 +40,9 @@
         </div>
         <div class="replyPost" v-loading.body="replyLoading">
             <h3>所有回复</h3>
-            <div class="noRes" v-if="hostPost.repostList && !hostPost.repostList.length">还没有回贴~</div>
+            <div class="noRes" v-if="repostList && !repostList.length">还没有回贴~</div>
             <reply-post
-                    v-for="item in hostPost.repostList"
+                    v-for="item in repostList"
                     :key="item.repost_id"
                     :rpid="item.repost_id"
                     :author-id="item.author_id"
@@ -102,7 +102,9 @@
         font-size:12px;
         color:#8492A6;
     }
-
+    .noRes{
+        margin-top:-10px;
+    }
     .replyForm{
         margin-top:10px;
     }
@@ -150,6 +152,7 @@
         computed:{
             ...mapState({
                 hostPost:state=>state.forum.currPost,
+                repostList:state=>state.forum.repostList,
                 isReplyShow:state=>state.forum.isReplyShow,
                 replyLoading:state=>state.forum.replyPostLoading,
                 postLoading:state=>state.forum.loading,

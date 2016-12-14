@@ -19,7 +19,7 @@ $target_id = test_input(mysqli_escape_string($conn, $_POST['target_id']));
 $content = test_input(mysqli_escape_string($conn, $_POST['content']));
 $author_id = test_input(mysqli_escape_string($conn, $_POST['author_id']));
 $type = test_input(mysqli_escape_string($conn, $_POST['type']));
-$time = date('y-m-d H:i:s',time());
+$time = date('Y-m-d H:i:s',time());
 
 $query_result = mysqli_query($conn, "INSERT INTO comment 
                                      (target_id,type,content,author_id,time) 

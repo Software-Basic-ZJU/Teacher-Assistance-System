@@ -3,34 +3,21 @@
         <div class="post">
             <div class="header">
                 <span class="author">{{authorName}}</span>
-                <span class="time">发表于：{{time}}</span>
             </div>
             <div class="main">
                 <div class="content">{{content}}</div>
             </div>
             <div class="footer">
-                <div @click="showCom" class="replyShowBtn"><i class="iconfont icon-pinglun"></i> ({{replyNum}})</div>
-                <div class="commentList" v-if="isComListShow">
-                    <div class="commentItem" v-for="item in commentList">
-                        <div class="info">
-                            <div class="author">{{item.author_name}}</div>
-                            <div class="content">{{item.content}}</div>
-                        </div>
-                        <div class="footer">
-                            <div class="time fl">{{item.time}}</div>
-                            <div class="btnGroup fr">
-                                <el-button type="text" @click="removeComment" v-if="item.author_id==id">删除</el-button>
-                                <el-button type="text" @click="replyComment">回复</el-button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="addComment" v-if="!isAddComShow" @click="showAddCom(true)">添加评论</div>
-                    <div class="addCommentBox" v-if="isAddComShow">
-                        <el-input type="textarea" v-model="comment"></el-input>
-                        <el-button type="text" @click="showAddCom(false)" size="small">取消</el-button>
-                        <el-button type="primary" @click="submitCom" size="small">评论</el-button>
-                    </div>
-                </div>
+                <span class="time fl">{{time}}</span>
+                <i class="iconfont icon-delete fr" @click="removeRepost(rpid)" v-if="authorId==id"></i>
+                <Comment-list
+                        add-method="addPostComment"
+                        remove-method="removePostComment"
+                        :rpid="rpid"
+                        :comment-list="commentList"
+                        :reply-num="replyNum"
+                >
+                </Comment-list>
             </div>
         </div>
     </div>
@@ -47,11 +34,6 @@
     .post>.header>.author{
         color:#6ECADC;
     }
-    .post>.header>.time{
-        margin-left: 50px;
-        font-size:12px;
-        color:#8492A6;
-    }
     .post>.main{
         padding:10px 0px;
         font-size:14px;
@@ -61,42 +43,26 @@
         font-size:14px;
         text-align: right;
     }
-    .post>.footer>.replyShowBtn{
-        display: inline-block;
-        margin-right:10px;
+    .post>.footer>.time{
         font-size:12px;
+        color:#8492A6;
     }
-    .post>.footer i{
+    .post>.footer>.iconfont{
+        font-size:18px;
         cursor:pointer;
-    }
-    .post>.footer .commentList{
-        width:95%;
-        margin-top:10px;
-        margin-left:20px;
-        border:1px solid #e2e2e2;
-    }
-    .post>.footer .commentList .addCommentBox{
-        padding:10px;
-        background-color: #f6f6f6;
-    }
-    .post>.footer .commentList .addCommentBox .el-button{
-        margin-top:5px;
-    }
-    .post .commentList{
-
+        margin-top:-2px;
     }
 </style>
 <script>
+    import CommentList from "../../Comment/CommentList.vue";
     import {LS} from "../../../helpers/utils";
 
     export default{
         data(){
             let userInfo=LS.getItem('userInfo');
             return{
-                id:userInfo.id,
-                comment:'',
-                isComListShow:false,            //是否显示评论列表
-                isAddComShow:false              //是否显示添加评论表单
+                isComListShow:false,
+                id:userInfo.id
             }
         },
         props:{
@@ -109,17 +75,18 @@
             commentList:Array
         },
         methods:{
-            showCom(){
-                this.isComListShow=!this.isComListShow;
-            },
-            showAddCom(signal){
-                this.isAddComShow=signal;
-            },
-            removeComment(){
-            },
-            replyComment(){
-
+            removeRepost(rpid){
+                this.$confirm('确认删除该回帖吗？', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.$store.dispatch('removeRepost',rpid);
+                }).catch(() => {});
             }
+        },
+        components:{
+            CommentList
         }
     }
 </script>
