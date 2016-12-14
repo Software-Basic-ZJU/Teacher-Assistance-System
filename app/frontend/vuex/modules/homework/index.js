@@ -16,8 +16,9 @@ const state={
     actionType:false,       //false为添加作业，true为编辑作业
     editHwId:'',            //正在编辑的作业ID
     markForm:{              //教师点评表单state
+        workId:'',
         score:'',
-        review:''
+        reply:''
     }
 }
 
@@ -59,7 +60,11 @@ const mutations={
     updateQuesDetail(state,question){
         state.quesDetail=question;
         state.quesDetail.shouldList.forEach((item)=>{
-            if(item.isSubmit) item.status='已提交';
+            if(item.isSubmit) {
+                if(item.isCorrect>0) item.status = item.isCorrect;
+                else item.status='已提交，未批改';
+
+            }
             else item.status='未提交'
         })
     },
@@ -76,6 +81,11 @@ const mutations={
     updateStuWork(state,stuWork){
         stuWork.resrcId=stuWork.resrc_id;
         state.stuWork=stuWork;
+        state.markForm={
+            workId:stuWork.work_id,
+            score:stuWork.score,
+            reply:stuWork.reply
+        }
     }
 };
 

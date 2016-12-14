@@ -6,7 +6,8 @@
                     :body-style="bodyStyle"
             >
                 <div class="text item">
-                    <span style="line-height: 36px;" class="fl">{{title}}</span>
+                    <i class="quesStatus iconfont icon-yijieshujiaobiao" v-if="isFinish==1"></i>
+                    <span class="title fl">{{title}}</span>
                     <div class="statistics fl">
                         <div class="shouldNum">应交人数：{{shouldNum}}</div>
                         <div class="haveNum">实交人数：{{submitNum}}</div>
@@ -21,13 +22,26 @@
 </template>
 <style scoped>
     .quesItem{
+        position: relative;
         margin-top:15px;
+    }
+    .quesStatus{
+        top:-2px;
+        left:0px;
+        position: absolute;
+        display: block;
+        font-size:50px;
+        color:#6ECADC;
+    }
+    .title{
+        line-height: 36px;
+        margin-left:20px;
     }
     .statistics{
         background-color: #F0F0F0;
         margin-top:-10px;
         margin-bottom:10px;
-        margin-left:80px;
+        margin-left:60px;
         padding:10px 30px;
         font-size:14px;
         border-radius:10px;
@@ -52,7 +66,8 @@
             quesId:[String,Number],         //问题id
             title:String,                   //问题标题
             shouldNum:[String,Number],      //问题应交人数
-            submitNum:[String,Number]         //问题已交人数
+            submitNum:[String,Number],      //问题已交人数
+            isFinish:[String,Number]        //是否结束
         },
         methods:{
             goQuesByName(quesId,name){
