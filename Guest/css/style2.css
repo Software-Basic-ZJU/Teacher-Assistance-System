@@ -5,7 +5,7 @@ body.fh5co-offcanvas {
   overflow: hidden;
 }
 
-a {
+a{
   color: #00ADB5;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
@@ -13,7 +13,7 @@ a {
 }
 a:hover {
   text-decoration: none ;
-  color: #00ADB5 ;
+  color: #00ADB5;
 }
 
 p, ul, ol {
@@ -1662,4 +1662,23 @@ figure {
     text-align: center;
 }
 
+#link:hover{
+    color:#00ADB5;
+}
 
+
+/*首页课程信息的MORE链接*/
+blockquote a{
+  color:#F0F0F0;
+}
+blockquote a:hover{
+ color: #00ADB5;
+}
+
+/*底部栏的链接*/
+footer a{
+  color:#C3C3C3
+}
+footer a:hover{
+ color: #00ADB5;
+}

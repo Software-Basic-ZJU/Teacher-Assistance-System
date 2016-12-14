@@ -5,16 +5,16 @@
 					<div class="col-md-12 col-footer footer-3">
 						<div class="row">
 							<div class="col-md-3 text-center">
-								<a style="color:#C3C3C3"  href="http://jwbinfosys.zju.edu.cn/default2.aspx" target="_blank">>>教务网</a>
+								<a href="http://jwbinfosys.zju.edu.cn/default2.aspx" target="_blank">>>教务网</a>
 							</div>
 							<div class="col-md-3 text-center">
-								<a style="color:#C3C3C3" href="http://www.cs.zju.edu.cn/" target="_blank">>>计算机学院</a>
+								<a href="http://www.cs.zju.edu.cn/" target="_blank">>>计算机学院</a>
 							</div>
 							<div class="col-md-3 text-center">
-								<a style="color:#C3C3C3" href="http://jwb.zju.edu.cn/" target="_blank">>>本科生院</a>
+								<a href="http://jwb.zju.edu.cn/" target="_blank">>>本科生院</a>
 							</div>
 							<div class="col-md-3 text-center">
-								<a style="color:#C3C3C3" href="http://10.214.0.253/network/" target="_blank">>>友情课程</a>
+								<a href="http://10.214.0.253/network/" target="_blank">>>友情课程</a>
 							</div>
 						</div>
 
@@ -38,9 +38,9 @@
 							</div>
 							<div class="col-md-4 text-center">
 								<ul class="list-inline">
-									<li><a style="color:#C3C3C3" href="https://github.com/Software-Basic-ZJU/Teacher-Assistance-System/blob/master/README.md" target="_blank">Privacy Policy</a>
+									<li><a href="https://github.com/Software-Basic-ZJU/Teacher-Assistance-System/blob/master/README.md" target="_blank">Privacy Policy</a>
 									</li>
-									<li><a style="color:#C3C3C3" href="https://github.com/Software-Basic-ZJU/Teacher-Assistance-System" target="_blank">Terms of Use</a>
+									<li><a href="https://github.com/Software-Basic-ZJU/Teacher-Assistance-System" target="_blank">Terms of Use</a>
 									</li>
 								</ul>
 							</div>
