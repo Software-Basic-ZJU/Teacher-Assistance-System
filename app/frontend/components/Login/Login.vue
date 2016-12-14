@@ -2,7 +2,7 @@
     <div>
         <div>
             <div class="loginBox">
-                <h2>久违了,老司机</h2>
+                <h2>登录</h2>
                 <el-form ref="loginForm" :model="loginForm" :rules="rules" @keyup.enter="login">
                     <el-form-item label="教工号/学号" prop="id">
                         <el-input v-model="loginForm.id" placeholder="教工号/学号"></el-input>
