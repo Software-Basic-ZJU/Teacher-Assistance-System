@@ -82,81 +82,71 @@
 
     <div id="page-content" class="index-page">
         <div id="fh5co-services-section">
-            <div class="container">
-                <div class="row ">
+            <div class="container" style="min-width: 992px;">
+                <div class="row">
                     <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
                         <i class="sl-icon-paper-plane"></i>
                         <h2 >课件</h2>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-sx-1 text-center">
-                        <div class="row">
-                            <div class="col-md-6 text-center">
-                                <div class="resources-1">
-                                    <span></span>
-                                    <img src="images/ppticon.png" class="ppticon">
-                                    </br>
-                                    </br>
-                                    <a style="font-family:'Microsoft YaHei'">第一章1.112321312312</a>
-                                    <p>
-                                        a上传
-                                        </br>
-                                        具体内容
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="col-md-6 text-center">
-                                <div class="resources-1">
-                                    <span></span>
-                                    <img src="images/ppticon.png" class="ppticon">
-                                    </br>
-                                    </br>
-                                    <a style="font-family:'Microsoft YaHei'">第一章1.112321312312</a>
-                                    <p>
-                                        a上传
-                                        </br>
-                                        具体内容
-                                    </p>
-                                </div>
-                            </div>
+                    <div class="col-xs-3 text-center">
+                        <div class="resources-1">
+                            <span></span>
+                            <img src="images/ppticon.png" class="ppticon">
+                            </br>
+                            </br>
+                            <a style="font-family:'Microsoft YaHei'">第一章1.112321312312</a>
+                            <p>
+                                a上传
+                                </br>
+                                具体内容
+                            </p>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-sx-1 text-center">
-                        <div class="row">
-                            <div class="col-md-6 text-center">
-                                <div class="resources-1">
-                                    <span></span>
-                                    <img src="images/ppticon.png" class="ppticon">
-                                    </br>
-                                    </br>
-                                    <a style="font-family:'Microsoft YaHei'">第一章1.112321312312</a>
-                                    <p>
-                                        a上传
-                                        </br>
-                                        具体内容
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="col-md-6 text-center">
-                                <div class="resources-1">
-                                    <span></span>
-                                    <img src="images/ppticon.png" class="ppticon">
-                                    </br>
-                                    </br>
-                                    <a style="font-family:'Microsoft YaHei'">第一章1.112321312312</a>
-                                    <p>
-                                        a上传
-                                        </br>
-                                        具体内容
-                                    </p>
-                                </div>
-                            </div>
+                    <div class="col-xs-3 text-center">
+                        <div class="resources-1">
+                            <span></span>
+                            <img src="images/ppticon.png" class="ppticon">
+                            </br>
+                            </br>
+                            <a style="font-family:'Microsoft YaHei'">第一章1.112321312312</a>
+                            <p>
+                                a上传
+                                </br>
+                                具体内容
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xs-3 text-center">
+                        <div class="resources-1">
+                            <span></span>
+                            <img src="images/ppticon.png" class="ppticon">
+                            </br>
+                            </br>
+                            <a style="font-family:'Microsoft YaHei'">第一章1.112321312312</a>
+                            <p>
+                                a上传
+                                </br>
+                                具体内容
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xs-3 text-center">
+                        <div class="resources-1">
+                            <span></span>
+                            <img src="images/ppticon.png" class="ppticon">
+                            </br>
+                            </br>
+                            <a style="font-family:'Microsoft YaHei'">第一章1.112321312312</a>
+                            <p>
+                                a上传
+                                </br>
+                                具体内容
+                            </p>
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
         <!-- 最新动态 -->
