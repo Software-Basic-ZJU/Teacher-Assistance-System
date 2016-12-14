@@ -9,7 +9,7 @@
 
 <!--teacher_id,email,phone,qq,wechar,other_contact-->
 <h2>PHP 验证实例</h2>
-<form method="post" action="aboutMail/readMail.php">
+<form method="post" action="aboutMail/deleteMail.php">
     <br><br>
     mail_id：<input type="text" name="mail_id">
     <br><br>
