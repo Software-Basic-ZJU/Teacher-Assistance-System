@@ -967,7 +967,7 @@ POST——Teacher-Assistance-System/app/backend/aboutQues/editQues.php
 
 POST——Teacher-Assistance-System/app/backend/aboutWork/submitWork.php
 
-参数：ques_id,content,attachment,uploader_id,type
+参数：ques_id,content,resrc_id,uploader_id
 
 返回:
 
@@ -1007,12 +1007,16 @@ POST——Teacher-Assistance-System/app/backend/aboutWork/getStuWork.php
         "code" => 0,
         "msg" => "查找成功",
         "res" => array(
+            "ques_title"=>$fetched['ques_title'],
+            "hw_title"=>$fetched['hw_title'],
             "work_id" => $fetched['work_id'],
             "reply" => $fetched['reply'],
             "content" => $fetched['content'],
             "score" => $fetched['score'],
-            "attachment" => $fetched['attachment'],
-            "uploader_id" => $fetched['uploader_id']
+            "resrc_id" => $resrcFetch['resrc_id'],
+            "resrc_name"=>$resrcFetch['name'],
+            "path"=>"http://".$_SERVER['HTTP_HOST']."/backend/aboutResource/".$resrcFetch['path'],
+            "uploader_id" => $fetched['uploader_id'],
             "token" => $_SESSION['token']
 ```
 

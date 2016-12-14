@@ -1,3 +1,85 @@
+<!--test区域-->
+<div class="row">
+    <div class="col-sm-6 text-center">
+        <div class="row">
+            <div class="col-sm-6 text-center">
+                <div class="resources-1">
+                    <span></span>
+                    <img src="images/ppticon.png" class="ppticon">
+                    </br>
+                    </br>
+                    <a style="font-family:'Microsoft YaHei'">第一章1.112321312312</a>
+                    <p>
+                        a上传
+                        </br>
+                        具体内容
+                    </p>
+                </div>
+            </div>
+            <div class="col-sm-6 text-center">
+
+                <div class="resources-1">
+                    <span></span>
+                    <img src="images/ppticon.png" class="ppticon">
+                    </br>
+                    </br>
+                    <a style="font-family:'Microsoft YaHei'">第一章1.112321312312</a>
+                    <p>
+                        a上传
+                        </br>
+                        具体内容
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 text-center">
+        <div class="row">
+            <div class="col-sm-6 text-center">
+                <div class="resources-1">
+                    <span></span>
+                    <img src="images/ppticon.png" class="ppticon">
+                    </br>
+                    </br>
+                    <a style="font-family:'Microsoft YaHei'">第一章1.112321312312</a>
+                    <p>
+                        a上传
+                        </br>
+                        具体内容
+                    </p>
+                </div>
+            </div>
+            <div class="col-sm-6 text-center">
+                <div class="resources-1">
+                    <span></span>
+                    <img src="images/ppticon.png" class="ppticon">
+                    </br>
+                    </br>
+                    <a style="font-family:'Microsoft YaHei'">第一章1.112321312312</a>
+                    <p>
+                        a上传
+                        </br>
+                        具体内容
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--额= =课件-->
+<section class="box-content box-1"  >
+    <div class="row heading">
+        <div class="portfolio-row-half">
+            <a href="openResource.php" target="view_frame" class="portfolio-grid-item" style="background-image: url(images/excelicon.png);background-size: 30%;background-position-y: 50px;background-repeat: no-repeat; height: 150px;width: 150px;">
+                <div class="desc2">
+                    <h3 style="font-size: 16px;">课件1</h3>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
 <!--左右小圆点滚动元素-->
 <section class="tabsblock">
     <div class="wrap">

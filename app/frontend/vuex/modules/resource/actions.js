@@ -58,10 +58,6 @@ export const removeResrc=({dispatch,commit},file)=>{
     ).then((response)=>{
         let resp=response.body;
         if(!resp.code){
-            Vue.prototype.$message({
-                type:'success',
-                message:resp.msg
-            });
             commit('isFileUpload',false);
             LS.removeItem("resource");
         }

@@ -16,61 +16,60 @@ loginCheck($_SERVER['HTTP_X_ACCESS_TOKEN']);
 //Get information
 $ques_id = test_input(mysqli_escape_string($conn, $_POST['ques_id']));
 //mailList[string](mail_id,title,content,time,src_id,src_name,dest_id,is_read)
-$query_result = mysqli_query($conn, "select * from questions JOIN (select hw_id as id,class_id from homework)as temp 
+$query_result = mysqli_query($conn, "select * from questions JOIN (select hw_id as id,class_id,title as hw_title from homework)as temp 
                                      where questions.hw_id = temp.id AND ques_id ='$ques_id';");
 if($fetched = mysqli_fetch_array($query_result)){
     $type = $fetched['type'];
     $class_id = $fetched['class_id'];
-
-    if($type == 0){
-        $shouldList = array();
-        $getSubmittedList = mysqli_query($conn, "select name,student_id from student 
+    $shouldList = array();
+    if($_SESSION['type']!=1) {
+        if ($type == 0) {
+            $getSubmittedList = mysqli_query($conn, "select name,student_id from student 
                                 WHERE class_id = '$class_id' and student_id in (select uploader_id from works where ques_id ='$ques_id' );");
-        if ($getSubmittedList) {
-            while($fetched2 = mysqli_fetch_array($getSubmittedList)){
-                $shouldList[] = array(
-                    "name" => $fetched2['name'],
-                    "id" => $fetched2['student_id'],
-                    "submitted" => 1
-                );
+            if ($getSubmittedList) {
+                while ($fetched2 = mysqli_fetch_array($getSubmittedList)) {
+                    $shouldList[] = array(
+                        "name" => $fetched2['name'],
+                        "id" => $fetched2['student_id'],
+                        "isSubmit" => 1
+                    );
+                }
             }
-        }
-        $getUnsubmittedList = mysqli_query($conn, "select name,student_id from student 
+            $getUnsubmittedList = mysqli_query($conn, "select name,student_id from student 
                                 WHERE class_id = '$class_id' and student_id NOT in (select uploader_id from works where ques_id ='$ques_id' );");
-        if ($getUnsubmittedList) {
-            while($fetched2 = mysqli_fetch_array($getUnsubmittedList)){
-                $shouldList[] = array(
-                    "name" => $fetched2['name'],
-                    "id" => $fetched2['student_id'],
-                    "submitted" => 0
-                );
+            if ($getUnsubmittedList) {
+                while ($fetched2 = mysqli_fetch_array($getUnsubmittedList)) {
+                    $shouldList[] = array(
+                        "name" => $fetched2['name'],
+                        "id" => $fetched2['student_id'],
+                        "isSubmit" => 0
+                    );
+                }
             }
-        }
-    }
-    elseif ($type == 1){
-        $shouldList = array();
-        $getSubmittedList = mysqli_query($conn, "select group.group_id as id,group.group_name as name from student JOIN course_assist.group 
+        } elseif ($type == 1) {
+            $getSubmittedList = mysqli_query($conn, "select group.group_id as id,group.group_name as name from student JOIN course_assist.group 
                                                     WHERE student.class_id = '$class_id' and student.student_id = group.leader_id 
                                                     AND group.leader_id in (select uploader_id from works where ques_id ='$ques_id' );");
-        if ($getSubmittedList) {
-            while($fetched2 = mysqli_fetch_array($getSubmittedList)){
-                $shouldList[] = array(
-                    "name" => $fetched2['name'],
-                    "id" => $fetched2['id'],
-                    "submitted" => 1
-                );
+            if ($getSubmittedList) {
+                while ($fetched2 = mysqli_fetch_array($getSubmittedList)) {
+                    $shouldList[] = array(
+                        "name" => $fetched2['name'],
+                        "id" => $fetched2['id'],
+                        "isSubmit" => 1
+                    );
+                }
             }
-        }
-        $getUnsubmittedList = mysqli_query($conn, "select group.group_id as id,group.group_name as name from student JOIN course_assist.group 
+            $getUnsubmittedList = mysqli_query($conn, "select group.group_id as id,group.group_name as name from student JOIN course_assist.group 
                                                     WHERE student.class_id = '$class_id' and student.student_id = group.leader_id 
                                                     AND group.leader_id NOT in (select uploader_id from works where ques_id ='$ques_id' );");
-        if ($getUnsubmittedList) {
-            while($fetched2 = mysqli_fetch_array($getUnsubmittedList)){
-                $shouldList[] = array(
-                    "name" => $fetched2['name'],
-                    "id" => $fetched2['id'],
-                    "submitted" => 0
-                );
+            if ($getUnsubmittedList) {
+                while ($fetched2 = mysqli_fetch_array($getUnsubmittedList)) {
+                    $shouldList[] = array(
+                        "name" => $fetched2['name'],
+                        "id" => $fetched2['id'],
+                        "isSubmit" => 0
+                    );
+                }
             }
         }
     }
@@ -83,6 +82,7 @@ if($fetched = mysqli_fetch_array($query_result)){
             'title' => $fetched['title'],
             'content' => $fetched['content'],
             'hw_id' => $fetched['hw_id'],
+            'hw_title'=>$fetched['hw_title'],
             'submit_num' => $fetched['submit_num'],
             'average_score' => $fetched['average_score'],
             'type' => $type,

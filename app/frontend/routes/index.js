@@ -1,4 +1,5 @@
 import Vue from "vue";
+import {LS} from "../helpers/utils";
 import VueRouter from "vue-router";
 import {
     App,
@@ -234,6 +235,17 @@ const routes=[
 
 const router=new VueRouter({
     routes
+});
+
+// login check hook
+router.beforeEach((to,from,next)=>{
+    if(to.name!='login') {
+        let userInfo = LS.getItem("userInfo");
+        if (!userInfo || !userInfo.token) {
+            router.push({name: 'login'});
+        }
+    }
+    next();
 });
 
 export default router;

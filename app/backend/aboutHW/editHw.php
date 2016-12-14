@@ -38,6 +38,7 @@ $query_result = mysqli_query($conn, "update homework
 if($query_result){
     $query_result2 = mysqli_query($conn, "select * from homework WHERE hw_id = '$hw_id';");
     $fetched = mysqli_fetch_array($query_result2);
+    $update_type = mysqli_query($conn, "update questions set type='$type' where hw_id='$hw_id'");
     $result = array(
         "code" => 0,
         "msg" => "修改成功",
@@ -50,7 +51,7 @@ if($query_result){
             "punish_type" => $fetched['punish_type'],
             "punish_rate" => $fetched['punish_rate'],
             "over" => $fetched['over'],
-            "out_of_deadline" => (date('y-m-d :i:s',time())>$deadline)?0:1,//0是过期了,1是没过期
+            "out_of_deadline" => (date('y-m-d :i:s', time()) > $deadline) ? 0 : 1,//0是过期了,1是没过期
             "token" => $_SESSION['token']
         )
     );

@@ -2,27 +2,16 @@ import * as actions from './actions';
 
 const state={
     loading:false,
+    isSubmitFile:false,     //是否上传附件，用于判断是否应该在离开页面时删除附件
     hwList:[                //作业列表
     ],
     hwDetail:{              //作业详情,包含作业标题和问题列表
         quesList:[]
     },
-    stuList:[
-        {
-            sid:'111',
-            name:'LowesYang',
-            content:'啦啦啦啦我我哦我',
-            attach:'http://www.baidu.com',
-            status:'已交'
-        },
-        {
-            sid:'123',
-            name:'lalala',
-            content:'啦啦啦啦showhsow',
-            attach:'http://www.baidu.com',
-            status:'未交'
-        }
-    ],
+    quesDetail:{
+        shouldList:[]
+    },
+    stuWork:{},              //某个学生的作业
     showAction:false,       //对话框弹出和消失state
     actionType:false,       //false为添加作业，true为编辑作业
     editHwId:'',            //正在编辑的作业ID
@@ -33,6 +22,9 @@ const state={
 }
 
 const mutations={
+    isSubmitFile(state,signal){
+        state.isSubmitFile=signal;
+    },
     isHwLoading(state,signal){
         state.loading=signal;
     },
@@ -63,6 +55,27 @@ const mutations={
     },
     updateHwDetail(state,hwDetail){
         state.hwDetail=hwDetail;
+    },
+    updateQuesDetail(state,question){
+        state.quesDetail=question;
+        state.quesDetail.shouldList.forEach((item)=>{
+            if(item.isSubmit) item.status='已提交';
+            else item.status='未提交'
+        })
+    },
+    removeQues(state,quesId){
+        let target=0;
+        state.hwDetail.quesList.forEach((item,index)=>{
+            if(item.ques_id==quesId){
+                target=index;
+                return;
+            }
+        })
+        state.hwDetail.quesList.splice(target,1);
+    },
+    updateStuWork(state,stuWork){
+        stuWork.resrcId=stuWork.resrc_id;
+        state.stuWork=stuWork;
     }
 };
 

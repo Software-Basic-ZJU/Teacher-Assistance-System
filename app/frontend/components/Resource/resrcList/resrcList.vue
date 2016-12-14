@@ -43,8 +43,8 @@
                         width="180"
                 >
                     <span>
-                        <el-button size="small" :plain="true" type="danger" icon="delete" @click="removeResrc($index,row)"></el-button>
-                        <el-button class="updateBtn" size="small" :plain="true" type="warning" icon="edit" @click="showEdit($index,row)"></el-button>
+                        <el-button v-if="idenType!=1" size="small" :plain="true" type="danger" icon="delete" @click="removeResrc($index,row)"></el-button>
+                        <el-button v-if="idenType!=1" class="updateBtn" size="small" :plain="true" type="warning" icon="edit" @click="showEdit($index,row)"></el-button>
                         <a :href="resrcList[$index].path" :download="resrcList[$index].name"><el-button type="primary" size="small">下载</el-button></a>
                     </span>
                 </el-table-column>
@@ -110,6 +110,7 @@
     }
     .el-input{
         padidng:0px 10px;
+
     }
 </style>
 <script>

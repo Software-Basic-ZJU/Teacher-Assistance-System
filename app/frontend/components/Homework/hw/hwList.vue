@@ -13,7 +13,6 @@
                     :title="item.title"
                     :publish-time="item.publish_time"
                     :deadline="item.deadline"
-                    :iden-type="identify"
                     :hw-type="item.type"
             ></hw-item>
             <el-dialog :title="dialogTitle" v-model="showAction" size="tiny" @close="closeHwAction">
@@ -58,7 +57,7 @@
                 </el-form>
                 <div slot="footer" class="dialog-footer">
                     <el-button @click.native="closeHwAction">取消</el-button>
-                    <el-button type="primary" @click.native="submitHwAction" :loading="hwLoading">确认添加</el-button>
+                    <el-button type="primary" @click.native="addHw" :loading="hwLoading">提交</el-button>
                 </div>
             </el-dialog>
         </div>
@@ -168,7 +167,7 @@
             closeHwAction(){
                 this.$store.dispatch('showHwAction',false);
             },
-            submitHwAction(){
+            addHw(){
                 this.tempHw.classId=this.$route.params.classId; //注入班级id
                 this.tempHw.hwType=this.hwType==1?0:1;
                 this.tempHw.punishType=this.punishType==1?0:1;
@@ -180,7 +179,7 @@
                     });
                 }
                 this.tempHw.punishRate=(this.punishRate/100).toFixed(2);
-                this.$store.dispatch('submitHw',this.tempHw);
+                this.$store.dispatch('addHw',this.tempHw);
             },
             punishChange(label){
                 this.punishType=label;

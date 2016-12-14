@@ -149,7 +149,7 @@
                 type:Object,
                 default:{
                     uploader_id:'',     //上传者id
-                    type:'',            //资源类型，0为教师资源，1为帖子资源
+                    type:''             //资源类型，0为教师资源，1为帖子资源，2为作业附件
                 }
             }
         },
@@ -186,11 +186,18 @@
             finish(response){           //上传成功
                 console.log(response);
                 this.data.resrcId=response.res.resource_id;     //resource_id为必须项
-                LS.setItem("resource",response.res);
-                this.$store.dispatch('isFileUpload',true);
+                if(this.uploadInfo.type!=2) {
+                    LS.setItem("resource", response.res);
+                    this.$store.dispatch('isFileUpload',true);
+                }
+                else{
+                    this.$store.dispatch('isSubmitFile',true);
+                }
             },
             removeFile(file,fileList){      //删除文件
                 console.log(file);
+                LS.removeItem("resource");
+
                 this.$store.dispatch('removeResrc',this.data);
                 this.$store.dispatch('isFileUpload',false);
             }

@@ -5,11 +5,11 @@
         <div class="correct">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item :to="{name:'homework'}">作业列表</el-breadcrumb-item>
-                <el-breadcrumb-item :to="{name:'hwDetail',params:{hwId:$route.params.hwId}}">{{hwName}}</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{name:'hwDetail',params:{hwId:$route.params.hwId}}">{{stuWork.hw_title}}</el-breadcrumb-item>
                 <el-breadcrumb-item
                         :to="{name:'quesDetail',params:{hwId:$route.params.hwId,quesId:$route.params.quesId}}"
                 >
-                    {{question.title}}
+                    {{stuWork.ques_title}}
                 </el-breadcrumb-item>
                 <el-breadcrumb-item>{{student.name}}的作业</el-breadcrumb-item>
             </el-breadcrumb>
@@ -67,6 +67,10 @@
     import Editor from '../../Editor/Editor.vue';
     export default{
         data(){
+            this.$store.dispatch('getStuWork',{
+                quesId:this.$route.params.quesId,
+                sid:this.$route.params.sid
+            });
             return{
                 rules:{
                     score:[
@@ -76,33 +80,8 @@
             }
         },
         computed:mapState({
-            hwName(state){
-                let hwId=this.$route.params.hwId;
-                let list=state.homework.hwList;
-                for(let i=0;i<list.length;i++){
-                    if(list[i].hwId==hwId){
-                        return list[i].title;
-                    }
-                }
-            },
-            question(state){
-                let quesId=this.$route.params.quesId;
-                let list=state.homework.quesList;
-                for(let i=0;i<list.length;i++){
-                    if(list[i].quesId==quesId){
-                        return list[i];
-                    }
-                }
-            },
-            student(state){
-                let sid=this.$route.params.sid;
-                let stuList=state.homework.stuList;
-                for(let i=0;i<stuList.length;i++){
-                    if(stuList[i].sid==sid){
-                        return stuList[i];
-                    }
-                }
-            },
+            stuWork:state=>state.homework.stuWork,
+            student:state=>state,
             markForm:state=>state.homework.markForm
         }),
         methods:{
