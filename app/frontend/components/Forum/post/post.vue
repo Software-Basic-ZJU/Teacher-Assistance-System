@@ -50,6 +50,7 @@
                     :time="item.time"
                     :content="item.content"
                     :replyNum="item.commentList.length"
+                    :comment-list="item.commentList"
             ></reply-post>
         </div>
     </div>

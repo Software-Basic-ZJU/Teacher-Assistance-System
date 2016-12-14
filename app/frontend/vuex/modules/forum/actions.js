@@ -212,7 +212,7 @@ export const addReplyPost=({dispatch,commit},payload)=>{
 // 显示回帖框状态
 export const isReplyShow=({commit},signal)=>{
     commit('isReplyShow',signal);
-}
+};
 
 export const publish=({commit},info)=>{
     commit('publish',info);

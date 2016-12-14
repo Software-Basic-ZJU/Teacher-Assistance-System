@@ -71,11 +71,14 @@
 </style>
 <script>
     import router from "../../../routes";
+    import {LS} from "../../../helpers/utils";
+
     export default{
         data(){
+            let userInfo=LS.getItem('userInfo');
             this.$store.dispatch('getForumInfo');
             return{
-                identify:1
+                idenType:userInfo.type
             }
         },
         computed:{
@@ -85,7 +88,7 @@
         },
         methods:{
             goPath(section){
-                if(section=='group' && !!this.identify) {    //如果不是学生
+                if(section=='group' && this.idenType!=1) {    //如果不是学生
                     this.$message('请在小组名单中选择一个小组进入其讨论区。');
                     router.push({name:'member'});
                 }
