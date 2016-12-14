@@ -20,7 +20,7 @@ if(!in_array($type,$fileType))
             <div class="col-xs-3 text-center">
                 <div class="resources-1">
                     <span></span>
-                        <img src="images/resource/<?php echo $type; ?>.png" class="ppticon" style="height: 200px;width: 200px;margin-bottom:10px; ">
+                        <img src="images/resource/<?php echo $type; ?>.png" class="ppticon" style="height: 160px;width: 160px;margin-bottom:10px; ">
                     
                     </br>
                     <a href="<?php echo $fetched['path'] ?>" style="font-family:'Microsoft YaHei'"><?php echo $fetched['name'] ?></a>
