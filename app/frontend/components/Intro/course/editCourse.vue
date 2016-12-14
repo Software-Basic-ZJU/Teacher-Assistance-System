@@ -4,9 +4,9 @@
             <h3>编辑课程介绍</h3>
             <Editor
                     btn-name="确认修改"
-                    method="editCourse"
+                    method="editCourseInfo"
                     :has-title="false"
-                    :data="courseInfo"
+                    :data="Object.assign({},courseInfo)"
             ></Editor>
         </div>
     </div>
@@ -25,6 +25,10 @@
         },
         computed:{
             courseInfo(){
+                let courseInfo=this.$store.state.intro.courseInfo;
+                if(courseInfo.content==''){
+                    this.$store.dispatch('getCourseInfo');
+                }
                 return this.$store.state.intro.courseInfo;
             }
         },

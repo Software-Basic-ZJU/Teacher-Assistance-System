@@ -24,13 +24,17 @@
         transition: background-color 0.3s;
     }
     .comment:hover{
-        background-color: #E5E9F2;
+        background-color: #F0F0F0;
     }
     .header{
         margin-bottom:10px;
     }
+    .header .author{
+        color:#6ECADC;
+    }
     .header>.time{
         margin-left:50px;
+        color:#8492A6;
     }
     .header>i{
         cursor:pointer;

@@ -1,4 +1,5 @@
 import Vue from "vue";
+import {LS} from "../helpers/utils";
 import VueRouter from "vue-router";
 import {
     App,
@@ -55,7 +56,7 @@ const routes=[
         children:[
             {
                 path:'/info',
-                name:'Info',
+                name:'info',
                 component:Info,
                 redirect:'/info/notices',
                 children:[
@@ -93,7 +94,7 @@ const routes=[
             },
             {
                 name:'addArticle',
-                path:'/info/article/add',
+                path:'/info/addArticle',
                 component:addArticle
             },
             {
@@ -149,38 +150,38 @@ const routes=[
             },
             {
                 name:'homework',
-                path:'/homework',
+                path:'/homework/:classId',
                 component:Homework,
-                redirect:'/homework/list/',
+                redirect:'/homework/:classId/list',
                 children:[
                     {
                         name:'hwList',
-                        path:'/homework/list/',
+                        path:'/homework/:classId/list',
                         component:hwList
                     },
                     {
                         name:'hwDetail',
-                        path:'/homework/:hwId/questions',
+                        path:'/homework/:classId/:hwId/questions',
                         component:hwDetail
                     },
                     {
                         name:'quesDetail',
-                        path:'/homework/:hwId/question/:quesId',
+                        path:'/homework/:classId/:hwId/question/:quesId',
                         component:quesDetail
                     },
                     {
                         name:'addQues',
-                        path:'/homework/:hwId/addques',
+                        path:'/homework/:classId/:hwId/addques',
                         component:addQues
                     },
                     {
                         name:'editQues',
-                        path:'/homework/:hwId/question/edit/:quesId',
+                        path:'/homework/:classId/:hwId/question/edit/:quesId',
                         component:editQues
                     },
                     {
                         name:'correct',
-                        path:'/homework/:hwId/question/:quesId/correct/:sid',
+                        path:'/homework/:classId/:hwId/question/:quesId/correct/:sid',
                         component:correct
                     }
                 ]
@@ -234,6 +235,17 @@ const routes=[
 
 const router=new VueRouter({
     routes
+});
+
+// login check hook
+router.beforeEach((to,from,next)=>{
+    if(to.name!='login') {
+        let userInfo = LS.getItem("userInfo");
+        if (!userInfo || !userInfo.token) {
+            router.push({name: 'login'});
+        }
+    }
+    next();
 });
 
 export default router;

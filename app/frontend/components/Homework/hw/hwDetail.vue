@@ -3,33 +3,33 @@
         <div class="hwDetail">
             <div class="header">
                 <el-breadcrumb separator="/">
-                    <el-breadcrumb-item :to="{name:'homework'}">作业列表</el-breadcrumb-item>
-                    <el-breadcrumb-item>{{hwDetail.title}}</el-breadcrumb-item>
+                    <el-breadcrumb-item :to="{name:'homework'}">{{className}}作业列表</el-breadcrumb-item>
+                    <el-breadcrumb-item>{{hwDetail.hwTitle}}</el-breadcrumb-item>
                 </el-breadcrumb>
-                <el-button type="success" class="fr" @click="addQues">添加问题</el-button>
+                <el-button v-if="idenType!=1" type="success" class="fr" @click="addQues">添加问题</el-button>
             </div>
             <div class="infoBox">
                 <span class="type">作业类型：{{hwDetail.hwType?'小组作业':'个人作业'}}</span>
-                <span class="publish">发布时间：{{hwDetail.publishTime}}</span>
-                <span class="ddl">截止时间：{{hwDetail.deadline}}</span>
+                <span class="publish">发布时间：{{hwDetail.hwPublishTime}}</span>
+                <span class="ddl">截止时间：{{hwDetail.hwDeadline}}</span>
             </div>
             <div class="quesList">
+                <div class="noRes" v-if="hwDetail.quesList.length==0">还没有添加问题~</div>
                 <ques-item
-                        v-for="item in quesList"
-                        :key="item.quesId"
-                        :ques-id="item.quesId"
+                        class="item"
+                        v-for="item in hwDetail.quesList"
+                        :key="item.ques_id"
+                        :ques-id="item.ques_id"
                         :title="item.title"
-                        :shouldNum="item.shouldNum"
-                        :haveNum="item.haveNum"
+                        :should-num="item.should_num"
+                        :submit-num="item.submit_num"
+                        :is-finish="item.ques_finish"
                 ></ques-item>
             </div>
         </div>
     </div>
 </template>
 <style scoped>
-    .hwDetail{
-        padding:0px 20px;
-    }
     .header{
         padding:10px 0px;
     }
@@ -39,6 +39,7 @@
     }
     .infoBox>span{
         margin-right:30px;
+
     }
     .infoBox>.publish{
         color:#8492A6;
@@ -47,7 +48,7 @@
         color:#FF4949;
     }
     .quesList{
-        padding-top:10px;
+        padding-bottom:10px;
     }
     .el-button--success{
         margin-top:-45px;
@@ -56,23 +57,30 @@
 <script>
     import quesItem from "../question/quesItem.vue";
     import router from "../../../routes";
+    import {LS} from "../../../helpers/utils";
+
     export default{
         data(){
+            let userInfo=LS.getItem('userInfo');
+            this.$store.dispatch('getQuesList',this.$route.params.hwId);
             return{
+                idenType:userInfo.type
             }
         },
         computed:{
-            hwDetail(){                             //作业详情
-                let hwId=this.$route.params.hwId;
-                let list=this.$store.state.homework.hwList;
-                for(let i=0;i<list.length;i++){
-                    if(list[i].hwId==hwId){
-                        return list[i];
+            hwDetail(){
+                return this.$store.state.homework.hwDetail;
+            },
+            className(){        //班级名称
+                let className="";
+                let userInfo=LS.getItem("userInfo");
+                for(let i=0;userInfo.type!=1 && i<userInfo.class_id.length;i++){
+                    if(userInfo.class_id[i].class_id==this.$route.params.classId){
+                        className=userInfo.class_id[i].class_name+" - ";
+                        break;
                     }
                 }
-            },
-            quesList(){
-                return this.$store.state.homework.quesList
+                return className;
             }
         },
         methods:{

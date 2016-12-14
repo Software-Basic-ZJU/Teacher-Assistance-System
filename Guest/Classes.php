@@ -31,8 +31,7 @@
         <script src="js/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
-
+<body onload="Get_Course()">
 	<!-- /////////////////////////////////////////Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -84,37 +83,44 @@
 	<div id="page-content" class="index-page">
 
 		<!--课程信息-->
-		<section class="tabsblock">
-			<div class="wrap">
+		<section class="tabsblock" style="margin-bottom: 60px">
+			<div class="wrap" style="padding-top: 120px">
 				<div class="tab">
+
+
 					<!--国际国内背景	-->
 					<div class="box visible">
 						<div class="box-text">
-							<h3>全国最先进的教学体验</h3>
-							<p>Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam suscipit aliquet felis, quis ultrices orci condiment.</p>
-							<img src="images/tabs.png" width="200" height="200" alt="">
+							<h2>课程背景</h2>
+							<hr>
+							<br>
+							<p style="font-family:'Microsoft YaHei'" id='back_ground'>此处显示课程背景.</p>
 						</div>
 					</div><!-- box -->
 					<div class="box">
 						<div class="box-text">
-							<h3>The easiest way to show off your best apps</h3>
-							<p>Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam suscipit aliquet felis, quis ultrices orci condiment.</p>
+							<h2>教学计划</h2>
+							<hr>
+							<br>
+							<!-- <p id='courseplan'>此处显示教学计划</p> -->
 						</div>
-						<img src="images/tabs.png" width="437" height="459" alt="">
+						<img  id="img_address" src="" alt="此外应该是教学计划表">
 					</div><!-- box -->
 					<div class="box">
 						<div class="box-text">
-							<h3>The easiest way to show off your best apps</h3>
-							<p>Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam suscipit aliquet felis, quis ultrices orci condiment.</p>
+							<h2>教材&预修要求</h2>
+							<hr>
+							<br>
+							<p style="font-family:'Microsoft YaHei'" id='text-pre'>此处显示教材&预修要求.</p>
 						</div>
-						<img src="images/tabs.png" width="437" height="459" alt="">
 					</div><!-- box -->
 					<div class="box">
 						<div class="box-text">
-							<h3>The easiest way to show off your best apps</h3>
-							<p>Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam suscipit aliquet felis, quis ultrices orci condiment.</p>
+							<h2>考核方式</h2>
+							<hr>
+							<br>
+							<p style="font-family:'Microsoft YaHei'" id='exam'>此处显示考核方式.</p>
 						</div>
-						<img src="images/tabs.png" width="437" height="459" alt="">
 					</div><!-- box -->
 					<ul class="tabs clearfix">
 						<li class="active"></li>
@@ -126,102 +132,30 @@
 			</div><!-- wrap -->
 		</section><!--  -->
 
-
-
 	<!--底-->
-	<footer>
-		<div class="wrap-footer">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4 col-footer footer-1">
-						<div class="heading"><h4>About Us</h4></div>
-						<div class="content">
-							<p>关于我们的信息= = </p>
-						</div>
-					</div>
-					<div class="col-md-4 col-footer footer-2">
-						<div class="heading"><h4>Your Email</h4></div>
-						<div class="content">
-							<p>随便写点什么骗她留邮箱 </p>
-							<div class="subcribe-form" >
-								<form method="get" action="/search" id="subcribe">
-									<div class="form-group">
-										<input type="text" class="form-control input-lg" name="subcribe" placeholder="Enter your email address...  " required="required" />
-									</div>
-									<button type="submit" name="Submit" class="btn btn-4 f-left">Subcribe</button>
-								</form>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 col-footer footer-3">
-						<div class="row">
-							<div class="col-md-6">
-								<a href="#"><img src="images/15.jpg" /></a>
-							</div>
-							<div class="col-md-6">
-								<a href="#"><img src="images/16.jpg" /></a>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<a href="#"><img src="images/17.jpg" /></a>
-							</div>
-							<div class="col-md-6">
-								<a href="#"><img src="images/18.jpg" /></a>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<a href="#"><img src="images/19.jpg" /></a>
-							</div>
-							<div class="col-md-6">
-								<a href="#"><img src="images/20.jpg" /></a>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<a href="#"><img src="images/21.jpg" /></a>
-							</div>
-							<div class="col-md-6">
-								<a href="#"><img src="images/18.jpg" /></a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="copyright">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4">
-						<p>Copyright &copy; 2016. SRE G11 All rights reserved.<a href="http://www.baidu.com/">G11</a></p>
-					</div>
-					<div class="col-md-4">
-						<ul class="list-inline">
-							<li><a href="#"><i class="fa fa-twitter"></i></a>
-							</li>
-							<li><a href="#"><i class="fa fa-facebook"></i></a>
-							</li>
-							<li><a href="#"><i class="fa fa-linkedin"></i></a>
-							</li>
-							<li><a href="#"><i class="fa fa-google"></i></a>
-                            </li>
-						</ul>
-					</div>
-					<div class="col-md-4">
-						<ul class="list-inline">
-							<li><a href="#">Privacy Policy</a>
-							</li>
-							<li><a href="#">Terms of Use</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
+		<?php
+			include "footer.php"
+		?>
 	<!-- Footer -->
+
+	<script type="text/javascript">
+    // PHP 后端交互所用到的
+    function Get_Course(){
+    	$("#back_ground").html("");
+    	$("#courseplan").html("");
+    	$("#text-pre").html("");
+    	$("#exam").html("");
+        $.getJSON("./backend/CourseInfo/CourseInfo.php", function(json){
+        	$('#back_ground').append(json.res.background);
+        	//$('#courseplan').append(json.res.course_plan);
+        	var img_add = "./" + json.res.course_plan;
+        	document.getElementById("img_address").src = img_add;
+        	$('#text-pre').append(json.res.textbook_precourse);
+        	$('#exam').append(json.res.exam_homework);
+        });
+
+    }
+</script>
 
 	
 	<!-- jQuery -->

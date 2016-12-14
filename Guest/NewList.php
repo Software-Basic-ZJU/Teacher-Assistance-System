@@ -18,6 +18,7 @@
 	<link rel="stylesheet" href="css/our-team.css"> <!-- Resource style -->
 	<link rel="stylesheet" href="css/simple-line-icons.css">
 	<link rel="stylesheet" href="css/style2.css">
+
 	<!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	
@@ -30,6 +31,7 @@
         <script src="js/html5shiv.js"></script>
         <script src="js/respond.min.js"></script>
     <![endif]-->
+
 </head>
 <body>
 
@@ -84,26 +86,18 @@
 		<!--New 最新动态-->
 		<div id="fh5co-services-section">
 			<div class="container">
-				<div class="row">
+				<div class="row ">
 					<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
 						<i class="sl-icon-paper-plane"></i>
-						<h2>最新动态</h2>
-						<p> 相关文章,顶尖会议,知名论文</a></p>
+						<h2 >最新动态</h2>
+						<p style="font-family:'Microsoft YaHei'"> 相关文章,顶尖会议,知名论文</a></p>
 					</div>
 				</div>
+
 				<?php
-				include dirname(__FILE__).'/backend/Articles/GetArticleListLM.php';
+				include 'backend/Articles/GetArticleList.php';
 				?>
-				<div class="row">
-					<div class="col-md-4 text-center">
-						<div class="services">
-							<span><i class="sl-icon-graph"></i></span>
-							<h3>Dashboard</h3>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-							<div class="cd-see-all"><a href="NewPassage.php?art_id=" class="btn btn-1">See all</a></div>
-						</div>
-					</div>
-				</div>
+
 			</div>
 		</div>
 		<!-- 最新动态 -->
@@ -112,99 +106,11 @@
 	</div>
 
 	<!--底-->
-	<footer>
-		<div class="wrap-footer">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4 col-footer footer-1">
-						<div class="heading"><h4>About Us</h4></div>
-						<div class="content">
-							<p>关于我们的信息= = </p>
-						</div>
-					</div>
-					<div class="col-md-4 col-footer footer-2">
-						<div class="heading"><h4>Your Email</h4></div>
-						<div class="content">
-							<p>随便写点什么骗她留邮箱 </p>
-							<div class="subcribe-form" >
-								<form method="get" action="/search" id="subcribe">
-									<div class="form-group">
-										<input type="text" class="form-control input-lg" name="subcribe" placeholder="Enter your email address...  " required="required" />
-									</div>
-									<button type="submit" name="Submit" class="btn btn-4 f-left">Subcribe</button>
-								</form>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 col-footer footer-3">
-						<div class="row">
-							<div class="col-md-6">
-								<a href="#"><img src="images/15.jpg" /></a>
-							</div>
-							<div class="col-md-6">
-								<a href="#"><img src="images/16.jpg" /></a>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<a href="#"><img src="images/17.jpg" /></a>
-							</div>
-							<div class="col-md-6">
-								<a href="#"><img src="images/18.jpg" /></a>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<a href="#"><img src="images/19.jpg" /></a>
-							</div>
-							<div class="col-md-6">
-								<a href="#"><img src="images/20.jpg" /></a>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<a href="#"><img src="images/21.jpg" /></a>
-							</div>
-							<div class="col-md-6">
-								<a href="#"><img src="images/18.jpg" /></a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="copyright">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4">
-						<p>Copyright &copy; 2016. SRE G11 All rights reserved.<a href="http://www.baidu.com/">G11</a></p>
-					</div>
-					<div class="col-md-4">
-						<ul class="list-inline">
-							<li><a href="#"><i class="fa fa-twitter"></i></a>
-							</li>
-							<li><a href="#"><i class="fa fa-facebook"></i></a>
-							</li>
-							<li><a href="#"><i class="fa fa-linkedin"></i></a>
-							</li>
-							<li><a href="#"><i class="fa fa-google"></i></a>
-                            </li>
-						</ul>
-					</div>
-					<div class="col-md-4">
-						<ul class="list-inline">
-							<li><a href="#">Privacy Policy</a>
-							</li>
-							<li><a href="#">Terms of Use</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
+		<?php
+			include "footer.php"
+		?>
 	<!-- Footer -->
+
 
 	
 	<!-- jQuery -->

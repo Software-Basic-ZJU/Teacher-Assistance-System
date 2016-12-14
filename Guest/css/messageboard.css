@@ -1,0 +1,176 @@
+@media (min-width: 992px){
+    .col-md-6{
+        width: 100%;
+padding-left: 60px;
+padding-right: 54px;
+    }
+    .col-sm-1{
+        width:auto;
+    }
+    .container{
+        padding-left: 100px;
+        padding-right: 100px;
+    }
+}
+@media (min-width: 768px){
+    .col-sm-1{
+        width: auto;
+    }
+    .container{
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+}
+
+
+.well{
+    background-color: #ffffff;
+    border-color: #ffffff;
+    border-width: 5px;
+    border-style: inset;
+}
+.well p{
+    font-size: 14px;
+}
+
+.section-heading{
+    font-size: 26px;
+}
+.well.well-lg.sr-button{
+    margin-right: 84px;
+    margin-left: -32px;
+}
+
+/*这是一块留言*/
+#board{
+    margin-top: 0px;
+    border:none;
+        background-color: #EBEBEB;
+        background-image: none;
+        background-repeat: repeat;
+        background-attachment: scroll;
+        background-clip: border-box;
+        background-origin: padding-box;
+        background-position-x: 0%;
+        background-position-y: 0%;
+        background-size: auto auto;
+    border-radius: 30px;
+    box-shadow: 0 7px #E0DFDF;
+}
+
+/*这是留言时间显示*/
+.col-sm-2 p{
+    padding-top: ;
+    font-size: 14px;
+}
+
+/*这是留言的文字*/
+.col-sm-8 p{
+    padding-top: 20px;
+    padding-bottom: -5px;
+    font-size: 20px;
+    font-family: Microsoft YaHei;
+}
+.bg-form{
+    line-height: 110%;
+}
+
+/*这是已有回复留言文字*/
+.col-sm-9 p{
+    padding-top: 20px;
+    font-size: 16px;
+    font-family: Microsoft YaHei;
+}
+
+/*这是已有回复留言的块*/
+#replyboard{
+    margin-top: 0px;
+    border:none;
+        background-color: #E5E5E5;
+        background-image: none;
+        background-repeat: repeat;
+        background-attachment: scroll;
+        background-clip: border-box;
+        background-origin: padding-box;
+        background-position-x: 0%;
+        background-position-y: 0%;
+        background-size: auto auto;
+    border-radius: 5px;
+    box-shadow: 0 5px #E0E0E0;
+}
+
+/*这是回复留言的按钮*/
+.btn.btn-info {
+    color:#8E8E8E;
+    font-family: Microsoft YaHei;
+        margin-top: 20px;
+        padding-right: 30px;
+        padding-left: 30px;
+    border:none;
+        background-color: #E0E0E0;
+        background-image: none;
+        background-repeat: repeat;
+        background-attachment: scroll;
+        background-clip: border-box;
+        background-origin: padding-box;
+        background-position-x: 0%;
+        background-position-y: 0%;
+        background-size: auto auto;
+    border-radius: 5px;
+    box-shadow: 0 5px #D6D6D6;
+}
+.btn.btn-info:hover{
+    color: #BEBEBE;
+        margin-top:25px;
+    border:none;
+        background-color: #E5E5E5;
+        background-image: none;
+        background-repeat: repeat;
+        background-attachment: scroll;
+        background-clip: border-box;
+        background-origin: padding-box;
+        background-position-x: 0%;
+        background-position-y: 0%;
+        background-size: auto auto;
+    border-radius: 5px;
+    box-shadow: 0 5px #E0E0E0;
+}
+
+.form-control{
+    background-color: #e9e9e9;
+    box-shadow: 2px 2px 1px 3px #d2d2d2 inset;
+    border-color: #fcfcfc;
+    border-top-style: none;
+    border-left-style: none;
+    margin-left: -10px;
+}
+
+.box-content.box-5 textarea{
+ border-color: #fcfcfc;
+box-shadow: 2px 2px 2px 3px #b7b7b799 inset;
+border-radius: 15px;
+    border-top-style: none;
+    border-left-style: none;
+}
+
+.btn.btn-3 {
+    color:#8E8E8E;
+    font-family: Microsoft YaHei;
+    margin-top: 20px;
+
+    margin-left: -10px;
+    border:none;
+        background-color: #E0E0E0;
+ 
+    border-radius: 5px;
+    box-shadow: 0 5px #D6D6D6;
+}
+.btn.btn-3:hover{
+    color: #BEBEBE;
+        margin-top:25px;
+    border:none;
+        background-color: #E5E5E5;
+
+    border-radius: 5px;
+    box-shadow: 0 5px #E0E0E0;
+}

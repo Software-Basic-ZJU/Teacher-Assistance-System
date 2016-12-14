@@ -3,7 +3,7 @@
         <div>
             <div class="loginBox">
                 <h2>久违了,老司机</h2>
-                <el-form ref="loginForm" :model="loginForm" :rules="rules">
+                <el-form ref="loginForm" :model="loginForm" :rules="rules" @keyup.enter="login">
                     <el-form-item label="教工号/学号" prop="id">
                         <el-input v-model="loginForm.id" placeholder="教工号/学号"></el-input>
                     </el-form-item>
@@ -11,17 +11,24 @@
                         <el-input v-model="loginForm.password" type="password" placeholder="密码"></el-input>
                     </el-form-item>
                     <el-radio-group v-model="loginForm.idenType">
-                        <el-radio :label="0">学生</el-radio>
-                        <el-radio :label="1">老师</el-radio>
-                        <el-radio :label="2">助教</el-radio>
+                        <el-radio :label="1">学生</el-radio>
+                        <el-radio :label="2">老师</el-radio>
+                        <el-radio :label="3">助教</el-radio>
                     </el-radio-group>
                     <el-form-item>
-                        <el-button type="primary" @click="login" @key.enter="login">登录</el-button>
+                        <el-button type="primary" @click="login" :loading="isLoading">登录</el-button>
                         <el-button>返回首页</el-button>
                     </el-form-item>
                 </el-form>
             </div>
-            <el-dialog title="第一次登陆，请完善个人信息" v-model="showCompleteInfo" @close="closeDialog">
+            <el-dialog
+                    title="第一次登陆，请完善个人信息"
+                    v-model="showCompleteInfo"
+                    @close="closeDialog"
+                    :show-close="false"
+                    :close-on-click-modal="false"
+                    :close-on-press-escape="false"
+            >
                 <Complete-info></Complete-info>
             </el-dialog>
         </div>
@@ -44,13 +51,21 @@
 </style>
 <script>
     import CompleteInfo from "./CompleteInfo.vue";
+    import {mapState} from "vuex";
+    import {LS} from "../../helpers/utils";
+    import router from "../../routes";
     export default{
         data(){
+            let userInfo=LS.getItem("userInfo");
+            if(userInfo && userInfo.token){
+                this.$message('欢迎回来！');
+                router.push({name:'App'});
+            }
             return{
                 loginForm:{
                     id:'',
                     password:'',
-                    idenType:0
+                    idenType:1
                 },
                 rules:{
                     id:[
@@ -71,9 +86,10 @@
             }
         },
         computed:{
-            showCompleteInfo(){
-                return this.$store.state.showCompleteInfo
-            }
+            ...mapState({
+                showCompleteInfo:state=>state.showCompleteInfo,
+                isLoading:state=>state.loading
+            })
         },
         methods:{
             login(){

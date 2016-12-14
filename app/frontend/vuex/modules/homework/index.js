@@ -1,75 +1,93 @@
-import Vue from 'vue';
 import * as actions from './actions';
 
 const state={
     loading:false,
+    isSubmitFile:false,     //是否上传附件，用于判断是否应该在离开页面时删除附件
     hwList:[                //作业列表
-        {
-            hwId:1,
-            title:'第一章作业',
-            publishTime:"2016-11-03",
-            deadline:"2016-12-03",
-            hwType:1,
-            punishType:0,
-            punishRate:1
-        },
-        {
-            hwId:2,
-            title:'第二章作业',
-            publishTime:"2016-11-03",
-            deadline:"2016-12-03",
-            hwType:0,
-            punishType:1,
-            punishRate:0.52
-        }
     ],
-    quesList:[
-        {
-            quesId:1,
-            title:'Java计算器编写',
-            content:'hEE',
-            shouldNum:20,
-            haveNum:15
-        }
-    ],
-    stuList:[
-        {
-            sid:'111',
-            name:'LowesYang',
-            content:'啦啦啦啦我我哦我',
-            attach:'http://www.baidu.com',
-            status:'已交'
-        },
-        {
-            sid:'123',
-            name:'lalala',
-            content:'啦啦啦啦showhsow',
-            attach:'http://www.baidu.com',
-            status:'未交'
-        }
-    ],
+    hwDetail:{              //作业详情,包含作业标题和问题列表
+        quesList:[]
+    },
+    quesDetail:{
+        shouldList:[]
+    },
+    stuWork:{},              //某个学生的作业
     showAction:false,       //对话框弹出和消失state
     actionType:false,       //false为添加作业，true为编辑作业
-    editHwId:'',
+    editHwId:'',            //正在编辑的作业ID
     markForm:{              //教师点评表单state
+        workId:'',
         score:'',
-        review:''
+        reply:''
     }
 }
 
 const mutations={
-    showHwAction(state){
-        state.showAction=true;
+    isSubmitFile(state,signal){
+        state.isSubmitFile=signal;
     },
-    closeHwAction(state){
-        state.showAction=false;
-        state.editHwId='';
+    isHwLoading(state,signal){
+        state.loading=signal;
+    },
+    showHwAction(state,signal){
+        state.showAction=signal;
     },
     showEditHw(state,hwId){
         state.actionType=true;
         state.editHwId=hwId;
     },
-}
+    clearEditHwId(state){       //清楚正在编辑的状态，以让下一次编辑时，vue能够检测到editHwId变化
+        state.editHwId=0;
+    },
+    setActionType(state,signal){
+        state.actionType=signal;
+    },
+    updateHwList(state,newHwList){
+        state.hwList=newHwList;
+    },
+    deleteHwItem(state,hwId){       //删除作业某项
+        let hwList=state.hwList.slice();
+        let i;
+        for(i=0;hwList.length;i++){
+            if(hwList[i].hw_id==hwId) break;
+        }
+        hwList.splice(i,1);
+        state.hwList=hwList;
+    },
+    updateHwDetail(state,hwDetail){
+        state.hwDetail=hwDetail;
+    },
+    updateQuesDetail(state,question){
+        state.quesDetail=question;
+        state.quesDetail.shouldList.forEach((item)=>{
+            if(item.isSubmit) {
+                if(item.isCorrect>0) item.status = item.isCorrect;
+                else item.status='已提交，未批改';
+
+            }
+            else item.status='未提交'
+        })
+    },
+    removeQues(state,quesId){
+        let target=0;
+        state.hwDetail.quesList.forEach((item,index)=>{
+            if(item.ques_id==quesId){
+                target=index;
+                return;
+            }
+        })
+        state.hwDetail.quesList.splice(target,1);
+    },
+    updateStuWork(state,stuWork){
+        stuWork.resrcId=stuWork.resrc_id;
+        state.stuWork=stuWork;
+        state.markForm={
+            workId:stuWork.work_id,
+            score:stuWork.score,
+            reply:stuWork.reply
+        }
+    }
+};
 
 export default {
     state,

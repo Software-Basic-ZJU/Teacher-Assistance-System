@@ -7,7 +7,7 @@
  */
 function connectDB(){
     global $conn;
-    $conn = mysqli_connect("localhost","root","","course_assist");
+    $conn = mysqli_connect("127.0.0.1","root","root","course_assist");
     $conn->query("set names 'utf8'");
     if(mysqli_connect_errno()){
         printf("Connect failed: %s\n", mysqli_connect_errno());
@@ -24,6 +24,7 @@ function encrypt($data) {
     $encrypt = mcrypt_encrypt(MCRYPT_DES, $key, $prep_code, MCRYPT_MODE_ECB);
     return base64_encode($encrypt);
 }
+
 function decrypt($str) {
     $key = "123w4er5";
     $str = base64_decode($str);
@@ -35,6 +36,7 @@ function decrypt($str) {
     }
     return unserialize($str);
 }
+
 function loginCheck($token){
     $token_array = explode("-", decrypt($token));//$token = $id."-".$type."-".time();
     $expireTime = time() + 7200;
@@ -58,7 +60,7 @@ function loginCheck($token){
     }
     if(!$query_result){
         $result = array(
-            'code' => -1,
+            'code' => 403,
             'msg' => '当前用户名与token中的用户名不一致',
             'res' => array()
         );
@@ -66,7 +68,7 @@ function loginCheck($token){
         exit;
     } elseif($token_array[2] > $expireTime){
         $result = array(
-            'code' => -1,
+            'code' => 403,
             'msg' => 'token已过期',
             'res' => array()
         );
@@ -80,7 +82,6 @@ function loginCheck($token){
             $_SESSION['email']= $fetched['email'];
             $_SESSION['class_id']= $fetched['class_id'];
             $_SESSION['group_id']= $fetched['group_id'];
-
         }
         elseif ($token_array[1]==2){
             $_SESSION['teacher_id'] = $fetched['teacher_id'];

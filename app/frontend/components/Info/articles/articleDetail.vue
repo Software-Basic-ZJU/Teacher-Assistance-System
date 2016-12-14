@@ -7,7 +7,7 @@
                     <el-breadcrumb-item>{{article.title}}</el-breadcrumb-item>
                 </el-breadcrumb>
                 <div class="btnGroup fr">
-                    <el-button type="danger" icon="delete" @click="remove"></el-button>
+                    <el-button type="danger" :plain="true" icon="delete" @click="remove($route.params.artId)"></el-button>
                     <el-button type="success" icon="edit" @click="editArticle($route.params.artId)"></el-button>
                 </div>
             </div>
@@ -16,11 +16,19 @@
                     <div class="title">{{article.title}}</div>
                     <div class="info">
                         <div class="author">作者：{{article.author}}</div>
-                        <div class="time">发表于：{{article.publishTime}}</div>
+                        <div class="time">发表于：{{article.time}}</div>
                     </div>
                 </div>
                 <div class="content" v-html="article.content"></div>
-                <el-button type="primary" @click="reply(article.artId)">回复</el-button>
+                <el-button class="replyBtn" type="primary" @click="toggleReplyShow" size="small" :plain="true">{{isReplyShow?'取消':'回复'}}</el-button>
+                <div class="replyForm" v-show="isReplyShow">
+                    <el-form :model="newReply">
+                        <el-form-item label="回帖内容">
+                            <el-input type="textarea" v-model="newReply.content"></el-input>
+                        </el-form-item>
+                        <el-button type="primary" @click="reply(article.artId)">回复</el-button>
+                    </el-form>
+                </div>
             </div>
             <div class="commentBox">
                 <comment
@@ -57,7 +65,7 @@
         text-align: center;
     }
     .main .title{
-        font-size:32px;
+        font-size:28px;
     }
     .main .info{
         margin-top:10px;
@@ -70,33 +78,52 @@
     .main>.content{
         line-height:24px;
     }
-    .main .el-button{
+    .main .replyBtn{
         margin-top:30px;
+    }
+    .main .replyForm .el-button{
+        margin-top:-10px;
     }
 </style>
 <script>
     import router from "../../../routes";
     import comment from "./comment/comment.vue";
+    import {LS} from "../../../helpers/utils";
+
     export default{
         data(){
+            this.$store.dispatch('getArticle',this.$route.params.artId);
             return{
+                isReplyShow:false,
+                newReply:{
+                    content:''
+                }
             }
         },
         computed:{
             article(){
-                let articles=this.$store.state.info.articleList;
-                for(let i=0;i<articles.length;i++){
-                    if(articles[i].artId==this.$route.params.artId){
-                        return articles[i];
-                    }
-                }
+                return this.$store.state.info.article;
             }
         },
         methods:{
             editArticle(artId){
+                LS.setItem("article_temp",this.article);
                 router.push({name:'editArticle',params:{artId:artId}});
             },
-            remove(){
+            reply(artId){
+
+            },
+            toggleReplyShow(){
+                this.isReplyShow=!this.isReplyShow;
+            },
+            remove(artId){
+                this.$confirm('确认要删除该文章吗？','提示',{
+                    confirmButtonText:'确认删除',
+                    cancelButtonText:'取消',
+                    type:'warning'
+                }).then(()=>{
+                    this.$store.dispatch('removeArticle',artId);
+                }).catch(()=>{});
 
             }
         },

@@ -12,37 +12,44 @@
         <div class="hostPost">
             <div class="header">
                 <div class="title">主题：{{hostPost.title}}</div>
-                <span class="author">{{hostPost.author}}</span>
+                <span class="author">{{hostPost.author_name}}</span>
             </div>
             <div class="main">
                 <div class="content">{{hostPost.content}}</div>
+                <div class="resource" v-if="hostPost.resrcId">
+                    <a :href="hostPost.resource.path" download="hostPost.resource.name">
+                        {{hostPost.resource.name}}
+                    </a>
+                </div>
             </div>
             <div class="footer">
                 <el-button size="small" @click="showReply">{{replyBtn}}</el-button>
-                <el-button type="success" icon="edit" :plain="true" size="small" @click="goEditPost($route.params.pid)"></el-button>
-                <el-button type="danger" icon="delete" :plain="true" size="small" @click="removePost($route.params.pid)"></el-button>
-                <span class="time fr">发表于：{{hostPost.updateTime}}</span>
-                <span class="time fr">最后更新：{{hostPost.updateTime}}</span>
+                <el-button v-if="isAuthor" type="warning" icon="edit" :plain="true" size="small" @click="goEditPost($route.params.pid)"></el-button>
+                <el-button v-if="isAuthor" type="danger" icon="delete" :plain="true" size="small" @click="removePost($route.params.pid)"></el-button>
+                <span class="time fr">发表于：{{hostPost.update_time}}</span>
+                <span class="time fr">最后更新：{{hostPost.update_time}}</span>
             </div>
             <div class="replyForm" v-show="isReplyShow">
                 <el-form :model="newReply">
                     <el-form-item label="回帖内容">
                         <el-input type="textarea" v-model="newReply.content"></el-input>
                     </el-form-item>
-                    <el-button type="primary" >回复</el-button>
+                    <el-button type="primary" :loading="postLoading" @click="addRepost($route.params.pid)">回复</el-button>
                 </el-form>
             </div>
         </div>
-        <div class="replyPost">
+        <div class="replyPost" v-loading.body="replyLoading">
             <h3>所有回复</h3>
+            <div class="noRes" v-if="hostPost.repostList && !hostPost.repostList.length">还没有回贴~</div>
             <reply-post
-                    v-for="item in repostList"
-                    :key="item.rpid"
-                    :rpid="item.rpid"
-                    :author="item.author"
+                    v-for="item in hostPost.repostList"
+                    :key="item.repost_id"
+                    :rpid="item.repost_id"
+                    :author-id="item.author_id"
+                    :author-name="item.author_name"
                     :time="item.time"
                     :content="item.content"
-                    :replyNum="item.replyNum"
+                    :replyNum="item.commentList.length"
             ></reply-post>
         </div>
     </div>
@@ -65,10 +72,13 @@
         margin-bottom:5px;
     }
     .hostPost>.header>.author{
-        color:#1D8CE0;
+        color:#6ECADC;
     }
     .hostPost>.main{
         padding:10px 0px;
+    }
+    .hostPost>.main .resource{
+        margin-top:10px;
     }
     .hostPost>.footer{
         padding-top:5px;
@@ -107,6 +117,8 @@
     import router from "../../../routes";
     import replyPost from "./replyPost.vue";
     import {mapState} from "vuex";
+    import {LS} from "../../../helpers/utils";
+
     export default{
         data(){
             let section=this.$route.params.section;
@@ -124,37 +136,54 @@
                     router.push({name:'forum'});
                     break;
             }
+            this.$store.dispatch('getPostDetail',this.$route.params.pid);
+            this.$store.dispatch('getReplyPost',this.$route.params.pid);
             return{
                 secName:section,
                 newReply:{
                     content:''
                 },
-                isReplyShow:false,
                 replyBtn:'回复'
             }
         },
-        computed:mapState({
-            hostPost(state){
-                let pid=this.$route.params.pid;
-                let list=state.forum.postList;
-                for(let i=0;i<list.length;i++){
-                    if(list[i].pid==pid){
-                        return list[i];
-                    }
-                }
+        computed:{
+            ...mapState({
+                hostPost:state=>state.forum.currPost,
+                isReplyShow:state=>state.forum.isReplyShow,
+                replyLoading:state=>state.forum.replyPostLoading,
+                postLoading:state=>state.forum.loading,
+            }),
+            isAuthor(){
+                let userInfo=LS.getItem('userInfo');
+                return userInfo.id==this.hostPost.author_id;
             },
-            repostList(state){
-                return state.forum.repostList
+            replyBtn(){
+                return this.isReplyShow?'取消':'回复'
             }
-        }),
+        },
         methods:{
             goEditPost(pid){
                 let section=this.$route.params.section;
                 router.push({name:'editPost',params:{section:section,pid:pid}})
             },
+            removePost(pid){
+                this.$confirm('确认删除该帖子吗?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.$store.dispatch('removePost',{
+                        postId:pid,
+                        section:this.$route.params.section
+                    })
+                }).catch(() => {});
+            },
+            addRepost(pid){
+                this.newReply.postId=pid;
+                this.$store.dispatch('addReplyPost',this.newReply);
+            },
             showReply(){
-                this.isReplyShow=!this.isReplyShow;
-                this.replyBtn=this.isReplyShow?'取消':'回复';
+                this.$store.dispatch('isReplyShow',!this.isReplyShow);
             }
         },
         components:{

@@ -1,15 +1,13 @@
 <template>
     <div>
-        <el-tabs type="card" @tab-click="handleClick" :active-name="currIndex">
-            <el-tab-pane label="课程介绍"></el-tab-pane>
+        <el-tabs @tab-click="handleClick" :active-name="currIndex">
+            <el-tab-pane label="课程介绍" ></el-tab-pane>
             <el-tab-pane label="教师介绍"></el-tab-pane>
         </el-tabs>
         <el-button type="success" class="fr" icon="edit" @click="goEdit"></el-button>
         <div class="introBox">
             <div>
-                <transition name="fade">
-                    <router-view></router-view>
-                </transition>
+                <router-view></router-view>
             </div>
     </div>
 </template>
@@ -20,7 +18,7 @@
     .el-button--success{
         position:relative;
         margin-top:-62px;
-        margin-right:20px;
+        margin-right:0px;
         z-index:1;
     }
     .introBox{

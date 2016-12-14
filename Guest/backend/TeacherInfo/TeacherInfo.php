@@ -1,22 +1,21 @@
 <?php
-//header('Content-type: application/json;charset=utf-8');
-include '../connectDB.php';
+header('Content-type: application/json;charset=utf-8');
+include dirname(dirname(__FILE__)).'/connectDB.php';
 
 global $conn;
 connectDB();
 
-$query_teacherinfo = mysqli_query($conn, "select * from teacher_info");
+$query_teacherinfo = mysqli_query($conn, "select * from teacher");
 if($fetched = mysqli_fetch_array($query_teacherinfo))
 {
-    //teacher_info(info_id,teach_experience,profile,honor,other_info,course_info)
     $teacher_info = array();
     do{ 
         $teacher_info[] = array(
-            "info_id" => $fetched['info_id'],
-            "teach_experience" => $fetched['teach_experience'],
-            "profile" => $fetched['profile'],
-            "honor" => $fetched['honor'],
-            "other_info" => $fetched['other_info']
+            "teacher_id" => $fetched['teacher_id'],
+            "teacher_info" => $fetched['teacher_info'],
+            "brief_intro" => $fetched['brief_intro'],
+            "name" => $fetched['name'],
+            "photo_path" => $fetched['photo_path']
         );
     }while($fetched = mysqli_fetch_array($query_teacherinfo));
     $result = array(

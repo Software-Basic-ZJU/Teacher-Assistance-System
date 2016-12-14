@@ -1,22 +1,23 @@
 import Vue from 'vue';
 import * as actions from "./actions";
 
+
 const state={
     loading:false,
     courseInfo:{
-        content:'<h5>dfsd</h5>'
+        content:''
     },
     teacherInfo:{
-        content:'fffff'
+        content:''
     }
 };
 
 const mutations={
-    updateCourseInfo(state){
-
+    updateCourseInfo(state,courseInfo){
+        state.courseInfo.content=courseInfo;
     },
-    updateTeacherInfo(state){
-
+    updateTeacherInfo(state,teacherInfo){
+        state.teacherInfo.content=teacherInfo;
     }
 };
 

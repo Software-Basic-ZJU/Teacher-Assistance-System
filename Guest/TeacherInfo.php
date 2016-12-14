@@ -133,98 +133,59 @@
 
 
 	<!--底-->
-	<footer>
-		<div class="wrap-footer">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4 col-footer footer-1">
-						<div class="heading"><h4>About Us</h4></div>
-						<div class="content">
-							<p>关于我们的信息= = </p>
-						</div>
-					</div>
-					<div class="col-md-4 col-footer footer-2">
-						<div class="heading"><h4>Your Email</h4></div>
-						<div class="content">
-							<p>随便写点什么骗她留邮箱 </p>
-							<div class="subcribe-form" >
-								<form method="get" action="/search" id="subcribe">
-									<div class="form-group">
-										<input type="text" class="form-control input-lg" name="subcribe" placeholder="Enter your email address...  " required="required" />
-									</div>
-									<button type="submit" name="Submit" class="btn btn-4 f-left">Subcribe</button>
-								</form>
+		<footer>
+			<div class="wrap-footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 col-footer footer-3">
+							<div class="row">
+								<div class="col-md-3 text-center">
+									<a href="#">教务网</a>
+								</div>
+								<div class="col-md-3 text-center">
+									<a href="#">计算机学院</a>
+								</div>
+								<div class="col-md-3 text-center">
+									<a href="#">本科生院</a>
+								</div>
+								<div class="col-md-3 text-center">
+									<a href="#">友情课程</a>
+								</div>
 							</div>
-						</div>
-					</div>
-					<div class="col-md-4 col-footer footer-3">
-						<div class="row">
-							<div class="col-md-6">
-								<a href="#"><img src="images/15.jpg" /></a>
-							</div>
-							<div class="col-md-6">
-								<a href="#"><img src="images/16.jpg" /></a>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<a href="#"><img src="images/17.jpg" /></a>
-							</div>
-							<div class="col-md-6">
-								<a href="#"><img src="images/18.jpg" /></a>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<a href="#"><img src="images/19.jpg" /></a>
-							</div>
-							<div class="col-md-6">
-								<a href="#"><img src="images/20.jpg" /></a>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<a href="#"><img src="images/21.jpg" /></a>
-							</div>
-							<div class="col-md-6">
-								<a href="#"><img src="images/18.jpg" /></a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 
-		<div class="copyright">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4">
-						<p>Copyright &copy; 2016. SRE G11 All rights reserved.<a href="http://www.baidu.com/">G11</a></p>
-					</div>
-					<div class="col-md-4">
-						<ul class="list-inline">
-							<li><a href="#"><i class="fa fa-twitter"></i></a>
-							</li>
-							<li><a href="#"><i class="fa fa-facebook"></i></a>
-							</li>
-							<li><a href="#"><i class="fa fa-linkedin"></i></a>
-							</li>
-							<li><a href="#"><i class="fa fa-google"></i></a>
-                            </li>
-						</ul>
-					</div>
-					<div class="col-md-4">
-						<ul class="list-inline">
-							<li><a href="#">Privacy Policy</a>
-							</li>
-							<li><a href="#">Terms of Use</a>
-							</li>
-						</ul>
+
+							<div class="row">
+								<div class="col-md-5 text-center">
+									<p>Copyright &copy; 2016. SRE G12 All rights reserved.</p>
+								</div>
+								<div class="col-md-3 text-center">
+									<ul class="list-inline">
+										<li><a href="#"><i class="fa fa-twitter"></i></a>
+										</li>
+										<li><a href="#"><i class="fa fa-facebook"></i></a>
+										</li>
+										<li><a href="#"><i class="fa fa-linkedin"></i></a>
+										</li>
+										<li><a href="#"><i class="fa fa-google"></i></a>
+										</li>
+									</ul>
+								</div>
+								<div class="col-md-4 text-center">
+									<ul class="list-inline">
+										<li><a href="#">Privacy Policy</a>
+										</li>
+										<li><a href="#">Terms of Use</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</footer>
+
+
+		</footer>
 	<!-- Footer -->
 
 	

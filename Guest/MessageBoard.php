@@ -18,9 +18,13 @@
 	<link rel="stylesheet" href="css/our-team.css"> <!-- Resource style -->
 	<link rel="stylesheet" href="css/simple-line-icons.css">
 	<link rel="stylesheet" href="css/style2.css">
+	<link rel="stylesheet" href="css/creative.css">
+	<link rel="stylesheet" href="css/creative.min.css">
+	
 	<!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	
+	<link rel="stylesheet" href="css/messageboard.css">
+
 	<!-- Js -->
 	<script src="js/modernizr.js"></script> <!-- Modernizr -->
 	
@@ -69,7 +73,7 @@
 						<a class="page-scroll" href="Resource.php">课件</a>
 					</li>
 					<li>
-						<a class="page-scroll" href="">留言板</a>
+						<a class="page-scroll" href="#messageboard">留言板</a>
 					</li>
                 </ul>
             </div>
@@ -77,196 +81,67 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
-	<!-- Navigation -->
-
-	<!-- Welcome & Login -->
-	<header id="page-top">
-		<div class="container">
+	<div id="messageboard" class="fh5co-portfolio-section">
+		<div  class="container" style="margin-top:10px">
 			<div class="row">
-				<div class="col-lg-12">
-					<div class="o-container">
-						<div class="c-slack">
-						  <span class="c-slack__dot c-slack__dot--a"></span>
-						  <span class="c-slack__dot c-slack__dot--b"></span>
-						  <span class="c-slack__dot c-slack__dot--c"></span>
-						  <span class="c-slack__dot c-slack__dot--d"></span>
-						</div>
+				<div class="col-lg-4 col-lg-offset-4">
+					<div class="text-center">
+						<h2 class="row heading">留言板</h2>
+						<hr style="margin-bottom: 70px">
 					</div>
-					<div class="intro-text">
-						<div class="intro-lead-in">Teaching Assistant System</div>
-						<div class="intro-heading"></div>
-					</div>
-					<a class="btn btn-1 btn-sm" href="login.php">Log In</a>
-<!--					<a class="btn btn-1 btn-sm" href="#team">Our Team</a>-->
 				</div>
 			</div>
+			<?php
+			include dirname(__FILE__).'/backend/MessageBoard/Get.php';
+			?>
 		</div>
-    </header>
-	<!-- Welcome & Login -->
-
-	<!-- Main Part-->
-	<div id="page-content" class="index-page">
-		<!--New 最新动态-->
-		<div id="fh5co-services-section">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-						<i class="sl-icon-paper-plane"></i>
-						<h2>最新动态</h2>
-						<p><a href="NewList.php"> 相关文章,顶尖会议,知名论文</a></p>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-4 text-center">
-						<div class="services">
-							<span><i class="sl-icon-graph"></i></span>
-							<h3>Dashboard</h3>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-							<div class="cd-see-all"><a href="NewPassage.php" class="btn btn-1">See all</a></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- 最新动态 -->
-
-		<!-- Classes课程信息 -->
-		<section id="Classes" class="box-content box-2 box-style">
-			<div class="container">
-				<div class="row">
-					<blockquote><a href="Classes.php">这是坠吼的课程</a> </blockquote>
-				</div>
-			</div>
-		</section>
-		<!--课程信息-->
-
-
-		<!-- Teachers 教师信息 -->
-		<section id="Teachers" class="box-content box-4 box-style">
-			<div class="clearfix">
-				<div class="cd-testimonials-wrapper cd-container">
-					<ul class="cd-testimonials">
-						<!--人物信息单元-->
-						<li>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-							<div class="cd-author">
-								<img src="images/avatar-1.jpg" alt="Author image">
-								<ul class="cd-author-info">
-									<li>MyName</li>
-									<li>CEO, AmberCreative</li>
-								</ul>
-							</div>
-						</li>
-						<li>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-							<div class="cd-author">
-								<img src="images/avatar-1.jpg" alt="Author image">
-								<ul class="cd-author-info">
-									<li>僵硬</li>
-									<li>坠棒的</li>
-								</ul>
-							</div>
-						</li>
-					</ul> <!-- cd-testimonials -->	
-				</div> <!-- cd-testimonials-wrapper -->
-				<div class="cd-see-all"><a href="TeacherList.php" class="btn btn-1">See all</a></div>
-			</div>
-		</section>
 	</div>
 
-	<!--底-->
-	<footer>
-		<div class="wrap-footer">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4 col-footer footer-1">
-						<div class="heading"><h4>About Us</h4></div>
-						<div class="content">
-							<p>关于我们的信息= = </p>
-						</div>
-					</div>
-					<div class="col-md-4 col-footer footer-2">
-						<div class="heading"><h4>Your Email</h4></div>
-						<div class="content">
-							<p>随便写点什么骗她留邮箱 </p>
-							<div class="subcribe-form" >
-								<form method="get" action="/search" id="subcribe">
-									<div class="form-group">
-										<input type="text" class="form-control input-lg" name="subcribe" placeholder="Enter your email address...  " required="required" />
-									</div>
-									<button type="submit" name="Submit" class="btn btn-4 f-left">Subcribe</button>
-								</form>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 col-footer footer-3">
-						<div class="row">
-							<div class="col-md-6">
-								<a href="#"><img src="images/15.jpg" /></a>
-							</div>
-							<div class="col-md-6">
-								<a href="#"><img src="images/16.jpg" /></a>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<a href="#"><img src="images/17.jpg" /></a>
-							</div>
-							<div class="col-md-6">
-								<a href="#"><img src="images/18.jpg" /></a>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<a href="#"><img src="images/19.jpg" /></a>
-							</div>
-							<div class="col-md-6">
-								<a href="#"><img src="images/20.jpg" /></a>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<a href="#"><img src="images/21.jpg" /></a>
-							</div>
-							<div class="col-md-6">
-								<a href="#"><img src="images/18.jpg" /></a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 
-		<div class="copyright">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4">
-						<p>Copyright &copy; 2016. SRE G11 All rights reserved.<a href="http://www.baidu.com/">G11</a></p>
-					</div>
-					<div class="col-md-4">
-						<ul class="list-inline">
-							<li><a href="#"><i class="fa fa-twitter"></i></a>
-							</li>
-							<li><a href="#"><i class="fa fa-facebook"></i></a>
-							</li>
-							<li><a href="#"><i class="fa fa-linkedin"></i></a>
-							</li>
-							<li><a href="#"><i class="fa fa-google"></i></a>
-                            </li>
-						</ul>
-					</div>
-					<div class="col-md-4">
-						<ul class="list-inline">
-							<li><a href="#">Privacy Policy</a>
-							</li>
-							<li><a href="#">Terms of Use</a>
-							</li>
-						</ul>
+	<!--留言框-->
+	<section class="box-content box-5" id="contact">
+		<div class="container">
+			<div class="row heading">
+				<div class="col-lg-12" >
+					<h2 style="font-size: 26px;">我要留言</h2>
+					<hr>
+				</div>
+			</div>
+			<div class="row" style="">
+				<div class="col-md" >
+					<div id="contact-form" >
+						<form name="form1" method="post" action="./backend/MessageBoard/Send.php" style="margin: 0px auto">
+<?php
+$ip=$_SERVER["REMOTE_ADDR"];
+$author = "游客(".$ip.")";
+
+date_default_timezone_set("Asia/Shanghai");
+$time = date("Y-m-d H:i:s"); 
+?>
+				<input type="hidden" name="author" value="<?php echo $author?>">
+				<input type="hidden" name="time" value="<?php echo $time?>">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+											<textarea name="message" id="message" class="form-control" rows="4" cols="25" required="required"
+													  placeholder="Message"></textarea>
+									</div>
+									<button type="submit" class="btn btn-3 btn-block" name="btnContactUs" id="btnContactUs">
+										提交</button>
+								</div>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
-	</footer>
+	</section>
+
+	
+	<!--底-->
+		<?php
+			include "footer.php"
+		?>
 	<!-- Footer -->
 
 	
@@ -306,6 +181,7 @@
 	<script src="js/jquery.countTo.js"></script>
 	<!-- Main JS (Do not remove) -->
 	<script src="js/main.js"></script>
+
 
 </body>
 </html>

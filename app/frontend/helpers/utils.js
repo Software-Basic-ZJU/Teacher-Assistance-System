@@ -1,4 +1,5 @@
 import moment from "moment";
+import Vue from "vue";
 
 //extend localstorage,and support json
 export const LS={
@@ -16,6 +17,7 @@ export const LS={
         localStorage.removeItem(key);
     },
     clear(){
+        Vue.http.headers.common['x-access-token']="";
         localStorage.clear();
     }
 };

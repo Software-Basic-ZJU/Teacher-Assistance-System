@@ -12,17 +12,17 @@ include '../login/_include.php';
 global $conn;
 connectDB();
 //Verify token
-loginCheck($_POST['token']);
+loginCheck($_SERVER['HTTP_X_ACCESS_TOKEN']);
 //Get information
 $title = test_input(mysqli_escape_string($conn, $_POST['title']));
 $content = test_input(mysqli_escape_string($conn, $_POST['content']));
 $level = test_input(mysqli_escape_string($conn, $_POST['level']));
-$class_id = test_input(mysqli_escape_string($conn, $_POST['class_id']));
+$teacher_id = test_input(mysqli_escape_string($conn, $_POST['class_id']));
 $time = date('y-m-d H:i:s',time());
 $notice_id = test_input(mysqli_escape_string($conn, $_POST['notice_id']));
 if($_SESSION['type']!=2){
     $result = array(
-        "code" => 2,
+        "code" => 403,
         "msg" => "无效用户尝试操作",
         "res" => null
     );
@@ -30,7 +30,7 @@ if($_SESSION['type']!=2){
     exit;
 }
 $query_result = mysqli_query($conn, "update notification
-                                     set title = '$title', content = '$content' , level = '$level' , class_id = '$class_id', time = '$time'
+                                     set title = '$title', content = '$content' , level = '$level' , teacher_id = '$teacher_id', time = '$time'
                                      WHERE noti_id = '$notice_id';");
 if($query_result){
     $result = array(
@@ -42,16 +42,18 @@ if($query_result){
             'level' => $level,
             'time' => $time,
             'content' => $content,
-            'class_id' => $class_id
+            "token" => $_SESSION['token']
         )
     );
     echo json_encode($result);
 }
 else{
     $result = array(
-        "code" => 1,
+        "code" => -1,
         "msg" => "修改失败",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
     );
     echo json_encode($result);
 }

@@ -12,7 +12,7 @@ include '../login/_include.php';
 global $conn;
 connectDB();
 //Verify token
-loginCheck($_POST['token']);
+loginCheck($_SERVER['HTTP_X_ACCESS_TOKEN']);
 //Get information
 $teacher_id = test_input(mysqli_escape_string($conn, $_POST['teacher_id']));
 $email = test_input(mysqli_escape_string($conn, $_POST['email']));
@@ -22,7 +22,7 @@ $wechat = test_input(mysqli_escape_string($conn, $_POST['wechat']));
 $other_contact = test_input(mysqli_escape_string($conn, $_POST['other_contact']));
 if($_SESSION['type']!=2){
     $result = array(
-        "code" => 2,
+        "code" => 403,
         "msg" => "无效用户尝试操作",
         "res" => null
     );
@@ -42,16 +42,19 @@ if($query_result){
             "email" => $email,
             "wechat" => $wechat,
             "qq" => $qq,
-            "other_contact" => $other_contact
+            "other_contact" => $other_contact,
+            "token" => $_SESSION['token']
         )
     );
     echo json_encode($result);
 }
 else{
     $result = array(
-        "code" => 1,
-        "msg" => "查找失败",
-        "res" => null
+        "code" => -1,
+        "msg" => "修改失败",
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
     );
     echo json_encode($result);
 }

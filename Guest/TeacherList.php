@@ -31,8 +31,7 @@
         <script src="js/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
-
+<body onload="Get_TeacherList()">
 	<!-- /////////////////////////////////////////Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -80,154 +79,138 @@
 	<!-- Navigation -->
 
 
-	<!-- Main Part-->
+
+
+
+
+		<!-- Main Part-->
 	<div id="page-content" class="index-page">
 		<!--教师信息-->
-		<section id="Teacher" class="box-content box-1">
+		<section id="Teacher" class="box-content box-1"  >
 			<div class="container">
+
 				<div class="row heading">
 					<div class="col-lg-12">
 						<h2>名师列表</h2>
 						<hr>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-sm-3 box-item">
+
+				<div id="row" class="container-fluid">
+<?php
+	if(@$_COOKIE['teacher_num'])
+		$num=$_COOKIE['teacher_num'];
+	else
+		$num=4;
+	for($i=0; $i<$num; $i++)
+	{
+?>				
+					<!--老师列表-->
+					<div id="one-teacher" class="col-sm-3 box-item">
 						<div class="wrap-img">
-							<img src="images/Html.png" />
+							<img id="<?php echo $i?>_photo" src="images/Html.png" class="img-circle" style="height: 110px; width: 110px;">
 						</div>
-						<h3 class="blue">翁恺</h3>
-						<p>网易MOOC知名老师,开有诸多慕课,本校中教学Java,C,OOP和操作系统,体系等课程</p>
-						<button type="submit" class="btn btn-2 " onclick="{location.href='TeacherInfo.php'}" value="teacherid" >detail</button>
-					</div>
-					<!--					<div class="col-sm-3 box-item">-->
-					<!--						<div class="wrap-img">-->
-					<!--							<img src="images/Css.png" />-->
-					<!--						</div>-->
-					<!--						<h3 class="yellow">Text Heading 3</h3>-->
-					<!--						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.-->
-					<!--						Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>-->
-					<!--						<button type="submit" class="btn btn-2 ">More</button>-->
-					<!--					</div>-->
-					<!--					<div class="col-sm-3 box-item">-->
-					<!--						<div class="wrap-img">-->
-					<!--							<img src="images/screen.png" />-->
-					<!--						</div>-->
-					<!--						<h3 class="red">Text Heading 3</h3>-->
-					<!--						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. -->
-					<!--						Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>-->
-					<!--						<button type="submit" class="btn btn-2 ">More</button>-->
-					<!--					</div>-->
-					<!--					<div class="col-sm-3 box-item">-->
-					<!--						<div class="wrap-img">-->
-					<!--							<img src="images/Setting.png" />-->
-					<!--						</div>-->
-					<!--						<h3 class="green">Text Heading 3</h3>-->
-					<!--						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.-->
-					<!--						Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>-->
-					<!--						<button type="submit" class="btn btn-2 ">More</button>-->
-					<!--					</div>-->
+						<h3 id="<?php echo $i?>_name" class="blue"></h3>
+						<p id="<?php echo $i?>_intro"></p>
+						<div class="cd-see-all"><a href="#00<?php echo $i?>" class="btn btn-3">Detail</a></div>
+						<br>
+						<br>
+					</div>			
+	<?php
+	}
+?>
 				</div>
 			</div>
 		</section>
 
 
+		<!--老师详细信息-->
+		<div class="cd-testimonials-all">
+			<div class="cd-testimonials-all-wrapper">
+		<?php
+		for($i=0; $i<$num; $i++)
+		{
+		?>
+				<!--带小点的表-->
+				<section id="00<?php echo $i?>" class="tabsblock" style="padding-top: 200px;">
+					<div class="wrap">
+						<div class="tab">
+							<!--教学经历	-->
+							<div class="box visible">
+								<div class="box-text">
+									<h2>个人简介</h2>
+									<hr>
+									<br>
+									<p id="<?php echo $i?>_teacherInfo">此处显示教师简介<?php echo $i?>.</p>
+								</div>
+							</div><!-- box -->
+						</div><!-- tab -->
+					</div><!-- wrap -->
+				</section><!--  -->
+		<?php
+		}
+		?>					
+						
+			</div>	<!-- cd-testimonials-all-wrapper -->
+			<a href="" class="close-btn">close</a>
+		</div> <!-- cd-testimonials-all -->
+
+
+
+
 	<!--底-->
-	<footer>
-		<div class="wrap-footer">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4 col-footer footer-1">
-						<div class="heading"><h4>About Us</h4></div>
-						<div class="content">
-							<p>关于我们的信息= = </p>
-						</div>
-					</div>
-					<div class="col-md-4 col-footer footer-2">
-						<div class="heading"><h4>Your Email</h4></div>
-						<div class="content">
-							<p>随便写点什么骗她留邮箱 </p>
-							<div class="subcribe-form" >
-								<form method="get" action="/search" id="subcribe">
-									<div class="form-group">
-										<input type="text" class="form-control input-lg" name="subcribe" placeholder="Enter your email address...  " required="required" />
-									</div>
-									<button type="submit" name="Submit" class="btn btn-4 f-left">Subcribe</button>
-								</form>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 col-footer footer-3">
-						<div class="row">
-							<div class="col-md-6">
-								<a href="#"><img src="images/15.jpg" /></a>
-							</div>
-							<div class="col-md-6">
-								<a href="#"><img src="images/16.jpg" /></a>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<a href="#"><img src="images/17.jpg" /></a>
-							</div>
-							<div class="col-md-6">
-								<a href="#"><img src="images/18.jpg" /></a>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<a href="#"><img src="images/19.jpg" /></a>
-							</div>
-							<div class="col-md-6">
-								<a href="#"><img src="images/20.jpg" /></a>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<a href="#"><img src="images/21.jpg" /></a>
-							</div>
-							<div class="col-md-6">
-								<a href="#"><img src="images/18.jpg" /></a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="copyright">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4">
-						<p>Copyright &copy; 2016. SRE G11 All rights reserved.<a href="http://www.baidu.com/">G11</a></p>
-					</div>
-					<div class="col-md-4">
-						<ul class="list-inline">
-							<li><a href="#"><i class="fa fa-twitter"></i></a>
-							</li>
-							<li><a href="#"><i class="fa fa-facebook"></i></a>
-							</li>
-							<li><a href="#"><i class="fa fa-linkedin"></i></a>
-							</li>
-							<li><a href="#"><i class="fa fa-google"></i></a>
-                            </li>
-						</ul>
-					</div>
-					<div class="col-md-4">
-						<ul class="list-inline">
-							<li><a href="#">Privacy Policy</a>
-							</li>
-							<li><a href="#">Terms of Use</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
+		<?php
+			include "footer.php"
+		?>
 	<!-- Footer -->
-
 	
+	<script type="text/javascript">
+    // PHP 后端交互所用到的
+    function Get_TeacherList(){
+        $.getJSON("./backend/TeacherInfo/TeacherInfo.php", function(json){
+        	//alert("test");
+      		num = json.res.length;
+      		for(i=0; i<num; i++)
+      		{
+      			//获取教师列表介绍
+		    	$("#" + i +"_name").html("");
+	    		$("#" + i +"_intro").html("");
+	 	        $("#" + i +"_name").append(json.res[i].name);
+	        	$("#" + i +"_intro").append(json.res[i].brief_intro);
+	        	if(json.res[i].photo_path)
+	        	{
+	        		$("#" + i +"_photo").html("");
+	        		$("#" + i +"_photo").attr("src",json.res[i].photo_path);
+
+	        	}
+				
+				//获取教师详细介绍
+				$("#" + i +"_teacherInfo").html("");
+				$("#" + i +"_teacherInfo").append(json.res[i].teacher_info);
+				//$("#" + i +"_teach-exp").html("");
+	    		//$("#" + i +"_profile").html("");
+	    		//$("#" + i +"_honor").html("");
+	        	//$("#" + i +"_teach-exp").append(json.res[i].teach_experience);
+	        	//$("#" + i +"_profile").append(json.res[i].profile);
+				//$("#" + i +"_honor").append(json.res[i].honor);
+      		}
+      		
+ 		var date=new Date();
+		var cookieExpire=date.getTime() + 3 * 30 * 24 * 60 * 60 * 1000 ;
+		 
+			/* 三个月 x 一个月当作 30 天 x 一天 24 小时 
+			x 一小时 60 分 x 一分 60 秒 x 一秒 1000 毫秒 */
+		//alert("now:"+date.getTime()+"/n now-1: "+cookieExpire);
+		document.cookie="teacher_num="+num+" ;expires="+cookieExpire;
+		//alert("222");
+        });
+       
+}
+
+	</script>
+		
+	<script src="js/Teacher.js"></script>
+
 	<!-- jQuery -->
 	<script src="js/jquery-2.1.1.js"></script>
 	<script src="js/masonry.pkgd.min.js"></script>

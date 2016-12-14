@@ -1,7 +1,26 @@
 /*!
  izBootstrap
  */
- 
+/*@media (max-width: 992px) {*/
+    /*.col-md-3{*/
+        /*padding-left: 300px;*/
+    /*}*/
+/*}*/
+/*@media (max-width: 600px) {*/
+    /*.col-md-3{*/
+        /*padding-left: 200px;*/
+    /*}*/
+/*}*/
+/*@media (max-width: 400px) {*/
+    /*.col-md-3{*/
+        /*padding-left: 80px;*/
+    /*}*/
+/*}*/
+/*@media (max-width: 200px) {*/
+    /*.col-md-3{*/
+        /*padding-left: 0;*/
+    /*}*/
+/*}*/
  /* ---------------------------------------------------------------------------- */
 /* ------------------------------------Html-Body------------------------------- */
 /* ---------------------------------------------------------------------------- */
@@ -29,7 +48,7 @@ pre,
 form,
 dfn,
 del,
-p,
+p{font-family:Microsoft YaHei;}
 blockquote,
 fieldset,
 input,
@@ -121,8 +140,10 @@ section,
     color: gray;
 }
 .cd-see-all .btn-1 {
-    color: gray;
-    border-color:gray;
+    color: #7d7d7d;
+    border-color:#a4a4a4;
+    padding-bottom: 10px;
+    font-family:Microsoft YaHei; 
 }
 audio,
 canvas,
@@ -187,10 +208,11 @@ article:after,
 html {
     height: 100%;
     background: #ffffff;
+    font-family: "Mircosoft YaHei";
 }
 body {
     height: 100%;
-    font: 17px/26px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font: 17px/26px "Mircosoft YaHei", Helvetica, Arial, sans-serif;
     color: #6a6a6a;
     -webkit-font-smoothing: antialiased;
     -webkit-backface-visibility: hidden;
@@ -316,9 +338,9 @@ header .logo a {
 
 
 /* footer -------------------------- */
-footer {
-    padding: 90px 0;
-}
+/*footer {*/
+    /*padding: 90px 0;*/
+/*}*/
 footer .logo {
     float: left;
     margin: 0 95px 0 0;
@@ -521,7 +543,7 @@ footer .logo img {
 }
 .tabsblock {
     padding-top: 150px;
-    background: #f6f6f6;
+    background: #f0f0f0;
 }
 .tabsblock .wrap {
     position: relative;
@@ -635,6 +657,8 @@ footer .logo img {
 
 
 /* Responsive -------------------------- */
+
+
 @media (max-width: 959px){
     .promo .wrap {
         min-height: 0;
@@ -724,6 +748,10 @@ footer .logo img {
     }
 }
 @media (max-width: 767px){
+    .container{
+        padding-left: 15px;
+        padding-right: 15px;
+    }
     header {
         text-align: center;
     }
@@ -829,7 +857,7 @@ p{letter-spacing:1px;font-size: 16px;}
 }
 /* --Line-- */
 
-hr { margin: 15px auto; padding: 0; max-width: 130px;border: 0; border-top: solid 3px #333;text-align: center;}
+hr { margin: 15px auto; padding: 0; max-width: 100px;border: 0; border-top: solid 3px #333;text-align: center;}
 hr:after {content: url(../images/dots.png);display: inline-block;position: relative;top: -.8em;padding: 0 .55em;font-family: FontAwesome;color: #333;background-color: #F0F0F0;}
 
 /* --Color-- */
@@ -925,8 +953,9 @@ header .intro-text .intro-lead-in {margin-bottom: 30px;font-family: 'Shadows Int
 /* ------------------------------Services(box-1)------------------------------- */
 /* ---------------------------------------------------------------------------- */
 .box-content.box-1 {text-align: center;}
-.box-content.box-1 h3 {margin-bottom:15px;font-size: 25px;}
-.box-content.box-1 .wrap-img{margin-bottom:40px;}
+.box-content.box-1 p{height:80px;font-family: Microsoft YaHei;}
+.box-content.box-1 h3 {color:#626262;margin-bottom:15px;font-size: 25px;height:40px;}
+.box-content.box-1 .wrap-img{margin-bottom:40px;height:100px;}    
 .box-content.box-1 .box-item {}
 
 /* ---------------------------------------------------------------------------- */
@@ -1055,7 +1084,7 @@ header .intro-text .intro-lead-in {margin-bottom: 30px;font-family: 'Shadows Int
 /* ---------------------------------------------------------------------------- */
 /* ------------------------------Contact(box-5)-------------------------------- */
 /* ---------------------------------------------------------------------------- */
-.box-content.box-5 {padding:110px 0 ;}
+.box-content.box-5 {padding:110px 0 ;background-color: #f0f0f0;}
 .box-content.box-5 .box-item{margin: 5px; }
 .box-content.box-5 h3 {margin-bottom: 30px;font-size: 35px;}
 .box-content.box-5 p {margin-bottom: 20px;}
@@ -1071,7 +1100,7 @@ header .intro-text .intro-lead-in {margin-bottom: 30px;font-family: 'Shadows Int
 footer {color: #fff; }
 footer p{ margin-bottom: 20px;display:block;}
 footer a{color: #6ECADC;}
-footer a:hover{color: #333; text-decoration: underline;}
+footer a:hover{color: #333; text-decoration: none;}
 footer .wrap-footer {padding-top: 50px;background-color: #222;}
 
 footer .col-footer{margin-bottom: 50px;}
@@ -1125,13 +1154,28 @@ footer .copyright p, footer .copyright ul{margin: 20px 0;}
 a.btn:focus{outline: 0;}
 
 .btn-1 {color: #fff;background-color: transparent;border: 2px solid #fff;margin:0 15px 20px 0;min-width: 170px;line-height: 26px;}
-.btn-1:hover {color: #000;background-color: #fff;border-color: #fff;}
+.btn-1:hover {
+  color: #FFF;
+background-color: #6ecadc;
+border-color: #6ecadc;
+}
 
 .btn-2 {background: #333;border: 2px solid transparent;margin:20px 0 50px 0; color:#fff;}
 .btn-2:hover {color:#333;border:2px solid #333;background:transparent;}
 
-.btn-3 {background: #6ECADC;margin: 20px 0 10px 0;border: 2px solid transparent;font-size:25px;}
-.btn-3:hover {color:#333;border:2px solid #6ECADC;background:transparent;}
+.btn-3{
+    background:transparent;
+    margin: 20px 0 10px 0;
+    border: 1px solid #6ECADC;
+    font-size:25px;
+    color: #A1A1A1;
+}
+.btn-3:hover {
+    color: #FBFBFB;
+    font-size:18px;
+    background:#6ECADC;
+    border: 2px solid transparent;
+}
 
 .btn-4 {background: #555;border: 2px solid transparent;font-size:18px;}
 .btn-4:hover {color:#aaa;border:2px solid #555;background:transparent;text-shadow: none;}

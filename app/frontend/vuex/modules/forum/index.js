@@ -2,51 +2,71 @@ import Vue from 'vue';
 import * as actions from "./actions";
 
 const state={
-    loading:false,
-    postList:[
+    loading:false,      //按钮上显示的loading
+    replyPostLoading:false,      //获取回帖的Loading
+    isReplyShow:false,            //回帖表单显示状态
+    sectionList:[       //论坛首页信息
         {
-            pid:1,
-            title:'Test postTest postTest post',
-            content:'ddfd',
-            author:'LowesYang',
-            publishTime:'2016-11-03',
-            updateTime:'2016-11-03',
-            replyNum:10
+            secId:0,
+            to:'teacherQA',
+            name:'教师答疑区',
+            postNum:0,
+            todayNum:0,
         },
         {
-            pid:2,
-            title:'Test postTest postTest post',
-            content:'aaaa',
-            author:'LowesYang',
-            publishTime:'2016-11-03',
-            updateTime:'2016-11-03',
-            replyNum:10
+            secId:1,
+            to:'public',
+            name:'公共讨论区',
+            postNum:0,
+            todayNum:0,
+        },
+        {
+            secId:2,
+            to:'group',
+            name:'小组讨论区',
+            postNum:0,
+            todayNum:0,
         }
     ],
-    repostList:[
-        {
-            rpid:1,
-            content:'Test postTest postTest hostPost',
-            author:'LowesYang',
-            time:'2016-11-03',
-            replyNum:10
-        },
-        {
-            rpid:2,
-            content:'Test postTest postTest hostPost',
-            author:'LowesYang',
-            time:'2016-11-03',
-            replyNum:10
-        }
-    ]
+    postList:[],
+    currPost:{
+        title:'',
+        content:'',
+        resrcId:'',
+        resource:{},
+        defaultFile:[],
+        repostList:[]
+    }
 };
 
 const mutations={
-    updatePostList(state,info){
-        console.log(info);
+    postLoading(state,signal){
+        state.loading=signal;
+    },
+    updateForumInfo(state,sectionList){
+        sectionList.forEach((item,index)=>{
+            state.sectionList[item.section].postNum=item.total_num;
+            state.sectionList[item.section].todayNum=item.today_num;
+        })
+    },
+    updatePostList(state,postList){
+        state.postList=postList;
+    },
+    updateCurrPost(state,currPost){
+        state.currPost=currPost;
+        state.currPost.resrcId=currPost.resource.resrc_id;
     },
     publish(state,info){
         console.log(info)
+    },
+    replyPostLoading(state,signal){
+        state.replyPostLoading=signal;
+    },
+    updateRepostList(state,repostList){
+        state.currPost.repostList=repostList;
+    },
+    isReplyShow(state,signal){
+        state.isReplyShow=signal;
     }
 };
 

@@ -4,7 +4,7 @@
     <div>
         <div class="box-card postItem" @click="goPath('post')">
             <div class="header">
-                <span class="author">{{author}}</span>
+                <span class="author">{{authorName}}</span>
                 <span class="time">最后更新：{{updateTime}}</span>
                 <span class="time">发表于：{{publishTime}}</span>
             </div>
@@ -30,14 +30,14 @@
         transition: background-color 0.3s;
     }
     .postItem:hover{
-        background-color: #E5E9F2;
+        background-color: #F0F0F0;
     }
     .postItem>.header{
         padding:10px 0px;
         font-size:14px;
     }
     .postItem>.header>.author{
-        color:#1D8CE0;
+        color:#6ECADC;
     }
     .postItem>.header>.time{
         margin-left: 50px;
@@ -72,7 +72,8 @@
         },
         props:{
             pid:[String,Number],                    //帖子id
-            author:String,                          //帖子作者
+            authorName:String,                          //帖子作者名称
+            authorId:[String,Number],               //帖子作者ID
             title:String,                           //帖子标题
             publishTime:String,                      //发表时间
             updateTime:String,                      //最后更新时间

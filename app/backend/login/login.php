@@ -5,8 +5,6 @@
  * Date: 2016/11/20
  * Time: 14:57
  */
-header('Content-type: application/json');
-session_start();
 // Connect database
 include '_include.php';
 global $conn;
@@ -19,7 +17,7 @@ $type = test_input(mysqli_escape_string($conn, $_POST['type']));
 //type: 1->student 2->teacher
 if($type == 1){
     $query_result = mysqli_query($conn, "select * from student 
-                                         where student_id ='$id' and password='$password' limit 1");
+                                     where student_id ='$id' and password='$password' limit 1");
     if($fetched = mysqli_fetch_array($query_result)){
         $token = $id."-".$type."-".time();
         $token = encrypt($token);
@@ -28,7 +26,7 @@ if($type == 1){
         if($fetched2 = mysqli_fetch_array($query_result2)){
             //Token,id,class_id,teacher_id,name,type,group_id
             $result = array(
-                "code" => 0,
+                "code" => 1,
                 "msg" => "登陆成功",
                 "res" => array(
                     "token" => $token,
@@ -37,51 +35,47 @@ if($type == 1){
                     'teacher_id'=> $fetched2['teacher_id'],
                     'name'=>$fetched['name'],
                     'type'=>$type,
-                    'group_id'=>$fetched['group_id']
-                )
-            );
-            echo json_encode($result);
-        }
-        else {
-            $result = array(
-                "code" => 1,
-                "msg" => "登陆成功，其班级无教师信息",
-                "res" => array(
-                    "token" => $token,
-                    "id" => $id,
-                    'class_id'=>$fetched['class_id'],
-                    'teacher_id'=> null,//$fetched2['teacher_id'],
-                    'name'=>$fetched['name'],
-                    'type'=>$type,
-                    'group_id'=>$fetched['group_id']
+                    'group_id'=>$fetched['group_id'],
+                    'email' => $fetched['email'],
+                    'question1' => $fetched['question1'],
+                    'question2' => $fetched['question1'],
                 )
             );
             echo json_encode($result);
         }
     } else {
         $result = array(
-            "code" => 2,
+            "code" => -1,
             "msg" => "登录失败,用户名或密码或类型错误",
             "res" => array()
         );
         echo json_encode($result);
     }
 }
-elseif ($type == 2){
+else if ($type == 2){
+    $year=(int)date('Y');
     $query_result = mysqli_query($conn, "select * from teacher 
                                          where teacher_id ='$id' and password='$password' limit 1");
     if($fetched = mysqli_fetch_array($query_result)){
         $token = $id."-".$type."-".time();
         $token = encrypt($token);
-
+        $class_query=mysqli_query($conn,"select class_teacher.class_id,name from classes join class_teacher on classes.class_id=class_teacher.class_id
+                                          where teacher_id='$id' and ((year='$year' and term=0) or (year='$year'+1 and term=1));");
+        $class=[];$i=0;
+        while($class_fetch=mysqli_fetch_array($class_query)){
+            $class[$i++]=array(
+                "class_id"=>$class_fetch['class_id'],
+                "class_name"=>$class_fetch['name']
+            );
+        }
         $result = array(
-            "code" => 3,
+            "code" => 2,
             "msg" => "登陆成功",
             "res" => array(
                 "token" => $token,
                 "id" => $id,
-                'class_id'=>null,
-                'teacher_id'=> null,
+                'class_id'=>$class,
+                'teacher_id'=> $id,
                 'name'=>$fetched['name'],
                 'type'=>$type,
                 'group_id'=>null
@@ -91,21 +85,20 @@ elseif ($type == 2){
     }
     else{
         $result = array(
-            "code" => 2,
+            "code" => -1,
             "msg" => "登录失败,用户名或密码或类型错误",
             "res" => array()
         );
         echo json_encode($result);
     }
 }
-elseif ($type == 3){
-    $query_result = mysqli_query($conn, "select * from assists 
-                                         where assist_id ='$id' and password='$password' limit 1");
+else if ($type == 3){
+    $query_result = mysqli_query($conn, "select * from assists where assist_id ='$id' and password='$password' limit 1");
     if($fetched = mysqli_fetch_array($query_result)){
         $token = $id."-".$type."-".time();
         $token = encrypt($token);
         $result = array(
-            "code" => 4,
+            "code" => 3,
             "msg" => "登陆成功",
             "res" => array(
                 "token" => $token,
@@ -121,14 +114,18 @@ elseif ($type == 3){
     }
     else{
         $result = array(
-            "code" => 2,
+            "code" => -1,
             "msg" => "登录失败,用户名或密码或类型错误",
             "res" => array()
         );
         echo json_encode($result);
     }
 }
-
+else echo json_encode(array(
+    "code"=> -1,
+    "msg"=>"该身份类型不存在!",
+    "res"=>array()
+));
 
 mysqli_close($conn);
 ?>

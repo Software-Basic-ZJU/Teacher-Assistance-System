@@ -12,7 +12,7 @@ include '../login/_include.php';
 global $conn;
 connectDB();
 //Verify token
-loginCheck($_POST['token']);
+loginCheck($_SERVER['HTTP_X_ACCESS_TOKEN']);
 //Get information
 
 $resource_id = test_input(mysqli_escape_string($conn, $_POST['resource_id']));
@@ -44,7 +44,8 @@ if($fetched = mysqli_fetch_array($getPath_result)){
                 'time' => $time,
                 'size' => $size,
                 'uploader_name' => $user_name,
-                'uploader_id' => $uploader_id
+                'uploader_id' => $uploader_id,
+                "token"=>$_SESSION['token']
             )
         );
         echo json_encode($result);
@@ -58,7 +59,8 @@ if($fetched = mysqli_fetch_array($getPath_result)){
                 'time' => $time,
                 'size' => $size,
                 'uploader_name' => $user_name,
-                'uploader_id' => $uploader_id
+                'uploader_id' => $uploader_id,
+                "token"=>$_SESSION['token']
             )
         );
         echo json_encode($result);
@@ -66,7 +68,7 @@ if($fetched = mysqli_fetch_array($getPath_result)){
 }
 else{
     $result = array(
-        "code" => 2,
+        "code" => -1,
         "msg" => "没有这个资源",
         "res" => null
     );

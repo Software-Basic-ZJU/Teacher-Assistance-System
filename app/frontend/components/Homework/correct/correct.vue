@@ -5,34 +5,34 @@
         <div class="correct">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item :to="{name:'homework'}">作业列表</el-breadcrumb-item>
-                <el-breadcrumb-item :to="{name:'hwDetail',params:{hwId:$route.params.hwId}}">{{hwName}}</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{name:'hwDetail',params:{hwId:$route.params.hwId}}">{{stuWork.hw_title}}</el-breadcrumb-item>
                 <el-breadcrumb-item
                         :to="{name:'quesDetail',params:{hwId:$route.params.hwId,quesId:$route.params.quesId}}"
                 >
-                    {{question.title}}
+                    {{stuWork.ques_title}}
                 </el-breadcrumb-item>
-                <el-breadcrumb-item>{{student.name}}的作业</el-breadcrumb-item>
+                <el-breadcrumb-item>[ {{stuWork.uploader_id}} ]的作业</el-breadcrumb-item>
             </el-breadcrumb>
             <div class="stuWork">
                 <h3>作业内容</h3>
-                <div class="stuContent" v-html="student.content"></div>
+                <div class="stuContent" v-html="stuWork.content"></div>
                 <div class="stuAttach">
                     <a
-                            :href="student.attach"
-                            :title="student.sid+'-'+student.name+'-'+hwName"
-                            :download="student.sid+'-'+student.name+'-'+hwName"><i class="iconfont icon-xiazai"></i>附件</a>
+                            :href="stuWork.path"
+                            :download="stuWork.resrc_name"><i class="iconfont icon-xiazai"></i>附件</a>
                 </div>
             </div>
             <div class="markBox">
                 <h3>教师评分</h3>
                 <el-form label-position="top" ref="markForm" :model="markForm" :rules="rules">
                     <el-form-item label="评分" prop="score">
-                        <el-input placeholder="评分" v-model="markForm.score"></el-input>
+                        <el-input placeholder="评分" v-model="markForm.score" :disabled="stuWork.finish==1"></el-input>
                     </el-form-item>
                     <el-form-item label="点评">
-                        <el-input placeholder="评价一下作业吧!" type="textarea" v-model="markForm.review"></el-input>
+                        <el-input placeholder="评价一下作业吧!" type="textarea" v-model="markForm.reply" :disabled="stuWork.finish==1"></el-input>
                     </el-form-item>
-                    <el-button type="primary" @click="submitReview">提交</el-button>
+                    <p class="notice">只保留最后一次提交的评分</p>
+                    <el-button type="primary" @click="submitReview" :loading="markLoading" :disabled="stuWork.finish==1">提交</el-button>
                 </el-form>
             </div>
         </div>
@@ -55,6 +55,10 @@
         font-size:18px;
         margin-right:10px;
     }
+    .markBox .notice{
+        font-size:14px;
+        color:#aaaaaa ;
+    }
     .el-input{
         width:100px;
     }
@@ -65,45 +69,43 @@
 <script>
     import {mapState} from 'vuex';
     import Editor from '../../Editor/Editor.vue';
+    import {LS }from "../../../helpers/utils";
+    import router from "../../../routes";
+
     export default{
         data(){
+            let userInfo=LS.getItem('userInfo');
+            if(userInfo.type==1) router.replace({name:'info'});
+
+            this.$store.dispatch('getStuWork',{
+                quesId:this.$route.params.quesId,
+                sid:this.$route.params.sid
+            });
             return{
                 rules:{
                     score:[
-                        {required:true,message:'请输入分数',trigger:'blur'}
+                        {
+                            required:true,
+                            message:'请输入分数',
+                            trigger:'blur'
+                        },
+                        {
+                            validator:(rule,value,callback)=>{
+                                if(Number.isNaN(parseInt(value))){
+                                    callback(new Error('请输入数字'));
+                                }
+                                else callback();
+                            },
+                            trigger:'blur'
+                        }
                     ]
                 }
             }
         },
         computed:mapState({
-            hwName(state){
-                let hwId=this.$route.params.hwId;
-                let list=state.homework.hwList;
-                for(let i=0;i<list.length;i++){
-                    if(list[i].hwId==hwId){
-                        return list[i].title;
-                    }
-                }
-            },
-            question(state){
-                let quesId=this.$route.params.quesId;
-                let list=state.homework.quesList;
-                for(let i=0;i<list.length;i++){
-                    if(list[i].quesId==quesId){
-                        return list[i];
-                    }
-                }
-            },
-            student(state){
-                let sid=this.$route.params.sid;
-                let stuList=state.homework.stuList;
-                for(let i=0;i<stuList.length;i++){
-                    if(stuList[i].sid==sid){
-                        return stuList[i];
-                    }
-                }
-            },
-            markForm:state=>state.homework.markForm
+            stuWork:state=>state.homework.stuWork,
+            markForm:state=>state.homework.markForm,
+            markLoading:state=>state.homework.loading
         }),
         methods:{
             submitReview(){

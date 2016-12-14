@@ -28,7 +28,7 @@
                         width="80"
                 >
                     <span>
-                        <el-button size="small" type="danger" icon="delete" @click="deleteTA($index,row)"></el-button>
+                        <el-button size="small" type="danger" icon="delete" @click="deleteTA($index,row)" :plain="true"></el-button>
                     </span>
                 </el-table-column>
             </el-table>
@@ -46,6 +46,9 @@
                     </el-form-item >
                     <el-form-item label="助教ID" prop="taId">
                         <el-input v-model="TAform.taId"></el-input>
+                    </el-form-item>
+                    <el-form-item label="助教姓名" prop="taName">
+                        <el-input v-model="TAform.taName"></el-input>
                     </el-form-item>
                     <el-form-item label="助教密码" prop="password">
                         <el-input v-model="TAform.password"></el-input>
@@ -76,10 +79,23 @@
                 TAform:{
                     taId:'',
                     password:'',
-                    classId:''
+                    classId:'',
+                    taName:''
                 },
                 rules:{
                     taId:[
+                        {
+                            required:true,
+                            message:'请输入助教ID',
+                            trigger:'blur'
+                        },
+                        {
+                            max:20,
+                            message:'请不要超过20个字符',
+                            trigger:'blur'
+                        }
+                    ],
+                    taName:[
                         {
                             required:true,
                             message:'请输入助教ID',

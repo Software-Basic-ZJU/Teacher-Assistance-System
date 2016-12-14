@@ -52,6 +52,9 @@
     </div>
 </template>
 <style scoped>
+    .el-menu{
+        background-color: #F0F0F0;
+    }
     .mainBox .leftBox{
         width:140px;
     }

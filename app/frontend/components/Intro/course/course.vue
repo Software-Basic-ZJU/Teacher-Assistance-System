@@ -7,13 +7,16 @@
 </template>
 <style scoped>
     .info{
-        margin-top:20px;
+        margin:20px 0px;
     }
 </style>
 <script>
     import router from "../../../routes";
+    import {LS} from "../../../helpers/utils";
+
     export default{
         data(){
+            this.$store.dispatch('getCourseInfo');
             return{
             }
         },

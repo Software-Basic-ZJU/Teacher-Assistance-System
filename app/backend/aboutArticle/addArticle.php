@@ -12,7 +12,7 @@ include '../login/_include.php';
 global $conn;
 connectDB();
 //Verify token
-loginCheck($_POST['token']);
+loginCheck($_SERVER['HTTP_X_ACCESS_TOKEN']);
 //Get information
 $title = test_input(mysqli_escape_string($conn, $_POST['title']));
 $content = test_input(mysqli_escape_string($conn, $_POST['content']));
@@ -34,16 +34,19 @@ if($query_result){
             'time' => $time,
             'content' => $content,
             'author' => $author,
-            'authority' => $authority
+            'authority' => $authority,
+            "token" => $_SESSION['token']
         )
     );
     echo json_encode($result);
 }
 else{
     $result = array(
-        "code" => 1,
+        "code" => -1,
         "msg" => "发布失败",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
     );
     echo json_encode($result);
 }

@@ -12,13 +12,13 @@ include '../login/_include.php';
 global $conn;
 connectDB();
 //Verify token
-loginCheck($_POST['token']);
+loginCheck($_SERVER['HTTP_X_ACCESS_TOKEN']);
 //Get information
 $teacher_info = test_input(mysqli_escape_string($conn, $_POST['teacher_info']));
 $teacher_id = test_input(mysqli_escape_string($conn, $_POST['teacher_id']));
 if($_SESSION['type']!=2){
     $result = array(
-        "code" => 2,
+        "code" => 403,
         "msg" => "无效用户尝试操作",
         "res" => null
     );
@@ -35,16 +35,19 @@ if($query_result){
         "code" => 0,
         "msg" => "修改成功",
         "res" => array(
-            'teacher_info' => $teacher_info
+            'teacher_info' => $teacher_info,
+            "token" => $_SESSION['token']
         )
     );
     echo json_encode($result);
 }
 else{
     $result = array(
-        "code" => 1,
+        "code" => -1,
         "msg" => "修改失败",
-        "res" => null
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
     );
     echo json_encode($result);
 }

@@ -1,80 +1,60 @@
 import Vue from 'vue';
 import * as actions from './actions';
+import {LS} from "../../../helpers/utils";
 
 const state={
     loading:false,
-    contact:{
-        Email:'234347589@qq.com',
-        Phone:'123456789',
-        QQ:12121212,
-        Wechat:111333444,
-        ohterContact:'lalala'
-    },
-    noticeList:[
-        {
-            nid:"111",
-            title:'hello',
-            content:'llalala',
-            author:'LowesYang',
-            author_id:'1234',
-            publishTime:'2016-11-02',
-            level:1
-        },
-        {
-            nid:"1112",
-            title:'lowesyang',
-            content:'lalalla',
-            author:'LowesYang',
-            author_id:'1234',
-            publishTime:'2016-11-13',
-            level:0
-        }
-    ],
-    articleList:[
-        {
-            artId:123,
-            title:'hello world',
-            content:'I love youI love youI love youI love youI love you',
-            author:'LowesYang',
-            publishTime:'2016-11-02',
-            replyNum:100,
-            replyList:[
-                {
-                    commentId:123,
-                    content:'灰常好啊!',
-                    authorName:'LowesYang',
-                    authorId:'1243',
-                    time:'2016-11-02'
-                }
-            ]
-        },
-        {
-            artId:123,
-            title:'hello world',
-            content:'I love youI love youI love youI love youI love you',
-            author:'LowesYang',
-            publishTime:'2016-11-02',
-            replyNum:100,
-            replyList:[]
-        }
-    ],
-    nwNotice:{
-        title:'',
-        content:''
-    },
+    contact:{},
+    noticeList:[],
+    notice:{},
+    articleList:[],
+    article:{},
+    noticeCurrPage:1,
+    articleCurrPage:1,
     showAddNotice:false,                 //添加通知模态框显示变量
     showEditNotice:false
 }
 
 const mutations={
-    toggleAddNotice(state){
-        state.showAddNotice=!state.showAddNotice;
+    toggleAddNotice(state,signal){
+        state.showAddNotice=signal;
     },
-    toggleEditNotice(state){
-        state.showEditNotice=!state.showEditNotice;
+    toggleEditNotice(state,signal){
+        state.showEditNotice=signal;
+    },
+    updateContact(state,contact){
+        state.contact=Object.assign({},state.contact,contact);     //合并
+    },
+    updateNoticeList(state,newList){
+        state.noticeList=newList;
+    },
+    updateNotice(state,notice){
+        state.notice=notice;
+    },
+    updateArticleList(state,newList){
+        state.articleList=newList;
+    },
+    updateArticle(state,article){
+        state.article=article;
     },
     updateReplyList(state,payload){
 
+    },
+    changeArtPage(state,val){
+        state.articleCurrPage=val;
+    },
+    changeNotePage(state,val){
+        state.noticeCurrPage=val;
+    },
+    addNotice(state,newNotice){
+        let userInfo=LS.getItem("userInfo");
+        userInfo.class_id.forEach((item)=>{
+            if(item.class_id==newNotice.class_id){
+                newNotice.class_name=item.class_name;
+                return;
+            }
+        });
+        state.noticeList.push(newNotice);
     }
 }
 

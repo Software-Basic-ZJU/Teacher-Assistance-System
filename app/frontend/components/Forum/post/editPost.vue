@@ -2,7 +2,14 @@
     <div>
         <div>
             <h3>编辑主题</h3>
-            <Editor method="editPost" btn-name="更新" :data="hostPost"></Editor>
+            <Editor
+                    method="editPost"
+                    btn-name="更新"
+                    :data="currPost"
+                    :has-upload="true"
+                    :upload-info="uploadInfo"
+                    :default-file-list="currPost.defaultFile"
+            ></Editor>
         </div>
     </div>
 </template>
@@ -11,21 +18,29 @@
 </style>
 <script>
     import Editor from "../../Editor/Editor.vue"
+    import {LS} from "../../../helpers/utils";
     export default{
         data(){
+            let userInfo=LS.getItem("userInfo");
+            this.$store.dispatch('getPostDetail',this.$route.params.pid);
             return{
+                uploadInfo:{  //上传文件额外的参数
+                    uploader_id:userInfo.id,
+                    type:1,
+                    post_id:this.$route.params.pid
+                }
             }
         },
         computed:{
-            hostPost(){
-                let pid=this.$route.params.pid;
-                let list=this.$store.state.forum.postList;
-                for(let i=0;i<list.length;i++){
-                    if(list[i].pid==pid){
-                        return list[i];
-                    }
-                }
+            currPost(){
+                let post=this.$store.state.forum.currPost;
+                if(post.defaultFile && post.defaultFile.length) this.$store.dispatch("isFileUpload",true);
+                return Object.assign({},post);
             }
+        },
+        beforeRouteLeave(to,from,next){
+            this.$store.dispatch("isFileUpload",false);
+            next();
         },
         components:{
             Editor

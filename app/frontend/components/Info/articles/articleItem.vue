@@ -20,8 +20,8 @@
 <style scoped>
     .item{
         cursor:pointer;
-        margin-top:10px;
         border-bottom:1px solid #EFF2F7;
+        padding-top:10px;
         padding-bottom:10px;
         -webkit-transition: border-color 0.3s;
         -moz-transition: border-color 0.3s;
@@ -30,12 +30,12 @@
         transition: border-color 0.3s;
     }
     .item:hover{
-        border-bottom-color:#99A9BF;
+        border-bottom-color:#6ECADC;
     }
     .header>.title{
         margin-bottom:5px;
-        font-size:18px;
-        color:#1D8CE0;
+        font-size:20px;
+        color:#6ECADC;
     }
     .header>span{
         font-size:12px;
