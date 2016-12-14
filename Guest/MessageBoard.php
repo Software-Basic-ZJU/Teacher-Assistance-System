@@ -20,10 +20,10 @@
 	<link rel="stylesheet" href="css/style2.css">
 	<link rel="stylesheet" href="css/creative.css">
 	<link rel="stylesheet" href="css/creative.min.css">
-<link rel="stylesheet" href="css/messageboard.css">
+	
 	<!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	
+	<link rel="stylesheet" href="css/messageboard.css">
 
 	<!-- Js -->
 	<script src="js/modernizr.js"></script> <!-- Modernizr -->
@@ -86,8 +86,8 @@
 			<div class="row">
 				<div class="col-lg-4 col-lg-offset-4">
 					<div class="text-center">
-						<h2 class="section-heading">留言板</h2>
-						<hr class="light">
+						<h2 class="row heading">留言板</h2>
+						<hr style="margin-bottom: 70px">
 					</div>
 				</div>
 			</div>
@@ -97,62 +97,6 @@
 		</div>
 	</div>
 
-	<div class="container" style="margin-top: 10px;">
-		<div class="well well-lg sr-button">
-			<div class="row text-center">
-				<div class="col-sm-4">
-					<p class="text-success">留言标题
-					<p>时间</p>
-				</div>
-				<div class="col-sm-1" style="">
-					<p class="bg-form">内容</p>
-					<a href="#reply" class="btn btn-info" data-toggle="collapse">回复</a>
-				</div>
-			</div>
-			<div id="reply" class="collapse">
-				<form role="form" name="comment" action="?.php" method="post">
-					<div class="row">
-						<div class="col-md-6">
-							<textarea class="form-control"　name="comment" rows="5" id="comment"></textarea>
-							<div class="col-lg-12 text-center">
-								</br>
-								<button type="submit" name="commentSubmit" class="btn btn-default btn-xl sr-button" style="background-color:#5bc0de">提交</button>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-
-
-	<div class="container" style="margin-top: 10px;">
-		<div class="well well-lg sr-button">
-			<div class="row text-center">
-				<div class="col-sm-4">
-					<p class="text-success">留言标题
-					<p>时间</p>
-				</div>
-				<div class="col-sm-1" style="">
-					<p class="bg-form">内容</p>
-					<a href="#reply2" class="btn btn-info" data-toggle="collapse">回复</a>
-				</div>
-			</div>
-			<div id="reply2" class="collapse">
-				<form role="form" name="comment" action="?.php" method="post">
-					<div class="row">
-						<div class="col-md-6">
-							<textarea class="form-control"　name="comment" rows="5" id="comment"></textarea>
-							<div class="col-lg-12 text-center">
-								</br>
-								<button type="submit" name="commentSubmit" class="btn btn-default btn-xl sr-button" style="background-color:#5bc0de">提交</button>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
 
 	<!--留言框-->
 	<section class="box-content box-5" id="contact">
@@ -163,7 +107,7 @@
 					<hr>
 				</div>
 			</div>
-			<div class="row" style="text-ali0px auto">
+			<div class="row" style="">
 				<div class="col-md" >
 					<div id="contact-form" >
 						<form name="form1" method="post" action="./backend/MessageBoard/Send.php" style="margin: 0px auto">

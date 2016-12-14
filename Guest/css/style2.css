@@ -12,8 +12,8 @@ a {
   transition: 0.5s;
 }
 a:hover {
-  text-decoration: none !important;
-  color: #00ADB5 !important;
+  text-decoration: none ;
+  color: #00ADB5 ;
 }
 
 p, ul, ol {
@@ -65,8 +65,8 @@ figure {
   padding: 18px 36px !important;
 }
 .btn:hover, .btn:active, .btn:focus {
-  box-shadow: none !important;
-  outline: none !important;
+  box-shadow: none ;
+  outline: none ;
 }
 .copyrights{
 	text-indent:-9999px;
@@ -119,8 +119,8 @@ figure {
   border: 2px solid #5bc0de;
 }
 .btn-info:hover, .btn-info:focus, .btn-info:active {
-  background: #46b8da !important;
-  border-color: #46b8da !important;
+  background: #46b8da ;
+  border-color: #46b8da ;
 }
 .btn-info.btn-outline {
   background: transparent;

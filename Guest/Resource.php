@@ -90,62 +90,13 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-3 text-center">
-                        <div class="resources-1">
-                            <span></span>
-                            <img src="images/ppticon.png" class="ppticon">
-                            </br>
-                            </br>
-                            <a style="font-family:'Microsoft YaHei'">第一章1.112321312312</a>
-                            <p>
-                                a上传
-                                </br>
-                                具体内容
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-xs-3 text-center">
-                        <div class="resources-1">
-                            <span></span>
-                            <img src="images/ppticon.png" class="ppticon">
-                            </br>
-                            </br>
-                            <a style="font-family:'Microsoft YaHei'">第一章1.112321312312</a>
-                            <p>
-                                a上传
-                                </br>
-                                具体内容
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-xs-3 text-center">
-                        <div class="resources-1">
-                            <span></span>
-                            <img src="images/ppticon.png" class="ppticon">
-                            </br>
-                            </br>
-                            <a style="font-family:'Microsoft YaHei'">第一章1.112321312312</a>
-                            <p>
-                                a上传
-                                </br>
-                                具体内容
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-xs-3 text-center">
-                        <div class="resources-1">
-                            <span></span>
-                            <img src="images/ppticon.png" class="ppticon">
-                            </br>
-                            </br>
-                            <a style="font-family:'Microsoft YaHei'">第一章1.112321312312</a>
-                            <p>
-                                a上传
-                                </br>
-                                具体内容
-                            </p>
-                        </div>
-                    </div>
+
+                 
+
+                <?php
+                    include dirname(__FILE__).'/backend/Resource/GetResource.php';
+                ?>
+                    
                 </div>
             </div>
         </div>
