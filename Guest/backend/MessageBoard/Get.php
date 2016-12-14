@@ -19,42 +19,41 @@ while($fetched = mysqli_fetch_array($query_message))
                     <p class="bg-form" align="left"><?php echo $fetched['content']; ?></p>
                 </div>
                 <?php 
-                if(!$fetched['reply_content']){
+                if($fetched['reply_content']){
                 ?>
-                <div class="col-sm-2">
-                    <a href="#reply<?php echo $count?>" class="btn btn-info" data-toggle="collapse">回复</a>
-                </div>
+                        <div id="replyboard" class="col-sm-9">
+                            <p  class="bg-form"  align="left">回复:<?php echo $fetched['reply_content']; ?></p>
+                        </div>
                 <?php
                 }
                 else{
                     ?>
-                <div id="replyboard" class="col-sm-9">
-                    <p  class="bg-form"  align="left">回复:<?php echo $fetched['reply_content']; ?></p>
-                </div>
+                            <div class="col-sm-2">
+                                <a href="#reply<?php echo $count?>" class="btn btn-info" data-toggle="collapse" onclick="display('reply<?php echo $count?>' )">回复</a>
+                            </div>
+            <div id="reply<?php echo $count?>" class="col-sm-10" style="display: none;">
+                <form role="form" action="./backend/MessageBoard/Reply.php" method="post">
+                    
+                        <div class="col-sm-10">
+                            <div class="form-group">
+                                
+                                <textarea  class="form-control" name="reply" rows="3" value=""></textarea>
+                            </div>
+                        </div>
+                            <input type="hidden" name="msg_id" value="<?php echo $fetched['msg_id']?>"> 
+                                <button type="submit" name="replySubmit" class="btn btn-info" style="">提交</button>
+                            
+                </form>
+            </div>
+
                 <?php
                 }
                 ?>
-            </div>
-            <div id="reply<?php echo $count?>" class="collapse">
-                <form role="form" action="./backend/MessageBoard/Reply.php" method="post">
-                    <div class="row">
-                        <div class="col-md-6 ">
-                            <div class="form-group">
-                                
-                                <textarea class="form-control" name="reply" rows="4" value=""></textarea>
-                            </div>
+            
 
-                            <input type="hidden" name="msg_id" value="<?php echo $fetched['msg_id']?>">
-                            <div class="col-lg-12 text-center">
-                                <button type="submit" name="replySubmit" class="btn btn-default btn-xl sr-button" style="background-color:#5bc0de">提交</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
         </div>
     </div>
-
+</div>
 <?php
 $count++;
 }
@@ -62,3 +61,15 @@ mysqli_close($conn);
 echo '<br><br>';
 
 ?>
+
+<script type="text/javascript">
+function display(id){
+    var traget=document.getElementById(id);
+    if(traget.style.display=="none"){
+    traget.style.display="";
+    }
+    else{
+    traget.style.display="none";
+    }
+}
+</script> 

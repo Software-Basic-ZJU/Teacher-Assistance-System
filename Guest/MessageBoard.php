@@ -108,7 +108,7 @@
 					<hr>
 				</div>
 			</div>
-			<div class="row" style="text-ali0px auto">
+			<div class="row" style="">
 				<div class="col-md" >
 					<div id="contact-form" >
 						<form name="form1" method="post" action="./backend/MessageBoard/Send.php" style="margin: 0px auto">
