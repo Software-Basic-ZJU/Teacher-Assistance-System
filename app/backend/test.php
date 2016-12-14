@@ -7,19 +7,19 @@
 </head>
 <body>
 
-<!--teacher_id,email,phone,qq,wechar,other_contact-->
+<!--,,,-->
 <h2>PHP 验证实例</h2>
-<form method="post" action="aboutMail/deleteMail.php">
+<form method="post" action="aboutGroup/quitGroup.php">
     <br><br>
-    mail_id：<input type="text" name="mail_id">
+    student_id：<input type="text" name="student_id">
     <br><br>
-    src_id：<input type="text" name="src_id">
+    group_name：<input type="text" name="group_name">
     <br><br>
-    title：<input type="text" name="title">
+    password：<input type="text" name="password">
     <br><br>
-    content：<input type="text" name="content">
+    class_id：<input type="text" name="class_id">
     <br><br>
-    finish：<input type="text" name="finish">
+    group_id：<input type="text" name="group_id">
     <br><br>
     type：
     <input type="radio" name="type" value="0">0
