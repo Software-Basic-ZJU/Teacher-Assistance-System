@@ -24,14 +24,15 @@ if($fetched = mysqli_fetch_array($query_result)){
     $shouldList = array();
     if($_SESSION['type']!=1) {
         if ($type == 0) {
-            $getSubmittedList = mysqli_query($conn, "select name,student_id from student 
-                                WHERE class_id = '$class_id' and student_id in (select uploader_id from works where ques_id ='$ques_id' );");
+            $getSubmittedList = mysqli_query($conn, "select name,student_id,score from student join works on student.student_id=works.uploader_id 
+                                WHERE student.class_id = '$class_id' and works.ques_id='$ques_id'");
             if ($getSubmittedList) {
                 while ($fetched2 = mysqli_fetch_array($getSubmittedList)) {
                     $shouldList[] = array(
                         "name" => $fetched2['name'],
                         "id" => $fetched2['student_id'],
-                        "isSubmit" => 1
+                        "isSubmit" => 1,
+                        "isCorrect"=>$fetched2['score']>0?$fetched2['score']:0
                     );
                 }
             }
@@ -42,7 +43,8 @@ if($fetched = mysqli_fetch_array($query_result)){
                     $shouldList[] = array(
                         "name" => $fetched2['name'],
                         "id" => $fetched2['student_id'],
-                        "isSubmit" => 0
+                        "isSubmit" => 0,
+                        "isCorrect"=> 0
                     );
                 }
             }
@@ -55,7 +57,8 @@ if($fetched = mysqli_fetch_array($query_result)){
                     $shouldList[] = array(
                         "name" => $fetched2['name'],
                         "id" => $fetched2['id'],
-                        "isSubmit" => 1
+                        "isSubmit" => 1,
+                        "isCorrect"=> 0
                     );
                 }
             }
@@ -67,7 +70,8 @@ if($fetched = mysqli_fetch_array($query_result)){
                     $shouldList[] = array(
                         "name" => $fetched2['name'],
                         "id" => $fetched2['id'],
-                        "isSubmit" => 0
+                        "isSubmit" => 0,
+                        "isCorrect"=> 0
                     );
                 }
             }

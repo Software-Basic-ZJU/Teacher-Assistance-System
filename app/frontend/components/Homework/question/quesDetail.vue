@@ -4,15 +4,17 @@
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item :to="{name:'homework'}">作业列表</el-breadcrumb-item>
                 <el-breadcrumb-item :to="{name:'hwDetail',params:{hwId:$route.params.hwId}}">{{hwName}}</el-breadcrumb-item>
-                <el-breadcrumb-item>{{question.title}}</el-breadcrumb-item>
+                <el-breadcrumb-item>{{question.title}} <span class="quesStatus" v-if="question.ques_finish==1">已结束</span>
+                </el-breadcrumb-item>
             </el-breadcrumb>
             <div class="main" v-loading="loaded">
-                <div :class="{'leftBox fl':identify==1,'detailBox':identify==0}">
+                <div :class="{'leftBox fl':idenType!=1,'detailBox':idenType==1}">
+                    <el-button type="primary" @click="finishQues" :loading="submitLoading" v-if="idenType==2 && question.ques_finish!=1">提交成绩</el-button>
                     <div class="title">
                         {{question.title}}
                     </div>
                     <div class="content" v-html="question.content"></div>
-                    <div class="submitBox" v-if="idenType==1">
+                    <div class="submitBox" v-if="idenType==1 && question.ques_finish!=1">
                         <h3>提交作业</h3>
                         <Editor
                                 method="submitHw"
@@ -24,12 +26,23 @@
                                 :default-file-list="defaultFile"
                         ></Editor>
                     </div>
+                    <div class="resultBox" v-if="idenType==1 && question.ques_finish==1">
+                        <h4>成绩单</h4>
+                        <div class="score">
+                            <span>得分：</span>{{stuWork.score}}
+                        </div>
+                        <div class="reply">
+                            <div class="fl">评价：</div>
+                            <div class="fl review">{{stuWork.reply}}</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="rightBox fl" v-if="identify==1">
+                <div class="rightBox fl" v-if="idenType!=1">
                     <div class="stuList">
                         <el-table
                                 :data="stuList"
                                 border
+                                height="600"
                         >
                             <el-table-column
                                     prop="id"
@@ -41,14 +54,14 @@
                             <el-table-column
                                     prop="name"
                                     label="姓名"
-                                    min-width="100"
+                                    min-width="80"
                                     show-overflow-tooltip="true"
                             >
                             </el-table-column>
                             <el-table-column
                                     prop="status"
-                                    label="状态"
-                                    min-width="80"
+                                    label="得分"
+                                    min-width="100"
                                     show-overflow-tooltip="true"
                             >
                             </el-table-column>
@@ -75,24 +88,42 @@
         padding:10px 0px;
     }
     .main>.leftBox{
-        width:54%;
+        width:46%;
         padding:10px;
-        border-right:1px solid #E5E9F2;
     }
     .main .title{
         margin-top:15px;
         text-align: center;
-        font-size:24px;
+        font-size:22px;
     }
     .main>.detailBox{
         padding:10px 20px;
+    }
+    .quesStatus{
+        font-size:16px;
+        text-align: center;
+        color:#6ECADC;
+        margin-left:10px;
     }
     .main .content{
         margin-top:20px;
         font-size:16px;
     }
+    .resultBox>div{
+        margin-top:10px;
+    }
+    .resultBox .score>span{
+        color:#6ECADC;
+    }
+    .resultBox .reply .review{
+        width:70%;
+    }
+    .resultBox .reply>div:first-child{
+        color:#6ECADC;
+    }
     .main>.rightBox{
-        width:42%;
+        width:50%;
+        border-left:1px solid #E5E9F2;
     }
     .main>.rightBox>.stuList{
         padding:10px;
@@ -141,7 +172,8 @@
                 },
                 stuList:state=>state.homework.quesDetail.shouldList,
                 stuWork:state=>state.homework.stuWork,
-                isSubmitFile:state=>state.homework.isSubmitFile
+                isSubmitFile:state=>state.homework.isSubmitFile,
+                submitLoading:state=>state.homework.loading
             }),
             defaultFile(){
                 let resource=LS.getItem('stuWorkFile');
@@ -167,6 +199,15 @@
                 let hwId=this.$route.params.hwId;
                 let quesId=this.$route.params.quesId;
                 router.push({name:'correct',params:{hwId:hwId,quesId:quesId,sid:row.id}});
+            },
+            finishQues(){
+                this.$confirm('提交成绩后将不能再修改个人评分,是否确认提交?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.$store.dispatch('finishQues',this.$route.params.quesId);
+                 }).catch(()=>{});
             }
         },
         components:{

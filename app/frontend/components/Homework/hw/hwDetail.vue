@@ -23,6 +23,7 @@
                         :title="item.title"
                         :should-num="item.should_num"
                         :submit-num="item.submit_num"
+                        :is-finish="item.ques_finish"
                 ></ques-item>
             </div>
         </div>

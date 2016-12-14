@@ -17,7 +17,8 @@ connectDB();
 $ques_id = test_input(mysqli_escape_string($conn, $_POST['ques_id']));
 $uploader_id = test_input(mysqli_escape_string($conn, $_POST['uploader_id']));
 $query_result = mysqli_query($conn, "select * from works join (select ques_id, questions.title as ques_title,homework.title as hw_title
-                            from questions join homework on questions.hw_id=homework.hw_id ) as temp on works.ques_id=temp.ques_id where works.ques_id ='$ques_id' AND works.uploader_id = '$uploader_id';");
+                            from questions join homework on questions.hw_id=homework.hw_id ) as temp 
+                            on works.ques_id=temp.ques_id where works.ques_id ='$ques_id' AND works.uploader_id = '$uploader_id';");
 if($query_result){
     $fetched = mysqli_fetch_array($query_result);
     $resrc_id=$fetched['resrc_id'];
@@ -38,6 +39,7 @@ if($query_result){
             "resrc_name"=>$resrcFetch['name'],
             "path"=>"http://".$_SERVER['HTTP_HOST']."/backend/aboutResource/".$resrcFetch['path'],
             "uploader_id" => $fetched['uploader_id'],
+            "finish"=>$fetched['finish'],
             "token" => $_SESSION['token']
         )
     );

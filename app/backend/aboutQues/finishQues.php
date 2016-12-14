@@ -40,7 +40,21 @@ else{
     $get_avg_score = mysqli_query($conn, "select AVG(score) as avg_score from works WHERE ques_id = '$ques_id';");
     if($fetched_avg_score = mysqli_fetch_array($get_avg_score)){
         $avg_score = $fetched_avg_score['avg_score'];
-        mysqli_query($conn, "update questions set average_score = '$avg_score', ques_finish = 1 WHERE ques_id = '$ques_id';");
+        $finish_ques=mysqli_query($conn, "update questions set average_score = '$avg_score', ques_finish = 1 WHERE ques_id = '$ques_id';");
+        if($finish_ques) {
+            mysqli_query($conn,"update works set finish = 1 where ques_id='$ques_id'");
+        }
+        else{
+            $result = array(
+                "code" => -1,
+                "msg" => "提交成绩失败，数据库更新错误",
+                "res" => array(
+                    "token" => $_SESSION['token']
+                )
+            );
+            echo json_encode($result);
+            exit;
+        }
         $get_hw_id = mysqli_query($conn, "select hw_id from questions WHERE ques_id = '$ques_id';");
         if($fetched_hw_id = mysqli_fetch_array($get_hw_id)){
             $hw_id = $fetched_hw_id['hw_id'];
@@ -52,7 +66,7 @@ else{
         }
         $result = array(
             "code" => 0,
-            "msg" => "提交成功",
+            "msg" => "提交成绩成功",
             "res" => array(
                 "token" => $_SESSION['token']
             )

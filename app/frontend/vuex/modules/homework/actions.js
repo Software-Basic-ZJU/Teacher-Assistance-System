@@ -260,6 +260,46 @@ export const isSubmitFile=({commit},signal)=>{
     commit('isSubmitFile',signal);
 };
 
+// 批改作业并提交
 export const submitReview=({commit},markForm)=>{
-    console.log(markForm);
+    commit('isHwLoading',true);
+    Vue.http.post('backend/aboutWork/correctWork.php',
+        {
+            work_id:markForm.workId,
+            score:markForm.score,
+            reply:markForm.reply
+        }
+    ).then((response)=>{
+        let resp=response.body;
+        if(!resp.code){
+            Vue.prototype.$message({
+                type:'success',
+                message:'批改成功'
+            });
+        }
+    }).then(()=>{
+        commit('isHwLoading',false);
+    })
 };
+
+// 提交成绩（提交后不能再更改分数）
+export const finishQues=({dispatch,commit},quesId)=>{
+    commit('isHwLoading',true);
+    Vue.http.post('backend/aboutQues/finishQues.php',
+        {
+            ques_id:quesId
+        }
+    ).then((response)=>{
+        let resp=response.body;
+        if(!resp.code){
+            Vue.prototype.$message({
+                type:'success',
+                message:'提交成绩成功'
+            });
+            dispatch('getQuesDetail',quesId);
+        }
+    }).then(()=>{
+        commit('isHwLoading',false);
+    })
+};
+

@@ -1015,8 +1015,10 @@ POST——Teacher-Assistance-System/app/backend/aboutWork/getStuWork.php
             "score" => $fetched['score'],
             "resrc_id" => $resrcFetch['resrc_id'],
             "resrc_name"=>$resrcFetch['name'],
+			"uploader_id"	//提交人学号
             "path"=>"http://".$_SERVER['HTTP_HOST']."/backend/aboutResource/".$resrcFetch['path'],
             "uploader_id" => $fetched['uploader_id'],
+			"finish" //是否确认成绩
             "token" => $_SESSION['token']
 ```
 
@@ -1654,7 +1656,8 @@ POST——Teacher-Assistance-System/app/backend/aboutQues/getQuesDetail.php
         $shouldList[] = array(
                     "name" 个人名或者小组名
                     "id" => 个人id或者小组id
-                    "submitted" 已交为1，未交为0
+                    "isSubmit" 已交为1，未交为0
+					"isCorrect" 已批改为其得分，未批改为0
         );
 ```
 
