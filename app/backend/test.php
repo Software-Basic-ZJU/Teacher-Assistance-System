@@ -9,7 +9,7 @@
 
 <!--,,,-->
 <h2>PHP 验证实例</h2>
-<form method="post" action="aboutGroup/">
+<form method="post" action="aboutGroup/quitGroup.php">
     <br><br>
     student_id：<input type="text" name="student_id">
     <br><br>
