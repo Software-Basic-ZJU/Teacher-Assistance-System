@@ -129,3 +129,181 @@ POST——Teacher-Assistance-System/app/backend/aboutMail/readMail.php
         )
 ```
 
+## 53、创建小组
+
+POST——Teacher-Assistance-System/app/backend/aboutGroup/createGroup.php
+
+参数：leader_id,group_name,group_password,class_id
+
+返回:
+
+```php
+            "code" => 0,
+            "msg" => "小组创建成功",
+            "res" => array(
+                'group_id' => $group_id,
+                'group_name' => $group_name,
+                "token" => $_SESSION['token']
+            )
+```
+
+```php
+            "code" => -1,
+            "msg" => "小组创建成功,小组组长小组信息更新未成功",
+            "res" => array(
+                'group_id' => $group_id,
+                'group_name' => $group_name,
+                "token" => $_SESSION['token']
+            )
+```
+
+```php
+        "code" => -1,
+        "msg" => "小组创建失败",
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
+```
+
+## 54、删除小组
+
+POST——Teacher-Assistance-System/app/backend/aboutGroup/createGroup.php
+
+参数：leader_id,group_id
+
+返回:
+
+```php
+    $result = array(
+        "code" => 403,
+        "msg" => "无效用户尝试删除",
+        "res" => null
+    );
+```
+
+```php
+    $result = array(
+        "code" => -1,
+        "msg" => "无此小组",
+        "res" => null
+    );
+```
+
+```php
+    $result = array(
+        "code" => 0,
+        "msg" => "删除成功",
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
+    );
+```
+
+```php
+        "code" => -1,
+        "msg" => "删除失败",
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
+```
+
+## 55、获取小组列表
+
+POST——Teacher-Assistance-System/app/backend/aboutGroup/getGroupList.php
+
+参数：class_id
+
+返回:
+
+```php
+        "code" => 0,
+        "msg" => "查找成功",
+        "res" => array(
+            'groupList' => $groupList,
+            "token" => $_SESSION['token']
+        )
+          
+          $groupList[] = array(
+            "group_id" => $group_id,
+            "class_id" => $fetched['class_id'],
+            "group_name" => $fetched['group_name'],
+            "group_leader" => getAuthorName($conn ,$leader_id),
+            "group_member" => $group_member
+        );
+
+		$group_member[] = array(
+                "name" => $fetched_name['name']
+            );
+```
+
+```php
+        "code" => -1,
+        "msg" => "查找失败",
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
+```
+
+## 56、加入小组
+
+POST——Teacher-Assistance-System/app/backend/aboutGroup/joinGroup.php
+
+参数：group_id、student_id、password
+
+返回:
+
+```php
+    $result = array(
+        "code" => 403,
+        "msg" => "密码错误",
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
+    );
+```
+
+```php
+        "code" => 0,
+        "msg" => "加入成功",
+        "res" => array(
+            'name' 学生姓名
+            'token' => $_SESSION['token']
+        )
+```
+
+```php
+        "code" => -1,
+        "msg" => "加入失败",
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
+```
+
+## 57、退出小组
+
+POST——Teacher-Assistance-System/app/backend/aboutGroup/quitGroup.php
+
+参数：student_id
+
+返回:
+
+```php
+    $result = array(
+        "code" => 0,
+        "msg" => "退出成功",
+        "res" => array(
+            'token' => $_SESSION['token']
+        )
+    );
+```
+
+```php
+    $result = array(
+        "code" => -1,
+        "msg" => "退出失败",
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
+    );
+```
+
