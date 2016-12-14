@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
+    </script>
+
+    <style type="text/css">
+        body { background-color: #F0F0F0; }
+    </style>
+
+
+
+    <script>
+        function myFunction()
+        {
+            var x1="苟利国家生死以,岂因祸福避趋之";
+            $("#txt1").attr("style","color:red").html(x1);
+
+        }
+        $(document).ready(myFunction);
+    </script>
+
+    <script type="text/javascript">
+        function Pass2(str)
+        {
+            var xmlhttp;
+
+            if (str.length==0)
+            {
+                alert("信息填写不完整");
+                return;
+            }
+            if (window.XMLHttpRequest)
+            {// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp=new XMLHttpRequest();
+            }
+            else
+            {// code for IE6, IE5
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange=function()
+            {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                {
+                    //alert("操作成功");
+
+                    var json = xmlhttp.responseText;
+                    //console.log(json);
+                    //console.log(json["res"]);
+                    //json=eval('('+json+')');
+                    var json=JSON.parse(json);
+
+                    //var json=JSON.parse(json["res"]);
+
+                    if(json["code"]==0)
+                    {
+                        alert("操作成功");
+                        //location.href='MainWindow.html';
+                        document.getElementById("txt1").innerHTML=json["res"];
+                    }
+
+                    if(json["code"]==1)
+                    {
+                        alert("账号不存在");
+
+                    }
+
+                }
+            }
+            xmlhttp.open("GET","admin/showTeaInfo.php?teacher_id="+str,true);
+            xmlhttp.send();
+        }
+
+    </script>
+
+</head>
+<body>
+
+
+<ul class="nav nav-pills nav-stacked" role="tablist">
+    <li role="presentation" class="bg-info" style="background-color: black" ><a href="MainWindow.html" style=" width:150px">主页</a></li>
+    <li role="presentation" style=" width:150px"><a href="MessageWindow.html" style=" width:150px">管理留言板</a></li>
+    <li role="presentation" style=" width:150px"><a href="PostWindow.html" style=" width:150px">管理帖子</a></li>
+    <li role="presentation" style=" width:150px"><a href="ClassWindow.html" style=" width:150px">管理班级</a></li>
+
+    <li role="presentation" style=" width:150px"><a href="AccountWindow.html" style=" width:150px">账号导入</a></li>
+    <li role="presentation" class="active" style=" width:150px"><a href="TeaInsideWindow.html" style=" width:150px">管理教师介绍</a></li>
+    <li role="presentation"  style=" width:150px"><a href="CouInfoWindow.html" style=" width:150px">管理课程介绍</a></li>
+</ul>
+
+
+
+<div class="input-group input-group-lg" style="width:300px;  margin-left:450px; margin-top:-230px;">
+    <span class="input-group-addon">教师编号</span>
+    <input type="text"   id="text3"  class="form-control" placeholder="ID" style="width:300px; ">
+</div>
+<button type="button" onclick="Pass2(text3.value)" class="btn btn-default navbar-btn"style="  margin-left:930px; margin-top:-50px;">确认</button>
+
+
+
+
+<div class="panel panel-success" style="width:700px; height:500px;margin-left:300px; margin-top:0px; ">
+    <div class="panel-heading">教师介绍</div>
+    <div span id="txt1" class="panel-body">
+        </span>
+    </div>
+</div>
+
+
+
+
+
+
+
+<button type="button" class="btn btn-default navbar-btn" style="margin-left:900px;"><a href="TeaWriteWindow.html">编辑介绍</a></button>
+
+
+
+</body>
+</html>

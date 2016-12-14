@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <script src="//cdn.bootcss.com/jquery/2.2.3/jquery.min.js">
+    </script>
+
+
+    <style type="text/css">
+        body { background-color: #F0F0F0; }
+    </style>
+
+
+    <script>
+
+
+
+
+
+
+        function showText1() {
+
+            var xmlhttp;
+
+            if (window.XMLHttpRequest)
+            {// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp=new XMLHttpRequest();
+            }
+            else
+            {// code for IE6, IE5
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange=function()
+            {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                {
+                    //alert("操作成功");
+                    var json = xmlhttp.responseText;
+                    //json=eval('('+json+')');
+                    //document.write(json);
+                    console.log(json);
+                    var json=JSON.parse(json);
+                    if(json["code"]==0)
+                    {
+                        alert("查找成功");
+                        //location.href='MainWindow.html';
+
+                        //console.log((json["res"])[1].post_id);
+                        //console.log((json["res"]).length);
+
+
+                        var num =(json["res"]).length;
+                        //var myArray=new Array(num);
+                        var mycontent=new Array(num);
+                        var MessageID=new Array(num);
+
+                        for(var k=0;k< (json["res"]).length;k++) {
+
+                            MessageID[k] = (json["res"])[k].msg_id;
+                            //myArray[k] = (json["res"])[k].title;
+                            mycontent[k] = (json["res"])[k].content;
+                            //console.log((json["res"])[k].post_id);
+                            //console.log((json["res"])[k].title);
+                            //console.log(myArray[k]);
+
+                        }
+                        // for(var k=0;k< (json["res"]).length();k++)
+                        //  console.log((json["res"])[i].post_id);
+
+                var board = $("#board");
+                board.children().remove();
+            for(var i=0;i<mycontent.length;i++) {
+
+
+
+                (function(j){
+                var e0 = document.createElement("output");
+                //e0.type = "panel-heading";
+                e0.value = "";
+                e0.className ="panel-heading";
+                e0.setAttribute("style"," width:700px; height:30px;");
+                var object = board.append(e0);
+
+
+                var e1 = document.createElement("output");
+                e1.type = "panel";
+                e1.value = mycontent[j];
+                e1.className ="panel panel-success";
+                e1.setAttribute("panel-heading","");
+                e1.setAttribute("style"," width:700px; height:90px;");
+                var object = board.append(e1);
+
+                var e2 = document.createElement("input");
+                e2.type = "button";
+                e2.value = "通过";
+                e2.className ="btn btn-primary";
+                e2.setAttribute("style"," width:70px; height:30px;");
+                e2.setAttribute("onclick", "javascript:PassMessage(MessageID[j])");
+                var object = board.append(e2);
+
+                var e4 = document.createElement("input");
+                e4.type = "button btn-default";
+                e4.value = "";
+                e4.className ="btn";
+                e4.setAttribute("style"," width:20px; height:30px; background-color: #F0F0F0");
+                e4.setAttribute("onclick", "");
+                var object = board.append(e4);
+
+
+                var e3 = document.createElement("input");
+                e3.type = "button";
+                e3.value = "拒绝";
+                e3.className ="btn btn-primary";
+                e3.setAttribute("style"," width:70px; height:30px;");
+                e3.setAttribute("onclick", "javascript:RejectMessage(MessageID[j])");
+                var object = board.append(e3);
+
+            })(i)
+
+
+            }
+
+
+
+                    }
+
+                    if(json["code"]==1)
+                    {
+                        alert("查找失败");
+
+                    }
+
+
+                }
+            }
+            xmlhttp.open("GET","admin/selectMessage1.php",true);
+            xmlhttp.send();
+
+
+
+
+        }
+
+
+        function PassMessage(messageID) {
+
+            var xmlhttp;
+            var messageid=messageID;
+            //messageid=1;
+            if (window.XMLHttpRequest)
+            {// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp=new XMLHttpRequest();
+            }
+            else
+            {// code for IE6, IE5
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange=function()
+            {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                {
+                    //alert("操作成功");
+
+                    var json = xmlhttp.responseText;
+                    //json=eval('('+json+')');
+                    //document.write(json);
+                    var json=JSON.parse(json);
+                    if(json["code"]==0)
+                    {
+                        alert("修改成功");
+                        //location.href='MainWindow.html';
+
+                    }
+
+                    if(json["code"]==1)
+                    {
+                        alert("修改失败");
+
+                    }
+                }
+            }
+            xmlhttp.open("GET","admin/passMessage.php?msg_id="+messageid,true);
+            xmlhttp.send();
+
+            //window.location.href="MessageWindow.html";
+        }
+
+        function RejectMessage(messageID) {
+
+            var xmlhttp;
+            var messageid=messageID;
+            //messageid=1;
+            if (window.XMLHttpRequest)
+            {// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp=new XMLHttpRequest();
+            }
+            else
+            {// code for IE6, IE5
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange=function()
+            {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                {
+                    //alert("操作成功");
+
+                    var json = xmlhttp.responseText;
+                    //json=eval('('+json+')');
+                    //document.write(json);
+                    var json=JSON.parse(json);
+                    if(json["code"]==0)
+                    {
+                        alert("修改成功");
+                        //location.href='MainWindow.html';
+
+                    }
+
+                    if(json["code"]==1)
+                    {
+                        alert("修改失败");
+
+                    }
+                }
+            }
+            xmlhttp.open("GET","admin/rufuseMessage.php?msg_id="+messageid,true);
+            xmlhttp.send();
+
+
+            //window.location.href="MessageWindow.html";
+
+        }
+
+        function showText2() {
+
+
+
+            var xmlhttp;
+
+            if (window.XMLHttpRequest)
+            {// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp=new XMLHttpRequest();
+            }
+            else
+            {// code for IE6, IE5
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange=function()
+            {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                {
+                    //alert("操作成功");
+                    var json = xmlhttp.responseText;
+                    //json=eval('('+json+')');
+                    //document.write(json);
+                    console.log(json);
+                    var json=JSON.parse(json);
+                    if(json["code"]==0)
+                    {
+                        alert("查找成功");
+                        //location.href='MainWindow.html';
+
+                        //console.log((json["res"])[1].post_id);
+                        //console.log((json["res"]).length);
+
+
+                        var num =(json["res"]).length;
+                        //var myArray=new Array(num);
+                        var mycontent=new Array(num);
+                        var MessageID=new Array(num);
+
+                        for(var k=0;k< (json["res"]).length;k++) {
+
+                            MessageID[k] = (json["res"])[k].msg_id;
+                            //myArray[k] = (json["res"])[k].title;
+                            mycontent[k] = (json["res"])[k].content;
+                            //console.log((json["res"])[k].post_id);
+                            //console.log((json["res"])[k].title);
+                            //console.log(myArray[k]);
+
+                        }
+                        // for(var k=0;k< (json["res"]).length();k++)
+                        //  console.log((json["res"])[i].post_id);
+
+
+
+
+                        var board = $("#board");
+                        board.children().remove();
+            for(var i=0;i<mycontent.length;i++) {
+
+
+
+                (function(j){
+                var e0 = document.createElement("output");
+                //e0.type = "panel-heading";
+                e0.value = "";
+                e0.className ="panel-heading";
+                e0.setAttribute("style"," width:700px; height:30px;");
+                var object = board.append(e0);
+
+                var e1 = document.createElement("output");
+                e1.type = "panel";
+                e1.value = mycontent[i];
+                e1.className ="panel panel-success";
+                e1.setAttribute("panel-heading","");
+                e1.setAttribute("style"," width:700px; height:90px;");
+                var object = board.append(e1);
+
+                var e2 = document.createElement("input");
+                e2.type = "button";
+                e2.value = "删除";
+                e2.className ="btn btn-primary";
+                e2.setAttribute("style"," width:70px; height:30px;");
+                e2.setAttribute("onclick", "javascript:DeleteMessage(MessageID[j])");
+                var object = board.append(e2);
+
+            })(i)
+
+
+
+
+            }
+
+
+
+                    }
+
+                    if(json["code"]==1)
+                    {
+                        alert("查找失败");
+
+                    }
+
+
+                }
+            }
+            xmlhttp.open("GET","admin/selectMessage2.php",true);
+            xmlhttp.send();
+
+
+
+
+        }
+
+        function DeleteMessage(messageID) {
+
+            var xmlhttp;
+            var messageid=messageID;
+            //messageid=1;
+            if (window.XMLHttpRequest)
+            {// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp=new XMLHttpRequest();
+            }
+            else
+            {// code for IE6, IE5
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange=function()
+            {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                {
+                    //alert("操作成功");
+
+                    var json = xmlhttp.responseText;
+                    //json=eval('('+json+')');
+                    //document.write(json);
+                    var json=JSON.parse(json);
+                    if(json["code"]==0)
+                    {
+                        alert("删除成功");
+                        //location.href='MainWindow.html';
+
+                    }
+
+                    if(json["code"]==1)
+                    {
+                        alert("删除失败");
+
+                    }
+
+                }
+            }
+            xmlhttp.open("GET","admin/deleteMessage.php?msg_id="+messageid,true);
+            xmlhttp.send();
+
+           // window.location.href="MessageWindow.html";
+        }
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+
+<ul class="nav nav-pills nav-stacked" role="tablist">
+    <li role="presentation" class="bg-info" style="background-color: black" ><a href="MainWindow.html" style=" width:150px">主页</a></li>
+    <li role="presentation" class="active" style=" width:150px"><a href="MessageWindow.html" style=" width:150px">管理留言板</a></li>
+    <li role="presentation" style=" width:150px"><a href="PostWindow.html" style=" width:150px">管理帖子</a></li>
+    <li role="presentation" style=" width:150px"><a href="ClassWindow.html" style=" width:150px">管理班级</a></li>
+
+    <li role="presentation" style=" width:150px"><a href="AccountWindow.html" style=" width:150px">账号导入</a></li>
+    <li role="presentation" style=" width:150px"><a href="TeaInsideWindow.html" style=" width:150px">管理教师介绍</a></li>
+    <li role="presentation"  style=" width:150px"><a href="CouInfoWindow.html" style=" width:150px">管理课程介绍</a></li>
+</ul>
+
+
+
+
+<button type="button"  onclick=" showText1()"  class="btn btn-info btn-lg"  style=" width:250px;height: 80px; margin-left:400px; margin-top:-420px; "><span class="glyphicon glyphicon-pencil"></span>审核留言</button>
+
+<button type="button"  onclick=" showText2() "  class="btn btn-info btn-lg"  style=" width:250px; height: 80px;margin-left:50px; margin-top:-420px; "><span class="glyphicon glyphicon-remove"></span>删除留言</button>
+
+
+
+<div id="board" style="width:1000px; margin-left:300px; margin-top:-200px;"></div>
+
+
+
+
+</body>
+</html>

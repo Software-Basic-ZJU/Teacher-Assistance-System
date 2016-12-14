@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+
+
+    <style type="text/css">
+        body { background-color: #F0F0F0; }
+    </style>
+
+
+    <script type="text/javascript">
+        function Pass(str1, str2)
+        {
+            var xmlhttp;
+            var myarray=new Array(str1,str2);
+            if ((str1.length==0)|| (str2.length==0))
+            {
+                alert("信息填写不完整");
+                return;
+            }
+            if (window.XMLHttpRequest)
+            {// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp=new XMLHttpRequest();
+            }
+            else
+            {// code for IE6, IE5
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange=function()
+            {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                {
+                    alert("操作成功");
+                }
+            }
+            xmlhttp.open("GET","addlink.php?q="+myarray,true);
+            xmlhttp.send();
+        }
+
+        function Pass2(str)
+        {
+            var xmlhttp;
+            var myarray=new Array(str);
+            if (str.length==0)
+            {
+                alert("信息填写不完整");
+                return;
+            }
+            if (window.XMLHttpRequest)
+            {// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp=new XMLHttpRequest();
+            }
+            else
+            {// code for IE6, IE5
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange=function()
+            {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                {
+                    alert("操作成功");
+                }
+            }
+            xmlhttp.open("GET","deletelink.php?q="+myarray,true);
+            xmlhttp.send();
+        }
+
+    </script>
+
+</head>
+<body>
+
+
+<ul class="nav nav-pills nav-stacked" role="tablist">
+    <li role="presentation" class="bg-info" style="background-color: black" ><a href="MainWindow.html" style=" width:150px">主页</a></li>
+    <li role="presentation" style=" width:150px"><a href="MessageWindow.html" style=" width:150px">管理留言板</a></li>
+    <li role="presentation" style=" width:150px"><a href="PostWindow.html" style=" width:150px">管理帖子</a></li>
+    <li role="presentation" style=" width:150px"><a href="ClassWindow.html" style=" width:150px">管理班级</a></li>
+    <li role="presentation" class="active" style=" width:150px"><a href="LinkWindow.html" style=" width:150px">管理友情链接</a></li>
+    <li role="presentation" style=" width:150px"><a href="AccountWindow.html" style=" width:150px">账号导入</a></li>
+    <li role="presentation" style=" width:150px"><a href="TeaInsideWindow.html" style=" width:150px">管理教师介绍</a></li>
+    <li role="presentation"  style=" width:150px"><a href="CouInfoWindow.html" style=" width:150px">管理课程介绍</a></li>
+</ul>
+
+
+
+
+
+
+<div class="alert alert-warning alert-dismissible" role="alert"  style="width:200px; margin-left:500px; margin-top:-100px; ">
+    <strong>本功能暂未开放</strong>
+</div>
+
+
+</body>
+</html>

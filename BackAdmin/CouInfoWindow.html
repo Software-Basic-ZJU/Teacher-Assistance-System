@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <style type="text/css">
+        body { background-color: #F0F0F0; }
+    </style>
+
+
+    <script>
+        function myFunction()
+        {
+            var x1="空";
+            var x2="空";
+            var x3="空";
+            var x4="空";
+            var x5="空";
+
+
+            $("#txt1").attr("style","color:red").html(x1)
+            $("#txt2").attr("style","color:red").html(x2)
+            $("#txt3").attr("style","color:red").html(x3)
+            $("#txt4").attr("style","color:red").html(x4)
+            $("#txt5").attr("style","color:red").html(x5)
+
+
+            var xmlhttp;
+            var id = 0;
+            if (window.XMLHttpRequest)
+            {// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp=new XMLHttpRequest();
+            }
+            else
+            {// code for IE6, IE5
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange=function()
+            {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                {
+                    //alert("操作成功");
+
+                    var json = xmlhttp.responseText;
+                    console.log(json);
+                    //console.log(json["res"]);
+                    //json=eval('('+json+')');
+                    var json=JSON.parse(json);
+
+                    //var json=JSON.parse(json["res"]);
+
+
+                    if(json["code"]==0)
+                    {
+                        //alert("操作成功");
+                        //location.href='MainWindow.html';
+                        //document.getElementById("txt1").innerHTML=json["res"];
+
+                        document.getElementById("txt1").innerHTML=json["res"].course_name;
+                        document.getElementById("txt2").innerHTML=json["res"].background;
+                        document.getElementById("txt3").innerHTML=json["res"].course_plan;
+                        document.getElementById("txt4").innerHTML=json["res"].textbook_precourse;
+                        document.getElementById("txt5").innerHTML=json["res"].exam_homework;
+
+
+
+                    }
+
+                    if(json["code"]==1)
+                    {
+                        alert("查找失败");
+
+                    }
+
+
+
+                }
+            }
+            xmlhttp.open("GET","admin/showCouInfo.php?info_id="+id,true);
+            xmlhttp.send();
+
+        }
+        $(document).ready(myFunction);
+    </script>
+
+
+
+
+</head>
+<body>
+
+
+<ul class="nav nav-pills nav-stacked" role="tablist">
+    <li role="presentation" class="bg-info" style="background-color: black" ><a href="MainWindow.html" style=" width:150px">主页</a></li>
+    <li role="presentation" style=" width:150px"><a href="MessageWindow.html" style=" width:150px">管理留言板</a></li>
+    <li role="presentation" style=" width:150px"><a href="PostWindow.html" style=" width:150px">管理帖子</a></li>
+    <li role="presentation" style=" width:150px"><a href="ClassWindow.html" style=" width:150px">管理班级</a></li>
+
+    <li role="presentation" style=" width:150px"><a href="AccountWindow.html" style=" width:150px">账号导入</a></li>
+    <li role="presentation" style=" width:150px"><a href="TeaInsideWindow.html" style=" width:150px">管理教师介绍</a></li>
+    <li role="presentation" class="active"  style=" width:150px"><a href="CouInfoWindow.html" style=" width:150px">管理课程介绍</a></li>
+</ul>
+
+
+
+
+
+
+
+<div class="panel panel-success" style=" height:100px;width:700px;margin-left:300px; margin-top:-230px; ">
+    <div class="panel-heading"><h3 class="panel-title">课程名称</h3></div>
+    <div span id="txt1"  class="panel-body" >
+        </span>
+    </div>
+</div>
+
+
+
+<div class="panel panel-success" style="margin-left:300px; width:700px; height:200px;">
+    <div class="panel-heading"><h3 class="panel-title">国际国内背景</h3></div>
+    <div span id="txt2"  class="panel-body">
+        </span>
+    </div>
+</div>
+
+<div class="panel panel-success" style="margin-left:300px; width:700px; height:200px;">
+    <div class="panel-heading">
+        <h3 class="panel-title">课时安排及教学计划</h3>
+    </div>
+    <div span id="txt3"  class="panel-body" >
+        </span>
+    </div>
+</div>
+
+
+<div class="panel panel-success" style="margin-left:300px; width:700px; height:200px;">
+    <div class="panel-heading">
+        <h3 class="panel-title">使用教材及预修课程</h3>
+    </div>
+    <div span id="txt4"  class="panel-body">
+        </span>
+    </div>
+</div>
+
+
+<div class="panel panel-success" style="margin-left:300px; width:700px; height:200px;">
+    <div class="panel-heading">
+        <h3 class="panel-title">考核方式及大作业的介绍</h3>
+    </div>
+    <div span id="txt5"  class="panel-body" >
+        </span>
+    </div>
+</div>
+
+
+
+
+
+
+
+<a href="CouWriteWindow.html">
+<button type="button" class="btn btn-default navbar-btn" style="margin-left:860px;width: 120px;height: 40px; text-align:center">
+  编辑介绍</button>
+</a>
+
+
+</body>
+</html>

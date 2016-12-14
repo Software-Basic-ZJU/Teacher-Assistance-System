@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+
+    <script charset="utf-8" src="editor/kindeditor.js"></script>
+    <script charset="utf-8" src="editor/lang/zh_CN.js"></script>
+
+    <style type="text/css">
+        body { background-color: #F0F0F0; }
+    </style>
+
+
+
+    <script type="text/javascript">
+        var KindEd;
+        KindEditor.ready(
+                function(K)
+                {
+            window.editor = K.create('#editor_id1');
+
+                    KindEd=K;
+               }
+
+        );
+
+
+        function Pass(str)
+        {
+
+            var html = editor.html(); // KindEditor Node API
+            console.log(html);
+
+            var xmlhttp;
+
+            //var myarray=new Array(str,html);
+            if(html.length==0)
+            {
+                alert("数据为空！失败");
+                return;
+            }
+            if (window.XMLHttpRequest)
+            {// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp=new XMLHttpRequest();
+            }
+            else
+            {// code for IE6, IE5
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange=function()
+            {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                {
+
+                    var json = xmlhttp.responseText;
+                    console.log(json);
+                    var json=JSON.parse(json);
+
+                    //alert("操作成功");
+
+                    if(json["code"]==0)
+                    {
+                        alert("修改成功");
+                        //location.href='MainWindow.html';
+
+                    }
+
+                    if(json["code"]==1)
+                    {
+                        alert("修改失败");
+
+                    }
+                }
+            }
+            xmlhttp.open("GET","admin/editTeacherInfo.php?teacher_info="+html+"&teacher_id="+str,true);
+            xmlhttp.send();
+        }
+
+
+    </script>
+
+
+</head>
+<body>
+
+<ul class="nav nav-pills nav-stacked" role="tablist">
+    <li role="presentation" class="bg-info" style="background-color: black" ><a href="MainWindow.html" style=" width:150px">主页</a></li>
+    <li role="presentation" style=" width:150px"><a href="MessageWindow.html" style=" width:150px">管理留言板</a></li>
+    <li role="presentation" style=" width:150px"><a href="PostWindow.html" style=" width:150px">管理帖子</a></li>
+    <li role="presentation" style=" width:150px"><a href="ClassWindow.html" style=" width:150px">管理班级</a></li>
+    <li role="presentation" style=" width:150px"><a href="LinkWindow.html" style=" width:150px">管理友情链接</a></li>
+    <li role="presentation" style=" width:150px"><a href="AccountWindow.html" style=" width:150px">账号导入</a></li>
+    <li role="presentation" class="active" style=" width:150px"><a href="TeaInsideWindow.html" style=" width:150px">管理教师介绍</a></li>
+    <li role="presentation"  style=" width:150px"><a href="CouInfoWindow.html" style=" width:150px">管理课程介绍</a></li>
+</ul>
+
+<div class="panel panel-success" style="margin-left:300px; margin-top:-280px; width:700px; height:78px;">
+    <div class="panel-heading">教师介绍</div>
+
+</div>
+
+
+
+
+<div style="width:300px; margin-left:300px; margin-top:-55px;">
+<textarea id="editor_id1" name="content1" style="width:700px; ">
+
+</textarea>
+</div>
+
+
+
+<div class="input-group input-group-lg" style="width:300px; margin-left:300px; margin-top:30px;">
+    <span class="input-group-addon">教师编号</span>
+    <input type="text"   id="text6"  class="form-control" placeholder="ID" style="width:300px; ">
+</div>
+
+
+<button type="button"   onclick="Pass(text6.value)" class="btn btn-default navbar-btn"style="width: 60px; height: 45px; margin-left:900px; margin-top:-60px;">
+       确认 </button>
+
+
+
+
+</body>
+</html>

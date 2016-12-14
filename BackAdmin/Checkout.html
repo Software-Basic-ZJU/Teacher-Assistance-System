@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+    <style type="text/css">
+        body { background-color: #E2E2E2; }
+    </style>
+
+
+    <script type="text/javascript">
+        function Pass(str1,str2)
+        {
+            var xmlhttp;
+            var myarray=new Array(str1,str2);
+            if ((str1.length==0)||(str2.length==0))
+            {
+                alert("信息填写不完整");
+                return;
+            }
+            if (window.XMLHttpRequest)
+            {// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp=new XMLHttpRequest();
+            }
+            else
+            {// code for IE6, IE5
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange=function()
+            {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                {
+
+                    var json = xmlhttp.responseText;
+                    console.log(json);
+                    //json=eval('('+json+')');
+                    var json=JSON.parse(json);
+
+                    if(json["code"]==0)
+                    {
+                        alert("登录成功");
+                        //location.href='MainWindow.html';
+
+                        var index = str1;
+                        var url = "MainWindow.html?index="+index;
+                        window.location.href = url;
+
+                    }
+                    if(json["code"]==1)
+                    {
+                        alert("登录失败,用户名或密码或类型错误");
+
+                    }
+
+                    //document.write(json);
+
+
+                }
+            }
+            xmlhttp.open("GET","login/login.php?admin_id="+str1+"&password="+str2,true);
+            xmlhttp.send();
+        }
+
+    </script>
+
+
+</head>
+<body >
+
+<div style="width:300px;  margin: 0 auto; margin-top:100px;">
+<h1><font  face="SimSun" color="#483d8b"><strong>教学管理系统后台</strong></font></h1>
+</div>
+
+<div class="panel panel-primary"  style="width:700px; height:400px;margin: 0 auto;margin-top:100px; ">
+    <div class="panel-heading"> .</div>
+    <div span id="txt1" class="panel-body" id="h01">
+        </span>
+    </div>
+</div>
+
+<div class="input-group"style="width:300px; margin: 0 auto;margin-top:-300px; ">
+    <span class="input-group-addon">AdminID</span>
+    <input type="text" id="text1" class="form-control" placeholder="ID">
+</div>
+
+<div class="input-group"style="width:300px; margin: 0 auto; margin-top:40px; ">
+    <span class="input-group-addon" style="width:80px;">pwd</span>
+    <input type="text" id="text2"  class="form-control" placeholder="password">
+</div>
+
+<div style="width:140px;  margin: 0 auto; margin-top:40px;">
+<button type="button"  onclick="Pass(text1.value,text2.value)" class="btn btn-default btn-lg" >
+         <span class="glyphicon glyphicon-user"></span> login in
+</button>
+
+</div>
+
+<div style="width:300px;  margin: 0 auto; margin-top:140px;">
+    <h1><font  face="Narrow Italic" color="#c4c400"><strong>  Don't be evil</strong></font></h1>
+</div>
+
+
+
+
+
+
+
+
+</body>
+</html>

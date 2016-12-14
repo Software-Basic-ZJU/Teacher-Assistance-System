@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+
+    <script charset="utf-8" src="editor/kindeditor.js"></script>
+    <script charset="utf-8" src="editor/lang/zh_CN.js"></script>
+
+    <style type="text/css">
+        body { background-color: #F0F0F0; }
+    </style>
+
+
+    <script type="text/javascript">
+
+
+        var KindEd;
+        KindEditor.ready(
+                function(K)
+                {
+                    window.editor1 = K.create('#editor_id1');
+                    window.editor2 = K.create('#editor_id2');
+                    window.editor3 = K.create('#editor_id3');
+                    window.editor4 = K.create('#editor_id4');
+                    window.editor5 = K.create('#editor_id5');
+
+
+                    KindEd=K;
+                }
+
+        );
+
+
+        function Pass()
+        {
+
+
+            var html1 = editor1.html(); // KindEditor Node API
+            console.log(html1);
+
+            var html2 = editor2.html(); // KindEditor Node API
+            console.log(html2);
+
+            var html3 = editor3.html(); // KindEditor Node API
+            console.log(html3);
+
+            var html4 = editor4.html(); // KindEditor Node API
+            console.log(html4);
+
+            var html5 = editor5.html(); // KindEditor Node API
+            console.log(html5);
+
+
+            var xmlhttp;
+
+            //var myarray=new Array(html1,html2,html3,html4,html5);
+            if (window.XMLHttpRequest)
+            {// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp=new XMLHttpRequest();
+            }
+            else
+            {// code for IE6, IE5
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange=function()
+            {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                {
+
+                    var json = xmlhttp.responseText;
+                    console.log(json);
+
+                    //alert("操作成功");
+                    var json=JSON.parse(json);
+                    if(json["code"]==0)
+                    {
+                        alert("操作成功");
+                        //location.href='MainWindow.html';
+
+                    }
+
+                    if(json["code"]==1)
+                    {
+                        alert("操作失败");
+
+                    }
+
+
+                }
+            }
+            xmlhttp.open("GET","admin/editCourseInfo.php?course_name="+html1+"&background="+html2+"&course_plan="+html3+"&textbook_precourse="+html4+"&exam_homework="+html5,true);
+            xmlhttp.send();
+        }
+
+
+    </script>
+
+
+
+</head>
+<body>
+
+<ul class="nav nav-pills nav-stacked" role="tablist">
+    <li role="presentation" class="bg-info" style="background-color: black" ><a href="MainWindow.html" style=" width:150px">主页</a></li>
+    <li role="presentation" style=" width:150px"><a href="MessageWindow.html" style=" width:150px">管理留言板</a></li>
+    <li role="presentation" style=" width:150px"><a href="PostWindow.html" style=" width:150px">管理帖子</a></li>
+    <li role="presentation" style=" width:150px"><a href="ClassWindow.html" style=" width:150px">管理班级</a></li>
+    <li role="presentation" style=" width:150px"><a href="LinkWindow.html" style=" width:150px">管理友情链接</a></li>
+    <li role="presentation" style=" width:150px"><a href="AccountWindow.html" style=" width:150px">账号导入</a></li>
+    <li role="presentation" style=" width:150px"><a href="TeaInsideWindow.html" style=" width:150px">管理教师介绍</a></li>
+    <li role="presentation" class="active"  style=" width:150px"><a href="CouInfoWindow.html" style=" width:150px">管理课程介绍</a></li>
+</ul>
+
+<div class="panel panel-success" style="margin-left:300px; margin-top:-280px; width:700px; height:78px;">
+    <div class="panel-heading">课程名称</div>
+</div>
+
+
+
+
+<div style="width:300px; margin-left:300px; margin-top:-55px;">
+<textarea id="editor_id1" name="content1" style="width:700px; ">
+
+</textarea>
+</div>
+
+
+
+
+<div class="panel panel-success" style="margin-left:300px;  margin-top:30px; width:700px; height:78px;">
+    <div class="panel-heading">国际国内背景</div>
+</div>
+
+
+
+
+
+<div style="width:300px; margin-left:300px; margin-top:-55px;">
+<textarea id="editor_id2" name="content2" style="width:700px; ">
+
+</textarea>
+</div>
+
+
+
+
+<div class="panel panel-success" style="margin-left:300px;  margin-top:30px;  width:700px; height:78px;">
+    <div class="panel-heading">课时安排及教学计划</div>
+</div>
+
+<div style="width:300px; margin-left:300px; margin-top:-55px;">
+<textarea id="editor_id3" name="content3" style="width:700px; ">
+
+</textarea>
+</div>
+
+
+<div class="panel panel-success" style="margin-left:300px;  margin-top:30px;  width:700px; height:78px;">
+    <div class="panel-heading">使用教材及预修课程</div>
+</div>
+
+<div style="width:300px; margin-left:300px; margin-top:-55px;">
+<textarea id="editor_id4" name="content4" style="width:700px; ">
+
+</textarea>
+</div>
+
+<div class="panel panel-success" style="margin-left:300px;  margin-top:30px;  width:700px; height:78px;">
+    <div class="panel-heading">考核方式及大作业的介绍</div>
+</div>
+
+<div style="width:300px; margin-left:300px; margin-top:-55px;">
+<textarea id="editor_id5" name="content5" style="width:700px; ">
+
+</textarea>
+</div>
+
+
+
+<button type="button"   onclick="Pass()" class="btn btn-default navbar-btn"style="width: 100px; height: 45px; margin-left:900px; margin-top:20px;">
+        确认</button>
+
+
+
+
+</body>
+</html>

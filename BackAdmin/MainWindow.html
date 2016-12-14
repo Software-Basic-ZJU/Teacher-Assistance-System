@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <style type="text/css">
+        body { background-color: #F0F0F0; }
+    </style>
+
+
+
+
+    <script type="text/javascript">
+
+
+        function myFunction()
+        {
+            var index=window.location.href.split("=")[1];
+            console.log(index);
+            //var index = 1212;
+            var url = "Mail.html?index="+index;
+            $("#mail").click(function() { window.location.href = url; });
+
+        }
+        $(document).ready(myFunction);
+
+        function surprise()
+        {
+
+
+            alert("Copyright © 2016 SR G12 . All rights reserved.");
+        }
+        </script>
+</head>
+<body>
+
+<ul class="nav nav-pills nav-stacked" role="tablist">
+    <li role="presentation" style="background-color: black" ><a href="MainWindow.html" style=" width:150px">主页</a></li>
+    <li role="presentation"  style=" width:150px"><a href="MessageWindow.html" style=" width:150px">管理留言板</a></li>
+    <li role="presentation"  style=" width:150px"><a href="PostWindow.html" style=" width:150px">管理帖子</a></li>
+    <li role="presentation"  style=" width:150px"><a href="ClassWindow.html" style=" width:150px">管理班级</a></li>
+
+    <li role="presentation"  style=" width:150px"><a href="AccountWindow.html" style=" width:150px">账号导入</a></li>
+    <li role="presentation"  style=" width:150px"><a href="TeaInsideWindow.html" style=" width:150px">管理教师介绍</a></li>
+    <li role="presentation"  style=" width:150px"><a href="CouInfoWindow.html" style=" width:150px">管理课程介绍</a></li>
+</ul>
+
+
+<button type="button" class="btn btn-default btn-lg" style="width:200px; margin-left:780px; margin-top:-370px; ">
+    <a href="Checkout.html">   <span class="glyphicon glyphicon-user"></span> 登 出</a>
+</button>
+
+
+
+<button type="button" id="mail"  class="btn btn-default btn-lg" style="width:200px; margin-left:780px; margin-top:-270px; ">
+    <a href="#">    <span class="glyphicon glyphicon-comment"></span> 信 箱 </a>
+</button>
+
+<button type="button" class="btn btn-default btn-lg" style="width:200px; margin-left:780px; margin-top:-170px; ">
+    <a href="Password.html">   <span class="glyphicon glyphicon-pencil"></span> 更改 密码</a>
+</button>
+
+<button type="button" onclick="surprise()" class="btn btn-default btn-lg" style="width:200px; margin-left:780px; margin-top:-70px; ">
+    <a href="#">    <span class="glyphicon glyphicon-question-sign"></span> Copyright</a>
+</button>
+
+<img src="image/image5.jpg" class="img-thumbnail" style="width:300px; height:300px; margin-left:450px; margin-top:-300px;">
+
+</body>
+</html>
