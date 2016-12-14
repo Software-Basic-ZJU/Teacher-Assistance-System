@@ -23,8 +23,8 @@ if($query_result){
         $repost_id = $fetched['repost_id'];
         //get comment
         $getComment_result = mysqli_query($conn,"select * from comment WHERE type = 1 and target_id = '$repost_id';");
+        $comment = array();
         if($getComment_result){
-            $comment = array();
             while($fetched_comment = mysqli_fetch_array($getComment_result)){
                 $comment[] = array(
                     "com_id" => $fetched_comment['com_id'],

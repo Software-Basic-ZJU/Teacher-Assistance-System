@@ -19,7 +19,6 @@
                         :publish-time="item.publish_time"
                         :update-time="item.update_time"
                         :reply-num="item.reply_num"
-
                 ></post-item>
             </div>
 
@@ -37,8 +36,11 @@
 <script>
     import postItem from "../post/postItem.vue";
     import router from "../../../routes";
+    import {LS} from "../../../helpers/utils";
+
     export default{
         data(){
+            let userInfo=LS.getItem('userInfo');
             let section=this.$route.params.section;
             let secType=0;
             switch(section){
@@ -52,15 +54,21 @@
                 break;
             case "group":
                 secType=2;
-                if(!!1) {    //TODO 如果不是学生且没有选择要看的小组 需要从localStorage中取出
-                    this.$message('请在小组名单中选择一个小组进入其讨论区。');
+                if(userInfo.type!=1) {    //若不是学生且没有选择要看的小组 需要从localStorage中取出
+                    this.$message('请在小组名单中选择一个小组进入其讨论区');
                     router.push({name:'member'});
+                    return {};
+                }
+                else if(!userInfo.group_id){
+                    this.$message('您还没有加入小组,请先创建或加入一个小组');
+                    router.push({name:'member'});
+                    return {};
                 }
                 section="小组讨论区";
                 break;
             default:
                 router.push({name:'forum'});
-                return;
+                return {};
             }
             this.$store.dispatch('getPostList',secType);
             return{
