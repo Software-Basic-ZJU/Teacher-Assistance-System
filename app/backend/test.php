@@ -8,7 +8,7 @@
 <body>
 <!--,,,-->
 <h2>PHP 验证实例</h2>
-<form method="post" action="aboutInfo/changePassword.php">
+<form method="post" action="aboutInfo/sendEmail.php">
     <br><br>
     student_id：<input type="text" name="student_id">
     <br><br>
@@ -16,11 +16,11 @@
     <br><br>
     email：<input type="text" name="email">
     <br><br>
-    question1：<input type="text" name="question1">
+    id：<input type="text" name="id">
     <br><br>
-    question2：<input type="text" name="question2">
+    type：<input type="text" name="type">
     <br><br>
-    answer1：<input type="text" name="answer1">
+    password：<input type="text" name="password">
     <br><br>
     answer2：<input type="text" name="answer2">
     <br><br>

@@ -24,7 +24,6 @@ function encrypt($data) {
     $encrypt = mcrypt_encrypt(MCRYPT_DES, $key, $prep_code, MCRYPT_MODE_ECB);
     return base64_encode($encrypt);
 }
-
 function decrypt($str) {
     $key = "123w4er5";
     $str = base64_decode($str);

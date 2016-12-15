@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Wu
- * Date: 2016/11/20
- * Time: 14:57
- */
 // Connect database
 include '_include.php';
 global $conn;

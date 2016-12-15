@@ -140,4 +140,44 @@ function getAuthorName($conn,$author_id){
         exit;
     }
 }
+function sendCodesEmail($email, $codes){
+    /**
+     * 注：发送邮件的时候遇到了失败的问题，请从以下几点排查：
+     * 1. 用户名和密码是否正确；
+     * 2. 检查邮箱设置是否启用了smtp服务；
+     */
+    require_once "email.class.php";
+//******************** 配置变量 ********************************
+    $smtpserver = "smtp.163.com";//SMTP服务器
+    $smtpserverport =25;//SMTP服务器端口
+    $smtpusermail = "zjdxjw12@163.com";//SMTP服务器的用户邮箱
+    //Connect database
+    global $conn;
+    connectDB();
+    $query = mysqli_query($conn,
+        "select name from student where email='$email' limit 1");
+    $user_name = mysqli_fetch_array($query)['name'];
+    if(!$user_name){
+        return 1;   //邮件发送失败,邮箱地址不在用户列表
+    }
+    $smtpemailto = $email;//发送给谁
+    $fromName = '浙江大学课程辅助系统';
+    $smtpuser = "zjdxjw12@163.com";//SMTP服务器的用户帐号
+    $smtppass = "zjdx12";//密码，或者授权码
+    $mailtitle = "【浙江大学课程辅助系统】忘记密码";//邮件主题
+    $mailcontent = "尊敬的用户 ".$user_name.":<br/>"."您正在申请重置密码，您的验证码为：<br/>".$codes;//邮件内容
+    $mailtype = "HTML";//邮件格式（HTML/TXT）,TXT为文本邮件
+//************************ 创建对象 ****************************
+    $smtp = new smtp($smtpserver,$smtpserverport,true,$smtpuser,$smtppass);
+    //这里面的一个true是表示使用身份验证,否则不使用身份验证.
+    $smtp->debug = false;//是否显示发送的调试信息，默认不发送
+    $state = $smtp->sendmail($smtpemailto, $smtpusermail, $fromName,
+        $mailtitle, $mailcontent, $mailtype);
+    if($state=="")
+        $error = -1;
+    else
+        $error = 0;
+    return $error;
+}
+?>
 ?>

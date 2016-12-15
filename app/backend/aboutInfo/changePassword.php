@@ -21,7 +21,7 @@ $query_result = mysqli_query($conn, "select * from student
 if($fetched = mysqli_fetch_array($query_result)){
     if($fetched['check_code'] == 1){
         $update_result = mysqli_query($conn, "update student
-                                     set password = '$newPassword'
+                                     set password = '$newPassword' AND check_code = -1
                                      WHERE student_id = '$student_id';");
         if($update_result){
             $result = array(
