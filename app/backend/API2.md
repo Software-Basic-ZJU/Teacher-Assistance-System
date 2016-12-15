@@ -165,6 +165,14 @@ POST——Teacher-Assistance-System/app/backend/aboutGroup/createGroup.php
         )
 ```
 
+```php
+        "code" => -1,
+        "msg" => "您已在小组中",
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
+```
+
 ## 54、删除小组
 
 POST——Teacher-Assistance-System/app/backend/aboutGroup/deleteGroup.php
