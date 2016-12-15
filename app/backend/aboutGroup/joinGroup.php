@@ -45,8 +45,8 @@ if($fetched = mysqli_fetch_array($query_result)){
 $query_result = mysqli_query($conn, "select * from course_assist.group WHERE group_id = '$group_id' AND password = '$password';");
 if(!$fetched = mysqli_fetch_array($query_result)){
     $result = array(
-        "code" => 403,
-        "msg" => "密码错误",
+        "code" => -1,
+        "msg" => "小组密码错误",
         "res" => array(
             "token" => $_SESSION['token']
         )

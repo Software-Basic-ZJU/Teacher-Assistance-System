@@ -227,7 +227,7 @@ POST——Teacher-Assistance-System/app/backend/aboutGroup/getGroupList.php
             "group_id" => $group_id,
             "class_id" => $fetched['class_id'],
             "group_name" => $fetched['group_name'],
-            "group_leader" => getAuthorName($conn ,$leader_id),
+            "group_leader" => $leader_id,
             "group_member" => $group_member
         );
 

@@ -3,7 +3,6 @@
         <div class="group">
             <div class="btnGroup" v-if="!isInGroup && idenType==1">
                 <el-button @click="showGroupAction(0)">创建小组</el-button>
-                <el-button @click="showGroupAction(1)">加入小组</el-button>
             </div>
             <el-table
                     :data="groupList"
@@ -41,8 +40,26 @@
                 >
                     <span>
                         <el-button @click="goGroupForum($index,row)" size="small" v-if="idenType!=1">进入该小组讨论区</el-button>
-                        <el-button type="danger" @click="quitGroup($index,row)" :plain="true" size="small" v-if="idenType==1 && groupId==groupList[$index].group_id">退出</el-button>
-                        <el-button type="danger" @click="deleteGroup($index,row)" :plain="true" size="small" v-if="idenType==1 && id==groupList[$index].group_leader">解散</el-button>
+                        <el-button
+                                type="danger"
+                                @click="quitGroup($index,row)"
+                                :plain="true"
+                                size="small"
+                                v-if="idenType==1 && groupId==row.group_id && sid!=row.group_leader"
+                        >退出</el-button>
+                        <el-button
+                                type="danger"
+                                @click="deleteGroup($index,row)"
+                                :plain="true"
+                                size="small"
+                                v-if="idenType==1 && sid==row.group_leader"
+                        >解散</el-button>
+                        <el-button
+                                type="primary"
+                                size="small"
+                                @click="showGroupAction(1,row.group_id)"
+                                v-if="(!groupId || groupId==-1) && sid!=row.group_leader"
+                        >加入小组</el-button>
                     </span>
                 </el-table-column>
             </el-table>
@@ -56,9 +73,6 @@
             <el-form :model="group">
                 <el-form-item label="小组名称" :label-width="formLabelWidth" v-if="actionType==0">
                     <el-input v-model="group.name" auto-complete="off"></el-input>
-                </el-form-item>
-                <el-form-item label="小组编号" :label-width="formLabelWidth" v-if="actionType==1">
-                    <el-input v-model="group.id" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="小组密码" :label-width="formLabelWidth">
                     <el-input type="password" v-model="group.password" auto-complete="off"></el-input>
@@ -86,18 +100,14 @@
     import {LS} from "../../helpers/utils";
     export default{
         data(){
-            let userInfo=LS.getItem("userInfo");
-            if(!userInfo || !userInfo.token){
-                router.push({name:'login'});
-            }
+            let userInfo=LS.getItem('userInfo');
             this.$store.dispatch('getGroupList');
             return {
-                id:userInfo.id,
-                groupId:userInfo.group_id,     //用户所在小组
+                sid:userInfo.id,          //用户id
                 actionType: 0,           //0为创建小组,1为加入小组
                 isInGroup: false,
                 group: {
-                    id: '',
+                    id:'',
                     name: '',
                     password: ''
                 },
@@ -108,7 +118,8 @@
             ...mapState({
                 groupList:state=>state.group.groupList,
                 showGroup:state=>state.group.showGroup,
-                actionLoading:state=>state.group.actionLoading
+                actionLoading:state=>state.group.actionLoading,
+                groupId:state=>state.userInfo.group_id
             }),
             dialogTitle(){
                 if (!this.actionType) return '创建小组';
@@ -122,10 +133,18 @@
             },
             showGroupAction(type){
                 this.actionType = type;
+                if(this.actionType){
+                    this.group.id=arguments[1];
+                }
                 this.$store.dispatch('showActionGroup',true);
             },
             closeAction(){
                 this.$store.dispatch('showActionGroup',false);
+                this.group={
+                    id:'',
+                    name:'',
+                    password:''
+                }
             },
             quitGroup(index, row){
                 this.$confirm('确认退出该小组吗？', '提示', {
@@ -133,7 +152,7 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-
+                    this.$store.dispatch('quitGroup');
                 }).catch(() => {});
             },
             deleteGroup(index,row){
@@ -141,7 +160,9 @@
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning'
-                }).then(() => {}).catch(() => {});
+                }).then(() => {
+                    this.$store.dispatch('deleteGroup',row.group_id);
+                }).catch(() => {});
             },
             goGroupForum(index, row){
                 //TODO groupId存进教师的localstorage的身份信息中

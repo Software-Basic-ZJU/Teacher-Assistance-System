@@ -8,9 +8,6 @@ const state={
 }
 
 const mutations= {
-    addGroup(state, newGroup){
-        state.groupList.push(newGroup);
-    },
     updateGroupList(state,groupList){
         state.groupList=groupList;
     },
@@ -19,6 +16,17 @@ const mutations= {
     },
     actionLoading(state,signal){
         state.actionLoading=signal;
+    },
+    addGroup(state, newGroup){
+        state.groupList.push(newGroup);
+    },
+    deleteGroup(state,groupId){
+        state.groupList.forEach((item,index)=>{
+            if(item.group_id==groupId){
+                state.groupList.splice(index,1);
+                return;
+            }
+        })
     }
 };
 

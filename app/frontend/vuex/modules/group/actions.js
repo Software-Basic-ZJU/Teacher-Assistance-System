@@ -13,7 +13,6 @@ export const getGroupList=({commit})=>{
     ).then((response)=>{
         let resp=response.body;
         if(!resp.code) {
-            console.log(resp.res.groupList);
             commit('updateGroupList',resp.res.groupList);
         }
     }).then(()=>{
@@ -36,11 +35,16 @@ export const createGroup=({commit},group)=>{
     ).then((response)=>{
         let resp=response.body;
         if(!resp.code) {
-            resp.res.group_leader=userInfo.name;
             Vue.prototype.$message({
                 type: 'success',
                 message: resp.msg
             });
+            let members=[];
+            members.push({
+                name:userInfo.name
+            });
+            resp.res.group_member=members;
+            resp.res.group_leader=userInfo.id;
             commit('addGroup',resp.res);
             commit('showActionGroup',false);
         }
@@ -63,6 +67,8 @@ export const joinGroup=({dispatch,commit},group)=>{
     ).then((response)=>{
         let resp=response.body;
         if(!resp.code) {
+            userInfo.group_id=group.id;
+            commit('updateUserInfo',userInfo);
             Vue.prototype.$message({
                 type: 'success',
                 message: resp.msg
@@ -72,6 +78,57 @@ export const joinGroup=({dispatch,commit},group)=>{
         }
     }).then(()=>{
         commit('actionLoading',false);
+    });
+};
+
+// 解散小组
+export const deleteGroup=({commit},groupId)=>{
+    let userInfo = LS.getItem('userInfo');
+    if(!userInfo || !userInfo.token) return commit('logout');
+    commit('isLoading',false);
+    Vue.http.post("backend/aboutGroup/deleteGroup.php",
+        {
+            group_id:groupId,
+            leader_id:userInfo.id
+        }
+    ).then((response)=>{
+        let resp=response.body;
+        if(!resp.code) {
+            userInfo.group_id=-1;
+            commit('updateUserInfo',userInfo);
+            Vue.prototype.$message({
+                type: 'success',
+                message: resp.msg
+            });
+            commit('deleteGroup',groupId);
+        }
+    }).then(()=>{
+        commit('isLoading',false);
+    });
+};
+
+// 退出小组
+export const quitGroup=({dispatch,commit})=>{
+    let userInfo = LS.getItem('userInfo');
+    if(!userInfo || !userInfo.token) return commit('logout');
+    commit('isLoading',false);
+    Vue.http.post("backend/aboutGroup/quitGroup.php",
+        {
+            student_id:userInfo.id
+        }
+    ).then((response)=>{
+        let resp=response.body;
+        if(!resp.code) {
+            userInfo.group_id=-1;
+            commit('updateUserInfo',userInfo);
+            Vue.prototype.$message({
+                type: 'success',
+                message: resp.msg
+            });
+            dispatch('getGroupList');
+        }
+    }).then(()=>{
+        commit('isLoading',false);
     });
 };
 

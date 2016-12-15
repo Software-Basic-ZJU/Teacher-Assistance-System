@@ -19,6 +19,21 @@ $group_name = test_input(mysqli_escape_string($conn, $_POST['group_name']));
 $group_password = encrypt(test_input(mysqli_escape_string($conn, $_POST['group_password'])));
 $class_id = test_input(mysqli_escape_string($conn, $_POST['class_id']));
 
+$query_result = mysqli_query($conn, "select * from student WHERE student_id = '$leader_id' AND group_id IS NOT NULL ;");
+if($fetched = mysqli_fetch_array($query_result)){
+    if($fetched['group_id']!=-1){
+        $result = array(
+            "code" => -1,
+            "msg" => "您已在小组中",
+            "res" => array(
+                "token" => $_SESSION['token']
+            )
+        );
+        echo json_encode($result);
+        exit;
+    }
+}
+
 $query_result = mysqli_query($conn, "INSERT INTO course_assist.group 
                                      (leader_id,group_name,password,class_id) 
                                       values('$leader_id','$group_name','$group_password','$class_id');");
