@@ -180,4 +180,3 @@ function sendCodesEmail($email, $codes){
     return $error;
 }
 ?>
-?>

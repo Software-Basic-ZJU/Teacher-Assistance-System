@@ -33,6 +33,7 @@ export const isFileUpload=({commit},signal)=>{
 
 export const login=({commit},loginForm)=>{
     commit('isLoading',true);
+    console.log(loginForm)
     Vue.http.post("backend/login/login.php",
         {
             id:loginForm.id,
@@ -56,7 +57,6 @@ export const login=({commit},loginForm)=>{
     }).then(()=>{
         commit('isLoading',false);
     });
-    // console.log(loginForm);
 };
 
 export const editUserInfo=({commit},newInfo)=>{

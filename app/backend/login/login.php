@@ -7,6 +7,7 @@ connectDB();
 $id = test_input(mysqli_escape_string($conn, $_POST['id']));
 $password = encrypt($_POST['password']);
 $type = test_input(mysqli_escape_string($conn, $_POST['type']));
+
 // Check id and password and type
 //type: 1->student 2->teacher
 if($type == 1){
@@ -121,4 +122,3 @@ else echo json_encode(array(
 ));
 
 mysqli_close($conn);
-?>
