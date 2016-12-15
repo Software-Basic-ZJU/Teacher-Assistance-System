@@ -4,7 +4,7 @@
             <el-tab-pane label="课程介绍" ></el-tab-pane>
             <el-tab-pane label="教师介绍"></el-tab-pane>
         </el-tabs>
-        <el-button type="success" class="fr" icon="edit" @click="goEdit"></el-button>
+        <el-button type="success" class="fr" icon="edit" @click="goEdit" v-if="idenType!=1"></el-button>
         <div class="introBox">
             <div>
                 <router-view></router-view>
@@ -30,10 +30,14 @@
 </style>
 <script>
     import router from "../../routes";
+    import {LS} from "../../helpers/utils";
+
     export default{
         data(){
+            let userInfo=LS.getItem('userInfo');
             return{
-                currIndex:""
+                currIndex:"",
+                idenType:userInfo.type
             }
         },
         created(){

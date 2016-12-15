@@ -36,10 +36,10 @@
                 <el-table-column
                         inline-template
                         label="操作"
-                        width="210"
+                        width="120"
                 >
                     <span>
-                        <el-button @click="goGroupForum($index,row)" size="small" v-if="idenType!=1">进入该小组讨论区</el-button>
+                        <el-button @click="goGroupForum($index,row)" size="small" v-if="idenType!=1">进入讨论区</el-button>
                         <el-button
                                 type="danger"
                                 @click="quitGroup($index,row)"

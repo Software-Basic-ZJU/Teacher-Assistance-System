@@ -96,6 +96,7 @@
         data(){
 //            router.replace({name:'login'});
             let userInfo=LS.getItem("userInfo");
+            this.$store.dispatch('updateUserInfo',userInfo);
             return {
                 menu: [
                     {

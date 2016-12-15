@@ -7,8 +7,8 @@
                     <el-breadcrumb-item>{{article.title}}</el-breadcrumb-item>
                 </el-breadcrumb>
                 <div class="btnGroup fr">
-                    <el-button type="danger" :plain="true" icon="delete" @click="remove($route.params.artId)"></el-button>
-                    <el-button type="success" icon="edit" @click="editArticle($route.params.artId)"></el-button>
+                    <el-button type="danger" :plain="true" icon="delete" @click="remove($route.params.artId)" v-if="idenType!=1"></el-button>
+                    <el-button type="success" icon="edit" @click="editArticle($route.params.artId)" v-if="idenType!=1"></el-button>
                 </div>
             </div>
             <div class="main">
@@ -99,7 +99,8 @@
                 newReply:{
                     content:'',
                     authorId:userInfo.id,
-                }
+                },
+                idenType:userInfo.type
             }
         },
         computed:{

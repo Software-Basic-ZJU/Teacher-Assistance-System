@@ -12,6 +12,7 @@ export const getGroupList=({commit})=>{
         }
     ).then((response)=>{
         let resp=response.body;
+        console.log(resp.res);
         if(!resp.code) {
             commit('updateGroupList',resp.res.groupList);
         }
@@ -45,6 +46,8 @@ export const createGroup=({commit},group)=>{
             });
             resp.res.group_member=members;
             resp.res.group_leader=userInfo.id;
+            commit('updateUserInfo',userInfo);
+            LS.setItem('userInfo',userInfo);
             commit('addGroup',resp.res);
             commit('showActionGroup',false);
         }
@@ -73,6 +76,7 @@ export const joinGroup=({dispatch,commit},group)=>{
                 type: 'success',
                 message: resp.msg
             });
+            LS.setItem('userInfo',userInfo);
             dispatch('getGroupList');
             commit('showActionGroup',false);
         }
@@ -96,6 +100,7 @@ export const deleteGroup=({commit},groupId)=>{
         if(!resp.code) {
             userInfo.group_id=-1;
             commit('updateUserInfo',userInfo);
+            LS.setItem('userInfo',userInfo);
             Vue.prototype.$message({
                 type: 'success',
                 message: resp.msg
@@ -121,6 +126,7 @@ export const quitGroup=({dispatch,commit})=>{
         if(!resp.code) {
             userInfo.group_id=-1;
             commit('updateUserInfo',userInfo);
+            LS.setItem('userInfo',userInfo);
             Vue.prototype.$message({
                 type: 'success',
                 message: resp.msg

@@ -2,6 +2,10 @@ import router from "../routes";
 import Vue from "vue";
 import {LS} from "../helpers/utils";
 
+export const updateUserInfo=({commit},userInfo)=>{
+    commit('updateUserInfo',userInfo);
+}
+
 export const editorSubmit=({dispatch,commit},payload)=>{
     console.log(payload);
     dispatch(payload.method,payload);
