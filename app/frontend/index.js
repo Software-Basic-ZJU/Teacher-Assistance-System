@@ -35,7 +35,6 @@ Vue.http.interceptors.push((req,next)=>{
     }
     next((response)=>{
         clearTimeout(hasTimeout);
-        console.log(response)
         if(!response.status){       //error回调
             Vue.prototype.$message({
                 type:'error',

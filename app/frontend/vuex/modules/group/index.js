@@ -2,39 +2,25 @@ import Vue from 'vue';
 import * as actions from './actions';
 
 const state={
-    loading:false,
-    groupList:[
-        {
-            id:123,
-            name:'软需不要虚',
-            memberList:['吴志强','杨奕辉','李牧','梁鸿业']
-        }
-    ],
-    showGroup:false
+    actionLoading:false,            //表单提交loading
+    showGroup:false,                //小组操作表单显示状态
+    groupList:[],
 }
 
 const mutations= {
-    addGroup(state, payload){
-        state.groupList.push(payload);
+    addGroup(state, newGroup){
+        state.groupList.push(newGroup);
     },
-    joinGroup(state,payload){
-        let groups=state.groupList;
-        for(let i=0;i<groups.length;i++){
-            if(groups[i].id==payload.id){
-                groups[i].memberList.push(payload.name);
-                Vue.set(state.groupList,i,groups[i]);
-                break;
-            }
-        }
-        state.showGroup=false;
+    updateGroupList(state,groupList){
+        state.groupList=groupList;
     },
-    showActionGroup(state){
-        state.showGroup = true;
+    showActionGroup(state,signal){
+        state.showGroup = signal;
     },
-    closeActionGroup(state){
-        state.showGroup = false;
+    actionLoading(state,signal){
+        state.actionLoading=signal;
     }
-}
+};
 
 export default {
     state,

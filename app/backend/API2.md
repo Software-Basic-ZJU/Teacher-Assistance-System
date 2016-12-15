@@ -46,7 +46,7 @@ POST——Teacher-Assistance-System/app/backend/aboutPost/getPostDetail.php
         )
 ```
 
-## 50、发送帖子
+## 50、发送私信
 
 POST——Teacher-Assistance-System/app/backend/aboutMail/sendMail.php
 
@@ -167,7 +167,7 @@ POST——Teacher-Assistance-System/app/backend/aboutGroup/createGroup.php
 
 ## 54、删除小组
 
-POST——Teacher-Assistance-System/app/backend/aboutGroup/createGroup.php
+POST——Teacher-Assistance-System/app/backend/aboutGroup/deleteGroup.php
 
 参数：leader_id,group_id
 

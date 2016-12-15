@@ -24,7 +24,7 @@ if($query_result){
         $group_member = array();
         $group_id = $fetched['group_id'];
         $leader_id = $fetched['leader_id'];
-        $get_member = mysqli_query($conn,"select name from student WHERE group_id = '$group_id' AND student_id != '$leader_id';");
+        $get_member = mysqli_query($conn,"select name from student WHERE group_id = '$group_id';");
         while($fetched_name = mysqli_fetch_array($get_member)){
             $group_member[] = array(
                 "name" => $fetched_name['name']

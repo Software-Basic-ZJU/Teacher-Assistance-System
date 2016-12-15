@@ -9,14 +9,14 @@
                     :data="groupList"
                     style="width: 100%">
                 <el-table-column
-                        prop="id"
+                        prop="group_id"
                         label="小组id"
                         min-width="30"
                         :show-overflow-tooltip="true"
                 >
                 </el-table-column>
                 <el-table-column
-                        prop="name"
+                        prop="group_name"
                         label="小组名称"
                         min-width="30"
                         :show-overflow-tooltip="true"
@@ -29,10 +29,9 @@
                         :show-overflow-tooltip="true"
                 >
                     <span
-                            v-for="item in row.memberList"
-                            :key="$index"
+                            v-for="item in row.group_member"
                     >
-                        {{item}}
+                        {{item.name}}
                     </span>
                 </el-table-column>
                 <el-table-column
@@ -42,7 +41,8 @@
                 >
                     <span>
                         <el-button @click="goGroupForum($index,row)" size="small" v-if="idenType!=1">进入该小组讨论区</el-button>
-                        <el-button type="danger" @click="quitGroup($index,row)" size="small" v-if="idenType==1">退出</el-button>
+                        <el-button type="danger" @click="quitGroup($index,row)" :plain="true" size="small" v-if="idenType==1 && groupId==groupList[$index].group_id">退出</el-button>
+                        <el-button type="danger" @click="deleteGroup($index,row)" :plain="true" size="small" v-if="idenType==1 && id==groupList[$index].group_leader">解散</el-button>
                     </span>
                 </el-table-column>
             </el-table>
@@ -90,8 +90,10 @@
             if(!userInfo || !userInfo.token){
                 router.push({name:'login'});
             }
+            this.$store.dispatch('getGroupList');
             return {
-                showGroup: false,
+                id:userInfo.id,
+                groupId:userInfo.group_id,     //用户所在小组
                 actionType: 0,           //0为创建小组,1为加入小组
                 isInGroup: false,
                 group: {
@@ -105,7 +107,8 @@
         computed: {
             ...mapState({
                 groupList:state=>state.group.groupList,
-                showGroup:state=>state.group.showGroup
+                showGroup:state=>state.group.showGroup,
+                actionLoading:state=>state.group.actionLoading
             }),
             dialogTitle(){
                 if (!this.actionType) return '创建小组';
@@ -119,13 +122,26 @@
             },
             showGroupAction(type){
                 this.actionType = type;
-                this.$store.dispatch('showActionGroup');
+                this.$store.dispatch('showActionGroup',true);
             },
             closeAction(){
-                this.$store.dispatch('closeActionGroup');
+                this.$store.dispatch('showActionGroup',false);
             },
             quitGroup(index, row){
-                console.log(row.id);
+                this.$confirm('确认退出该小组吗？', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+
+                }).catch(() => {});
+            },
+            deleteGroup(index,row){
+                this.$confirm('确认解散该小组吗？', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {}).catch(() => {});
             },
             goGroupForum(index, row){
                 //TODO groupId存进教师的localstorage的身份信息中
