@@ -279,6 +279,24 @@ POST——Teacher-Assistance-System/app/backend/aboutGroup/joinGroup.php
         )
 ```
 
+```php
+            "code" => -1,
+            "msg" => "已加入此小组",
+            "res" => array(
+                "token" => $_SESSION['token']
+            )
+```
+
+```php
+            "code" => -1,
+            "msg" => "您已在小组中",
+            "res" => array(
+                "token" => $_SESSION['token']
+            )
+```
+
+
+
 ## 57、退出小组
 
 POST——Teacher-Assistance-System/app/backend/aboutGroup/quitGroup.php
