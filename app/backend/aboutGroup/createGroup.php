@@ -21,6 +21,7 @@ $class_id = test_input(mysqli_escape_string($conn, $_POST['class_id']));
 
 $query_result = mysqli_query($conn, "select * from student WHERE student_id = '$leader_id' AND group_id IS NOT NULL ;");
 if($fetched = mysqli_fetch_array($query_result)){
+<<<<<<< HEAD
     if($fetched['group_id']!=-1){
         $result = array(
             "code" => -1,
@@ -32,6 +33,17 @@ if($fetched = mysqli_fetch_array($query_result)){
         echo json_encode($result);
         exit;
     }
+=======
+    $result = array(
+        "code" => -1,
+        "msg" => "您已在小组中",
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
+    );
+    echo json_encode($result);
+    exit;
+>>>>>>> a54dfd6fc999d213724f965c5301851ac5c9c978
 }
 
 $query_result = mysqli_query($conn, "INSERT INTO course_assist.group 
