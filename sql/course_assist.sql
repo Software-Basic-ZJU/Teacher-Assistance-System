@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2016-12-14 02:04:07
+Date: 2016-12-15 11:41:58
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,16 +21,17 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `admin`;
 CREATE TABLE `admin` (
   `uid` bigint(20) NOT NULL AUTO_INCREMENT,
-  `admin_id` bigint(20) NOT NULL,
+  `admin_id` varchar(30) NOT NULL,
   `password` varchar(100) NOT NULL,
   PRIMARY KEY (`uid`),
   UNIQUE KEY `uid` (`uid`) USING BTREE,
   KEY `admin_id` (`admin_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10001 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
+INSERT INTO `admin` VALUES ('10000', 'admin', '6LzEFTTAytZMZ+b3poFASw==');
 
 -- ----------------------------
 -- Table structure for `article`
@@ -129,7 +130,7 @@ CREATE TABLE `comment` (
   PRIMARY KEY (`com_id`),
   UNIQUE KEY `com_id` (`com_id`) USING BTREE,
   KEY `target_id` (`target_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10019 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of comment
@@ -193,7 +194,7 @@ CREATE TABLE `homework` (
 -- Records of homework
 -- ----------------------------
 INSERT INTO `homework` VALUES ('10001', '第二次作业', '2016-12-10 21:36:52', '2016-12-17 21:36:55', '10002', '1', '0', '0', '0.8');
-INSERT INTO `homework` VALUES ('10005', '第三方', '2016-12-13 12:43:54', '2016-12-21 00:43:50', '10001', '0', '0', '0', '0');
+INSERT INTO `homework` VALUES ('10005', '第三方', '2016-12-13 12:43:54', '2016-12-21 00:43:50', '10001', '0', '1', '0', '0');
 
 -- ----------------------------
 -- Table structure for `mail`
@@ -313,7 +314,7 @@ CREATE TABLE `questions` (
 -- ----------------------------
 -- Records of questions
 -- ----------------------------
-INSERT INTO `questions` VALUES ('10004', '辅导辅导', '&lt;p&gt;佛挡杀佛&lt;/p&gt;', '10005', '1', '0', '0', '0');
+INSERT INTO `questions` VALUES ('10004', '辅导辅导', '&lt;p&gt;佛挡杀佛&lt;/p&gt;', '10005', '1', '100', '0', '1');
 
 -- ----------------------------
 -- Table structure for `reply_post`
@@ -328,11 +329,13 @@ CREATE TABLE `reply_post` (
   PRIMARY KEY (`repost_id`),
   UNIQUE KEY `repost_id` (`repost_id`) USING BTREE,
   KEY `post_id` (`post_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10003 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of reply_post
 -- ----------------------------
+INSERT INTO `reply_post` VALUES ('10001', '10000', '第三方', 'yyh951102', '2016-12-15 01:55:06');
+INSERT INTO `reply_post` VALUES ('10002', '10000', '反倒是', 'yyh951102', '2016-12-15 01:57:18');
 
 -- ----------------------------
 -- Table structure for `resource`
@@ -385,7 +388,7 @@ CREATE TABLE `student` (
 -- ----------------------------
 -- Records of student
 -- ----------------------------
-INSERT INTO `student` VALUES ('10000', 'yyh951102', 'c92f606717d8826c16893e9bacdd6c47', '杨奕辉', null, null, null, null, null, '10001', null, null);
+INSERT INTO `student` VALUES ('10000', 'yyh951102', '6LzEFTTAytZMZ+b3poFASw==', '杨奕辉', null, null, null, null, null, '10001', null, null);
 
 -- ----------------------------
 -- Table structure for `teacher`
@@ -412,7 +415,7 @@ CREATE TABLE `teacher` (
 -- ----------------------------
 -- Records of teacher
 -- ----------------------------
-INSERT INTO `teacher` VALUES ('10000', '1234567', '21232f297a57a5a743894a0e4a801fc3', '杨奕辉', '172555222', '234347589@qq.com', '', '334345方法', '', '这是教师信息fsdfsd都是&amp;lt;p&amp;gt;ds fsd&amp;lt;/p&amp;gt;&lt;p&gt;f第三方水电费&lt;/p&gt;', '&lt;p&gt;这是课程信息&amp;amp;lt;p&amp;amp;gt;asdfsdfsdf&amp;amp;lt;/p&amp;amp;gt;&amp;lt;p&amp;gt;sdfsd&amp;lt;/p&amp;gt;&lt;/p&gt;&lt;h2&gt;dfdfgdf&lt;/h2&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;', null);
+INSERT INTO `teacher` VALUES ('10000', '1234567', '6LzEFTTAytZMZ+b3poFASw==', '杨奕辉', '172555222', '234347589@qq.com', '', '334345方法', '', '这是教师信息fsdfsd都是&amp;lt;p&amp;gt;ds fsd&amp;lt;/p&amp;gt;&lt;p&gt;f第三方水电费&lt;/p&gt;', '&lt;p&gt;这是课程信息&amp;amp;lt;p&amp;amp;gt;asdfsdfsdf&amp;amp;lt;/p&amp;amp;gt;&amp;lt;p&amp;gt;sdfsd&amp;lt;/p&amp;gt;&lt;/p&gt;&lt;h2&gt;dfdfgdf&lt;/h2&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;', null);
 
 -- ----------------------------
 -- Table structure for `works`
@@ -436,4 +439,4 @@ CREATE TABLE `works` (
 -- ----------------------------
 -- Records of works
 -- ----------------------------
-INSERT INTO `works` VALUES ('10000', '10004', '10114', 'dsf 第三方&lt;p&gt;d&lt;/p&gt;', null, null, 'yyh951102', '0');
+INSERT INTO `works` VALUES ('10000', '10004', '10114', 'dsf 第三方&amp;lt;p&amp;gt;d&amp;lt;/p&amp;gt;方法', '最吼的最吼的最吼的最吼的最吼的最吼的最吼的最吼的最吼的最吼的最吼的最吼的最吼的最吼的最吼的最吼的最吼的最吼的最吼的最吼的最吼的最吼的最吼的最吼的最吼的最吼的最吼的最吼的最吼的最吼的最吼的最吼的最吼的最吼的最吼的最吼的最吼的最吼的', '100', 'yyh951102', '1');
