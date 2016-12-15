@@ -163,7 +163,7 @@ function sendCodesEmail($email, $codes){
     $smtpemailto = $email;//发送给谁
     $fromName = '浙江大学课程辅助系统';
     $smtpuser = "zjdxjw12@163.com";//SMTP服务器的用户帐号
-    $smtppass = "zjdx12";//密码，或者授权码
+    $smtppass = "zjdx123";//密码，或者授权码
     $mailtitle = "【浙江大学课程辅助系统】忘记密码";//邮件主题
     $mailcontent = "尊敬的用户 ".$user_name.":<br/>"."您正在申请重置密码，您的验证码为：<br/>".$codes;//邮件内容
     $mailtype = "HTML";//邮件格式（HTML/TXT）,TXT为文本邮件
