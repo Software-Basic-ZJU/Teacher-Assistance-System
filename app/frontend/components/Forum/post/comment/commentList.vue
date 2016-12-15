@@ -65,7 +65,7 @@
     }
 </style>
 <script>
-    import {LS} from "../../helpers/utils";
+    import {LS} from "../../../../helpers/utils";
 
     export default{
         data(){

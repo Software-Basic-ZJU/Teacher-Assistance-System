@@ -10,14 +10,14 @@
             <div class="footer">
                 <span class="time fl">{{time}}</span>
                 <i class="iconfont icon-delete fr" @click="removeRepost(rpid)" v-if="authorId==id"></i>
-                <Comment-list
+                <comment-list
                         add-method="addPostComment"
                         remove-method="removePostComment"
                         :rpid="rpid"
                         :comment-list="commentList"
                         :reply-num="replyNum"
                 >
-                </Comment-list>
+                </comment-list>
             </div>
         </div>
     </div>
@@ -54,7 +54,7 @@
     }
 </style>
 <script>
-    import CommentList from "../../Comment/CommentList.vue";
+    import commentList from "./comment/commentList.vue";
     import {LS} from "../../../helpers/utils";
 
     export default{
@@ -86,7 +86,7 @@
             }
         },
         components:{
-            CommentList
+            commentList
         }
     }
 </script>

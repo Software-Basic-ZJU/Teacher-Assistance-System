@@ -3,7 +3,9 @@ import * as actions from './actions';
 import {LS} from "../../../helpers/utils";
 
 const state={
-    loading:false,
+    replyLoading:false,                 //回复按钮loading
+    deleteLoading:false,             //回复列表Loading，用于删除
+    isReplyShow:false,                  //回复框显示状态
     contact:{},
     noticeList:[],
     notice:{},
@@ -16,6 +18,15 @@ const state={
 }
 
 const mutations={
+    replyLoading(state,signal){
+        state.replyLoading=signal;
+    },
+    deleteLoading(state,signal){
+        state.deleteLoading=signal;
+    },
+    isReplyShow(state,signal){
+        state.isReplyShow=signal;
+    },
     toggleAddNotice(state,signal){
         state.showAddNotice=signal;
     },
@@ -37,8 +48,16 @@ const mutations={
     updateArticle(state,article){
         state.article=article;
     },
-    updateReplyList(state,payload){
-
+    addComment(state,newCom){
+        state.article.comment.push(newCom);
+    },
+    removeComment(state,comId){
+        state.article.comment.forEach((item,index)=>{
+            if(item.com_id==comId){
+                state.article.comment.splice(index,1);
+                return;
+            }
+        })
     },
     changeArtPage(state,val){
         state.articleCurrPage=val;

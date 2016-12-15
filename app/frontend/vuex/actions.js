@@ -24,16 +24,15 @@ export const editorSubmit=({dispatch,commit},payload)=>{
 
 export const editorLoading=({commit},signal)=>{
     commit('editorLoading',signal)
-}
+};
 
 // 变更是否已上传的状态
 export const isFileUpload=({commit},signal)=>{
     commit('isFileUpload',signal);
-}
+};
 
 export const login=({commit},loginForm)=>{
     commit('isLoading',true);
-
     Vue.http.post("backend/login/login.php",
         {
             id:loginForm.id,
@@ -52,9 +51,6 @@ export const login=({commit},loginForm)=>{
                 type: 'success',
                 message: resp.msg
             });
-            // if(userInfo.class_id instanceof Array && userInfo.class_id.length) {
-            //     router.replace({name: 'App'});
-            // }
             router.replace({name: 'App'});
         }
     }).then(()=>{

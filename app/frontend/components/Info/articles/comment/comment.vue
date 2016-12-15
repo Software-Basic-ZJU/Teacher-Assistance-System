@@ -4,7 +4,7 @@
             <div class="header">
                 <span class="author">{{authorName}}</span>
                 <span class="time">{{time}}</span>
-                <i class="el-icon-delete fr" @click="delete(commentId)"></i>
+                <i class="el-icon-delete fr" @click="deleteCom(commentId)" v-if="authorId==id"></i>
             </div>
             <div class="content">{{content}}</div>
         </div>
@@ -43,7 +43,14 @@
     }
 </style>
 <script>
+    import {LS} from "../../../../helpers/utils";
     export default{
+        data(){
+            let userInfo=LS.getItem('userInfo');
+            return {
+                id:userInfo.id
+            }
+        },
         props:{
             commentId:[String,Number],
             authorId:[String,Number],
@@ -52,8 +59,14 @@
             time:String
         },
         methods:{
-            delete(commentId){
-                this.$store.dispatch('deleteComment',commentId);
+            deleteCom(commentId){
+                this.$confirm('确认删除该评论吗？', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.$store.dispatch('removeComment',commentId);
+                }).catch(() => {});
             }
         }
     }

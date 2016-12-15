@@ -32,7 +32,7 @@ if($fetched = mysqli_fetch_array($query_result)){
                 "content" => $fetched_comment['content'],
                 "time" => $fetched_comment['time'],
                 "author_id" => $fetched_comment['author_id'],
-                "name" => $fetched_comment['name']
+                "author_name" => $fetched_comment['name']
             );
         }
     }

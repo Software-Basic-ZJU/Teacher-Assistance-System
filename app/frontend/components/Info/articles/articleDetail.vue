@@ -26,18 +26,18 @@
                         <el-form-item label="回帖内容">
                             <el-input type="textarea" v-model="newReply.content"></el-input>
                         </el-form-item>
-                        <el-button type="primary" @click="reply(article.artId)">回复</el-button>
+                        <el-button type="primary" @click="reply(article.article_id)" :loading="replyLoading">回复</el-button>
                     </el-form>
                 </div>
             </div>
-            <div class="commentBox">
+            <div class="commentBox" v-loading.body="deleteLoading">
                 <comment
-                        v-for="item in article.replyList"
-                        :key="item.commentId"
-                        :comment-id="item.commentId"
+                        v-for="item in article.comment"
+                        :key="item.com_id"
+                        :comment-id="item.com_id"
                         :content="item.content"
-                        :author-id="item.authorId"
-                        :author-name="item.authorName"
+                        :author-id="item.author_id"
+                        :author-name="item.author_name"
                         :time="item.time"
                 ></comment>
             </div>
@@ -89,21 +89,26 @@
     import router from "../../../routes";
     import comment from "./comment/comment.vue";
     import {LS} from "../../../helpers/utils";
+    import {mapState} from "vuex";
 
     export default{
         data(){
+            let userInfo=LS.getItem('userInfo');
             this.$store.dispatch('getArticle',this.$route.params.artId);
             return{
-                isReplyShow:false,
                 newReply:{
-                    content:''
+                    content:'',
+                    authorId:userInfo.id,
                 }
             }
         },
         computed:{
-            article(){
-                return this.$store.state.info.article;
-            }
+            ...mapState({
+                article:state=>state.info.article,
+                replyLoading:state=>state.info.replyLoading,
+                isReplyShow:state=>state.info.isReplyShow,
+                deleteLoading:state=>state.info.deleteLoading
+            })
         },
         methods:{
             editArticle(artId){
@@ -111,10 +116,11 @@
                 router.push({name:'editArticle',params:{artId:artId}});
             },
             reply(artId){
-
+                this.newReply.artId=artId;
+                this.$store.dispatch('replyArticle',this.newReply);
             },
             toggleReplyShow(){
-                this.isReplyShow=!this.isReplyShow;
+                this.$store.dispatch('isReplyShow',!this.isReplyShow);
             },
             remove(artId){
                 this.$confirm('确认要删除该文章吗？','提示',{
@@ -124,7 +130,6 @@
                 }).then(()=>{
                     this.$store.dispatch('removeArticle',artId);
                 }).catch(()=>{});
-
             }
         },
         components:{

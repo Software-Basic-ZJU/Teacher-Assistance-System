@@ -17,7 +17,7 @@ loginCheck($_SERVER['HTTP_X_ACCESS_TOKEN']);
 $post_id = test_input(mysqli_escape_string($conn, $_POST['post_id']));
 $content = test_input(mysqli_escape_string($conn, $_POST['content']));
 $author_id = test_input(mysqli_escape_string($conn, $_POST['author_id']));
-$time = date('y-m-d H:i:s',time());
+$time = date('Y-m-d H:i:s',time());
 
 $query_result = mysqli_query($conn, "INSERT INTO reply_post 
                                      (post_id,content,time,author_id) 

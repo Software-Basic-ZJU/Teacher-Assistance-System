@@ -330,12 +330,63 @@ export const removeArticle=({commit},artId)=>{
     }).then(()=>{
         commit('isLoading',false);
     })
+};
+
+// 回复文章
+export const replyArticle=({commit},payload)=>{
+    commit('replyLoading',true);
+    Vue.http.post('backend/aboutComment/addComment.php',
+        {
+            target_id:payload.artId,
+            content:payload.content,
+            author_id:payload.authorId,
+            type:0
+        }
+    ).then((response)=>{
+        let resp=response.body;
+        if(!resp.code){
+            Vue.prototype.$message({
+                type:'success',
+                message:resp.msg
+            });
+            commit('isReplyShow',false);
+            commit('addComment',resp.res);
+        }
+    }).then(()=>{
+        commit('replyLoading',false);
+    })
+};
+
+// 删除回复
+export const removeComment=({commit},comId)=>{
+    commit('deleteLoading',true);
+    Vue.http.post('backend/aboutComment/deleteComment.php',
+        {
+            com_id:comId
+        }
+    ).then((response)=>{
+        let resp=response.body;
+        if(!resp.code){
+            Vue.prototype.$message({
+                type:'success',
+                message:resp.msg
+            });
+            commit('removeComment',comId);
+        }
+    }).then(()=>{
+        commit('deleteLoading',false);
+    })
 }
+
+// 是否显示回复框
+export const isReplyShow=({commit},signal)=>{
+    commit('isReplyShow',signal);
+};
 
 // 通知列表跳转至某一页
 export const changeNotePage=({commit},val)=>{
     commit('changeNotePage',val);
-}
+};
 
 // 文章列表跳转至某一页
 export const changeArtPage=({commit},val)=>{
@@ -346,7 +397,3 @@ export const changeArtPage=({commit},val)=>{
 export const getReplyList=({commit})=>{
     commit('updateReplyList');
 }
-
-export const deleteComment=({commit},commentId)=>{
-    commit('deleteComment',commentId);
-};
