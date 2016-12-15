@@ -25,6 +25,9 @@ $query_result = mysqli_query($conn, "select * from student
 if($fetched = mysqli_fetch_array($query_result)){
     if(strcmp($question1,$fetched['question1'])==0){
         if((strcmp($answer1,$fetched['answer1'])==0)&&(strcmp($answer2,$fetched['answer2'])==0)){
+            $query_result = mysqli_query($conn, "update student
+                                     set check_code = 1
+                                     WHERE student_id = '$student_id';");
             $result = array(
                 "code" => 0,
                 "msg" => "验证成功",
@@ -48,6 +51,9 @@ if($fetched = mysqli_fetch_array($query_result)){
     }
     else{
         if((strcmp($answer1,$fetched['answer2'])==0)&&(strcmp($answer2,$fetched['answer1'])==0)){
+            $query_result = mysqli_query($conn, "update student
+                                     set check_code = 1
+                                     WHERE student_id = '$student_id';");
             $result = array(
                 "code" => 0,
                 "msg" => "验证成功",

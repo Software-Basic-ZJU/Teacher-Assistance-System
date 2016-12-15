@@ -8,9 +8,9 @@
 <body>
 <!--,,,-->
 <h2>PHP 验证实例</h2>
-<form method="post" action="aboutInfo/checkWithEmail.php">
+<form method="post" action="aboutArticle/getArticles.php">
     <br><br>
-    student_id：<input type="text" name="student_id">
+    teacher_id：<input type="text" name="teacher_id">
     <br><br>
     newPassword：<input type="text" name="newPassword">
     <br><br>
