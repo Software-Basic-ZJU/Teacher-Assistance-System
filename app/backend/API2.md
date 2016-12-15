@@ -493,9 +493,9 @@ POST——Teacher-Assistance-System/app/backend/aboutInfo/checkQA.php
         )
 ```
 
-## 63、修改密码
+## 63、修改密码(忘记密码之后修改密码使用此脚本)
 
-POST——Teacher-Assistance-System/app/backend/aboutInfo/changePassword.php
+POST——Teacher-Assistance-System/app/backend/aboutInfo/changeForgetPassword.php
 
 参数：student_id,newPassword
 
@@ -604,5 +604,36 @@ POST——Teacher-Assistance-System/app/backend/aboutInfo/checkWithEmail.php
         "msg" => "验证失败",
         "res" => array(
         )
+```
+
+## 66、修改密码（新旧密码都知道）
+
+POST——Teacher-Assistance-System/app/backend/aboutInfo/changePassword
+
+参数：student_id,oldPassword,newPassword
+
+返回:
+
+```php
+                "code" => 0,
+                "msg" => "修改成功",
+                "res" => array(
+                    "token" => $_SESSION['token']
+                )
+```
+
+```php
+
+                "code" => -1,
+                "msg" => "旧密码错误",
+                "res" => array()
+```
+
+```php
+        $result = array(
+            "code" => -1,
+            "msg" => "无此用户",
+            "res" => array()
+        );
 ```
 

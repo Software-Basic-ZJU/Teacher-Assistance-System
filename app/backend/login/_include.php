@@ -122,6 +122,10 @@ function deleteResource($conn,$post_id){
     else return 0;
 }
 function getAuthorName($conn,$author_id){
+//    $check = mysqli_query($conn,"select * from admin WHERE admin_id = '$author_id'");
+    if($author_id == "administrator"){
+        return "administrator";
+    }
     $getName_result = mysqli_query($conn,"select * 
                     from (select student_id as id, name as name from student 
                           UNION 
@@ -178,5 +182,57 @@ function sendCodesEmail($email, $codes){
     else
         $error = 0;
     return $error;
+}
+function changePassword($conn,$id,$newPassword,$type){
+    switch ($type){
+        case 1:
+        {
+            $query_result = mysqli_query($conn, "select * from student 
+                                         where student_id ='$id';");
+            if($fetched = mysqli_fetch_array($query_result)){
+                if($fetched['check_code'] == 1){
+                    $update_result = mysqli_query($conn, "update student
+                                     set password = '$newPassword' AND check_code = -1
+                                     WHERE student_id = '$id';");
+                    if($update_result){
+                        return 0;//修改成功
+                    }
+                    else{
+                        return -1;//修改失败
+                    }
+                }
+                else{
+                    return -2;//用户还未通过验证
+                }
+            }
+            else{
+                return -3;//无此人
+            }
+        }
+        case 2:
+        {
+            $query_result = mysqli_query($conn, "select * from teacher 
+                                         where teacher_id ='$id';");
+            if($fetched = mysqli_fetch_array($query_result)){
+                if($fetched['check_code'] == 1){
+                    $update_result = mysqli_query($conn, "update teacher
+                                     set password = '$newPassword' AND check_code = -1
+                                     WHERE teacher_id = '$id';");
+                    if($update_result){
+                        return 0;//修改成功
+                    }
+                    else{
+                        return -1;//修改失败
+                    }
+                }
+                else{
+                    return -2;//用户还未通过验证
+                }
+            }
+            else{
+                return -3;//无此人
+            }
+        }
+    }
 }
 ?>

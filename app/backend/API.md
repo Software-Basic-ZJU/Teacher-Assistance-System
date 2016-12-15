@@ -151,6 +151,7 @@ POST——Teacher-Assistance-System/app/backend/aboutArticle/getArticles.php
             "content" => $fetched['content'],
             "author" => $fetched['author'],
             "time" => $fetched['time'],
+          "comment_num" => $num
         );
 ```
 

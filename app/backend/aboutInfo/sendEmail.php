@@ -16,19 +16,36 @@ loginCheck($_SERVER['HTTP_X_ACCESS_TOKEN']);
 //Get information
 $student_id = test_input(mysqli_escape_string($conn, $_POST['student_id']));
 $email = test_input(mysqli_escape_string($conn, $_POST['email']));
-if($_SESSION['student_id']!=$student_id){
-    $result = array(
-        "code" => 403,
-        "msg" => "无效用户尝试操作",
-        "res" => null
-    );
-    echo json_encode($result);
-    exit;
-}
-$check_code = rand(100000,999999);
-$query_result = mysqli_query($conn, "update student
+if($_SESSION['type']==1){//学生
+    if($_SESSION['student_id']!=$id){
+        $result = array(
+            "code" => 403,
+            "msg" => "无效用户尝试操作",
+            "res" => null
+        );
+        echo json_encode($result);
+        exit;
+    }
+    $check_code = rand(100000,999999);
+    $query_result = mysqli_query($conn, "update student
                                      set check_code = '$check_code'
-                                     WHERE student_id = '$student_id';");
+                                     WHERE student_id = '$id';");
+}
+elseif($_SESSION['type']==2){//教师
+    if($_SESSION['teacher_id']!=$id){
+        $result = array(
+            "code" => 403,
+            "msg" => "无效用户尝试操作",
+            "res" => null
+        );
+        echo json_encode($result);
+        exit;
+    }
+    $check_code = rand(100000,999999);
+    $query_result = mysqli_query($conn, "update teacher
+                                     set check_code = '$check_code'
+                                     WHERE teacher_id = '$id';");
+}
 if($query_result){
     $error = sendCodesEmail($email,$check_code);
     switch($error){

@@ -20,7 +20,7 @@ $query_result = mysqli_query($conn, "select * ,teacher.name as uploader_name,res
                  from resource join teacher on uploader_id = teacher_id and type = 0 and uploader_id = '$teacher_id';");
 if($query_result){
     $resourceList = array();
-    while($fetched = mysqli_fetch_array($query_result)){ //resourceList[String](resource_id,name,path,upload_time,uploader_name,size)
+    while($fetched = mysqli_fetch_array($query_result)){
         $resourceList[] = array(
             "resource_id" => $fetched['resrc_id'],
             "name" => $fetched['resource_name'],
