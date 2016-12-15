@@ -533,3 +533,76 @@ POST——Teacher-Assistance-System/app/backend/aboutInfo/changePassword.php
         )
 ```
 
+## 64、发验证邮件
+
+POST——Teacher-Assistance-System/app/backend/aboutInfo/sendEmail.php
+
+参数：student_id,email
+
+返回:
+
+```php
+    $result = array(
+        "code" => 403,
+        "msg" => "无效用户尝试操作",
+        "res" => null
+    );
+```
+
+```php
+                'code' => -1,
+                'msg' => "邮件发送失败，请检查你的邮箱地址",
+                'res' => array()
+```
+
+```php
+               'code' => 0,
+                'msg' => "成功发送邮件",
+                'res' => array(
+                    "token" => $_SESSION['token']
+                )
+```
+
+```php
+                'code' => -1,
+                'msg' => "邮件发送失败,邮件不在用户列表",
+                'res' => array()
+```
+
+```php
+        "code" => -1,
+        "msg" => "修改数据表check_code失败",
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
+```
+
+## 65、验证邮箱验证码
+
+POST——Teacher-Assistance-System/app/backend/aboutInfo/checkWithEmail.php
+
+参数：student_id,code
+
+返回:
+
+```php
+        "code" => 403,
+        "msg" => "无效用户尝试操作",
+        "res" => null
+```
+
+```php
+        "code" => 0,
+        "msg" => " 验证成功",
+        "res" => array(
+            'token' => $_SESSION['token']
+        )
+```
+
+```php
+        "code" => -1,
+        "msg" => "验证失败",
+        "res" => array(
+        )
+```
+
