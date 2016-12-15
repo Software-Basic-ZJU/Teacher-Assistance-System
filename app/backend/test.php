@@ -8,7 +8,7 @@
 <body>
 <!--,,,-->
 <h2>PHP 验证实例</h2>
-<form method="post" action="aboutTA/deleteTA.php">
+<form method="post" action="aboutTA/">
     <br><br>
     class_id：<input type="text" name="class_id">
     <br><br>
