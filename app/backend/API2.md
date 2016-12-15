@@ -420,3 +420,116 @@ POST——Teacher-Assistance-System/app/backend/aboutTA/deleteTA.php
         )
 ```
 
+## 61、修改学生信息
+
+POST——Teacher-Assistance-System/app/backend/aboutInfo/editStuInfo.php
+
+参数：student_id,name,email,question1、question2，answer1，answer2
+
+返回:
+
+```php
+    $result = array(
+        "code" => 403,
+        "msg" => "无效用户尝试删除",
+        "res" => null
+    );
+```
+
+```php
+        "code" => 0,
+        "msg" => "修改成功",
+        "res" => array(
+            'student_id' => $student_id,
+            'name' => $name,
+            'email' => $email,
+            'question1' => $question1,
+            'question2' => $question2,
+            "token" => $_SESSION['token']
+        )
+```
+
+```php
+    $result = array(
+        "code" => -1,
+        "msg" => "修改失败",
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
+    );
+```
+
+## 62、验证密保消息
+
+POST——Teacher-Assistance-System/app/backend/aboutInfo/checkQA.php
+
+参数：student_id,question1、question2，answer1，answer2
+
+返回:
+
+```php
+            $result = array(
+                "code" => 0,
+                "msg" => "验证成功",
+                "res" => array(
+                    "token" => $_SESSION['token']
+                )
+            );
+```
+
+```php
+                "code" => -1,
+                "msg" => "验证失败",
+                "res" => array(
+                    "token" => $_SESSION['token']
+                )
+```
+
+```php
+        "code" => -1,
+        "msg" => "无此学生",
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
+```
+
+## 63、修改密码
+
+POST——Teacher-Assistance-System/app/backend/aboutInfo/changePassword.php
+
+参数：student_id,newPassword
+
+返回:
+
+```php
+                "code" => 0,
+                "msg" => "修改成功",
+                "res" => array(
+                    "token" => $_SESSION['token']
+                )
+```
+
+```php
+                "code" => -1,
+                "msg" => "修改失败",
+                "res" => array(
+                    "token" => $_SESSION['token']
+                )
+```
+
+```php
+            "code" => -1,
+            "msg" => "用户还未通过验证",
+            "res" => array(
+                "token" => $_SESSION['token']
+            )
+```
+
+```php
+        "code" => -1,
+        "msg" => "无此学生",
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
+```
+

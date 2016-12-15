@@ -8,17 +8,22 @@
 <body>
 <!--,,,-->
 <h2>PHP 验证实例</h2>
-<form method="post" action="aboutTA/">
+<form method="post" action="aboutInfo/sendEmail.php">
     <br><br>
-    class_id：<input type="text" name="class_id">
+    student_id：<input type="text" name="student_id">
     <br><br>
-    teacher_id：<input type="text" name="teacher_id">
+    newPassword：<input type="text" name="newPassword">
     <br><br>
-    assist_id：<input type="text" name="assist_id">
+    email：<input type="text" name="email">
     <br><br>
-    assist_password：<input type="text" name="assist_password">
+    id：<input type="text" name="id">
     <br><br>
-    name：<input type="text" name="name">
+    type：<input type="text" name="type">
+    <br><br>
+    password：<input type="text" name="password">
+    <br><br>
+    answer2：<input type="text" name="answer2">
+    <br><br>
     <br><br>
     type：
     <input type="radio" name="type" value="0">0
