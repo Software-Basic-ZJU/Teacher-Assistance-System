@@ -6,20 +6,19 @@
     </style>
 </head>
 <body>
-
 <!--,,,-->
 <h2>PHP 验证实例</h2>
-<form method="post" action="aboutGroup/quitGroup.php">
-    <br><br>
-    student_id：<input type="text" name="student_id">
-    <br><br>
-    group_name：<input type="text" name="group_name">
-    <br><br>
-    password：<input type="text" name="password">
+<form method="post" action="aboutTA/deleteTA.php">
     <br><br>
     class_id：<input type="text" name="class_id">
     <br><br>
-    group_id：<input type="text" name="group_id">
+    teacher_id：<input type="text" name="teacher_id">
+    <br><br>
+    assist_id：<input type="text" name="assist_id">
+    <br><br>
+    assist_password：<input type="text" name="assist_password">
+    <br><br>
+    name：<input type="text" name="name">
     <br><br>
     type：
     <input type="radio" name="type" value="0">0
@@ -32,3 +31,13 @@
 
 </body>
 </html>
+<?php
+//date_default_timezone_set('Asia/Shanghai');
+//header('Content-type: application/json;charset=utf-8');
+//
+//include 'login/_include.php';
+//$password = encrypt("haha");
+//echo "this is :".$password;
+//echo "     hahahahaha      ";
+//echo decrypt($password);
+//?>

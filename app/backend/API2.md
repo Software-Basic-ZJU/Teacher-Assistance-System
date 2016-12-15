@@ -307,3 +307,116 @@ POST——Teacher-Assistance-System/app/backend/aboutGroup/quitGroup.php
     );
 ```
 
+## 58、增加助教
+
+POST——Teacher-Assistance-System/app/backend/aboutTA/addTA.php
+
+参数：class_id,teacher_id,assist_id,assist_password,name
+
+返回:
+
+```php
+            "code" => 0,
+            "msg" => "助教增加成功",
+            "res" => array(
+                'class_id' => $class_id,
+                'teacher_id' => $teacher_id,
+                'assist_id' => $assist_id,
+                'name' => $name,
+                "token" => $_SESSION['token']
+            )
+```
+
+```php
+            "code" => -1,
+            "msg" => "助教表,联系表未增加成功",
+            "res" => array(
+                'class_id' => $class_id,
+                'teacher_id' => $teacher_id,
+                'assist_id' => $assist_id,
+                'name' => $name,
+                "token" => $_SESSION['token']
+```
+
+```php
+        "code" => -1,
+        "msg" => "助教未增加成功",
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
+```
+
+## 59、获取助教列表
+
+POST——Teacher-Assistance-System/app/backend/aboutTA/getTAList.php
+
+参数：teacher_id
+
+返回:
+
+```php
+        "code" => 0,
+        "msg" => "查找成功",
+        "res" => array(
+            "token" => $_SESSION['token'],
+            "assistList" => $assistList
+        )
+        
+        $assistList[] = array(
+            "assist_id" => $fetched['assist_id'],
+            "class_id" => $fetched['class_id'],
+            "name" => $fetched['name'],
+        );
+
+```
+
+```php
+        "code" => -1,
+        "msg" => "查找失败，teacher_id错误",
+        "res" => array(
+            "token"=>$_SESSION['token']
+        )
+```
+
+## 60、删除助教
+
+POST——Teacher-Assistance-System/app/backend/aboutTA/deleteTA.php
+
+参数：teacher_id、assist_id
+
+返回:
+
+```php
+    $result = array(
+        "code" => 403,
+        "msg" => "无效用户尝试删除",
+        "res" => null
+    );
+```
+
+```php
+        $result = array(
+            "code" => 0,
+            "msg" => "删除成功",
+            "res" => array(
+                "token" => $_SESSION['token']
+            )
+        );
+```
+
+```php
+            "code" => 0,
+            "msg" => "联系表删除成功,助教表删除失败",
+            "res" => array(
+                "token" => $_SESSION['token']
+            )
+```
+
+```php
+        "code" => -1,
+        "msg" => "删除失败",
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
+```
+

@@ -11,7 +11,7 @@ global $conn;
 connectDB();
 // Get id and password and type
 $id = test_input(mysqli_escape_string($conn, $_POST['id']));
-$password = md5($_POST['password']);
+$password = encrypt($_POST['password']);
 $type = test_input(mysqli_escape_string($conn, $_POST['type']));
 // Check id and password and type
 //type: 1->student 2->teacher
@@ -24,7 +24,6 @@ if($type == 1){
         $class_id = $fetched['class_id'];
         $query_result2 = mysqli_query($conn, "select teacher_id from class_teacher where class_id ='$class_id'");
         if($fetched2 = mysqli_fetch_array($query_result2)){
-            //Token,id,class_id,teacher_id,name,type,group_id
             $result = array(
                 "code" => 1,
                 "msg" => "登陆成功",
