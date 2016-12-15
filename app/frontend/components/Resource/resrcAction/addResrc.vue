@@ -6,6 +6,16 @@
                 <el-form-item label="课件资源名称">
                     <el-input placeholder="课件资源名称" v-model="newResrc.name"></el-input>
                 </el-form-item>
+                <el-form label="是否对游客可见">游客是否可见：
+                    <el-switch
+                            v-model="newResrc.authority"
+                            on-text="否"
+                            on-color="#ff4949"
+                            off-text="是"
+                            off-color="#6ECADC"
+                    >
+                    </el-switch>
+                </el-form>
                 <el-upload
                         action="http://localhost:8000/backend/aboutResource/addResource.php"
                         type="drag"
@@ -39,6 +49,9 @@
     .el-input{
         width:200px;
     }
+    .el-upload{
+        margin-top:15px;
+    }
 </style>
 <script>
     import router from "../../../routes";
@@ -57,6 +70,7 @@
                 },
                 newResrc:{
                     resrcId:'',
+                    authority:0,
                     name:''
                 },
                 defaultFileList:[]

@@ -29,10 +29,12 @@ export const getResrcList=({commit})=>{
 // 确认添加或更新资源
 export const uploadResrc=({dispatch,commit},newResrc)=>{
     commit('resrcLoading',true);
+    console.log(newResrc);
     Vue.http.post('backend/aboutResource/resourceConfirm.php',
         {
             resource_id:newResrc.resrcId,
-            name:newResrc.name
+            name:newResrc.name,
+            authority:newResrc.authority
         }
     ).then((response)=>{
         let resp=response.body;

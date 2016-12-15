@@ -34,8 +34,8 @@ $post_id=!$_POST['post_id']?0:$_POST['post_id'];
 
 //Add resource
 $add_result = mysqli_query($conn,
-    "insert into resource (name,path,size,time,type,post_id,uploader_id) 
-     values('$name','$path','$size','$time','$type','$post_id','$uploader_id')");
+    "insert into resource (name,path,size,time,type,post_id,uploader_id,authority) 
+     values('$name','$path','$size','$time','$type','$post_id','$uploader_id','0')");
 
 if($add_result){
     $resource_id = mysqli_insert_id($conn);

@@ -39,8 +39,17 @@
                 </el-table-column>
                 <el-table-column
                         inline-template
+                        label="对游客可见"
+                        show-overflow-tooltip="true"
+                        min-width="80"
+                >
+                    <span>{{row.authority==0?'是':'否'}}</span>
+                </el-table-column>
+                <el-table-column
+                        inline-template
                         label="操作"
-                        width="180"
+                        width="160"
+                        fixed="right"
                 >
                     <span>
                         <el-button v-if="idenType!=1" size="small" :plain="true" type="danger" icon="delete" @click="removeResrc($index,row)"></el-button>
@@ -56,7 +65,7 @@
                     </el-form-item>
                     <el-form label="是否对游客可见">游客是否可见：
                         <el-switch
-                                v-model="currResrc.authority"
+                                v-model="authority"
                                 on-text="否"
                                 on-color="#ff4949"
                                 off-text="是"
@@ -139,9 +148,9 @@
                 currResrc:{
                     resrcId:'',
                     name:'',
-                    path:'',
-                    authority:false
+                    path:''
                 },
+                authority:false,    // 是否可见switch，不能放进表单，因为会发生组件锁住现象
                 header:{        //上传文件的请求头
                     "X-Access-Token":userInfo.token
                 },
@@ -161,7 +170,7 @@
             },
             ...mapState({
                 showEditResrc:state=>state.resource.showEdit,
-                 currIndex:state=>state.resource.resrcFilter,
+                currIndex:state=>state.resource.resrcFilter,
                 resrcLoading:state=>state.resource.loading
             })
         },
@@ -171,13 +180,13 @@
             },
             showEdit(index,row){        //显示修改资源对话框
                 console.log(row);
-
                 this.$store.dispatch('showEditResrc',true);
                 this.currResrc={
                     resrcId:row.resource_id,
                     name:row.name,
-                    path:row.path
+                    path:row.path,
                 }
+                this.authority=row.authority==0?false:true;
             },
             closeEdit(){            //关闭修改资源对话框
                 this.$store.dispatch('showEditResrc',false)
@@ -217,6 +226,7 @@
                     });
                     return;
                 }
+                this.currResrc.authority=this.authority?1:0;
                 this.$store.dispatch('uploadResrc',this.currResrc);
             },
             resrcFilter(tab){

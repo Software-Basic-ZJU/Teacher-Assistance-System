@@ -27,7 +27,8 @@ if($query_result){
             "path" =>"http://".$_SERVER['HTTP_HOST']."/backend/aboutResource/". $fetched['path'],
             "upload_time" => $fetched['time'],
             "uploader_name" => $fetched['uploader_name'],
-            "size" => $fetched['size']
+            "size" => $fetched['size'],
+            "authority"=>$fetched['authority']
         );
     }
     $result = array(

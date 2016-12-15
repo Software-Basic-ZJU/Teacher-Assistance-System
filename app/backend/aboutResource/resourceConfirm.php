@@ -16,6 +16,7 @@ loginCheck($_SERVER['HTTP_X_ACCESS_TOKEN']);
 //Get information
 $resource_id = test_input(mysqli_escape_string($conn, $_POST['resource_id']));
 $name = test_input(mysqli_escape_string($conn, $_POST['name']));
+$authority=test_input(mysqli_escape_string($conn, $_POST['authority']));
 
 /*$old_resource_id = test_input(mysqli_escape_string($conn, $_POST['old_resource_id']));
 if($old_resource_id != null){
@@ -44,7 +45,7 @@ if($old_resource_id != null){
 }*/
 
 $query_result = mysqli_query($conn, "update resource
-                                     set name = '$name'
+                                     set name = '$name',authority='$authority'
                                      WHERE resrc_id = '$resource_id';");
 if($query_result){
     $result = array(

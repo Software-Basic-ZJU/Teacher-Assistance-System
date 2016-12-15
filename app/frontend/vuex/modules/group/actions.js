@@ -44,6 +44,7 @@ export const createGroup=({commit},group)=>{
             members.push({
                 name:userInfo.name
             });
+            userInfo.group_id=resp.res.group_id;
             resp.res.group_member=members;
             resp.res.group_leader=userInfo.id;
             commit('updateUserInfo',userInfo);

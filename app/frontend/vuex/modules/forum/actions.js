@@ -106,6 +106,7 @@ export const addPost=({commit},payload)=>{
         let resp=response.body;
         if(!resp.code){
             commit('isFileUpload',false);
+            LS.removeItem('resource');
             router.replace({
                 name:'section',
                 params:{
@@ -131,6 +132,7 @@ export const editPost=({commit},payload)=>{
         let resp=response.body;
         if(!resp.code){
             commit('isFileUpload',false);
+            LS.removeItem('resource');
             router.replace({
                 name:'post',
                 params:{
