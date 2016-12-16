@@ -24,6 +24,7 @@ if($fetched = mysqli_fetch_array($query_result)){
         "msg"=>"获取身份成功",
         "res"=>array(
             "type"=>1,  //学生身份
+            "email"=>$fetched['email'],
             "question1"=>$question1,
             "question2"=>$question2
         )
@@ -39,6 +40,7 @@ else{
             "msg"=>"获取身份成功",
             "res"=>array(
                 "type"=>2,  //教师身份
+                "email"=>$fetched['email']
             )
         );
         echo json_encode($result);
@@ -47,9 +49,7 @@ else{
         $result = array(
             "code" => -1,
             "msg" => "该用户不存在",
-            "res" => array(
-                "token" => $_SESSION['token']
-            )
+            "res" => array()
         );
         echo json_encode($result);
     }

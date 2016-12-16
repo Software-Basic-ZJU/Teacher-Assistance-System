@@ -13,18 +13,39 @@ global $conn;
 connectDB();
 $id = test_input(mysqli_escape_string($conn, $_POST['id']));
 $type = test_input(mysqli_escape_string($conn, $_POST['type']));
-$email = test_input(mysqli_escape_string($conn, $_POST['email']));
 if($type==1){//学生
-    $check_code = rand(100000,999999);
-    $query_result = mysqli_query($conn, "update student
+    $query_result=mysqli_query($conn,"select email from student where student_id='$id'");
+    if($fetch=mysqli_fetch_array($query_result)){
+        $check_code = rand(100000,999999);
+        $query_result = mysqli_query($conn, "update student
                                      set check_code = '$check_code'
                                      WHERE student_id = '$id';");
+    }
+    else{
+        $result = array(
+            "code" => -1,
+            "msg" => "不存在该用户",
+            "res" => array()
+        );
+        echo json_encode($result);
+    }
 }
 elseif($type==2){//教师
-    $check_code = rand(100000,999999);
-    $query_result = mysqli_query($conn, "update teacher
+    $query_result=mysqli_query($conn,"select email from teacher where teacher_id='$id'");
+    if($fetch=mysqli_fetch_array($query_result)){
+        $check_code = rand(100000,999999);
+        $query_result = mysqli_query($conn, "update teacher
                                      set check_code = '$check_code'
                                      WHERE teacher_id = '$id';");
+    }
+    else{
+        $result = array(
+            "code" => -1,
+            "msg" => "不存在该用户",
+            "res" => array()
+        );
+        echo json_encode($result);
+    }
 }
 else{
     $result = array(
