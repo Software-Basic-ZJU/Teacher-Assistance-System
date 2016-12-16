@@ -1,6 +1,9 @@
 <template>
     <div>
         <div class="group">
+            <el-menu @select="goClassPath" :default-active="$route.params.cid" class="el-menu-vertical-demo" v-if="idenType!=1">
+                <el-menu-item v-for="item in classArr" :key="item.class_id" :index="item.class_id">{{item.class_name}}</el-menu-item>
+            </el-menu>
             <div class="btnGroup" v-if="!isInGroup && idenType==1">
                 <el-button @click="showGroupAction(0)">创建小组</el-button>
             </div>
@@ -36,10 +39,9 @@
                 <el-table-column
                         inline-template
                         label="操作"
-                        width="120"
+                        width="180"
                 >
                     <span>
-                        <el-button @click="goGroupForum($index,row)" size="small" v-if="idenType!=1">进入讨论区</el-button>
                         <el-button
                                 type="danger"
                                 @click="quitGroup($index,row)"
@@ -52,13 +54,14 @@
                                 @click="deleteGroup($index,row)"
                                 :plain="true"
                                 size="small"
-                                v-if="idenType==1 && sid==row.group_leader"
+                                v-if="(idenType==1 && sid==row.group_leader) || idenType!=1"
                         >解散</el-button>
+                        <el-button @click="goGroupForum($index,row)" size="small" v-if="idenType!=1">进入讨论区</el-button>
                         <el-button
                                 type="primary"
                                 size="small"
                                 @click="showGroupAction(1,row.group_id)"
-                                v-if="(!groupId || groupId==-1) && sid!=row.group_leader"
+                                v-if="idenType==1 && (!groupId || groupId==-1) && sid!=row.group_leader"
                         >加入小组</el-button>
                     </span>
                 </el-table-column>
@@ -93,6 +96,17 @@
     .group .el-table{
         margin-top:10px;
     }
+    .group .el-menu{
+        position: absolute;
+        width:250px;
+        text-align: center;
+        left:-260px;
+        top:350px;
+        background-color:white;
+        -webkit-box-shadow: 0 1px 5px 0 rgba(0,34,77,.1);
+        -moz-box-shadow: 0 1px 5px 0 rgba(0,34,77,.1);
+        box-shadow: 0 1px 5px 0 rgba(0,34,77,.1);
+    }
 </style>
 <script>
     import {mapState} from 'vuex';
@@ -101,7 +115,7 @@
     export default{
         data(){
             let userInfo=LS.getItem('userInfo');
-            this.$store.dispatch('getGroupList');
+            this.$store.dispatch('getGroupList',this.$route.params.cid);
             return {
                 sid:userInfo.id,          //用户id
                 actionType: 0,           //0为创建小组,1为加入小组
@@ -111,7 +125,8 @@
                     name: '',
                     password: ''
                 },
-                idenType:userInfo.type
+                idenType:userInfo.type,
+                classArr:userInfo.class_id
             }
         },
         computed: {
@@ -127,6 +142,15 @@
             }
         },
         methods: {
+            goClassPath(index){
+                this.$store.dispatch('getGroupList',index);
+                router.push({
+                    name:'member',
+                    params:{
+                        cid:index
+                    }
+                })
+            },
             submitGroup(){
                 let action = this.actionType ? 'joinGroup' : 'createGroup';
                 this.$store.dispatch(action, this.group);

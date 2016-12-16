@@ -221,7 +221,7 @@ const routes=[
             },
             {
                 name:'member',
-                path:'/member',
+                path:'/member/:cid',
                 component:Group
             },
         ]

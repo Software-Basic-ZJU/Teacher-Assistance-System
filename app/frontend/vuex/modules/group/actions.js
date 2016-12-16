@@ -2,13 +2,11 @@ import Vue from 'vue';
 import {LS} from '../../../helpers/utils';
 
 // 获取小组列表
-export const getGroupList=({commit})=>{
-    let userInfo = LS.getItem('userInfo');
-    if(!userInfo || !userInfo.token) return commit('logout');
+export const getGroupList=({commit},classId)=>{
     commit('isLoading',true);
     Vue.http.post("backend/aboutGroup/getGroupList.php",
         {
-            class_id:userInfo.class_id
+            class_id:classId
         }
     ).then((response)=>{
         let resp=response.body;

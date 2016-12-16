@@ -128,7 +128,8 @@
                     },
                     {
                         linkName:"小组名单",
-                        path:"/member",
+                        root:"/member",
+                        path:"/member/"+(userInfo.type==1?userInfo.class_id:userInfo.class_id[0].class_id),
                         icon:"icon-group"
 
                     }

@@ -15,7 +15,6 @@ connectDB();
 loginCheck($_SERVER['HTTP_X_ACCESS_TOKEN']);
 //Get information
 $class_id = test_input(mysqli_escape_string($conn, $_POST['class_id']));
-
 $query_result = mysqli_query($conn, "select * from course_assist.group 
                                          where class_id ='$class_id'");
 if($query_result){

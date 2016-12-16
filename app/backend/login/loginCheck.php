@@ -7,7 +7,7 @@
  */
 function connectDB(){
     global $conn;
-    $conn = mysqli_connect("127.0.0.1","root","root","course_assist");
+    $conn = mysqli_connect("127.0.0.1","root","","course_assist");
     $conn->query("set names 'utf8'");
     if(mysqli_connect_errno()){
         printf("Connect failed: %s\n", mysqli_connect_errno());
@@ -90,6 +90,7 @@ function loginCheck($token){
         }
         elseif($token_array[1]==3){
             $_SESSION['assist_id'] = $fetched['assist_id'];
+            $_SESSION['teacher_id']=$fetched['teacher_id'];
         }
         $_SESSION['type']= $token_array[1];
         $new_token = encrypt($token_array[0]."-".$token_array[1]."-".time());

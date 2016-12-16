@@ -15,6 +15,7 @@
                         <!--<i class="iconfont icon-setting fl" @click="goRoute"></i>-->
                         <i class="iconfont icon-user fl" @click="showUserInfo = true"></i>
                         <i class="iconfont icon-jiaoshixinxi fl" v-if="identify==1" @click="showTAmanage = true"></i>
+                        <i class="iconfont icon-tuichudenglu fl" @click="logout"></i>
                         <div class="cl"></div>
                     </div>
                 </div>
@@ -83,6 +84,11 @@
         height:28px;
         padding-top:2px;
     }
+    .actionBox .iconfont.icon-tuichudenglu{
+        font-size:20px;
+        padding-top:3px;
+        height:28px;
+    }
     .actionBox .iconfont:hover{
         background-color: #EFF2F7;
     }
@@ -117,6 +123,9 @@
             goRoute(){
 
             },
+            logout(){
+                this.$store.dispatch('logout');
+            }
         },
         components:{
             Mail,
