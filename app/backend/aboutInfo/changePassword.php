@@ -15,7 +15,7 @@ connectDB();
 $id = test_input(mysqli_escape_string($conn, $_POST['id']));
 $oldPassword = encrypt(test_input(mysqli_escape_string($conn, $_POST['oldPassword'])));
 $newPassword = encrypt(test_input(mysqli_escape_string($conn, $_POST['newPassword'])));
-$type = $_SESSION['type'];
+$type = test_input(mysqli_escape_string($conn, $_POST['type']));
 if($type == 1){//学生
     $query_result = mysqli_query($conn, "select * from student 
                                          where student_id ='$id'");
@@ -26,9 +26,7 @@ if($type == 1){//学生
             $result = array(
                 "code" => 0,
                 "msg" => "修改成功",
-                "res" => array(
-                    "token" => $_SESSION['token']
-                )
+                "res" => array()
             );
             echo json_encode($result);
             exit;
@@ -63,9 +61,7 @@ elseif($type == 2){//教师
             $result = array(
                 "code" => 0,
                 "msg" => "修改成功",
-                "res" => array(
-                    "token" => $_SESSION['token']
-                )
+                "res" => array()
             );
             echo json_encode($result);
             exit;
