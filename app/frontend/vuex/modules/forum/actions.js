@@ -241,56 +241,59 @@ export const isReplyShow=({commit},signal)=>{
 export const addPostComment=({commit},payload)=>{
     let userInfo=LS.getItem('userInfo');
     if(!userInfo || !userInfo.token) return commit('logout');
-    commit('replyPostLoading',true);
-    Vue.http.post("backend/aboutComment/addComment.php",
-        {
-            target_id:payload.repostId,
-            author_id:userInfo.id,
-            content:payload.content,
-            type:payload.type
-        }
-    ).then((response)=>{
-        let resp=response.body;
-        if(!resp.code){
-            Vue.prototype.$message({
-                type:"success",
-                message:resp.msg
-            });
-            commit('addPostComment',{
-                repostId:payload.repostId,
-                newComm:resp.res
-            });
-        }
-    }).then(()=>{
-        commit('replyPostLoading',false);
+    return new Promise((resolve,reject)=>{
+        Vue.http.post("backend/aboutComment/addComment.php",
+            {
+                target_id:payload.repostId,
+                author_id:userInfo.id,
+                content:payload.content,
+                type:payload.type
+            }
+        ).then((response)=>{
+            let resp=response.body;
+            if(!resp.code){
+                Vue.prototype.$message({
+                    type:"success",
+                    message:resp.msg
+                });
+                commit('addPostComment',{
+                    repostId:payload.repostId,
+                    newComm:resp.res
+                });
+            }
+        }).then(()=>{
+            resolve();
+        })
     })
 };
 
 // 删除评论
 export const removePostComment=({commit},payload)=>{
-    commit('replyPostLoading',true);
-    Vue.http.post("backend/aboutComment/deleteComment.php",
-        {
-            com_id:payload.comId
-        }
-    ).then((response)=>{
-        let resp=response.body;
-        if(!resp.code){
-            Vue.prototype.$message({
-                type:"success",
-                message:resp.msg
-            });
-            commit('removePostComment',{
-                repostId:payload.repostId,
-                comId:payload.comId
-            });
-        }
-    }).then(()=>{
-        commit('replyPostLoading',false);
+    return new Promise((resolve,reject)=>{
+        Vue.http.post("backend/aboutComment/deleteComment.php",
+            {
+                com_id:payload.comId
+            }
+        ).then((response)=>{
+            let resp=response.body;
+            if(!resp.code){
+                Vue.prototype.$message({
+                    type:"success",
+                    message:resp.msg
+                });
+                commit('removePostComment',{
+                    repostId:payload.repostId,
+                    comId:payload.comId
+                });
+            }
+        }).then(()=>{
+            resolve();
+        })
     })
 };
 
-export const publish=({commit},info)=>{
-    commit('publish',info);
+// 翻页
+export const changePostPage=({commit},info)=>{
+    commit('changePostPage',info);
 
 };

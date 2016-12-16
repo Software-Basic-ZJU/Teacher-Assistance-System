@@ -155,6 +155,12 @@
         },
         methods:{
             publish(){
+                if(!this.data.title){
+                    return this.$message({
+                        type:'error',
+                        message:'标题不能为空'
+                    })
+                }
                 this.data.content=this.editor.$txt.html();
                 let params=this.$route.params;
                 let method=this.method;

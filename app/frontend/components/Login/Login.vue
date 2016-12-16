@@ -18,6 +18,7 @@
                     <el-form-item>
                         <el-button type="primary" @click="login" :loading="isLoading">登录</el-button>
                         <el-button>返回首页</el-button>
+                        <router-link to="/findPswd"><el-button type="text">忘记密码</el-button></router-link>
                     </el-form-item>
                 </el-form>
             </div>
@@ -47,6 +48,9 @@
     }
     .el-button--primary{
         margin-top:20px;
+    }
+    .el-button--text{
+        margin-left:10px;
     }
 </style>
 <script>

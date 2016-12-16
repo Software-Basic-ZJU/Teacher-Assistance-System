@@ -1,7 +1,7 @@
 <template>
     <div>
         <div @click="showCom" class="replyShowBtn"><i class="iconfont icon-pinglun"></i> ({{replyNum}})</div>
-        <div class="commentList" v-show="listShow">
+        <div class="commentList" v-show="listShow" v-loading.body="comLoading">
             <div class="commentItem" v-for="item in commentList">
                 <div class="content"><span class="authorName">{{item.author_name}}</span>：{{item.content}}</div>
                 <div class="footer">
@@ -16,7 +16,7 @@
             <div class="addCommentBox" v-show="isAddComShow">
                 <el-input type="textarea" v-model="comment"></el-input>
                 <el-button type="text" @click.stop="showAddCom(false)" size="small">取消</el-button>
-                <el-button type="primary" @click="submitComment(rpid)" size="small">评论</el-button>
+                <el-button type="primary" @click="submitComment(rpid)" size="small" :loading="addLoading">评论</el-button>
             </div>
         </div>
     </div>
@@ -74,7 +74,8 @@
                 id:userInfo.id,
                 comment:'',
                 listShow:false,                 //是否显示评论列表
-                isAddComShow:false              //是否显示添加评论表单
+                isAddComShow:false,              //是否显示添加评论表单
+                comLoading:false
             }
         },
         props:{
@@ -99,10 +100,13 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
+                    this.comLoading=true;
                     this.$store.dispatch(this.removeMethod,{
                         comId:comId,
                         repostId:rpid
-                    });
+                    }).then(()=>{
+                    this.comLoading=false;
+                });
                 }).catch(() => {});
             },
             replyComment(authorName){
@@ -116,12 +120,15 @@
                         message:'请输入评论内容'
                     })
                 }
+                this.comLoading=true;
                 this.$store.dispatch(this.addMethod,{
                     repostId:repostId,
                     content:this.comment,
                     type:1
+                }).then(()=>{
+                    this.comLoading=false;
+                    this.isAddComShow=false;
                 });
-                this.isAddComShow=false;
             }
         }
     }

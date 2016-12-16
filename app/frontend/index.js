@@ -47,7 +47,6 @@ Vue.http.interceptors.push((req,next)=>{
                 type:'error',
                 message:'请求超时，请稍后重试'
             });
-            return;
         }
         if(!response.body){
             Vue.prototype.$message({
@@ -75,9 +74,12 @@ Vue.http.interceptors.push((req,next)=>{
         else{
             if(response.body.res && response.body.res.token) {      //更新token
                 let userInfo=LS.getItem("userInfo") || {};
-                userInfo.token = response.body.res.token;
-                Vue.http.headers.common["X-Access-Token"] = response.body.res.token;
-                LS.setItem("userInfo", userInfo);
+                if(userInfo && userInfo.token) {
+                    userInfo.token = response.body.res.token;
+                    Vue.http.headers.common["X-Access-Token"] = response.body.res.token;
+                    LS.setItem("userInfo", userInfo);
+                }
+                //刚登录时无token，由相应action作特别处理
             }
         }
     })

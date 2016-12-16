@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="mainBox" v-loading.body="loading">
+        <div class="mainBox">
             <div class="leftBox fl">
                 <el-menu
                         :default-active="currIndex"
@@ -11,26 +11,27 @@
                     <el-menu-item index="3">发送信件</el-menu-item>
                 </el-menu>
             </div>
-            <div class="rightBox">
+            <div class="rightBox" v-loading.body="loading">
                 <div class="main">
-
                     <!-- mail list -->
                     <div v-if="!toSend && !detailShow">
                         <div class="mailList">
                             <mail-item
                                     v-for="item in mailList"
-                                    :key="item.mailId"
-                                    :mail-id="item.mailId"
-                                    :is-read="item.isRead"
-                                    :sender="item.srcName||item.destName"
+                                    :key="item.mail_id"
+                                    :mail-id="item.mail_id"
+                                    :is-read="item.is_read"
+                                    :sender="item.src_name || item.dest_name"
                                     :title="item.title"
                                     :datetime="item.time"
                             ></mail-item>
                         </div>
                         <el-pagination
                                 small
+                                page-size="9"
+                                @current-change="changePage"
                                 layout="prev,pager,next"
-                                :total="100"
+                                :total="mailNum"
                                 class="fr"
                         ></el-pagination>
                     </div>
@@ -63,11 +64,11 @@
     }
     .mainBox .rightBox .main{
         width:100%;
-        height:410px;
+        height:425px;
     }
     .mainBox .mailList{
         position:relative;
-        height:380px;
+        height:390px;
     }
 </style>
 <script>
@@ -92,27 +93,33 @@
             }),
             mailList(){
                 return this.$store.getters.mailList
+            },
+            mailNum(){
+                return this.$store.getters.mailNum;
             }
         },
         methods:{
             selectPage(index){
                 switch(index){
-                    case '1':
+                    case '1':       //收件箱
                         this.$store.dispatch('showToSend',false);
                         this.$store.dispatch('showMailDetail',false);
                         this.$store.dispatch('updateMailType',0);
                         break;
-                    case '2':
+                    case '2':       //发件箱
                         this.$store.dispatch('showToSend',false);
                         this.$store.dispatch('showMailDetail',false);
                         this.$store.dispatch('updateMailType',1);
                         break;
-                    case '3':
+                    case '3':       //发邮件表单
                         this.$store.dispatch('showMailDetail',false);
                         this.$store.dispatch('showToSend',true);
                         break;
                     default:break;
                 }
+            },
+            changePage(val){
+                this.$store.dispatch('changeMailPage',val);
             }
         },
         components:{

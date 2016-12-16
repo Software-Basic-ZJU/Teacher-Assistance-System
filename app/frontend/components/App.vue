@@ -94,9 +94,17 @@
 
     export default{
         data(){
-//            router.replace({name:'login'});
             let userInfo=LS.getItem("userInfo");
-            this.$store.dispatch('updateUserInfo',userInfo);
+            if(!userInfo || !userInfo.token) {
+                router.replace({name:'login'});
+                return {};
+            }
+            this.$store.dispatch('updateUserInfo',userInfo);        //重要!将用户信息注入store
+
+            // 获取邮件
+            this.$store.dispatch('getRecMail');
+            this.$store.dispatch('getSendMail');
+
             return {
                 menu: [
                     {

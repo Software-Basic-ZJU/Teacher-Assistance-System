@@ -77,6 +77,7 @@
         data(){
             let userInfo=LS.getItem('userInfo');
             this.$store.dispatch('getForumInfo');
+            this.$store.dispatch('changePostPage',1);   //重置各版块至第一页
             return{
                 idenType:userInfo.type
             }

@@ -34,7 +34,7 @@ import {
     addPost,
     editPost,
     Group,
-    EditPswd,
+    FindPswd,
     Login,
 
 } from "./components";
@@ -223,13 +223,13 @@ const routes=[
                 name:'member',
                 path:'/member/:cid',
                 component:Group
-            },
+            }
         ]
     },
     {
-        name:'editPswd',
-        path:'/editPswd',
-        component:EditPswd
+        name:'findPswd',
+        path:'/findPswd',
+        component:FindPswd
     }
 ]
 
@@ -242,7 +242,7 @@ router.beforeEach((to,from,next)=>{
     if(to.name!='login') {
         let userInfo = LS.getItem("userInfo");
         if (!userInfo || !userInfo.token) {
-            router.push({name: 'login'});
+            next({name:'login'});
         }
     }
     next();

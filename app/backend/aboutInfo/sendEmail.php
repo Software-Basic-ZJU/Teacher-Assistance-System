@@ -11,41 +11,30 @@ session_start();
 include '../login/_include.php';
 global $conn;
 connectDB();
-//Verify token
-loginCheck($_SERVER['HTTP_X_ACCESS_TOKEN']);
-//Get information
-$student_id = test_input(mysqli_escape_string($conn, $_POST['student_id']));
+$id = test_input(mysqli_escape_string($conn, $_POST['id']));
+$type = test_input(mysqli_escape_string($conn, $_POST['type']));
 $email = test_input(mysqli_escape_string($conn, $_POST['email']));
-if($_SESSION['type']==1){//学生
-    if($_SESSION['student_id']!=$id){
-        $result = array(
-            "code" => 403,
-            "msg" => "无效用户尝试操作",
-            "res" => null
-        );
-        echo json_encode($result);
-        exit;
-    }
+if($type==1){//学生
     $check_code = rand(100000,999999);
     $query_result = mysqli_query($conn, "update student
                                      set check_code = '$check_code'
                                      WHERE student_id = '$id';");
 }
-elseif($_SESSION['type']==2){//教师
-    if($_SESSION['teacher_id']!=$id){
-        $result = array(
-            "code" => 403,
-            "msg" => "无效用户尝试操作",
-            "res" => null
-        );
-        echo json_encode($result);
-        exit;
-    }
+elseif($type==2){//教师
     $check_code = rand(100000,999999);
     $query_result = mysqli_query($conn, "update teacher
                                      set check_code = '$check_code'
                                      WHERE teacher_id = '$id';");
 }
+else{
+    $result = array(
+        "code" => -1,
+        "msg" => "用户身份无效",
+        "res" => array()
+    );
+    echo json_encode($result);
+}
+
 if($query_result){
     $error = sendCodesEmail($email,$check_code);
     switch($error){
@@ -62,9 +51,7 @@ if($query_result){
             $result = array(
                 'code' => 0,
                 'msg' => "成功发送邮件",
-                'res' => array(
-                    "token" => $_SESSION['token']
-                )
+                'res' => array()
             );
             echo json_encode($result);
             exit;
@@ -84,9 +71,7 @@ else{
     $result = array(
         "code" => -1,
         "msg" => "修改数据表check_code失败",
-        "res" => array(
-            "token" => $_SESSION['token']
-        )
+        "res" => array()
     );
     echo json_encode($result);
 }

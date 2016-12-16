@@ -32,7 +32,7 @@ if($type == 1){
                     'group_id'=>$fetched['group_id'],
                     'email' => $fetched['email'],
                     'question1' => $fetched['question1'],
-                    'question2' => $fetched['question1'],
+                    'question2' => $fetched['question1']
                 )
             );
             echo json_encode($result);

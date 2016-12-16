@@ -18,9 +18,8 @@ $dest_id = test_input(mysqli_escape_string($conn, $_POST['dest_id']));
 $src_id = test_input(mysqli_escape_string($conn, $_POST['src_id']));
 $title = test_input(mysqli_escape_string($conn, $_POST['title']));
 $content = test_input(mysqli_escape_string($conn, $_POST['content']));
-$time = date('y-m-d H:i:s',time());
+$time = date('Y-m-d H:i:s',time());
 $src_name = getAuthorName($conn,$src_id);
-$dest_name = getAuthorName($conn,$dest_id);
 if($dest_id == $src_id){
     $result = array(
         "code" => -1,
@@ -32,6 +31,25 @@ if($dest_id == $src_id){
     echo json_encode($result);
     exit;
 }
+
+$getName_result = mysqli_query($conn,"select * 
+                    from (select student_id as id, name as name from student 
+                          UNION 
+                          select teacher_id as id ,name as name from teacher) as temp
+                    WHERE temp.id = '$dest_id';");
+if($fetched_name = mysqli_fetch_array($getName_result)){
+    $dest_name = $fetched_name['name'];
+}
+else{
+    $result = array(
+        "code" => -1,
+        "msg" => "收件人ID不存在",
+        "res" => null
+    );
+    echo json_encode($result);
+    exit;
+}
+
 $query_result = mysqli_query($conn, "INSERT INTO mail 
                                      (title,content,time,src_id,dest_id,is_read,flag) 
                                       values('$title','$content','$time','$src_id','$dest_id',0,0);");

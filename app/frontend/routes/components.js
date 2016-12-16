@@ -196,8 +196,8 @@ export const Group=resolve=>{
     })
 };
 
-export const EditPswd=resolve=>{
-    require.ensure(['../components/Global/User/EditPswd.vue'],()=>{
-        resolve(require('../components/Global/User/EditPswd.vue'))
+export const FindPswd=resolve=>{
+    require.ensure(['../components/Login/FindPswd.vue'],()=>{
+        resolve(require('../components/Login/FindPswd.vue'))
     })
 };

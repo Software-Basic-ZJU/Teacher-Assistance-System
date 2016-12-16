@@ -11,7 +11,7 @@
                     :author="item.author"
                     :publish-time="item.time"
                     :content="item.content"
-                    :reply-num="item.replyNum"
+                    :reply-num="item.comment_num"
             >
             </article-item>
             <el-pagination

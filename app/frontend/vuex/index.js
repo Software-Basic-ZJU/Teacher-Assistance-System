@@ -16,12 +16,13 @@ import router from "../routes";
 Vue.use(Vuex);
 
 const state={
-    loading:false,                  //全局loading state,遮盖主体.各组件中有局部loading
+    loading:false,                 //全局loading state,遮盖主体.各组件中有局部loading
     isLogin:false,
     userInfo:{},                    //身份为老师或助教时，class_id为数组
-    showCompleteInfo:false,         //补全信息对话框显示开关
-    editorLoading:false,             //编辑器的loading
-    isFileUpload:false                //检测编辑器中是否已有文件上传
+    showCompleteInfo:false,        //补全信息对话框显示开关
+    editorLoading:false,           //编辑器的loading
+    isFileUpload:false,            //检测编辑器中是否已有文件上传
+    checkStep:0,                    //找回密码step，分0,1,2,3。3为结果态
 };
 
 const mutations={
@@ -44,6 +45,9 @@ const mutations={
     },
     isFileUpload(state,signal){
         state.isFileUpload=signal;
+    },
+    goFindStep(state,val){
+        state.checkStep=val;
     }
 };
 

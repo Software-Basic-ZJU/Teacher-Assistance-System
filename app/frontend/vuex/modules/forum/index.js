@@ -37,7 +37,8 @@ const state={
         resource:{},
         defaultFile:[],
         repostList:[]
-    }
+    },
+    currPage:1          //当前页
 };
 
 const mutations={
@@ -100,6 +101,9 @@ const mutations={
                 return;
             }
         })
+    },
+    changePostPage(state,val){
+        state.currPage=val;
     }
 };
 

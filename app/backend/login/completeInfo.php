@@ -17,6 +17,10 @@ loginCheck($_SERVER['HTTP_X_ACCESS_TOKEN']);
 $student_id = test_input(mysqli_escape_string($conn, $_POST['student_id']));
 $name = test_input(mysqli_escape_string($conn, $_POST['name']));
 $email = test_input(mysqli_escape_string($conn, $_POST['email']));
+$question1 = test_input(mysqli_escape_string($conn, $_POST['question1']));
+$question2 = test_input(mysqli_escape_string($conn, $_POST['question2']));
+$answer1 = encrypt(test_input(mysqli_escape_string($conn, $_POST['answer1'])));
+$answer2 = encrypt(test_input(mysqli_escape_string($conn, $_POST['answer2'])));
 if($_SESSION['student_id']!=$student_id){
     $result = array(
         "code" => 403,
@@ -28,16 +32,18 @@ if($_SESSION['student_id']!=$student_id){
 }
 
 $query_result = mysqli_query($conn, "update student
-                                     set name = '$name',email = '$email'
+                                     set name = '$name',email = '$email',question1 = '$question1',question2 = '$question2',answer1 = '$answer1',answer2 = '$answer2'
                                      WHERE student_id = '$student_id';");
 if($query_result){
     $result = array(
         "code" => 0,
-        "msg" => "修改成功",
+        "msg" => "补全信息成功",
         "res" => array(
             'student_id' => $student_id,
             'name' => $name,
             'email' => $email,
+            'question1' => $question1,
+            'question2' => $question2,
             "token" => $_SESSION['token']
         )
     );

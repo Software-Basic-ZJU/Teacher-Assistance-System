@@ -58,7 +58,7 @@
                         },
                         {
                             max:500,
-                            message:'字数请限制在1000个字符内',
+                            message:'字数请限制在500个字符内',
                             trigger:'blur'
                         }
                     ]
@@ -79,7 +79,7 @@
             sendMail(){
                 this.$refs.mailForm.validate((valid)=>{
                     if(valid){
-                        console.log(this.mailForm);
+                        this.$store.dispatch('sendMail',this.mailForm);
                     }
                 })
             }

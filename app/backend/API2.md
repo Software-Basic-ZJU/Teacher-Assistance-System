@@ -424,7 +424,7 @@ POST——Teacher-Assistance-System/app/backend/aboutTA/deleteTA.php
 
 POST——Teacher-Assistance-System/app/backend/aboutInfo/editStuInfo.php
 
-参数：student_id,name,email,question1、question2，answer1，answer2
+参数：student_id,name,email
 
 返回:
 
@@ -459,11 +459,50 @@ POST——Teacher-Assistance-System/app/backend/aboutInfo/editStuInfo.php
     );
 ```
 
-## 62、验证密保消息
+## 62、补全学生信息
+
+POST——Teacher-Assistance-System/app/backend/login/completeInfo.php
+
+参数：student_id,name,email,question1,question2,answer1,answer2
+
+返回:
+
+```php
+    $result = array(
+        "code" => 403,
+        "msg" => "无效用户尝试删除",
+        "res" => null
+    );
+```
+
+```php
+        "code" => 0,
+        "msg" => "修改成功",
+        "res" => array(
+            'student_id' => $student_id,
+            'name' => $name,
+            'email' => $email,
+            'question1' => $question1,
+            'question2' => $question2,
+            "token" => $_SESSION['token']
+        )
+```
+
+```php
+    $result = array(
+        "code" => -1,
+        "msg" => "修改失败",
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
+    );
+```
+
+## 63、验证密保消息
 
 POST——Teacher-Assistance-System/app/backend/aboutInfo/checkQA.php
 
-参数：student_id,question1、question2，answer1，answer2
+参数：student_id,question,answer
 
 返回:
 
@@ -493,7 +532,7 @@ POST——Teacher-Assistance-System/app/backend/aboutInfo/checkQA.php
         )
 ```
 
-## 63、修改密码(忘记密码之后修改密码使用此脚本)
+## 64、修改密码(忘记密码之后修改密码使用此脚本)
 
 POST——Teacher-Assistance-System/app/backend/aboutInfo/changeForgetPassword.php
 
@@ -533,11 +572,11 @@ POST——Teacher-Assistance-System/app/backend/aboutInfo/changeForgetPassword.p
         )
 ```
 
-## 64、发验证邮件
+## 65、发验证邮件
 
 POST——Teacher-Assistance-System/app/backend/aboutInfo/sendEmail.php
 
-参数：student_id,email
+参数：id,email.type
 
 返回:
 
@@ -577,11 +616,11 @@ POST——Teacher-Assistance-System/app/backend/aboutInfo/sendEmail.php
         )
 ```
 
-## 65、验证邮箱验证码
+## 66、验证邮箱验证码
 
 POST——Teacher-Assistance-System/app/backend/aboutInfo/checkWithEmail.php
 
-参数：student_id,code
+参数：id,code
 
 返回:
 
@@ -606,11 +645,11 @@ POST——Teacher-Assistance-System/app/backend/aboutInfo/checkWithEmail.php
         )
 ```
 
-## 66、修改密码（新旧密码都知道）
+## 67、修改密码（新旧密码都知道）
 
 POST——Teacher-Assistance-System/app/backend/aboutInfo/changePassword
 
-参数：student_id,oldPassword,newPassword
+参数：id,oldPassword,newPassword
 
 返回:
 
@@ -637,3 +676,26 @@ POST——Teacher-Assistance-System/app/backend/aboutInfo/changePassword
         );
 ```
 
+
+## 68、根据用户名获取问题
+POST——Teacher-Assistance-System/app/backend/aboutInfo/getIdenQues.php
+
+参数：student_id,oldPassword,newPassword
+
+返回:
+
+```php
+                "code" => 0,
+                "msg" => "获取问题成功",
+                "res" => array(
+                    "question1"=>$question1,
+                    "question2"=>$question2
+                )
+```
+
+```php
+
+                "code" => -1,
+                "msg" => "该用户不存在",
+                "res" => array()
+```

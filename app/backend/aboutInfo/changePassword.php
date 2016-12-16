@@ -11,8 +11,6 @@ session_start();
 include '../login/_include.php';
 global $conn;
 connectDB();
-//Verify token
-loginCheck($_SERVER['HTTP_X_ACCESS_TOKEN']);
 //Get information
 $id = test_input(mysqli_escape_string($conn, $_POST['id']));
 $oldPassword = encrypt(test_input(mysqli_escape_string($conn, $_POST['oldPassword'])));

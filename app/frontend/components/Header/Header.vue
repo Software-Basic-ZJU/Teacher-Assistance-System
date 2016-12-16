@@ -8,10 +8,10 @@
                 </div>
                 <div class="actionBox fr">
                     <div class="topBox">
-                        <i class="iconfont icon-search fl" @click="search"></i>
-                        <el-badge is-dot class="item fl">
-                            <i class="iconfont icon-i-mail fl" @click="showMail = true"></i>
+                        <el-badge is-dot class="item fl" v-if="hasUnRead">
+                            <i class="iconfont icon-i-mail fl" @click="showMail = true" ></i>
                         </el-badge>
+                        <i class="iconfont icon-i-mail fl" @click="showMail = true" v-if="!hasUnRead"></i>
                         <!--<i class="iconfont icon-setting fl" @click="goRoute"></i>-->
                         <i class="iconfont icon-user fl" @click="showUserInfo = true"></i>
                         <i class="iconfont icon-jiaoshixinxi fl" v-if="identify==1" @click="showTAmanage = true"></i>
@@ -116,6 +116,11 @@
                 identify:1
             }
         },
+        computed:{
+            hasUnRead(){
+                return this.$store.getters.mailUnRead;
+            }
+        },
         methods:{
             search(){
 
@@ -124,7 +129,13 @@
 
             },
             logout(){
-                this.$store.dispatch('logout');
+                this.$confirm('确认要登出吗？', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.$store.dispatch('logout');
+                }).catch(() => {});
             }
         },
         components:{

@@ -20,8 +20,15 @@
                         :update-time="item.update_time"
                         :reply-num="item.reply_num"
                 ></post-item>
+                <el-pagination
+                        small
+                        @current-change="changePage"
+                        page-size="8"
+                        :current-page="currPage"
+                        layout="prev,pager,next"
+                        :total="postNum"
+                ></el-pagination>
             </div>
-
         </div>
     </div>
 </template>
@@ -31,6 +38,9 @@
     }
     .el-button--success{
         margin-top:-45px;
+    }
+    .el-pagination{
+        margin-top:10px;
     }
 </style>
 <script>
@@ -77,13 +87,22 @@
         },
         computed:{
             postList(){
-                return this.$store.state.forum.postList;
+                return this.$store.getters.postList;
+            },
+            currPage(){
+                return this.$store.state.forum.currPage;
+            },
+            postNum(){
+                return this.$store.state.forum.postList.length;
             }
         },
         methods:{
             goAddPost(){
                 let section=this.$route.params.section;
                 router.push({name:'addPost',params:{section:section}});
+            },
+            changePage(val){
+                this.$store.dispatch('changePostPage',val);
             }
         },
         components:{

@@ -2,7 +2,7 @@
     <div>
         <div>
             <div class="btnGroup fl">
-                <el-button :icon="editable?'edit':'check'" :type="editable?'warning':'success'" :plain="true" size="small" @click="toggleEdit"></el-button>
+                <el-button :icon="editable?'edit':'check'" :type="editable?'warning':'success'" :plain="true" size="small" @click="toggleEdit" :loading="userLoading"></el-button>
                 <a href="/#/editPswd" target="_blank"><el-button :plain="true" size="small">修改密码</el-button></a>
             </div>
             <el-form ref="userInfo" :rules="rules" :model="userInfo" label-width="94px">
@@ -15,19 +15,6 @@
                 </el-form-item>
                 <el-form-item label="Email">
                     <el-input v-model="userInfo.email" :disabled="editable"></el-input>
-                </el-form-item>
-                <div class="notice">以下问题答案用于找回密码</div>
-                <el-form-item label="问题1" prop="question1">
-                    <el-input v-model="userInfo.question1" :disabled="editable"></el-input>
-                </el-form-item>
-                <el-form-item label="答案1" prop="answer1">
-                    <el-input v-model="userInfo.answer1" :disabled="editable"></el-input>
-                </el-form-item>
-                <el-form-item label="问题2">
-                    <el-input v-model="userInfo.question2" :disabled="editable"></el-input>
-                </el-form-item>
-                <el-form-item label="答案2">
-                    <el-input v-model="userInfo.answer2" :disabled="editable"></el-input>
                 </el-form-item>
             </el-form>
         </div>
@@ -71,13 +58,14 @@
                             trigger:'change'
                         }
                     ]
-                }
+                },
+                userLoading:false
             }
         },
         computed:{
             userInfo(){
-                return this.$store.state.userInfo
-            }
+                return this.$store.state.userInfo;
+            },
         },
         methods:{
             toggleEdit(){
@@ -85,8 +73,11 @@
                 else{
                     this.$refs.userInfo.validate((valid)=>{
                         if(valid){
+                            this.userLoading=true;
                             this.editable=!this.editable;
-                            this.$store.dispatch('editUserInfo',this.userInfo);
+                            this.$store.dispatch('editUserInfo',this.userInfo).then(()=>{
+                                this.userLoading=false;
+                            });
                         }
                     })
                 }
