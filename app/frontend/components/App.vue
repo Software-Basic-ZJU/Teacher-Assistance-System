@@ -101,9 +101,11 @@
             }
             this.$store.dispatch('updateUserInfo',userInfo);        //重要!将用户信息注入store
 
-            // 获取邮件
-            this.$store.dispatch('getRecMail');
-            this.$store.dispatch('getSendMail');
+            // 获取邮件(助教无邮件)
+            if(userInfo.type!=3) {
+                this.$store.dispatch('getRecMail');
+                this.$store.dispatch('getSendMail');
+            }
 
             return {
                 menu: [

@@ -165,13 +165,12 @@ export const checkQA=({state,commit},idenForm)=>{
 };
 
 // 发送验证邮件(用于找回密码)
-export const getEmail=({state,commit},idenForm)=>{
+export const getEmail=({state,commit})=>{
     return new Promise((resolve,reject)=>{
         Vue.http.post("backend/aboutInfo/sendEmail.php",
             {
                 id:state.userInfo.id,
-                type:state.userInfo.type,
-                email:idenForm.email
+                type:state.userInfo.type
             }
         ).then((response)=>{
             let resp=response.body;
@@ -180,6 +179,7 @@ export const getEmail=({state,commit},idenForm)=>{
                     type:'success',
                     message:resp.msg
                 })
+                commit('emailLoading',true)
             }
         }).then(()=>{
             resolve();
@@ -190,6 +190,7 @@ export const getEmail=({state,commit},idenForm)=>{
 // 验证邮箱验证码
 export const checkWithEmail=({state,commit},idenForm)=>{
     return new Promise((resolve,reject)=>{
+        console.log(idenForm)
         Vue.http.post("backend/aboutInfo/checkWithEmail.php",
             {
                 id:state.userInfo.id,
@@ -210,17 +211,16 @@ export const checkWithEmail=({state,commit},idenForm)=>{
 // 设置新密码
 export const setNewPassword=({state,commit},editForm)=>{
     return new Promise((resolve,reject)=>{
-        let userInfo=LS.getItem('userInfo');
-        if(!userInfo || !userInfo.token) return commit('logout');
-        Vue.http.post("backend/aboutInfo/changePassword.php",
+        Vue.http.post("backend/aboutInfo/changeForgetPassword.php",
             {
                 id:state.userInfo.id,
-                code:idenForm.idenCode
+                type:state.userInfo.type,
+                newPassword:editForm.newPswd
             }
         ).then((response)=>{
             let resp=response.body;
             if(!resp.code) {
-                commit('goFindStep',2);
+                commit('goFindStep',3);
             }
         }).then(()=>{
             resolve();
@@ -231,6 +231,11 @@ export const setNewPassword=({state,commit},editForm)=>{
 // 找回密码step修改
 export const goFindStep=({commit},val)=>{
     commit('goFindStep',val);
+}
+
+// 获取邮件loading
+export const emailLoading=({commit},signal)=>{
+    commit('emailLoading',signal);
 }
 
 export const logout=({commit})=>{

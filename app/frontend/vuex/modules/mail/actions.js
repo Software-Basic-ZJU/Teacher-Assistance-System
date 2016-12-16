@@ -19,7 +19,7 @@ export const showToSend=({commit},signal)=>{
 
 // 获取收件箱邮件
 export const getRecMail=({commit})=>{
-    let userInfo=LS.getItem('userInfo')
+    let userInfo=LS.getItem('userInfo');
     if(!userInfo || !userInfo.token) return commit('logout');
     commit('mailLoading',true);
     Vue.http.post('backend/aboutMail/getRecMail.php',

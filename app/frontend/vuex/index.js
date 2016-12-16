@@ -18,6 +18,7 @@ Vue.use(Vuex);
 const state={
     loading:false,                 //全局loading state,遮盖主体.各组件中有局部loading
     isLogin:false,
+    emailLoading:false,            //获取邮件loading
     userInfo:{},                    //身份为老师或助教时，class_id为数组
     showCompleteInfo:false,        //补全信息对话框显示开关
     editorLoading:false,           //编辑器的loading
@@ -48,6 +49,9 @@ const mutations={
     },
     goFindStep(state,val){
         state.checkStep=val;
+    },
+    emailLoading(state,signal){
+        state.emailLoading=signal;
     }
 };
 

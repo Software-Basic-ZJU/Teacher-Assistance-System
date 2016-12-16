@@ -13,7 +13,7 @@
                                 <el-input v-model="userId" place-holder="学号/教工号"></el-input>
                             </el-form-item>
                             <el-form-item>
-                                <el-button type="primary" @click="firstSubmit" :loading="formLoading">下一步</el-button>
+                                <el-button type="primary" @click.prevent="firstSubmit" :loading="formLoading">下一步</el-button>
                             </el-form-item>
                         </el-form>
                     </div>
@@ -34,17 +34,15 @@
                             </div>
                             <div class="notice">您也可以使用邮箱获取验证码</div>
                             <div @click="activateForm(true)">
-                                <el-form-item label="邮箱" prop="email">
-                                    <el-input class="emailInput fl" v-model="idenForm.email" placeholder="邮箱" :disabled="!actionType || userInfo.type==2"></el-input>
-                                    <el-button class="fr" :disabled="!actionType" @click="getEmail">获取</el-button>
-                                    <div class="cl"></div>
-                                </el-form-item>
                                 <el-form-item label="验证码" prop="idenCode">
-                                    <el-input v-model="idenForm.idenCode" placeholder="验证码" :disabled="!actionType || userInfo.type==2"></el-input>
+                                    <el-input class="emailInput fl" v-model="idenForm.idenCode" placeholder="验证码" :disabled="!actionType && userInfo.type==1"></el-input>
+                                    <el-button class="fr" :disabled="(!actionType && userInfo.type==1) || emailLoading" @click.prevent="getEmail">{{!emailLoading?'获取':emailCount+'秒'}}</el-button>
+                                    <div class="cl"></div>
                                 </el-form-item>
                             </div>
                             <el-form-item>
-                                <el-button @click="secondSubmit" :loading="formLoading">下一步</el-button>
+                                <el-button @click="backStep">上一步</el-button>
+                                <el-button type="primary" @click="secondSubmit" :loading="formLoading">下一步</el-button>
                             </el-form-item>
                         </el-form>
                     </div>
@@ -59,8 +57,8 @@
                                 <el-input v-model="editForm.confirmPswd" type="password"></el-input>
                             </el-form-item>
                             <el-form-item>
-                                <el-button @click="finalSubmit" :loading="formLoading">下一步</el-button>
                                 <el-button @click="backStep">上一步</el-button>
+                                <el-button type="primary" @click="finalSubmit" :loading="formLoading">下一步</el-button>
                             </el-form-item>
                         </el-form>
                     </div>
@@ -79,7 +77,7 @@
     .editPswd{
         margin:30px auto;
         width:600px;
-        height:300px;
+        height:350px;
         padding:30px 20px 20px 30px;
         background-color: white;
         -webkit-box-shadow: 0 1px 5px 0 rgba(0,34,77,.1);
@@ -87,7 +85,7 @@
         box-shadow: 0 1px 5px 0 rgba(0,34,77,.1);
     }
     .actionBox{
-        width:450px;
+        width:460px;
     }
     .actionBox .el-form{
         width:400px;
@@ -121,12 +119,12 @@
         data(){
             return{
                 countdown:5,
-                steps:['验证信息','修改密码','修改结果'],
+                emailCount:60,
+                steps:['验证账号','验证信息','修改密码','修改结果'],
                 userId:'',                      //需要密保问题的id
                 idenForm:{
                     question:'',
                     answer:'',
-                    email:'',
                     idenCode:''
                 },
                 actionType:false,              //false 为 密保问题, true 为邮箱找回
@@ -137,17 +135,6 @@
                             validator:(rule,value,cb)=>{
                                 if(!this.actionType && !value){
                                     cb(new Error('请填写答案'))
-                                }
-                                else cb();
-                            },
-                            trigger:'blur'
-                        }
-                    ],
-                    email:[
-                        {
-                            validator:(rule,value,cb)=>{
-                                if(this.actionType && !value){
-                                    cb(new Error('请填写电子邮箱'))
                                 }
                                 else cb();
                             },
@@ -206,6 +193,9 @@
             },
             active(){
                 return this.$store.state.checkStep
+            },
+            emailLoading(){
+                return this.$store.state.emailLoading
             }
         },
         methods:{
@@ -237,15 +227,39 @@
                 })
             },
             getEmail(){
-                this.$store.dispatch('getEmail',this.idenForm);
+                this.$store.dispatch('getEmail').then(()=>{
+                    if(this.emailLoading==true){
+                        let setIntv=setInterval(()=>{
+                                this.emailCount--;
+                                if(this.emailCount==0){
+                                    clearInterval(setIntv);
+                                    this.emailCount=60;
+                                    this.$store.dispatch('emailLoading',false);
+                                }
+                            },1000)
+                    }
+                });
             },
             backStep(){
-                this.active--;
+                this.$store.dispatch('goFindStep',this.active-1);
             },
             finalSubmit(){
                 this.$refs.editForm.validate((valid)=>{
                     if(valid){
-
+                        this.formLoading=true;
+                        this.$store.dispatch('setNewPassword',this.editForm).then(()=>{
+                            this.formLoading=false;
+                            if(this.active==3){
+                                let setIntv=setInterval(()=>{
+                                    this.countdown--;
+                                    if(this.countdown==0){
+                                        clearInterval(setIntv);
+                                        router.replace({name:'login'});
+                                        this.$store.dispatch('goFindStep',0);
+                                    }
+                                },1000);
+                            }
+                        })
                     }
                 })
             }

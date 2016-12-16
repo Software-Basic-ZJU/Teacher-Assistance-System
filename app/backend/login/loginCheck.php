@@ -52,7 +52,7 @@ function loginCheck($token){
     }
     elseif ($token_array[1]==3){
         $query_result = mysqli_query($conn,
-            "select * from teacher where assist_id ='".$token_array[0]."' ");
+            "select * from assists where assist_id ='".$token_array[0]."' ");
     }
     else{
         $query_result = null;

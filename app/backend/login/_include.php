@@ -192,7 +192,7 @@ function changePassword($conn,$id,$newPassword,$type){
             if($fetched = mysqli_fetch_array($query_result)){
                 if($fetched['check_code'] == 1){
                     $update_result = mysqli_query($conn, "update student
-                                     set password = '$newPassword' AND check_code = -1
+                                     set password = '$newPassword', check_code = -1
                                      WHERE student_id = '$id';");
                     if($update_result){
                         return 0;//修改成功
@@ -216,7 +216,7 @@ function changePassword($conn,$id,$newPassword,$type){
             if($fetched = mysqli_fetch_array($query_result)){
                 if($fetched['check_code'] == 1){
                     $update_result = mysqli_query($conn, "update teacher
-                                     set password = '$newPassword' AND check_code = -1
+                                     set password = '$newPassword', check_code = -1
                                      WHERE teacher_id = '$id';");
                     if($update_result){
                         return 0;//修改成功

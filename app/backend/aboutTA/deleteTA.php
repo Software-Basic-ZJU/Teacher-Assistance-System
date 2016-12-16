@@ -16,7 +16,7 @@ loginCheck($_SERVER['HTTP_X_ACCESS_TOKEN']);
 //Get information
 $teacher_id = test_input(mysqli_escape_string($conn, $_POST['teacher_id']));
 $assist_id = test_input(mysqli_escape_string($conn, $_POST['assist_id']));
-if($_SESSION[$teacher_id]!=$teacher_id){
+if($_SESSION['teacher_id']!=$teacher_id){
     $result = array(
         "code" => 403,
         "msg" => "无效用户尝试删除",

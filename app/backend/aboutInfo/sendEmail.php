@@ -16,6 +16,15 @@ $type = test_input(mysqli_escape_string($conn, $_POST['type']));
 if($type==1){//学生
     $query_result=mysqli_query($conn,"select email from student where student_id='$id'");
     if($fetch=mysqli_fetch_array($query_result)){
+        if($fetch['email']==''){
+            $result = array(
+                "code" => -1,
+                "msg" => "您尚未设置邮箱",
+                "res" => array()
+            );
+            echo json_encode($result);
+            exit;
+        }
         $check_code = rand(100000,999999);
         $query_result = mysqli_query($conn, "update student
                                      set check_code = '$check_code'
@@ -28,11 +37,21 @@ if($type==1){//学生
             "res" => array()
         );
         echo json_encode($result);
+        exit;
     }
 }
-elseif($type==2){//教师
+else if($type==2){//教师
     $query_result=mysqli_query($conn,"select email from teacher where teacher_id='$id'");
     if($fetch=mysqli_fetch_array($query_result)){
+        if($fetch['email']==''){
+            $result = array(
+                "code" => -1,
+                "msg" => "您尚未设置邮箱",
+                "res" => array()
+            );
+            echo json_encode($result);
+            exit;
+        }
         $check_code = rand(100000,999999);
         $query_result = mysqli_query($conn, "update teacher
                                      set check_code = '$check_code'
@@ -45,6 +64,7 @@ elseif($type==2){//教师
             "res" => array()
         );
         echo json_encode($result);
+        exit;
     }
 }
 else{
@@ -54,10 +74,11 @@ else{
         "res" => array()
     );
     echo json_encode($result);
+    exit;
 }
 
 if($query_result){
-    $error = sendCodesEmail($email,$check_code);
+    $error = sendCodesEmail($fetch['email'],$check_code);
     switch($error){
         case -1:{
             $result = array(

@@ -87,7 +87,7 @@ else if ($type == 2){
     }
 }
 else if ($type == 3){
-    $query_result = mysqli_query($conn, "select * from assists where assist_id ='$id' and password='$password' limit 1");
+    $query_result = mysqli_query($conn, "select * from assists join class_teacher on assists.assist_id=class_teacher.assist_id where assists.assist_id ='$id' and password='$password' limit 1");
     if($fetched = mysqli_fetch_array($query_result)){
         $token = $id."-".$type."-".time();
         $token = encrypt($token);
@@ -97,9 +97,9 @@ else if ($type == 3){
             "res" => array(
                 "token" => $token,
                 "id" => $id,
-                'class_id'=>null,
-                'teacher_id'=> null,
-                'name'=>null,
+                'class_id'=>$fetched['class_id'],
+                'teacher_id'=> $fetched['teacher_id'],
+                'name'=>$fetched['name'],
                 'type'=>$type,
                 'group_id'=>null
             )

@@ -21,6 +21,15 @@ if($type==1){                       //学生
 elseif($type==2){//教师
     $query_result = mysqli_query($conn, "select * from teacher WHERE check_code = '$code' and teacher_id = '$id';");
 }
+else{
+    $result = array(
+        "code" => -1,
+        "msg" => "用户身份无效",
+        "res" => array()
+    );
+    echo json_encode($result);
+    exit;
+}
 if(mysqli_num_rows($query_result)==0){
     $result = array(
         "code" => -1,
@@ -50,7 +59,7 @@ else{
     echo json_encode($result);
     exit;
 }
-if(mysqli_affected_rows($query_result)>0){
+if(mysqli_affected_rows($conn)>0){
     $result = array(
         "code" => 0,
         "msg" => " 验证成功",

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2016-12-15 11:41:58
+Date: 2016-12-16 22:42:13
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -61,7 +61,7 @@ INSERT INTO `article` VALUES ('10004', 'asdf', '&lt;p&gt;&lt;br&gt;&lt;/p&gt;', 
 INSERT INTO `article` VALUES ('10017', '今天去游玩', '真的好好玩&amp;amp;lt;p&amp;amp;gt;SADFSDFS&amp;amp;lt;/p&amp;amp;gt;&amp;lt;p&amp;gt;双方都胜多负少东方闪电&amp;lt;/p&amp;gt;&lt;p&gt;撒旦法撒旦&lt;/p&gt;', '2016-12-09 20:41:26', '1234567', '杨奕辉', '0');
 INSERT INTO `article` VALUES ('10018', '今天去游玩', '真的好好玩&amp;amp;lt;p&amp;amp;gt;SADFSDFS&amp;amp;lt;/p&amp;amp;gt;&amp;lt;p&amp;gt;双方都胜多负少东方闪电&amp;lt;/p&amp;gt;&lt;p&gt;范德萨范德萨&lt;/p&gt;', '2016-12-09 20:42:45', '1234567', '杨奕辉', '0');
 INSERT INTO `article` VALUES ('10020', '水电费', '&amp;lt;p&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/p&amp;gt;&lt;p&gt;发斯蒂芬&lt;/p&gt;', '2016-12-09 20:47:15', '1234567', '地方', '0');
-INSERT INTO `article` VALUES ('10021', 'dsfsd', '&lt;p&gt;&lt;br&gt;&lt;/p&gt;', '2016-12-09 22:23:06', '1234567', 'dsfdsfsd', '0');
+INSERT INTO `article` VALUES ('10021', 'dsfsd', '&amp;amp;amp;lt;p&amp;amp;amp;gt;&amp;amp;amp;lt;br&amp;amp;amp;gt;&amp;amp;amp;lt;/p&amp;amp;amp;gt;&amp;amp;lt;p&amp;amp;gt;东方闪电地方&amp;amp;lt;/p&amp;amp;gt;&amp;lt;p&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/p&amp;gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;', '2016-12-16 21:13:54', '1234567', 'dsfdsfsd', '0');
 
 -- ----------------------------
 -- Table structure for `assists`
@@ -130,11 +130,15 @@ CREATE TABLE `comment` (
   PRIMARY KEY (`com_id`),
   UNIQUE KEY `com_id` (`com_id`) USING BTREE,
   KEY `target_id` (`target_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=10019 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10032 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of comment
 -- ----------------------------
+INSERT INTO `comment` VALUES ('10019', 'fdfd', 'yyh1102', '10003', '2016-12-15 23:24:47', '1');
+INSERT INTO `comment` VALUES ('10020', '回复吴志强：fdfd', 'yyh1102', '10003', '2016-12-15 23:24:50', '1');
+INSERT INTO `comment` VALUES ('10021', '回复吴志强：fdsf', 'yyh1102', '10003', '2016-12-15 23:25:00', '1');
+INSERT INTO `comment` VALUES ('10030', '发生的范德萨', 'yyh1102', '10004', '2016-12-16 17:50:27', '1');
 
 -- ----------------------------
 -- Table structure for `course_info`
@@ -161,11 +165,11 @@ CREATE TABLE `group` (
   `group_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `leader_id` varchar(20) NOT NULL,
   `group_name` varchar(30) NOT NULL,
-  `password` varchar(30) NOT NULL,
+  `password` varchar(64) NOT NULL,
   `class_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`group_id`),
   UNIQUE KEY `group_id` (`group_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10010 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of group
@@ -213,11 +217,36 @@ CREATE TABLE `mail` (
   UNIQUE KEY `mail_id` (`mail_id`) USING BTREE,
   KEY `src_id` (`src_id`) USING BTREE,
   KEY `dest_id` (`dest_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10025 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of mail
 -- ----------------------------
+INSERT INTO `mail` VALUES ('10000', 'hihi', '啊哈哈', '2016-12-16 14:07:32', 'yyh1102', 'yyh951102', '1', '2');
+INSERT INTO `mail` VALUES ('10001', '防守打法', '方法水电费', '2016-12-16 14:08:57', 'yyh1102', 'yyh951102', '1', '0');
+INSERT INTO `mail` VALUES ('10002', 'fdsf鼎折覆餗', '胜多负少', '2016-12-15 14:23:16', 'yyh951102', '1234567', '0', '0');
+INSERT INTO `mail` VALUES ('10003', '测试', '测试测试', '2016-12-16 14:07:32', 'yyh951102', 'yyh1102', '1', '1');
+INSERT INTO `mail` VALUES ('10004', '测试', '测试测试', '2016-12-16 14:07:32', 'yyh951102', 'yyh1102', '1', '1');
+INSERT INTO `mail` VALUES ('10005', '测试', '测试测试', '2016-12-16 14:07:32', 'yyh951102', 'yyh1102', '1', '1');
+INSERT INTO `mail` VALUES ('10006', '测试', '测试测试', '2016-12-16 14:07:32', 'yyh951102', 'yyh1102', '1', '1');
+INSERT INTO `mail` VALUES ('10007', '测试', '测试测试', '2016-12-16 14:07:32', 'yyh951102', 'yyh1102', '1', '1');
+INSERT INTO `mail` VALUES ('10008', '测试', '测试测试', '2016-12-16 14:07:32', 'yyh951102', 'yyh1102', '1', '1');
+INSERT INTO `mail` VALUES ('10009', '测试', '测试测试', '2016-12-16 14:07:32', 'yyh951102', 'yyh1102', '1', '1');
+INSERT INTO `mail` VALUES ('10010', '测试', '测试测试', '2016-12-16 14:07:32', 'yyh951102', 'yyh1102', '1', '1');
+INSERT INTO `mail` VALUES ('10011', '测试', '测试测试', '2016-12-16 14:07:32', 'yyh951102', 'yyh1102', '1', '0');
+INSERT INTO `mail` VALUES ('10012', '测试', '测试测试', '2016-12-16 14:07:32', 'yyh951102', 'yyh1102', '1', '0');
+INSERT INTO `mail` VALUES ('10013', '测试', '测试测试', '2016-12-16 14:07:32', 'yyh951102', 'yyh1102', '1', '0');
+INSERT INTO `mail` VALUES ('10014', '测试', '测试测试', '2016-12-16 14:07:32', 'yyh951102', 'yyh1102', '1', '0');
+INSERT INTO `mail` VALUES ('10015', '测试', '测试测试', '2016-12-16 14:07:32', 'yyh951102', 'yyh1102', '1', '0');
+INSERT INTO `mail` VALUES ('10016', '测试', '测试测试', '2016-12-16 14:07:32', 'yyh951102', 'yyh1102', '1', '0');
+INSERT INTO `mail` VALUES ('10017', '测试', '测试测试', '2016-12-16 14:07:32', 'yyh951102', 'yyh1102', '1', '0');
+INSERT INTO `mail` VALUES ('10018', '测试', '测试测试', '2016-12-16 14:07:32', 'yyh951102', 'yyh1102', '1', '1');
+INSERT INTO `mail` VALUES ('10019', '测试', '测试测试', '2016-12-16 14:07:32', 'yyh951102', 'yyh1102', '1', '0');
+INSERT INTO `mail` VALUES ('10020', '回复 杨奕辉：测试', 'sdfs地方', '2016-12-16 15:45:34', 'yyh1102', 'yyh951102', '0', '0');
+INSERT INTO `mail` VALUES ('10021', '回复 杨奕辉：测试', '水电费', '2016-12-16 15:46:52', 'yyh1102', 'yyh951102', '0', '0');
+INSERT INTO `mail` VALUES ('10022', '回复 杨奕辉：测试', '似懂非懂是', '2016-12-16 16:57:49', 'yyh1102', 'yyh951102', '0', '0');
+INSERT INTO `mail` VALUES ('10023', '回复 杨奕辉：测试', '撒旦法撒旦', '2016-12-16 17:02:10', 'yyh1102', 'yyh951102', '0', '0');
+INSERT INTO `mail` VALUES ('10024', 'sds', 'd f', '2016-12-16 17:13:22', 'yyh1102', 'yyh951102', '0', '0');
 
 -- ----------------------------
 -- Table structure for `message`
@@ -284,7 +313,7 @@ CREATE TABLE `posts` (
   PRIMARY KEY (`post_id`),
   UNIQUE KEY `post_id` (`post_id`) USING BTREE,
   KEY `teacher_id` (`teacher_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=10006 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10016 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of posts
@@ -292,6 +321,13 @@ CREATE TABLE `posts` (
 INSERT INTO `posts` VALUES ('10000', '1234567', '0', '第一次发帖', '请多多关照', '1234567', null, '2016-12-12 18:39:11', '2016-12-12 18:39:15');
 INSERT INTO `posts` VALUES ('10001', '1234567', '0', '的神烦大叔', '&lt;p&gt;的神烦大叔&lt;/p&gt;', '1234567', '0', '2016-12-12 22:11:48', '2016-12-12 22:11:48');
 INSERT INTO `posts` VALUES ('10002', '1234567', '0', '分到f', '&lt;p&gt;撒旦法撒旦&lt;/p&gt;', '1234567', '0', '2016-12-13 19:56:57', '2016-12-13 19:56:57');
+INSERT INTO `posts` VALUES ('10006', '1234567', '1', 'Hello world', '&lt;p&gt;今日第一帖~&lt;/p&gt;', 'yyh1102', '0', '2016-12-15 23:24:17', '2016-12-15 23:24:17');
+INSERT INTO `posts` VALUES ('10010', '1234567', '0', '撒旦法撒旦', '&lt;p&gt;第三方&lt;/p&gt;', 'yyh951102', '0', '2016-12-16 13:47:34', '2016-12-16 13:47:34');
+INSERT INTO `posts` VALUES ('10011', '1234567', '0', '', '&lt;p&gt;ffdsf&lt;/p&gt;', 'yyh951102', '0', '2016-12-16 13:49:27', '2016-12-16 13:49:27');
+INSERT INTO `posts` VALUES ('10012', '1234567', '0', '的所发生的', '&lt;p&gt;等等&lt;/p&gt;', 'yyh951102', '0', '2016-12-16 13:49:37', '2016-12-16 13:49:37');
+INSERT INTO `posts` VALUES ('10013', '1234567', '0', '发的所发生的', '&lt;p&gt;的所发生的&lt;/p&gt;', 'yyh951102', '0', '2016-12-16 13:50:44', '2016-12-16 13:50:44');
+INSERT INTO `posts` VALUES ('10014', '1234567', '0', '防守打法', '&lt;p&gt;上的&amp;nbsp;&lt;/p&gt;', 'yyh951102', '0', '2016-12-16 13:50:46', '2016-12-16 13:50:46');
+INSERT INTO `posts` VALUES ('10015', '1234567', '0', '佛挡杀佛', '&lt;p&gt;发送到&lt;/p&gt;', 'yyh951102', '0', '2016-12-16 13:50:49', '2016-12-16 13:50:49');
 
 -- ----------------------------
 -- Table structure for `questions`
@@ -329,13 +365,15 @@ CREATE TABLE `reply_post` (
   PRIMARY KEY (`repost_id`),
   UNIQUE KEY `repost_id` (`repost_id`) USING BTREE,
   KEY `post_id` (`post_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=10003 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10005 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of reply_post
 -- ----------------------------
 INSERT INTO `reply_post` VALUES ('10001', '10000', '第三方', 'yyh951102', '2016-12-15 01:55:06');
 INSERT INTO `reply_post` VALUES ('10002', '10000', '反倒是', 'yyh951102', '2016-12-15 01:57:18');
+INSERT INTO `reply_post` VALUES ('10003', '10006', 'df地方', 'yyh1102', '2016-12-15 23:24:42');
+INSERT INTO `reply_post` VALUES ('10004', '10015', '的神烦大叔', 'yyh1102', '2016-12-16 17:42:21');
 
 -- ----------------------------
 -- Table structure for `resource`
@@ -350,18 +388,16 @@ CREATE TABLE `resource` (
   `type` varchar(1) NOT NULL,
   `post_id` bigint(20) DEFAULT NULL,
   `uploader_id` varchar(20) NOT NULL,
+  `authority` varchar(1) NOT NULL,
   PRIMARY KEY (`resrc_id`),
   UNIQUE KEY `resrc_id` (`resrc_id`) USING BTREE,
   KEY `post_id` (`post_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=10115 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10122 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of resource
 -- ----------------------------
-INSERT INTO `resource` VALUES ('10036', '水电费', 'upload/7e387ccf52427d520dcea284.docx', '13401', '2016-12-12 19:10:43', '0', null, '1234567');
-INSERT INTO `resource` VALUES ('10066', 'SQL', 'upload/155655abc56e24d6c6522575.sql', '20053', '2016-12-12 22:51:26', '0', null, '1234567');
-INSERT INTO `resource` VALUES ('10067', '360Safe.exe', 'upload/89a2452b5ae5f65599d7bd03.exe', '962984', '2016-12-12 22:51:36', '0', null, '1234567');
-INSERT INTO `resource` VALUES ('10114', '【10.20】新闻设计.docx', 'upload/094dd44443810d8ee09961f3.docx', '13401', '2016-12-14 01:54:54', '2', '0', 'yyh951102');
+INSERT INTO `resource` VALUES ('10120', '方式的说法', 'upload/4207d913b1f15f2b425c9156.docx', '13401', '2016-12-15 23:49:33', '0', '0', '1234567', '0');
 
 -- ----------------------------
 -- Table structure for `student`
@@ -383,12 +419,13 @@ CREATE TABLE `student` (
   PRIMARY KEY (`uid`),
   UNIQUE KEY `uid` (`uid`) USING BTREE,
   UNIQUE KEY `student_id` (`student_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=10001 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10002 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of student
 -- ----------------------------
-INSERT INTO `student` VALUES ('10000', 'yyh951102', '6LzEFTTAytZMZ+b3poFASw==', '杨奕辉', null, null, null, null, null, '10001', null, null);
+INSERT INTO `student` VALUES ('10000', 'yyh951102', '6LzEFTTAytZMZ+b3poFASw==', '杨奕辉', null, null, null, null, null, '10001', '-1', null);
+INSERT INTO `student` VALUES ('10001', 'yyh1102', 'B050OB3jAk8DOYTnHBZdsA==', '吴志强', '234347589@qq.com', '我的大学', '我的家乡', 'Momw54cmlc/kebIoVqsKRIkQeAVcFQRf', 'KBkgkPrS81W/Xqyhz7YtDQ==', '10001', '-1', '298660');
 
 -- ----------------------------
 -- Table structure for `teacher`
@@ -407,6 +444,7 @@ CREATE TABLE `teacher` (
   `teacher_info` text,
   `course_info` text,
   `photo_path` text,
+  `check_code` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`uid`),
   UNIQUE KEY `uid` (`uid`) USING BTREE,
   UNIQUE KEY `teacher_id` (`teacher_id`) USING BTREE
@@ -415,7 +453,7 @@ CREATE TABLE `teacher` (
 -- ----------------------------
 -- Records of teacher
 -- ----------------------------
-INSERT INTO `teacher` VALUES ('10000', '1234567', '6LzEFTTAytZMZ+b3poFASw==', '杨奕辉', '172555222', '234347589@qq.com', '', '334345方法', '', '这是教师信息fsdfsd都是&amp;lt;p&amp;gt;ds fsd&amp;lt;/p&amp;gt;&lt;p&gt;f第三方水电费&lt;/p&gt;', '&lt;p&gt;这是课程信息&amp;amp;lt;p&amp;amp;gt;asdfsdfsdf&amp;amp;lt;/p&amp;amp;gt;&amp;lt;p&amp;gt;sdfsd&amp;lt;/p&amp;gt;&lt;/p&gt;&lt;h2&gt;dfdfgdf&lt;/h2&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;', null);
+INSERT INTO `teacher` VALUES ('10000', '1234567', '6LzEFTTAytZMZ+b3poFASw==', '杨奕辉', '分到', '234347589@qq.com', '发送到', '地方', '防守打法', '这是教师信息fsdfsd都是&amp;lt;p&amp;gt;ds fsd&amp;lt;/p&amp;gt;&lt;p&gt;f第三方水电费&lt;/p&gt;', '&lt;p&gt;这是课程信息&amp;amp;lt;p&amp;amp;gt;asdfsdfsdf&amp;amp;lt;/p&amp;amp;gt;&amp;lt;p&amp;gt;sdfsd&amp;lt;/p&amp;gt;&lt;/p&gt;&lt;h2&gt;dfdfgdf&lt;/h2&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;', null, '');
 
 -- ----------------------------
 -- Table structure for `works`

@@ -1,57 +1,28 @@
 import * as actions from "./actions";
 
 const state={
-    TAlist:[
-        {
-            taId:1432,
-            taName:'LowesYang',
-            classId:'142',
-            className:'软工1班'
-        },
-        {
-            taId:235,
-            taName:'YYH',
-            classId:'143',
-            className:'软工2班'
-        },
-        {
-            taId:1432,
-            taName:'LowesYang',
-            classId:'142',
-            className:'软工1班'
-        },
-        {
-            taId:235,
-            taName:'YYH',
-            classId:'143',
-            className:'软工2班'
-        },
-        {
-            taId:1432,
-            taName:'LowesYang',
-            classId:'142',
-            className:'软工1班'
-        },
-        {
-            taId:235,
-            taName:'YYH',
-            classId:'143',
-            className:'软工2班'
-        }
-    ],
-    classList:[
-        {
-            classId:'142',
-            className:'软工1班'
-        },
-        {
-            classId:'143',
-            className:'软工2班'
-        }
-    ]
+    showAddTA:false,        //助教操作表单显示状态
+    TAlist:[]
 };
 
 const mutations={
+    showAddTA(state,signal){
+        state.showAddTA=signal;
+    },
+    updateTAlist(state,newList){
+        state.TAlist=newList;
+    },
+    addTA(state,TAInfo){
+        state.TAlist.push(TAInfo);
+    },
+    removeTA(state,assistId){
+        state.TAlist.forEach((item,index)=>{
+            if(item.assist_id==assistId){
+                state.TAlist.splice(index,1);
+                return;
+            }
+        })
+    }
 };
 
 export default {
