@@ -30,7 +30,7 @@ if($_SESSION['type']!=2){
     echo json_encode($result);
     exit;
 }
-
+$check =
 //select *, count(distinct name) from table group by name
 $query_result = mysqli_query($conn, "update article
                                      set title = '$title', content = '$content' , author = '$author' , authority = '$authority', time = '$time'
@@ -55,9 +55,7 @@ else{
     $result = array(
         "code" => -1,
         "msg" => "修改失败",
-        "res" => array(
-            "token" => $_SESSION['token']
-        )
+        "res" => array()
     );
     echo json_encode($result);
 }

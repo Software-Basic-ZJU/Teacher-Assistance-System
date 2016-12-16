@@ -536,7 +536,9 @@ POST——Teacher-Assistance-System/app/backend/aboutInfo/checkQA.php
 
 POST——Teacher-Assistance-System/app/backend/aboutInfo/changeForgetPassword.php
 
+
 参数：id,newPassword,type
+
 
 返回:
 
@@ -620,7 +622,7 @@ POST——Teacher-Assistance-System/app/backend/aboutInfo/sendEmail.php
 
 POST——Teacher-Assistance-System/app/backend/aboutInfo/checkWithEmail.php
 
-参数：id,code
+参数：id,code,type
 
 返回:
 

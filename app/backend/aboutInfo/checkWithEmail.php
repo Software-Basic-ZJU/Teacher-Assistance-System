@@ -16,6 +16,21 @@ $id = test_input(mysqli_escape_string($conn, $_POST['id']));
 $type= test_input(mysqli_escape_string($conn, $_POST['type']));
 $code = test_input(mysqli_escape_string($conn, $_POST['code']));
 if($type==1){                       //学生
+    $query_result = mysqli_query($conn, "select * from student WHERE check_code = '$code' and student_id = '$id';");
+}
+elseif($type==2){//教师
+    $query_result = mysqli_query($conn, "select * from teacher WHERE check_code = '$code' and teacher_id = '$id';");
+}
+if(mysqli_num_rows($query_result)==0){
+    $result = array(
+        "code" => -1,
+        "msg" => "邮箱验证码错误",
+        "res" => array()
+    );
+    echo json_encode($result);
+    exit;
+}
+if($type==1){                       //学生
     $query_result = mysqli_query($conn, "update student
                                      set check_code = 1
                                      WHERE check_code = '$code' and student_id = '$id';");
@@ -33,9 +48,9 @@ else{
         )
     );
     echo json_encode($result);
+    exit;
 }
-
-if($query_result){
+if(mysqli_affected_rows($query_result)>0){
     $result = array(
         "code" => 0,
         "msg" => " 验证成功",
@@ -47,8 +62,7 @@ else{
     $result = array(
         "code" => -1,
         "msg" => "验证失败",
-        "res" => array(
-        )
+        "res" => array()
     );
     echo json_encode($result);
 }
