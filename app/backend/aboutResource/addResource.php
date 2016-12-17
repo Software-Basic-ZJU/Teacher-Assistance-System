@@ -31,11 +31,14 @@ $uploader_id = $_POST['uploader_id'];
 $type = $_POST['type'];
 $user_type = $_SESSION['type'];
 $post_id=!$_POST['post_id']?0:$_POST['post_id'];
-
+$authority = 1;
+if($type == 0){
+    $authority = $_POST['authority'];
+}
 //Add resource
 $add_result = mysqli_query($conn,
     "insert into resource (name,path,size,time,type,post_id,uploader_id,authority) 
-     values('$name','$path','$size','$time','$type','$post_id','$uploader_id','0')");
+     values('$name','$path','$size','$time','$type','$post_id','$uploader_id','$authority')");
 
 if($add_result){
     $resource_id = mysqli_insert_id($conn);

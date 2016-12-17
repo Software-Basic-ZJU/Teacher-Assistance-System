@@ -281,11 +281,11 @@ POST——Teacher-Assistance-System/app/backend/aboutInfo/getTeacherInfo.php
         )
 ```
 
-## 9、返回教师资源列表
+## 9、返回资源列表
 
 POST——Teacher-Assistance-System/app/backend/aboutResource/getResourceList.php
 
-参数：teacher_id
+参数：teacher_id,type
 
 返回:
 
@@ -302,7 +302,8 @@ POST——Teacher-Assistance-System/app/backend/aboutResource/getResourceList.ph
             "upload_time" 
             "uploader_name"
             "size" 资源大小
-            "token" => $_SESSION['token']
+          "authority" => $fetched['authority'],
+                "post_id" => $fetched['post_id']//如果type是1
         );
 ```
 
@@ -318,7 +319,7 @@ POST——Teacher-Assistance-System/app/backend/aboutResource/getResourceList.ph
 
 POST——Teacher-Assistance-System/app/backend/aboutResource/addResource.php
 
-参数：uploader_id、type（0为教师资源，1为帖子资源）、file
+参数：uploader_id、type（0为教师资源，1为帖子资源）、file、若是教师资源还需给authority
 
 返回:
 
