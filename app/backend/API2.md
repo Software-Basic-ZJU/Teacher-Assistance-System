@@ -424,7 +424,7 @@ POST——Teacher-Assistance-System/app/backend/aboutTA/deleteTA.php
 
 POST——Teacher-Assistance-System/app/backend/aboutInfo/editStuInfo.php
 
-参数：student_id,name,email
+参数：id,name,email,type
 
 返回:
 
@@ -440,7 +440,7 @@ POST——Teacher-Assistance-System/app/backend/aboutInfo/editStuInfo.php
         "code" => 0,
         "msg" => "修改成功",
         "res" => array(
-            'student_id' => $student_id,
+            'id' => $id,
             'name' => $name,
             'email' => $email,
             'question1' => $question1,

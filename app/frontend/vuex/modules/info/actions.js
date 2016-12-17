@@ -48,6 +48,9 @@ export const editContact=({commit},contact)=>{
         let resp=response.body;
         if(!resp.code){
             delete resp.res.token;
+            userInfo.email=resp.res.email;
+            commit('updateUserInfo',userInfo);
+            LS.setItem('userInfo',userInfo);
             commit('updateContact',resp.res);
             router.replace({name:'contact'});
         }
@@ -334,47 +337,50 @@ export const removeArticle=({commit},artId)=>{
 
 // 回复文章
 export const replyArticle=({commit},payload)=>{
-    commit('replyLoading',true);
-    Vue.http.post('backend/aboutComment/addComment.php',
-        {
-            target_id:payload.artId,
-            content:payload.content,
-            author_id:payload.authorId,
-            type:0
-        }
-    ).then((response)=>{
-        let resp=response.body;
-        if(!resp.code){
-            Vue.prototype.$message({
-                type:'success',
-                message:resp.msg
-            });
-            commit('isReplyShow',false);
-            commit('addComment',resp.res);
-        }
-    }).then(()=>{
-        commit('replyLoading',false);
+    return new Promise((resolve,reject)=>{
+        Vue.http.post('backend/aboutComment/addComment.php',
+            {
+                target_id:payload.artId,
+                content:payload.content,
+                author_id:payload.authorId,
+                type:0
+            }
+        ).then((response)=>{
+            let resp=response.body;
+            if(!resp.code){
+                Vue.prototype.$message({
+                    type:'success',
+                    message:resp.msg
+                });
+                commit('isReplyShow',false);
+                commit('addComment',resp.res);
+                resolve();
+            }
+        },()=>{
+            reject();
+        })
     })
 };
 
 // 删除回复
 export const removeComment=({commit},comId)=>{
-    commit('deleteLoading',true);
-    Vue.http.post('backend/aboutComment/deleteComment.php',
-        {
-            com_id:comId
-        }
-    ).then((response)=>{
-        let resp=response.body;
-        if(!resp.code){
-            Vue.prototype.$message({
-                type:'success',
-                message:resp.msg
-            });
-            commit('removeComment',comId);
-        }
-    }).then(()=>{
-        commit('deleteLoading',false);
+    return new Promise((resolve,reject)=>{
+        Vue.http.post('backend/aboutComment/deleteComment.php',
+            {
+                com_id:comId
+            }
+        ).then((response)=>{
+            let resp=response.body;
+            if(!resp.code){
+                Vue.prototype.$message({
+                    type:'success',
+                    message:resp.msg
+                });
+                commit('removeComment',comId);
+            }
+        }).then(()=>{
+            resolve();
+        })
     })
 }
 

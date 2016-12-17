@@ -3,7 +3,7 @@
         <div>
             <div class="btnGroup fl">
                 <el-button :icon="editable?'edit':'check'" :type="editable?'warning':'success'" :plain="true" size="small" @click="toggleEdit" :loading="userLoading"></el-button>
-                <a href="/#/editPswd" target="_blank"><el-button :plain="true" size="small">修改密码</el-button></a>
+                <a href="/#/changePswd" target="_blank"><el-button :plain="true" size="small">修改密码</el-button></a>
             </div>
             <el-form ref="userInfo" :rules="rules" :model="userInfo" label-width="94px">
                 <div class="notice">基本信息</div>

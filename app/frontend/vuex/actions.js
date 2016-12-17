@@ -89,16 +89,17 @@ export const completeInfo=({state,commit},newInfo)=>{
     })
 };
 
-// 修改学生个人信息
+// 修改学生与教师个人信息
 export const editUserInfo=({commit},newInfo)=>{
     return new Promise((resolve,reject)=>{
         let userInfo=LS.getItem('userInfo');
         if(!userInfo || !userInfo.token) return commit('logout');
         Vue.http.post("backend/aboutInfo/editStuInfo.php",
             {
-                student_id:newInfo.id,
+                id:newInfo.id,
                 name:newInfo.name,
                 email:newInfo.email,
+                type:userInfo.type
             }
         ).then((response)=>{
             let resp=response.body;
@@ -226,19 +227,47 @@ export const setNewPassword=({state,commit},editForm)=>{
             resolve();
         });
     })
-}
+};
 
 // 找回密码step修改
 export const goFindStep=({commit},val)=>{
     commit('goFindStep',val);
-}
+};
 
 // 获取邮件loading
 export const emailLoading=({commit},signal)=>{
     commit('emailLoading',signal);
-}
+};
 
+// 修改密码(根据新旧密码)
+export const changePswd=({commit},editForm)=>{
+    return new Promise((resolve,reject)=>{
+        let userInfo=LS.getItem('userInfo');
+        if(!userInfo || !userInfo.token) return commit('logout');
+        Vue.http.post("backend/aboutInfo/changePassword.php",
+            {
+                id:userInfo.id,
+                type:userInfo.type,
+                oldPassword:editForm.oldPassword,
+                newPassword:editForm.newPassword
+            }
+        ).then((response)=>{
+            let resp=response.body;
+            if(!resp.code) {
+                Vue.prototype.$message({
+                    type:'success',
+                    message:'修改成功，请重新登录'
+                });
+                commit('logout');
+            }
+        }).then(()=>{
+            resolve();
+        });
+    })
+};
+
+// 登出
 export const logout=({commit})=>{
     commit('isLoading',false);
     commit('logout');
-}
+};

@@ -201,3 +201,9 @@ export const FindPswd=resolve=>{
         resolve(require('../components/Login/FindPswd.vue'))
     })
 };
+
+export const changePswd=resolve=>{
+    require.ensure(['../components/Global/User/changePswd.vue'],()=>{
+        resolve(require('../components/Global/User/changePswd.vue'))
+    })
+};

@@ -36,7 +36,7 @@ import {
     Group,
     FindPswd,
     Login,
-
+    changePswd
 } from "./components";
 
 Vue.use(VueRouter);
@@ -230,6 +230,11 @@ const routes=[
         name:'findPswd',
         path:'/findPswd',
         component:FindPswd
+    },
+    {
+        name:'changePswd',
+        path:'/changePswd',
+        component:changePswd
     }
 ]
 

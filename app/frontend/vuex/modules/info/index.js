@@ -3,8 +3,6 @@ import * as actions from './actions';
 import {LS} from "../../../helpers/utils";
 
 const state={
-    replyLoading:false,                 //回复按钮loading
-    deleteLoading:false,             //回复列表Loading，用于删除
     isReplyShow:false,                  //回复框显示状态
     contact:{},
     noticeList:[],
@@ -18,12 +16,6 @@ const state={
 }
 
 const mutations={
-    replyLoading(state,signal){
-        state.replyLoading=signal;
-    },
-    deleteLoading(state,signal){
-        state.deleteLoading=signal;
-    },
     isReplyShow(state,signal){
         state.isReplyShow=signal;
     },

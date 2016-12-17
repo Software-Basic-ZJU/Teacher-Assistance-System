@@ -164,11 +164,12 @@
                                 if(!value){
                                     cb(new Error('请输入密码'));
                                 }
-                                else if(value.length<6 || value.length>20){
-                                    cb(new Error('密码长度须在6到20个字符'));
+                                else if(value.length<6){
+                                    cb(new Error('密码长度不得少于6个字符'));
                                 }
                                 else cb();
-                            }
+                            },
+                            trigger:'change'
                         }
                     ],
                     confirmPswd:[
@@ -181,7 +182,8 @@
                                     cb(new Error('两次输入密码不一致'));
                                 }
                                 else cb();
-                            }
+                            },
+                            trigger:'change'
                         }
                     ]
                 }

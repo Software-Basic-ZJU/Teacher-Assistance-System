@@ -14,28 +14,38 @@ connectDB();
 //Verify token
 loginCheck($_SERVER['HTTP_X_ACCESS_TOKEN']);
 //Get information
-$student_id = test_input(mysqli_escape_string($conn, $_POST['student_id']));
+$id = test_input(mysqli_escape_string($conn, $_POST['id']));
 $name = test_input(mysqli_escape_string($conn, $_POST['name']));
 $email = test_input(mysqli_escape_string($conn, $_POST['email']));
-if($_SESSION['student_id']!=$student_id){
+$type = test_input(mysqli_escape_string($conn, $_POST['type']));
+
+if($type==1) {
+    $query_result = mysqli_query($conn, "update student
+                                     set name = '$name',email = '$email'
+                                     WHERE student_id = '$id';");
+}
+elseif($type==2){
+    $query_result = mysqli_query($conn, "update teacher
+                                     set name = '$name',email = '$email'
+                                     WHERE teacher_id = '$id';");
+}
+else{
     $result = array(
-        "code" => 403,
-        "msg" => "无效用户尝试删除",
-        "res" => null
+        "code" => -1,
+        "msg" => "身份类型无效",
+        "res" => array(
+            "token" => $_SESSION['token']
+        )
     );
     echo json_encode($result);
     exit;
 }
-
-$query_result = mysqli_query($conn, "update student
-                                     set name = '$name',email = '$email'
-                                     WHERE student_id = '$student_id';");
 if($query_result){
     $result = array(
         "code" => 0,
         "msg" => "修改成功",
         "res" => array(
-            'student_id' => $student_id,
+            'id' => $id,
             'name' => $name,
             'email' => $email,
             "token" => $_SESSION['token']

@@ -6,7 +6,7 @@
                     <!--<img src="./static/zjulogo.png"/>-->
                     <div class="name" >课程辅助系统</div>
                 </div>
-                <div class="actionBox fr">
+                <div class="actionBox fr" v-if="idenType">
                     <div class="topBox">
                         <el-badge is-dot class="item fl" v-if="hasUnRead && idenType!=3">
                             <i class="iconfont icon-i-mail fl" @click="showMail = true" ></i>
@@ -112,11 +112,15 @@
     export default{
         data(){
             let userInfo=LS.getItem('userInfo');
+            let idenType=false;
+            if(userInfo && userInfo.token) {
+                idenType=userInfo.type;
+            }
             return{
                 showMail:false,
                 showTAmanage:false,
                 showUserInfo:false,
-                idenType:userInfo.type
+                idenType:idenType
             }
         },
         computed:{

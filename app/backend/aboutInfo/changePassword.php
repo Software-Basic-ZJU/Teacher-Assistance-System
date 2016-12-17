@@ -51,7 +51,7 @@ if($type == 1){//学生
         exit;
     }
 }
-elseif($type == 2){//教师
+elseif($type == 2){             //教师
     $query_result = mysqli_query($conn, "select * from teacher 
                                          where teacher_id ='$id'");
     if($fetched = mysqli_fetch_array($query_result)){

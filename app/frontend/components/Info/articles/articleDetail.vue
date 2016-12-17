@@ -96,6 +96,7 @@
             let userInfo=LS.getItem('userInfo');
             this.$store.dispatch('getArticle',this.$route.params.artId);
             return{
+                replyLoading:false,                 //回复按钮loading
                 newReply:{
                     content:'',
                     authorId:userInfo.id,
@@ -106,9 +107,7 @@
         computed:{
             ...mapState({
                 article:state=>state.info.article,
-                replyLoading:state=>state.info.replyLoading,
                 isReplyShow:state=>state.info.isReplyShow,
-                deleteLoading:state=>state.info.deleteLoading
             })
         },
         methods:{
@@ -118,7 +117,12 @@
             },
             reply(artId){
                 this.newReply.artId=artId;
-                this.$store.dispatch('replyArticle',this.newReply);
+                this.replyLoading=true;
+                this.$store.dispatch('replyArticle',this.newReply).then(()=>{
+                    this.newReply.content='';
+                },()=>{}).then(()=>{
+                    this.replyLoading=false;
+                });
             },
             toggleReplyShow(){
                 this.$store.dispatch('isReplyShow',!this.isReplyShow);

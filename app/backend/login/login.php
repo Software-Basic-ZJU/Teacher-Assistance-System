@@ -70,6 +70,7 @@ else if ($type == 2){
                 "id" => $id,
                 'class_id'=>$class,
                 'teacher_id'=> $id,
+                'email'=>$fetched['email'],
                 'name'=>$fetched['name'],
                 'type'=>$type,
                 'group_id'=>null

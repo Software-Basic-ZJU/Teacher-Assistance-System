@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="comment">
+        <div class="comment" v-loading.body="deleteLoading">
             <div class="header">
                 <span class="author">{{authorName}}</span>
                 <span class="time">{{time}}</span>
@@ -48,7 +48,8 @@
         data(){
             let userInfo=LS.getItem('userInfo');
             return {
-                id:userInfo.id
+                id:userInfo.id,
+                deleteLoading:false,             //回复列表Loading，用于删除
             }
         },
         props:{
@@ -65,7 +66,10 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    this.$store.dispatch('removeComment',commentId);
+                    this.deleteLoading=true;
+                    this.$store.dispatch('removeComment',commentId).then(()=>{
+                        this.deleteLoading=false;
+            });
                 }).catch(() => {});
             }
         }
