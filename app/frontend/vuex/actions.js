@@ -40,11 +40,11 @@ export const login=({commit},loginForm)=>{
             }
             else {
                 LS.setItem('userInfo',resp.res);
+                router.replace({name: 'App'});
                 Vue.prototype.$message({
                     type: 'success',
                     message: resp.msg
                 });
-                router.replace({name: 'App'});
             }
         }
     }).then(()=>{

@@ -25,6 +25,7 @@
             this.$store.dispatch('getPostDetail',this.$route.params.pid);
             return{
                 uploadInfo:{  //上传文件额外的参数
+                    resrcId:'',
                     uploader_id:userInfo.id,
                     type:1,
                     post_id:this.$route.params.pid
@@ -34,8 +35,10 @@
         computed:{
             currPost(){
                 let post=this.$store.state.forum.currPost;
+                console.log(post)
+                this.uploadInfo.resrcId=post.resrcId;
                 if(post.defaultFile && post.defaultFile.length) this.$store.dispatch("isFileUpload",true);
-                return Object.assign({},post);
+                return post;
             }
         },
         beforeRouteLeave(to,from,next){

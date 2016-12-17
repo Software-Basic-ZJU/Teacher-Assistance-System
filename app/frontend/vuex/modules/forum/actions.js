@@ -187,28 +187,34 @@ export const getReplyPost=({commit},postId)=>{
 
 //增加回帖
 export const addReplyPost=({commit},payload)=>{
-    let userInfo=LS.getItem('userInfo');
-    if(!userInfo || !userInfo.token) return commit('logout');
-    commit('postLoading',true);
-    Vue.http.post("backend/aboutReplyPost/addReplyPost.php",
-        {
-            post_id:payload.postId,
-            author_id:userInfo.id,
-            content:payload.content
-        }
-    ).then((response)=>{
-        let resp=response.body;
-        if(!resp.code){
-            Vue.prototype.$message({
-                type:"success",
-                message:resp.msg
-            });
-            commit('isReplyShow',false);
-            commit('addRepost',resp.res);
-        }
-    }).then(()=>{
-        commit('postLoading',false);
+    return new Promise((resolve,reject)=>{
+        let userInfo=LS.getItem('userInfo');
+        if(!userInfo || !userInfo.token) return commit('logout');
+        commit('postLoading',true);
+        Vue.http.post("backend/aboutReplyPost/addReplyPost.php",
+            {
+                post_id:payload.postId,
+                author_id:userInfo.id,
+                content:payload.content
+            }
+        ).then((response)=>{
+            let resp=response.body;
+            if(!resp.code){
+                Vue.prototype.$message({
+                    type:"success",
+                    message:resp.msg
+                });
+                commit('isReplyShow',false);
+                commit('addRepost',resp.res);
+                resolve();
+            }
+        },()=>{
+            reject();
+        }).then(()=>{
+            commit('postLoading',false);
+        })
     })
+
 };
 
 //删除回帖

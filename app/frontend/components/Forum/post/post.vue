@@ -25,7 +25,7 @@
             <div class="footer">
                 <el-button size="small" @click="showReply">{{replyBtn}}</el-button>
                 <el-button v-if="isAuthor" type="warning" icon="edit" :plain="true" size="small" @click="goEditPost($route.params.pid)"></el-button>
-                <el-button v-if="isAuthor" type="danger" icon="delete" :plain="true" size="small" @click="removePost($route.params.pid)"></el-button>
+                <el-button v-if="isAuthor || idenType!=1" type="danger" icon="delete" :plain="true" size="small" @click="removePost($route.params.pid)"></el-button>
                 <span class="time fr">发表于：{{hostPost.update_time}}</span>
                 <span class="time fr">最后更新：{{hostPost.update_time}}</span>
             </div>
@@ -125,6 +125,7 @@
     export default{
         data(){
             let section=this.$route.params.section;
+            let userInfo=LS.getItem('userInfo');
             switch(section){
                 case "teacherQA":
                     section="教师答疑区";
@@ -146,7 +147,8 @@
                 newReply:{
                     content:''
                 },
-                replyBtn:'回复'
+                replyBtn:'回复',
+                idenType:userInfo.type
             }
         },
         computed:{
@@ -184,7 +186,9 @@
             },
             addRepost(pid){
                 this.newReply.postId=pid;
-                this.$store.dispatch('addReplyPost',this.newReply);
+                this.$store.dispatch('addReplyPost',this.newReply).then(()=>{
+                    this.newReply.content='';
+                },()=>{});
             },
             showReply(){
                 this.$store.dispatch('isReplyShow',!this.isReplyShow);

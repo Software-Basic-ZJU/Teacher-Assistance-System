@@ -20,7 +20,7 @@ export const articleList=(state)=> {
 
 // 获取资源列表，按时间排序
 export const resrcList=state=>{
-    let resrcList=state.resource.resrcFilter==1?state.resource.teachResrcList:state.resource.stuResrcList
+    let resrcList=state.resource.resrcFilter==0?state.resource.teachResrcList:state.resource.stuResrcList
     return resrcList.sort((itemA,itemB)=>(
         moment(itemA.upload_time).format('x') < moment(itemB.upload_time).format('x')
     ));

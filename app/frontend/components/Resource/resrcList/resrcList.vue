@@ -3,12 +3,12 @@
         <div>
             <div class="header">
                 <el-tabs :active-name="currIndex" @tab-click="resrcFilter">
-                    <el-tab-pane label="教师资源" name="1"></el-tab-pane>
-                    <el-tab-pane label="学生资源" name="2"></el-tab-pane>
+                    <el-tab-pane label="教师资源" name="0"></el-tab-pane>
+                    <el-tab-pane label="学生资源" name="1"></el-tab-pane>
                 </el-tabs>
-                <el-button type="success" class="fr" @click="addResrc" v-show="currIndex!=2 && idenType!=1" icon="plus"></el-button>
+                <el-button type="success" class="fr" @click="addResrc" v-show="currIndex!=1 && idenType!=1" icon="plus"></el-button>
             </div>
-            <div class="warning" v-if="currIndex==2">以下是学生在论坛中分享的各种资源。</div>
+            <div class="warning" v-if="currIndex==1">以下是学生在论坛中分享的各种资源。</div>
             <el-table :data="resrcList" border :row-key="resource_id">
                 <el-table-column
                         prop="name"
@@ -52,9 +52,10 @@
                         fixed="right"
                 >
                     <span>
-                        <el-button v-if="idenType!=1" size="small" :plain="true" type="danger" icon="delete" @click="removeResrc($index,row)"></el-button>
-                        <el-button v-if="idenType!=1" class="updateBtn" size="small" :plain="true" type="warning" icon="edit" @click="showEdit($index,row)"></el-button>
-                        <a :href="resrcList[$index].path" :download="resrcList[$index].name"><el-button type="primary" size="small">下载</el-button></a>
+                        <el-button v-show="idenType!=1 && currIndex==0" size="small" :plain="true" type="danger" icon="delete" @click="removeResrc($index,row)"></el-button>
+                        <el-button v-show="idenType!=1 && currIndex==0" class="updateBtn" size="small" :plain="true" type="warning" icon="edit" @click="showEdit($index,row)"></el-button>
+                        <a v-show="currIndex==0" :href="resrcList[$index].path" :download="resrcList[$index].name"><el-button type="primary" size="small">下载</el-button></a>
+                        <el-button v-show="currIndex==1" type="primary" @click="gotoPost(row)" size="small">前往对应帖子</el-button>
                     </span>
                 </el-table-column>
             </el-table>
@@ -230,7 +231,7 @@
                 this.$store.dispatch('uploadResrc',this.currResrc);
             },
             resrcFilter(tab){
-                this.$store.dispatch('resrcFilter',tab.index);
+                this.$store.dispatch('resrcFilter',tab.index)
             },
             removeResrc(index,row){
                 this.$confirm('确认要删除该资源吗？','提示',{
@@ -241,7 +242,26 @@
                     row.wholeResrc=true;        //如果是删除整个资源，则置为true
                     row.resrcId=row.resource_id;
                     this.$store.dispatch('removeResrc',row);
-            }).catch(()=>{});
+                }).catch(()=>{});
+            },
+            gotoPost(row){
+                let postId=row.post_id;
+                let section='';
+                switch(row.section){
+                    case '0':
+                        section='teacherQA';
+                        break;
+                    case '1':
+                        section='public';
+                        break;
+                    case '2':
+                        section='group';
+                        break;
+                    default:
+                        section='teacherQA';
+                        break;
+                }
+                router.push({name:'post',params:{section:section,pid:postId}});
             }
         }
     }

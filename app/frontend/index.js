@@ -47,6 +47,7 @@ Vue.http.interceptors.push((req,next)=>{
                 type:'error',
                 message:'请求超时，请稍后重试'
             });
+            return;
         }
         if(!response.body){
             Vue.prototype.$message({
@@ -59,7 +60,6 @@ Vue.http.interceptors.push((req,next)=>{
                 type:'error',
                 message:response.body.msg
             });
-            return;
         }
         else if(response.body.code==403){   //身份不通过设为403
             Vue.prototype.$message({

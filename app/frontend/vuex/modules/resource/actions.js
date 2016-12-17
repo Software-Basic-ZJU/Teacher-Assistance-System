@@ -8,13 +8,14 @@ export const showEditResrc=({commit},signal)=>{
 };
 
 //获取资源列表
-export const getResrcList=({commit})=>{
+export const getResrcList=({state,commit})=>{
     let userInfo=LS.getItem("userInfo");
     if(!userInfo || !userInfo.token) return commit('logout');
     commit('isLoading',true);
     Vue.http.post('backend/aboutResource/getResourceList.php',
         {
-            teacher_id:userInfo.teacher_id
+            teacher_id:userInfo.teacher_id,
+            type:state.resrcFilter
         }
     ).then((response)=>{
         let resp=response.body;
@@ -75,6 +76,7 @@ export const submitResrc=({commit})=>{
     commit('submitResrc');
 };
 
-export const resrcFilter=({commit},index)=>{
+export const resrcFilter=({dispatch,commit},index)=>{
     commit('resrcFilter',index);
+    dispatch('getResrcList');
 };

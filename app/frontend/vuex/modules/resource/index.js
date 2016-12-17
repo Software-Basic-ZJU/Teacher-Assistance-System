@@ -11,9 +11,8 @@ const state={
     teachResrcList:[
     ],
     stuResrcList:[
-
     ],
-    resrcFilter:'1',          //1 显示教师资源  2 显示学生资源
+    resrcFilter:0,          //0 显示教师资源  1 显示学生资源
     showEdit:false
 }
 
@@ -28,7 +27,8 @@ const mutations={
         state.showEdit=signal;
     },
     updateResrcList(state,resrcList){
-        state.teachResrcList=resrcList;
+        if(state.resrcFilter==0) state.teachResrcList = resrcList;
+        else state.stuResrcList = resrcList;
     },
     resrcFilter(state,index){
         state.resrcFilter=index;

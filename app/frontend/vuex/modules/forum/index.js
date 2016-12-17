@@ -57,6 +57,14 @@ const mutations={
     updateCurrPost(state,currPost){
         state.currPost=currPost;
         state.currPost.resrcId=currPost.resource.resrc_id;
+        if(currPost.resource.resrc_id) {
+            state.currPost.defaultFile = [
+                {
+                    name: currPost.resource.name,
+                    path: currPost.resource.path
+                }
+            ]
+        }
     },
     publish(state,info){
         console.log(info)
