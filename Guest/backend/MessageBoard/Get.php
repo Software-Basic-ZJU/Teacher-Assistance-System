@@ -73,8 +73,10 @@ while($fetched = mysqli_fetch_array($query_message))
                             if(userInfo || userInfo.token){
                                 document.getElementsByName("token")[0].value=userInfo.token;
                                 var replyDom=document.getElementById("reply");
-                                console.log(replyDom)
+                                console.log(replyDom);
                                 replyDom.submit();
+                            }else{
+                                alert("未登录");
                             }
                         }
                     </script>
