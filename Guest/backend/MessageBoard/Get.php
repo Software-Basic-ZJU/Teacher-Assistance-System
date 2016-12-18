@@ -32,7 +32,7 @@ while($fetched = mysqli_fetch_array($query_message))
                                 <a href="#reply<?php echo $count?>" class="btn btn-info" data-toggle="collapse" onclick="display('reply<?php echo $count?>' )">回复</a>
                             </div>
             <div id="reply<?php echo $count?>" class="col-sm-10" style="display: none;">
-                <form role="form" action="./backend/MessageBoard/Reply.php" method="post">
+                <form role="form" id="reply" action="./backend/MessageBoard/Reply.php" method="post">
                     
                         <div class="col-sm-10">
                             <div class="form-group">
@@ -40,11 +40,44 @@ while($fetched = mysqli_fetch_array($query_message))
                                 <textarea  class="form-control" name="reply" rows="3" value=""></textarea>
                             </div>
                         </div>
-                            <input type="hidden" name="msg_id" value="<?php echo $fetched['msg_id']?>"> 
-                                <button type="submit" name="replySubmit" class="btn btn-info" style="">提交</button>
-                            
+                            <input type="hidden" name="msg_id" value="<?php echo $fetched['msg_id']?>">
+                            <input type="hidden" name="token" value="">
+
+                    <button type="button" name="replySubmit" class="btn btn-info" style="" onclick="testToken">提交</button>
                 </form>
             </div>
+                    <script>
+                        function testToken(){
+                            var LS={              //封装的类
+                                setItem(key,value){
+                                    if(typeof value=='object') value=JSON.stringify(value);
+                                    localStorage.setItem(key,value);
+                                },
+                                getItem(key){
+                                    let temp=localStorage.getItem(key);
+                                    let res=null;
+                                    if(res=JSON.parse(temp)) return res;
+                                    return temp;
+                                },
+                                removeItem(key){
+                                    localStorage.removeItem(key);
+                                },
+                                clear(){
+                                    Vue.http.headers.common['x-access-token']="";
+                                    localStorage.clear();
+                                }
+                            }
+
+                            //将本地存储中的token取出并检测
+                            var userInfo=LS.getItem('userInfo');
+                            if(userInfo || userInfo.token){
+                                document.getElementsByName("token")[0].value=userInfo.token;
+                                var replyDom=document.getElementById("reply");
+                                console.log(replyDom)
+                                replyDom.submit();
+                            }
+                        }
+                    </script>
 
                 <?php
                 }
