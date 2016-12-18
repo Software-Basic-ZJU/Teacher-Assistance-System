@@ -49,6 +49,15 @@ elseif ($_SESSION['type'] == 3){
     $author_id = $_SESSION['assist_id'];
 
 }
+else{
+    $result = array(
+        "code" => 403,
+        "msg" => "发帖人类型错误",
+        "res" => null
+    );
+    echo json_encode($result);
+    exit;
+}
 $query_result = mysqli_query($conn, "INSERT INTO posts 
                                      (title,content,teacher_id,section,author_id,group_id,publish_time,update_time) 
                                       values('$title','$content','$teacher_id','$section','$author_id','$group_id','$time','$time');");
@@ -82,7 +91,7 @@ if($query_result){
             'title' => $title,
             'content' => $content,
             'author_id' => $author_id,
-            'author_name' => $author_name,
+            'author_name' => getAuthorName($conn,$author_id),
             'publish_time' => $time,
             'update_time' => $time,
             'reply_num' => 0,
