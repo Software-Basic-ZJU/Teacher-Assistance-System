@@ -129,7 +129,9 @@ function getAuthorName($conn,$author_id){
     $getName_result = mysqli_query($conn,"select * 
                     from (select student_id as id, name as name from student 
                           UNION 
-                          select teacher_id as id ,name as name from teacher) as temp
+                          select teacher_id as id ,name as name from teacher
+                          UNION
+                          select assist_id as id,name as name from assists) as temp
                     WHERE temp.id = '$author_id';");
     if($fetched_name = mysqli_fetch_array($getName_result)){
         return $fetched_name['name'];

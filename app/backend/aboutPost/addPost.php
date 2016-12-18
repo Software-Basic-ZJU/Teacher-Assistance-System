@@ -19,7 +19,8 @@ $content = test_input(mysqli_escape_string($conn, $_POST['content']));
 $teacher_id = test_input(mysqli_escape_string($conn, $_POST['teacher_id']));
 $section = test_input(mysqli_escape_string($conn, $_POST['section']));
 $resrc_id = test_input(mysqli_escape_string($conn, $_POST['resrc_id']));
-$time = date('y-m-d H:i:s',time());
+$group_id= test_input(mysqli_escape_string($conn, $_POST['group_id']));
+$time = date('Y-m-d H:i:s',time());
 $group_id = 0;
 if($_SESSION['type']==1){
     $author_id = $_SESSION['student_id'];
@@ -39,7 +40,6 @@ if($_SESSION['type']==1){
         }
         
     }
-
 }
 elseif ($_SESSION['type'] == 2){
     $author_id = $_SESSION['teacher_id'];
@@ -56,7 +56,7 @@ $query_result = mysqli_query($conn, "INSERT INTO posts
 if($query_result){
     $post_id = mysqli_insert_id($conn);
 
-    $getName_result = getAuthorName($conn,$author_id);
+    $author_name = getAuthorName($conn,$author_id);
 
     if($resrc_id!=null){
         $updateResource_result = mysqli_query($conn, "update resource
@@ -80,7 +80,7 @@ if($query_result){
         "res" => array(
             'post_id' => $post_id,
             'title' => $title,
-            'content' => $content,
+            'content' => htmlspecialchars_decode($content),
             'author_id' => $author_id,
             'author_name' => $author_name,
             'publish_time' => $time,

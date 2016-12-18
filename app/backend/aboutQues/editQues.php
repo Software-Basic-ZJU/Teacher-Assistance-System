@@ -54,7 +54,7 @@ if($query_result){
             "ques_id" => $fetched['ques_id'],
             "title" => $fetched['title'],
             "type" => $fetched['type'],
-            "content" => $fetched['content'],
+            "content" => htmlspecialchars_decode($fetched['content']),
             "should_num" => $should_num,
             "submit_num" => $fetched['submit_num'],
             "ques_finish" => $fetched['ques_finish'],

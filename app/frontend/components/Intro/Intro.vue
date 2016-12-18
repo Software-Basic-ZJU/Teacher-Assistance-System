@@ -1,10 +1,10 @@
 <template>
     <div>
-        <el-tabs @tab-click="handleClick" :active-name="currIndex">
-            <el-tab-pane label="课程介绍" ></el-tab-pane>
-            <el-tab-pane label="教师介绍"></el-tab-pane>
+        <el-tabs @tab-click="handleClick" :active-name="$route.name">
+            <el-tab-pane label="课程介绍" name="course"></el-tab-pane>
+            <el-tab-pane label="教师介绍" name="teacher"></el-tab-pane>
         </el-tabs>
-        <el-button type="success" class="fr" icon="edit" @click="goEdit" v-if="idenType!=1"></el-button>
+        <el-button type="success" class="fr" icon="edit" @click="goEdit" v-if="idenType==2"></el-button>
         <div class="introBox">
             <div>
                 <router-view></router-view>
@@ -36,7 +36,6 @@
         data(){
             let userInfo=LS.getItem('userInfo');
             return{
-                currIndex:"",
                 idenType:userInfo.type
             }
         },
@@ -49,10 +48,10 @@
         methods:{
             handleClick(tabs){
                 switch(tabs.index){
-                    case "1":
+                    case "course":
                         router.push({name:'course'});
                         break;
-                    case "2":
+                    case "teacher":
                         router.push({name:'teacher'});
                         break;
                     default:break;

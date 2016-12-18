@@ -1186,6 +1186,7 @@ POST——Teacher-Assistance-System/app/backend/aboutPost/getPostList.php
             "msg" => "查找成功",
             "res" => array(
                 'postList' => $postList,
+                'group_name' 如果是小组讨论区的话返回小组名字
                 'token' => $_SESSION['token']
             )
               

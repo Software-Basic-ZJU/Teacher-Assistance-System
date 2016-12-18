@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <el-button type="success" class="fr" icon="edit" @click="editContact" v-if="idenType!=1"></el-button>
+            <el-button type="success" class="fr" icon="edit" @click="editContact" v-if="idenType==2"></el-button>
             <div class="content">
                 <div class="contactItem" v-for="(item,index) in contact">
                     <span class="title">{{index=='other_contact'?'其他联系方式':index}}：</span>

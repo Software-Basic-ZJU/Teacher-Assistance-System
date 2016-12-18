@@ -3,7 +3,6 @@ import {LS} from "../../../helpers/utils";
 
 // 切换收件箱与发件箱
 export const updateMailType=({commit},type)=>{
-    commit('showToSend',false);
     commit('updateMailType',type);
 };
 
@@ -80,7 +79,6 @@ export const getCurrMail=({commit,state},mailId)=>{
             }
         }).then(()=> {
             commit('mailLoading', false);
-
         });
     }
     else{
@@ -133,15 +131,16 @@ export const sendMail=({commit},mail)=>{
                 type:'success',
                 message:resp.msg
             });
+            delete resp.res.src_name;
             commit('showToSend',false);
             commit('addSendedList',resp.res);
             commit('clearMailForm');
+            commit('updateMailType',1);
         }
     }).then(()=> {
         commit('mailLoading', false);
     });
 };
-
 
 // 翻页
 export const changeMailPage=({commit},val)=>{

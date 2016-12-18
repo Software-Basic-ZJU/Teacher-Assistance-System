@@ -9,7 +9,7 @@
             </div>
             <div class="footer">
                 <span class="time fl">{{time}}</span>
-                <i class="iconfont icon-delete fr" @click="removeRepost(rpid)" v-if="authorId==id"></i>
+                <i class="iconfont icon-delete fr" @click="removeRepost(rpid)" v-if="authorId==id || idenType==2"></i>
                 <comment-list
                         add-method="addPostComment"
                         remove-method="removePostComment"
@@ -62,7 +62,8 @@
             let userInfo=LS.getItem('userInfo');
             return{
                 isComListShow:false,
-                id:userInfo.id
+                id:userInfo.id,
+                idenType:userInfo.type
             }
         },
         props:{

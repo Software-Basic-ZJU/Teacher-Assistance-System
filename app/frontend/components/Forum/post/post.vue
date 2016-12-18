@@ -15,7 +15,7 @@
                 <span class="author">{{hostPost.author_name}}</span>
             </div>
             <div class="main">
-                <div class="content">{{hostPost.content}}</div>
+                <div class="content" v-html="hostPost.content"></div>
                 <div class="resource" v-if="hostPost.resrcId">
                     <a :href="hostPost.resource.path" download="hostPost.resource.name">
                         {{hostPost.resource.name}}
@@ -25,7 +25,7 @@
             <div class="footer">
                 <el-button size="small" @click="showReply">{{replyBtn}}</el-button>
                 <el-button v-if="isAuthor" type="warning" icon="edit" :plain="true" size="small" @click="goEditPost($route.params.pid)"></el-button>
-                <el-button v-if="isAuthor || idenType!=1" type="danger" icon="delete" :plain="true" size="small" @click="removePost($route.params.pid)"></el-button>
+                <el-button v-if="isAuthor || idenType==2" type="danger" icon="delete" :plain="true" size="small" @click="removePost($route.params.pid)"></el-button>
                 <span class="time fr">发表于：{{hostPost.update_time}}</span>
                 <span class="time fr">最后更新：{{hostPost.update_time}}</span>
             </div>

@@ -220,6 +220,7 @@ POST——Teacher-Assistance-System/app/backend/aboutGroup/getGroupList.php
         "msg" => "查找成功",
         "res" => array(
             'groupList' => $groupList,
+            'group_id'=>$_SESSION['group_id']       //返回新的小组信息，用于判断是否还在小组内
             "token" => $_SESSION['token']
         )
           

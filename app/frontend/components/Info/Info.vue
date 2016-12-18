@@ -1,10 +1,10 @@
 <template>
     <div>
         <div>
-            <el-tabs @tab-click="changeTabs" :active-name="currIndex">
-                <el-tab-pane label="通知"></el-tab-pane>
-                <el-tab-pane label="联系方式"></el-tab-pane>
-                <el-tab-pane label="教学文章"></el-tab-pane>
+            <el-tabs @tab-click="changeTabs" :active-name="$route.name">
+                <el-tab-pane label="通知" name="notices"></el-tab-pane>
+                <el-tab-pane label="联系方式" name="contact"></el-tab-pane>
+                <el-tab-pane label="教学文章" name="articles"></el-tab-pane>
             </el-tabs>
             <div class="infoBox">
                 <div>
@@ -27,7 +27,6 @@
     export default {
         data(){
             return {
-                currIndex:""
             }
         },
         created(){
@@ -40,13 +39,13 @@
         methods: {
             changeTabs(tab) {
                 switch(tab.index){
-                    case "1":
+                    case "notices":
                         router.push({name:'notices'});
                         break;
-                    case "2":
+                    case "contact":
                         router.push({name:'contact'});
                         break;
-                    case "3":
+                    case "articles":
                         router.push({name:'articles'});
                         break;
                     default:break;

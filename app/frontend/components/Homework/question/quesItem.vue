@@ -13,8 +13,8 @@
                         <div class="haveNum">实交人数：{{submitNum}}</div>
                     </div>
                     <el-button class="fr" type="primary" @click="goQuesByName(quesId,'quesDetail')">前往查看</el-button>
-                    <el-button class="fr" v-if="idenType!=1" type="warning" :plain="true" @click="goQuesByName(quesId,'editQues')" icon="edit"></el-button>
-                    <el-button class="fr" v-if="idenType!=1" type="danger" :plain="true" icon="delete" @click="removeQues(quesId)"></el-button>
+                    <el-button class="fr" v-if="idenType==2" type="warning" :plain="true" @click="goQuesByName(quesId,'editQues')" icon="edit"></el-button>
+                    <el-button class="fr" v-if="idenType==2" type="danger" :plain="true" icon="delete" @click="removeQues(quesId)"></el-button>
                 </div>
             </el-card>
         </div>

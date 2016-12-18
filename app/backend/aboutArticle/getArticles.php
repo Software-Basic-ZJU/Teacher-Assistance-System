@@ -30,9 +30,10 @@ if($query_result){
         $articles[] = array(
             "article_id" => $fetched['art_id'],
             "title" => $fetched['title'],
-            "content" => $fetched['content'],
+            "content" => htmlspecialchars_decode($fetched['content']),
             "author" => $fetched['author'],
             "time" => $fetched['time'],
+            "authority"=>$fetched['authority'],
             "comment_num" => $num
         );
     }

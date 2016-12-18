@@ -7,7 +7,7 @@
                 <div class="footer">
                     <div class="time fl">{{item.time}}</div>
                     <div class="btnGroup fr">
-                        <el-button type="text" @click="removeComment(item.com_id,rpid)" v-if="item.author_id==id">删除</el-button>
+                        <el-button type="text" @click="removeComment(item.com_id,rpid)" v-if="item.author_id==id || idenType==2">删除</el-button>
                         <el-button type="text" @click="replyComment(item.author_name)">回复</el-button>
                     </div>
                 </div>
@@ -75,7 +75,8 @@
                 comment:'',
                 listShow:false,                 //是否显示评论列表
                 isAddComShow:false,              //是否显示添加评论表单
-                comLoading:false
+                comLoading:false,
+                idenType:userInfo.type
             }
         },
         props:{

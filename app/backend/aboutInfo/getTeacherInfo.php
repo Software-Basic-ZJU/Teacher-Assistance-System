@@ -24,7 +24,7 @@ if($fetched = mysqli_fetch_array($query_result)){
         "code" => 0,
         "msg" => "查找成功",
         "res" => array(
-            "teacher_info" => $fetched['teacher_info'],
+            "teacher_info" => htmlspecialchars_decode($fetched['teacher_info']),
             "token" => $_SESSION['token']
         )
     );

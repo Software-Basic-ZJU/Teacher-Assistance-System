@@ -6,9 +6,9 @@
                         :default-active="currIndex"
                         class="el-menu-vertical-demo"
                         @select="selectPage">
-                    <el-menu-item index="1">收件箱</el-menu-item>
-                    <el-menu-item index="2">已发送</el-menu-item>
-                    <el-menu-item index="3">发送信件</el-menu-item>
+                    <el-menu-item index="0">收件箱</el-menu-item>
+                    <el-menu-item index="1">已发送</el-menu-item>
+                    <el-menu-item index="2">发送信件</el-menu-item>
                 </el-menu>
             </div>
             <div class="rightBox" v-loading.body="loading">
@@ -64,11 +64,14 @@
     }
     .mainBox .rightBox .main{
         width:100%;
-        height:425px;
+        height:410px;
     }
     .mainBox .mailList{
         position:relative;
-        height:390px;
+        height:375px;
+    }
+    .el-pagination{
+        padding-top:10px;
     }
 </style>
 <script>
@@ -79,7 +82,6 @@
     export default{
         data(){
             return{
-                currIndex:'1',
                 toSend:false,
             }
         },
@@ -89,7 +91,8 @@
                 detailShow:state=>state.mail.detailShow,
                 currMail:state=>state.mail.currMail,
                 toSend:state=>state.mail.toSend,
-                mailForm:state=>state.mail.mailForm
+                mailForm:state=>state.mail.mailForm,
+                currIndex:state=>state.mail.mailListType
             }),
             mailList(){
                 return this.$store.getters.mailList
@@ -101,19 +104,20 @@
         methods:{
             selectPage(index){
                 switch(index){
-                    case '1':       //收件箱
+                    case '0':       //收件箱
                         this.$store.dispatch('showToSend',false);
                         this.$store.dispatch('showMailDetail',false);
-                        this.$store.dispatch('updateMailType',0);
+                        this.$store.dispatch('updateMailType','0');
                         break;
-                    case '2':       //发件箱
+                    case '1':       //发件箱
                         this.$store.dispatch('showToSend',false);
                         this.$store.dispatch('showMailDetail',false);
-                        this.$store.dispatch('updateMailType',1);
+                        this.$store.dispatch('updateMailType','1');
                         break;
-                    case '3':       //发邮件表单
+                    case '2':       //发邮件表单
                         this.$store.dispatch('showMailDetail',false);
                         this.$store.dispatch('showToSend',true);
+                        this.$store.dispatch('updateMailType','2');
                         break;
                     default:break;
                 }

@@ -21,7 +21,7 @@ $class_id = test_input(mysqli_escape_string($conn, $_POST['class_id']));
 $type = test_input(mysqli_escape_string($conn, $_POST['type']));
 $punish_type = test_input(mysqli_escape_string($conn, $_POST['punish_type']));
 $punish_rate = test_input(mysqli_escape_string($conn, $_POST['punish_rate']));
-if($_SESSION['type']!=2){
+if($_SESSION['type']==1){
     $result = array(
         "code" => 403,
         "msg" => "无效用户尝试操作",

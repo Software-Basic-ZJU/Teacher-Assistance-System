@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-button type="success" class="fr" icon="plus" @click="addArticle" v-if="idenType!=1"></el-button>
+        <el-button type="success" class="fr" icon="plus" @click="addArticle" v-if="idenType==2"></el-button>
         <div class="articleBox">
             <div class="noRes" v-if="articleList.length==0">还没有发表文章~</div>
             <article-item
@@ -12,6 +12,7 @@
                     :publish-time="item.time"
                     :content="item.content"
                     :reply-num="item.comment_num"
+                    :authority="item.authority"
             >
             </article-item>
             <el-pagination

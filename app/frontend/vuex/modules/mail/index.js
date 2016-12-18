@@ -4,7 +4,7 @@ const state={
     loading:false,
     receivedList:[],        //收件箱邮件
     sendedList:[],          //发件箱邮件
-    mailListType:0,         //0为收件箱，1为已发送信件
+    mailListType:'0',         //0为收件箱，1为已发送信件,2为发私信页面
     detailShow:false,       //信件详情显示开关
     toSend:false,           //发送信件页面显示开关
     currMail:{},
@@ -13,7 +13,7 @@ const state={
         title:'',
         content:''
     },
-    currPage:1              //当前页数
+    currPage:1,              //当前页数
 }
 
 const mutations={
@@ -34,8 +34,8 @@ const mutations={
     },
     getCurrMail(state,mailId){
         let list=[];
-        if(!state.mailListType) list=state.receivedList;
-        else list=state.sendedList;
+        if(state.mailListType==0) list=state.receivedList;
+        else if (state.mailListType==1) list=state.sendedList;
 
         list.forEach((item)=>{
             if(item.mail_id==mailId){
@@ -72,8 +72,8 @@ const mutations={
     },
     removeMail(state,mailId){
         let list=[];
-        if(!state.mailListType) list=state.receivedList;
-        else list=state.sendedList;
+        if(state.mailListType==0) list=state.receivedList;
+        else if(state.mailListType==1) list=state.sendedList;
 
         list.forEach((item,index)=>{
             if(item.mail_id==mailId){
@@ -82,6 +82,7 @@ const mutations={
             }
         })
     }
+
 }
 
 export default {

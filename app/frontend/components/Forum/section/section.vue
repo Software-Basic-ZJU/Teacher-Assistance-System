@@ -4,7 +4,7 @@
             <div class="header">
                 <el-breadcrumb separator="/">
                     <el-breadcrumb-item :to="{name:'forum'}">讨论区</el-breadcrumb-item>
-                    <el-breadcrumb-item>{{secName}}</el-breadcrumb-item>
+                    <el-breadcrumb-item>{{secName+' - '+groupName}}</el-breadcrumb-item>
                 </el-breadcrumb>
                 <el-button type="success" class="fr" @click="goAddPost">发布主题</el-button>
             </div>
@@ -47,6 +47,7 @@
     import postItem from "../post/postItem.vue";
     import router from "../../../routes";
     import {LS} from "../../../helpers/utils";
+    import {mapState} from "vuex";
 
     export default{
         data(){
@@ -54,31 +55,34 @@
             let section=this.$route.params.section;
             let secType=0;
             switch(section){
-            case "teacherQA":
-                secType=0;
-                section="教师答疑区";
-                break;
-            case "public":
-                secType=1;
-                section="公共讨论区";
-                break;
-            case "group":
-                secType=2;
-                if(userInfo.type!=1) {    //若不是学生且没有选择要看的小组 需要从localStorage中取出
-                    this.$message('请在小组名单中选择一个小组进入其讨论区');
-                    router.push({name:'member'});
+                case "teacherQA":
+                    secType=0;
+                    section="教师答疑区";
+                    break;
+                case "public":
+                    secType=1;
+                    section="公共讨论区";
+                    break;
+                case "group":
+                    secType=2;
+                    if(userInfo.type!=1) {    //若不是学生且没有选择要看的小组 需要从localStorage中取出
+                        if(!userInfo.group_id){
+                            let classId=userInfo.type==2?userInfo.class_id[0].class_id:userInfo.class_id;
+                            this.$message('请在小组名单中选择一个小组进入其讨论区');
+                            router.push({name:'member',params:{cid:classId}});
+                            return {};
+                        }
+                    }
+                    else if(userInfo.group_id==-1 || !userInfo.group_id){
+                        this.$message('您还没有加入小组,请先创建或加入一个小组');
+                        router.push({name:'member',params:{cid:userInfo.class_id}});
+                        return {};
+                    }
+                    section="小组讨论区";
+                    break;
+                default:
+                    router.push({name:'forum'});
                     return {};
-                }
-                else if(!userInfo.group_id){
-                    this.$message('您还没有加入小组,请先创建或加入一个小组');
-                    router.push({name:'member'});
-                    return {};
-                }
-                section="小组讨论区";
-                break;
-            default:
-                router.push({name:'forum'});
-                return {};
             }
             this.$store.dispatch('getPostList',secType);
             return{
@@ -89,12 +93,11 @@
             postList(){
                 return this.$store.getters.postList;
             },
-            currPage(){
-                return this.$store.state.forum.currPage;
-            },
-            postNum(){
-                return this.$store.state.forum.postList.length;
-            }
+            ...mapState({
+                currPage:state=>state.forum.currPage,
+                postNum:state=>state.forum.postList.length,
+                groupName:state=>state.forum.groupName
+            })
         },
         methods:{
             goAddPost(){

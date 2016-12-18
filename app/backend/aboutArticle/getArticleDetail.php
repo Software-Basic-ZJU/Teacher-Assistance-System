@@ -32,7 +32,7 @@ if($fetched = mysqli_fetch_array($query_result)){
                 "content" => $fetched_comment['content'],
                 "time" => $fetched_comment['time'],
                 "author_id" => $fetched_comment['author_id'],
-                "author_name" => $fetched_comment['name']
+                "author_name" => $fetched_comment['name'],
             );
         }
     }
@@ -53,11 +53,12 @@ if($fetched = mysqli_fetch_array($query_result)){
         "res" => array(
             "article_id" => $fetched['art_id'],
             "title" => $fetched['title'],
-            "content" => $fetched['content'],
+            "content" => htmlspecialchars_decode($fetched['content']),
             "author" => $fetched['author'],
             "time" => $fetched['time'],
             "comment" => $comment,
-            "token" => $_SESSION['token']
+            "token" => $_SESSION['token'],
+            "authority"=>$fetched['authority']
         )
     );
     echo json_encode($result);

@@ -35,7 +35,7 @@ if($query_result){
             'content' => $content,
             'author_id' => $author_id,
             'type' => $type,
-            'author_name' => $_SESSION['type']==1?$_SESSION['sname']:$_SESSION['tname'],
+            'author_name' => $_SESSION['uname'],
             "token" => $_SESSION['token']
         )
     );

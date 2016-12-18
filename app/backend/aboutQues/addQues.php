@@ -61,7 +61,7 @@ if($query_result){
             "ques_id" => $ques_id,
             "title" => $title,
             "type" => $type,
-            "content" => $content,
+            "content" => htmlspecialchars_decode($content),
             "should_num" => $should_num,
             "submit_num" => 0,
             "ques_finish" => 0,

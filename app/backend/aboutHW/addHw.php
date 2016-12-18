@@ -20,6 +20,7 @@ $deadline = test_input(mysqli_escape_string($conn, $_POST['deadline']));
 $type = test_input(mysqli_escape_string($conn, $_POST['type']));
 $punish_type = test_input(mysqli_escape_string($conn, $_POST['punish_type']));
 $punish_rate = test_input(mysqli_escape_string($conn, $_POST['punish_rate']));
+if($punish_type==0) $punish_rate=1.00;
 $time = date('y-m-d h:i:s',time());
 //Class_id,title,deadline,type, punish_type,punish_rate
 $query_result = mysqli_query($conn, "INSERT INTO homework 

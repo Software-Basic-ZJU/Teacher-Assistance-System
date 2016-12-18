@@ -27,44 +27,30 @@ if($section == 2){
         echo json_encode($result);
         exit;
     }
-    $query_result = mysqli_query($conn, "select * from posts WHERE section = '$section' AND teacher_id = '$teacher_id' AND group_id = '$group_id';");
+    $query_result = mysqli_query($conn, "select * from posts join course_assist.group on posts.group_id=course_assist.group.group_id WHERE section = '$section' AND teacher_id = '$teacher_id' AND posts.group_id = '$group_id';");
     if($query_result){//当语句正确的时候
-        $fetched = mysqli_fetch_array($query_result);
         $postList = array();
         while($fetched = mysqli_fetch_array($query_result)){//能查到数据的时候
             $author_id = $fetched['author_id'];
             $post_id = $fetched['post_id'];
             $author_name = getAuthorName($conn,$author_id);
+            $groupName=$fetched['group_name'];
 
             //查询本帖子有多少回帖
             $getReplyNum_result = mysqli_query($conn, "select COUNT(DISTINCT repost_id) as reply_num from reply_post WHERE post_id = '$post_id';");
             if($fetched_num = mysqli_fetch_array($getReplyNum_result)){
                 $reply_num = $fetched_num['reply_num'];
             }
-            //查询本帖子的附件
-            $getResource_result = mysqli_query($conn, "select * from resource WHERE post_id = '$post_id' AND type = 1;");
-            if($fetched_resource = mysqli_fetch_array($getResource_result)){
-                $attachment = array(
-                    "resrc_id" => $fetched_resource['resrc_id'],
-                    "name" => $fetched_resource['name'],
-                    "path" => $fetched_resource['path'],
-                    "size" => $fetched_resource['size']
-                );
-            }
-            else{
-                $attachment = null;
-            }
+            else $reply_num=0;
 
             $postList[] = array(
                 "post_id" => $post_id,
                 "title" => $fetched['title'],
-                "content" => $fetched['content'],
                 "author_id" => $author_id,
                 "author_name" => $author_name,
                 "publish_time" => $fetched['publish_time'],
                 "update_time" => $fetched['update_time'],
                 "reply_num" => $reply_num,
-                "attachment" => $attachment
             );
         }
         $result = array(
@@ -72,6 +58,7 @@ if($section == 2){
             "msg" => "查找成功",
             "res" => array(
                 'postList' => $postList,
+                'groupName'=>$groupName,
                 'token' => $_SESSION['token']
             )
         );
@@ -97,54 +84,24 @@ else{
             $author_id = $fetched['author_id'];
             $post_id = $fetched['post_id'];
 
-            $getName_result = mysqli_query($conn, "select * from student WHERE student_id = '$author_id';");
-            if($fetched_name = mysqli_fetch_array($getName_result)){
-                $author_name = $fetched_name['name'];
-            }
-            else{
-                $getName_result = mysqli_query($conn, "select * from teacher WHERE teacher_id = '$author_id';");
-                if($fetched_name = mysqli_fetch_array($getName_result)){
-                    $author_name = $fetched_name['name'];
-                }
-                else{
-                    $result = array(
-                        "code" => 2,
-                        "msg" => "无此上传人",
-                        "res" => null
-                    );
-                    echo json_encode($result);
-                    exit;
-                }
-            }
+            $author_name=getAuthorName($conn,$author_id);
 
             $getReplyNum_result = mysqli_query($conn, "select COUNT(DISTINCT repost_id) as reply_num from reply_post WHERE post_id = '$post_id';");
             if($fetched_num = mysqli_fetch_array($getReplyNum_result)){
                 $reply_num = $fetched_num['reply_num'];
             }
+            else $reply_num=0;
 
-            $getResource_result = mysqli_query($conn, "select * from resource WHERE post_id = '$post_id' AND type = 1;");
-            if($fetched_resource = mysqli_fetch_array($getResource_result)){
-                $attachment = array(
-                    "resrc_id" => $fetched_resource['resrc_id'],
-                    "name" => $fetched_resource['name'],
-                    "path" => $fetched_resource['path'],
-                    "size" => $fetched_resource['size']
-                );
-            }
-            else{
-                $attachment = null;
-            }
 
             $postList[] = array(
                 "post_id" => $post_id,
                 "title" => $fetched['title'],
-                "content" => $fetched['content'],
+                "content" => htmlspecialchars_decode($fetched['content']),
                 "author_id" => $author_id,
                 "author_name" => $author_name,
                 "publish_time" => $fetched['publish_time'],
                 "update_time" => $fetched['update_time'],
                 "reply_num" => $reply_num,
-                "attachment" => $attachment
             );
         }
 

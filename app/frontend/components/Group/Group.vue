@@ -119,7 +119,6 @@
             return {
                 sid:userInfo.id,          //用户id
                 actionType: 0,           //0为创建小组,1为加入小组
-                isInGroup: false,
                 group: {
                     id:'',
                     name: '',
@@ -134,7 +133,8 @@
                 groupList:state=>state.group.groupList,
                 showGroup:state=>state.group.showGroup,
                 actionLoading:state=>state.group.actionLoading,
-                groupId:state=>state.userInfo.group_id
+                groupId:state=>state.userInfo.group_id,
+                isInGroup: state=>state.userInfo.group_id > 0
             }),
             dialogTitle(){
                 if (!this.actionType) return '创建小组';
@@ -189,7 +189,10 @@
                 }).catch(() => {});
             },
             goGroupForum(index, row){
-                //TODO groupId存进教师的localstorage的身份信息中
+                //groupId存进教师的localstorage的身份信息中
+                let userInfo=LS.getItem('userInfo');
+                userInfo.group_id=row.group_id;
+                LS.setItem('userInfo',userInfo);
                 router.push({name: 'section', params: {section: 'group'}});
             }
         }

@@ -128,7 +128,7 @@
                     {
                         linkName: "作业列表",
                         root: "/homework",
-                        path: "/homework/"+(userInfo.type==1?userInfo.class_id:userInfo.class_id[0].class_id),
+                        path: "/homework/"+(userInfo.type!=2?userInfo.class_id:userInfo.class_id[0].class_id),
                         icon: "icon-zuoye",
                     },
                     {
@@ -139,7 +139,7 @@
                     {
                         linkName:"小组名单",
                         root:"/member",
-                        path:"/member/"+(userInfo.type==1?userInfo.class_id:userInfo.class_id[0].class_id),
+                        path:"/member/"+(userInfo.type!=2?userInfo.class_id:userInfo.class_id[0].class_id),
                         icon:"icon-group"
 
                     }

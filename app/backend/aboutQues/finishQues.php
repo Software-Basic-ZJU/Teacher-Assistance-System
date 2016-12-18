@@ -15,6 +15,22 @@ connectDB();
 loginCheck($_SERVER['HTTP_X_ACCESS_TOKEN']);
 //Get information
 $ques_id = test_input(mysqli_escape_string($conn, $_POST['ques_id']));
+
+$query_result=mysqli_query($conn,"select * from homework join questions 
+                                                on homework.hw_id=questions.hw_id
+                                                where questions.ques_id='$ques_id'");
+if($fetched=mysqli_fetch_array($query_result)){
+    if(strtotime($fetched['deadline'])>time()){
+        $result = array(
+            "code" => -1,
+            "msg" => "提交失败，未到截止日期",
+            "res" => null
+        );
+        echo json_encode($result);
+        exit;
+    }
+}
+
 if($_SESSION['type']!=2){
     $result = array(
         "code" => 403,

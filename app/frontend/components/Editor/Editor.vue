@@ -155,7 +155,7 @@
         },
         methods:{
             publish(){
-                if(!this.data.title){
+                if(this.hasTitle && !this.data.title){
                     return this.$message({
                         type:'error',
                         message:'标题不能为空'
