@@ -123,8 +123,7 @@ $time = date("Y-m-d H:i:s");
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group">
-											<textarea name="message" id="message" class="form-control" rows="4" cols="25" required="required"
-													  placeholder="Message"></textarea>
+											<textarea name="message" id="message" class="form-control" rows="4" cols="25"></textarea>
 									</div>
 									<button type="submit" class="btn btn-3 btn-block" name="btnContactUs" id="btnContactUs">
 										提交</button>
