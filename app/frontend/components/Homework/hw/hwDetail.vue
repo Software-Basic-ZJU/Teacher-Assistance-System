@@ -6,7 +6,7 @@
                     <el-breadcrumb-item :to="{name:'homework'}">{{className}}作业列表</el-breadcrumb-item>
                     <el-breadcrumb-item>{{hwDetail.hwTitle}}</el-breadcrumb-item>
                 </el-breadcrumb>
-                <el-button v-if="idenType!=1" type="success" class="fr" @click="addQues">添加问题</el-button>
+                <el-button v-if="idenType==2" type="success" class="fr" @click="addQues">添加问题</el-button>
             </div>
             <div class="infoBox">
                 <span class="type">作业类型：{{hwDetail.hwType?'小组作业':'个人作业'}}</span>

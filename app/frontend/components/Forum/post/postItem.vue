@@ -44,9 +44,6 @@
         font-size:12px;
         color:#8492A6;
     }
-    .postItem>.main{
-        padding:10px 0px;
-    }
     .postItem>.main>.brief{
         overflow: hidden;
         text-overflow: ellipsis;

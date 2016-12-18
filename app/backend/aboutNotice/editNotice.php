@@ -17,8 +17,8 @@ loginCheck($_SERVER['HTTP_X_ACCESS_TOKEN']);
 $title = test_input(mysqli_escape_string($conn, $_POST['title']));
 $content = test_input(mysqli_escape_string($conn, $_POST['content']));
 $level = test_input(mysqli_escape_string($conn, $_POST['level']));
-$teacher_id = test_input(mysqli_escape_string($conn, $_POST['class_id']));
-$time = date('y-m-d H:i:s',time());
+$teacher_id = test_input(mysqli_escape_string($conn, $_POST['teacher_id']));
+$time = date('Y-m-d H:i:s',time());
 $notice_id = test_input(mysqli_escape_string($conn, $_POST['notice_id']));
 if($_SESSION['type']!=2){
     $result = array(
@@ -41,7 +41,8 @@ if($query_result){
             'title' => $title,
             'level' => $level,
             'time' => $time,
-            'content' => $content,
+            'content' => htmlspecialchars_decode($content),
+            'teacher_id'=>$teacher_id,
             "token" => $_SESSION['token']
         )
     );

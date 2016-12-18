@@ -4,7 +4,7 @@
             <div class="header">
                 <span class="author">{{authorName}}</span>
                 <span class="time">{{time}}</span>
-                <i class="el-icon-delete fr" @click="deleteCom(commentId)" v-if="authorId==id"></i>
+                <i class="el-icon-delete fr" @click="deleteCom(commentId)" v-if="authorId==id || idenType==2"></i>
             </div>
             <div class="content">{{content}}</div>
         </div>
@@ -50,6 +50,7 @@
             return {
                 id:userInfo.id,
                 deleteLoading:false,             //回复列表Loading，用于删除
+                idenType:userInfo.type
             }
         },
         props:{

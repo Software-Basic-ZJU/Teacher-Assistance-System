@@ -38,6 +38,7 @@ const state={
         defaultFile:[],
         repostList:[]
     },
+    groupName:'',
     currPage:1          //当前页
 };
 
@@ -53,6 +54,9 @@ const mutations={
     },
     updatePostList(state,postList){
         state.postList=postList;
+    },
+    updateGroupName(state,name){
+        state.groupName=name;
     },
     updateCurrPost(state,currPost){
         state.currPost=currPost;

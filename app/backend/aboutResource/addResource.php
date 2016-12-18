@@ -42,12 +42,7 @@ $add_result = mysqli_query($conn,
 
 if($add_result){
     $resource_id = mysqli_insert_id($conn);
-    if($user_type == 1){
-        $user_name = $_SESSION['sname'];
-    }
-    elseif ($user_type == 2){
-        $user_name = $_SESSION['tname'];
-    }
+    $user_name=$_SESSION['uname'];
     $result = array(
         'code' => 0,
         'msg' => '添加成功',

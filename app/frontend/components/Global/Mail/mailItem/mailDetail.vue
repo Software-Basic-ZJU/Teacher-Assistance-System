@@ -5,9 +5,9 @@
                 {{mail.title}}
             </div>
             <div class="info">
-                <span class="srcName" v-if="mail.src_name">from：{{mail.src_name}}</span>
-                <span class="destName" v-if="mail.dest_name">to：{{mail.dest_name}}</span>
-                <span class="time">{{mail.time}}</span>
+                <span class="srcName" v-if="mail.src_name">from:{{mail.src_name}}</span>
+                <span class="destName" v-if="mail.dest_name">to:{{mail.dest_name}}</span>
+                <span class="time fr">{{mail.time}}</span>
             </div>
             <div class="content">
                 {{mail.content}}
@@ -28,6 +28,9 @@
     }
     .info .time{
         margin-left:30px;;
+    }
+    .info .srcName{
+        margin-right:20px;
     }
     .content{
         height:300px;

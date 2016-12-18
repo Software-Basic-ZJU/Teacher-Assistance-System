@@ -3,7 +3,7 @@
         <div @click="goArticle(artId)">
             <div class="item">
                 <div class="header">
-                    <div class="title">{{title}}</div>
+                    <div class="title">{{title}}<el-tag :class="{'public':authority==1}">{{authority==0?'公开文章':'私密文章'}}</el-tag></div>
                     <span class="author">{{author}}</span>
                     <span class="time">发表时间：{{publishTime}}</span>
                 </div>
@@ -20,7 +20,7 @@
 <style scoped>
     .item{
         cursor:pointer;
-        border-bottom:1px solid #EFF2F7;
+        border-bottom:1px solid #F0F0F0 ;
         padding-top:10px;
         padding-bottom:10px;
         -webkit-transition: border-color 0.3s;
@@ -45,7 +45,7 @@
     }
     .main{
         margin:10px 0px;
-        background-color:#EFF2F7;
+        background-color:#F0F0F0 ;
         padding:10px 15px;
     }
     .main>.content{
@@ -60,6 +60,13 @@
     .footer>.iconfont{
         font-size:14px;
     }
+    .el-tag{
+        margin-left:40px;
+    }
+    .el-tag.public{
+        background-color:#6ECADC ;
+        border-color:#6ECADC ;
+    }
 </style>
 <script>
     import router from "../../../routes";
@@ -70,7 +77,8 @@
             author:String,
             publishTime:String,
             content:String,
-            replyNum:String
+            replyNum:String,
+            authority:[String,Number,Boolean]
         },
         methods:{
             goArticle(artId){

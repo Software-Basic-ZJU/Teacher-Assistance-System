@@ -24,10 +24,10 @@ if($fetched = mysqli_fetch_array($query_result)){
         "res" => array(
             "notice_id" => $fetched['noti_id'],
             "title" => $fetched['title'],
-            "content" => $fetched['content'],
+            "content" => htmlspecialchars_decode($fetched['content']),
             "time" => $fetched['time'],
             "level" => $fetched['level'],
-            "class_id"=>$fetched['class_id'],
+            "teacher_id"=>$fetched['teacher_id'],
             "token" => $_SESSION['token']
         )
     );

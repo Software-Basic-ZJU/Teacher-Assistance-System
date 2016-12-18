@@ -10,8 +10,14 @@ export const getGroupList=({commit},classId)=>{
         }
     ).then((response)=>{
         let resp=response.body;
-        console.log(resp.res);
         if(!resp.code) {
+            //更新用户信息(小组相关)
+            let userInfo=LS.getItem('userInfo');
+            userInfo.group_id=resp.res.group_id;
+            commit('updateUserInfo',userInfo);
+            LS.setItem('userInfo',userInfo);
+
+            // 更新小组列表
             commit('updateGroupList',resp.res.groupList);
         }
     }).then(()=>{
@@ -76,7 +82,7 @@ export const joinGroup=({dispatch,commit},group)=>{
                 message: resp.msg
             });
             LS.setItem('userInfo',userInfo);
-            dispatch('getGroupList');
+            dispatch('getGroupList',userInfo.class_id);
             commit('showActionGroup',false);
         }
     }).then(()=>{
@@ -130,7 +136,7 @@ export const quitGroup=({dispatch,commit})=>{
                 type: 'success',
                 message: resp.msg
             });
-            dispatch('getGroupList');
+            dispatch('getGroupList',userInfo.class_id);
         }
     }).then(()=>{
         commit('isLoading',false);

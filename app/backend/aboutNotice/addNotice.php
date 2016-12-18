@@ -33,7 +33,7 @@ if($query_result){
             'title' => $title,
             'level' => $level,
             'time' => $time,
-            'content' => $content,
+            'content' => htmlspecialchars_decode($content),
             'token' => $_SESSION['token']
         )
     );

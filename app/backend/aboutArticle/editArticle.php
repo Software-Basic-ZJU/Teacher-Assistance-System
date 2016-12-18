@@ -43,7 +43,7 @@ if($query_result){
             'article_id' => $article_id,
             'title' => $title,
             'time' => $time,
-            'content' => $content,
+            'content' => htmlspecialchars_decode($content),
             'author' => $author,
             'authority' => $authority,
             'token' => $_SESSION['token']

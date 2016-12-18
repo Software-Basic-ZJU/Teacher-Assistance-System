@@ -33,7 +33,7 @@ if($query_result){
             "hw_title"=>$fetched['hw_title'],
             "work_id" => $fetched['work_id'],
             "reply" => $fetched['reply'],
-            "content" => $fetched['content'],
+            "content" => htmlspecialchars_decode($fetched['content']),
             "score" => $fetched['score'],
             "resrc_id" => $resrcFetch['resrc_id'],
             "resrc_name"=>$resrcFetch['name'],

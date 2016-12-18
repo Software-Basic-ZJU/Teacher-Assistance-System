@@ -34,7 +34,7 @@ if($query_result){
         "code" => 0,
         "msg" => "修改成功",
         "res" => array(
-            'course_info' => $course_info,
+            'course_info' => htmlspecialchars_decode($course_info),
             "token" => $_SESSION['token']
         )
     );

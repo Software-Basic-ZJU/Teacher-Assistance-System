@@ -9,7 +9,8 @@ export const getForumInfo=({commit})=>{
     commit('isLoading',true);
     Vue.http.post("backend/aboutPost/getForumInfo.php",
         {
-            teacher_id:userInfo.teacher_id
+            teacher_id:userInfo.teacher_id,
+            group_id:userInfo.group_id
         }
     ).then((response)=>{
         let resp=response.body;
@@ -36,7 +37,9 @@ export const getPostList=({commit},type)=>{
         ).then((response)=> {
             let resp = response.body;
             if (!resp.code) {
+                console.log(resp.res)
                 commit('updatePostList', resp.res.postList);
+                commit('updateGroupName',resp.res.groupName);
             }
         }).then(()=> {
             commit('isLoading', false);
@@ -100,7 +103,8 @@ export const addPost=({commit},payload)=>{
             title:payload.data.title,
             content:payload.data.content,
             section:secType,
-            resrc_id:payload.data.resrcId
+            resrc_id:payload.data.resrcId,
+            group_id:userInfo.group_id
         }
     ).then((response)=>{
         let resp=response.body;

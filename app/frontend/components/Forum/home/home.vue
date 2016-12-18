@@ -82,6 +82,14 @@
                 idenType:userInfo.type
             }
         },
+        beforeRouteEnter(to,from,next){
+            let userInfo=LS.getItem('userInfo');
+            if(userInfo.type!=1){
+                userInfo.group_id=null;
+                LS.setItem('userInfo',userInfo);
+            }
+            next();
+        },
         computed:{
             sectionList(){
                 return this.$store.state.forum.sectionList
@@ -89,11 +97,7 @@
         },
         methods:{
             goPath(section){
-                if(section=='group' && this.idenType!=1) {    //如果不是学生
-                    this.$message('请在小组名单中选择一个小组进入其讨论区。');
-                    router.push({name:'member'});
-                }
-                else router.push({name:'section',params:{section:section}});
+                router.push({name:'section',params:{section:section}});
             }
         }
     }

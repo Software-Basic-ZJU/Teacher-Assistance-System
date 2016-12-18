@@ -12,6 +12,10 @@ export const showEditHw=({commit},hwId)=>{
     commit('showEditHw',hwId);
 };
 
+export const setActionType=({commit},signal)=>{
+    commit('setActionType',signal);
+}
+
 // 获取作业列表
 export const getHwList=({commit},classId)=>{
     commit('isLoading',true);

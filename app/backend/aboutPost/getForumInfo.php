@@ -15,7 +15,7 @@ connectDB();
 loginCheck($_SERVER['HTTP_X_ACCESS_TOKEN']);
 //Get information
 $teacher_id = test_input(mysqli_escape_string($conn, $_POST['teacher_id']));
-
+$group_id=test_input(mysqli_escape_string($conn, $_POST['group_id']));
 $query_result = mysqli_query($conn, "select section,count(post_id) as total_num,COUNT( CASE WHEN to_days(publish_time) = to_days(now()) THEN 1 ELSE NULL END ) as today_num from posts where teacher_id = '$teacher_id' group by section;");
 if($query_result){
     $sectionList = array();

@@ -32,7 +32,7 @@ if($query_result){
             'time' => $time,
             'content' => $content,
             'author_id' => $author_id,
-            'author_name' => getAuthorName($conn,$author_id),
+            'author_name' => $_SESSION['uname'],
             "token" => $_SESSION['token']
         )
     );

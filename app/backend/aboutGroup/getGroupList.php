@@ -42,6 +42,7 @@ if($query_result){
         "msg" => "查找成功",
         "res" => array(
             'groupList' => $groupList,
+            'group_id'=>$_SESSION['group_id'],
             "token" => $_SESSION['token']
         )
     );

@@ -36,7 +36,7 @@ if($query_result){
         "res" => array(
             'post_id' => $post_id,
             'title' => $title,
-            'content' => $content,
+            'content' => htmlspecialchars_decode($content),
 //            'author_id' => $fetched['author_id'],
 //            'author_name' => $fetched['name'],
 //            'publish_time' => $fetched['publish_time'],

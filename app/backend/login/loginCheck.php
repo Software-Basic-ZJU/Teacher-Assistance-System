@@ -77,20 +77,21 @@ function loginCheck($token){
         $fetched = mysqli_fetch_array($query_result);
         if($token_array[1]==1){
             $_SESSION['student_id'] = $fetched['student_id'];
-            $_SESSION['sname']= $fetched['name'];
+            $_SESSION['uname']= $fetched['name'];
             $_SESSION['email']= $fetched['email'];
             $_SESSION['class_id']= $fetched['class_id'];
             $_SESSION['group_id']= $fetched['group_id'];
         }
         elseif ($token_array[1]==2){
             $_SESSION['teacher_id'] = $fetched['teacher_id'];
-            $_SESSION['tname']= $fetched['name'];
+            $_SESSION['uname']= $fetched['name'];
             $_SESSION['email']= $fetched['email'];
             $_SESSION['info_id']= $fetched['info_id'];
         }
         elseif($token_array[1]==3){
             $_SESSION['assist_id'] = $fetched['assist_id'];
             $_SESSION['teacher_id']=$fetched['teacher_id'];
+            $_SESSION['uname']=$fetched['name'];
         }
         $_SESSION['type']= $token_array[1];
         $new_token = encrypt($token_array[0]."-".$token_array[1]."-".time());

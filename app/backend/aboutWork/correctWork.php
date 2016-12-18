@@ -18,7 +18,7 @@ $work_id = test_input(mysqli_escape_string($conn, $_POST['work_id']));
 $score = test_input(mysqli_escape_string($conn, $_POST['score']));
 $reply = test_input(mysqli_escape_string($conn, $_POST['reply']));
 
-if($_SESSION['type']!=2 && $_SESSION['type']!=3){
+if($_SESSION['type']==1){
     $result = array(
         "code" => 403,
         "msg" => "无效用户尝试操作",

@@ -35,7 +35,7 @@ if($query_result){
         "code" => 0,
         "msg" => "修改成功",
         "res" => array(
-            'teacher_info' => $teacher_info,
+            'teacher_info' => htmlspecialchars_decode($teacher_info),
             "token" => $_SESSION['token']
         )
     );

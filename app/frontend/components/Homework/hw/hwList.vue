@@ -3,7 +3,7 @@
         <div class="homework">
             <div class="header">
                 <h2>{{className}}作业列表</h2>
-                <el-button type="success" class="fr" v-if="idenType!=1" @click.navtive="showHwAction">添加作业</el-button>
+                <el-button type="success" class="fr" v-if="idenType==2" @click.navtive="showHwAction">添加作业</el-button>
             </div>
             <div class="noRes" v-if="hwList.length==0">还没有布置作业呢</div>
             <hw-item
@@ -163,6 +163,7 @@
                 this.hwType=1;
                 this.punishRate='';
                 this.$store.dispatch('showHwAction',true);
+                this.$store.dispatch('setActionType',false);
             },
             closeHwAction(){
                 this.$store.dispatch('showHwAction',false);

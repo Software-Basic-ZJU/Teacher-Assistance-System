@@ -26,7 +26,7 @@ if($query_result){
             "title" => $fetched['title'],
             "level" => $fetched['level'],
             "time" => $fetched['time'],
-            "content" => $fetched['content'],
+            "content" => htmlspecialchars_decode($fetched['content'])
         );
     }
     $result = array(

@@ -4,9 +4,9 @@
             <div class="header">
                 <el-breadcrumb separator="/">
                     <el-breadcrumb-item :to="{name:'articles'}">教学文章</el-breadcrumb-item>
-                    <el-breadcrumb-item>{{article.title}}</el-breadcrumb-item>
+                    <el-breadcrumb-item>{{article.title}}<el-tag :class="{'important':article.authority==1}">{{article.authority==0?'公开文章':'私密文章'}}</el-tag></el-breadcrumb-item>
                 </el-breadcrumb>
-                <div class="btnGroup fr">
+                <div class="btnGroup fr" v-if="idenType==2">
                     <el-button type="danger" :plain="true" icon="delete" @click="remove($route.params.artId)" v-if="idenType!=1"></el-button>
                     <el-button type="success" icon="edit" @click="editArticle($route.params.artId)" v-if="idenType!=1"></el-button>
                 </div>
@@ -84,6 +84,13 @@
     .main .replyForm .el-button{
         margin-top:-10px;
     }
+    .el-tag{
+        margin-left:10px;
+    }
+    .el-tag.important{
+        background-color:#6ECADC ;
+        border-color:#6ECADC ;
+    }
 </style>
 <script>
     import router from "../../../routes";
@@ -112,6 +119,7 @@
         },
         methods:{
             editArticle(artId){
+                this.article.authority=this.article.authority==0?false:true;
                 LS.setItem("article_temp",this.article);
                 router.push({name:'editArticle',params:{artId:artId}});
             },

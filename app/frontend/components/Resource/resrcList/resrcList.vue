@@ -6,7 +6,7 @@
                     <el-tab-pane label="教师资源" name="0"></el-tab-pane>
                     <el-tab-pane label="学生资源" name="1"></el-tab-pane>
                 </el-tabs>
-                <el-button type="success" class="fr" @click="addResrc" v-show="currIndex!=1 && idenType!=1" icon="plus"></el-button>
+                <el-button type="success" class="fr" @click="addResrc" v-show="currIndex!=1 && idenType==2" icon="plus"></el-button>
             </div>
             <div class="warning" v-if="currIndex==1">以下是学生在论坛中分享的各种资源。</div>
             <el-table :data="resrcList" border :row-key="resource_id">
@@ -52,8 +52,8 @@
                         fixed="right"
                 >
                     <span>
-                        <el-button v-show="idenType!=1 && currIndex==0" size="small" :plain="true" type="danger" icon="delete" @click="removeResrc($index,row)"></el-button>
-                        <el-button v-show="idenType!=1 && currIndex==0" class="updateBtn" size="small" :plain="true" type="warning" icon="edit" @click="showEdit($index,row)"></el-button>
+                        <el-button v-show="idenType==2 && currIndex==0" size="small" :plain="true" type="danger" icon="delete" @click="removeResrc($index,row)"></el-button>
+                        <el-button v-show="idenType==2 && currIndex==0" class="updateBtn" size="small" :plain="true" type="warning" icon="edit" @click="showEdit($index,row)"></el-button>
                         <a v-show="currIndex==0" :href="resrcList[$index].path" :download="resrcList[$index].name"><el-button type="primary" size="small">下载</el-button></a>
                         <el-button v-show="currIndex==1" type="primary" @click="gotoPost(row)" size="small">前往对应帖子</el-button>
                     </span>

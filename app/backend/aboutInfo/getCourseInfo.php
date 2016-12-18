@@ -23,7 +23,7 @@ if($fetched = mysqli_fetch_array($query_result)){
         "code" => 0,
         "msg" => "查找成功",
         "res" => array(
-            "course_info" => $fetched['course_info'],
+            "course_info" => htmlspecialchars_decode($fetched['course_info']),
             "token" => $_SESSION['token']
         )
     );

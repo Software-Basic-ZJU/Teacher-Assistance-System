@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="noticeBox">
-            <el-button type="success" class="fr" icon="plus" @click="toggleAddNotice(true)" v-if="idenType!=1"></el-button>
+            <el-button type="success" class="fr" icon="plus" @click="toggleAddNotice(true)" v-if="idenType==2"></el-button>
             <div class="noteItem" v-for="item in noticeList" :key="item.notice_id" @click.stop="goDetail(item.notice_id)">
                 <i class="iconfont fl" :class="{'icon-tongzhi1':item.level==0,'icon-icon15 serious':item.level==1}"></i>
                 <div class="title fl">{{item.title}}</div>
