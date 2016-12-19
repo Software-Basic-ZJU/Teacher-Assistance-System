@@ -15,18 +15,15 @@ connectDB();
 loginCheck($_SERVER['HTTP_X_ACCESS_TOKEN']);
 //Get information
 $teacher_id = test_input(mysqli_escape_string($conn, $_POST['teacher_id']));
-$query_result = mysqli_query($conn, "select * from article
+$query_result = mysqli_query($conn, "select * from article  
+                                     LEFT JOIN 
+                                          (select COUNT(com_id) as num, target_id from comment where type = '0' GROUP BY target_id) 
+                                           as temp 
+                                     on article.art_id = temp.target_id 
                                      where teacher_id ='$teacher_id';");
 if($query_result){
     $articles = array();
     while($fetched = mysqli_fetch_array($query_result)){
-        $num = 0;
-        $article_id = $fetched['art_id'];
-        $get_num = mysqli_query($conn, "select COUNT(com_id) as num from comment
-                                     where type = 0 AND target_id ='$article_id';");
-        if($fetched_num = mysqli_fetch_array($get_num)){
-            $num = $fetched_num['num'];
-        }
         $articles[] = array(
             "article_id" => $fetched['art_id'],
             "title" => $fetched['title'],
@@ -34,7 +31,7 @@ if($query_result){
             "author" => $fetched['author'],
             "time" => $fetched['time'],
             "authority"=>$fetched['authority'],
-            "comment_num" => $num
+            "comment_num" => $fetched['num']?$fetched['num']:0
         );
     }
     $result = array(

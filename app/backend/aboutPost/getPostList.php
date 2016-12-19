@@ -27,30 +27,19 @@ if($section == 2){
         echo json_encode($result);
         exit;
     }
-    $query_result = mysqli_query($conn, "select * from posts join course_assist.group on posts.group_id=course_assist.group.group_id WHERE section = '$section' AND teacher_id = '$teacher_id' AND posts.group_id = '$group_id';");
+    $query_result = mysqli_query($conn, "select * from posts join course_assist.group LEFT JOIN (select COUNT(DISTINCT repost_id) as reply_num ,post_id from reply_post group by post_id) as temp ON temp.post_id = posts.post_id WHERE posts.group_id=course_assist.group.group_id AND section = '$section' AND teacher_id = '$teacher_id' AND posts.group_id = '$group_id';");
     if($query_result){//当语句正确的时候
         $postList = array();
         while($fetched = mysqli_fetch_array($query_result)){//能查到数据的时候
-            $author_id = $fetched['author_id'];
-            $post_id = $fetched['post_id'];
-            $author_name = getAuthorName($conn,$author_id);
             $groupName=$fetched['group_name'];
-
-            //查询本帖子有多少回帖
-            $getReplyNum_result = mysqli_query($conn, "select COUNT(DISTINCT repost_id) as reply_num from reply_post WHERE post_id = '$post_id';");
-            if($fetched_num = mysqli_fetch_array($getReplyNum_result)){
-                $reply_num = $fetched_num['reply_num'];
-            }
-            else $reply_num=0;
-
             $postList[] = array(
-                "post_id" => $post_id,
+                "post_id" => $fetched['post_id'],
                 "title" => $fetched['title'],
-                "author_id" => $author_id,
-                "author_name" => $author_name,
+                "author_id" => $fetched['author_id'],
+                "author_name" => getAuthorName($conn,$author_id),
                 "publish_time" => $fetched['publish_time'],
                 "update_time" => $fetched['update_time'],
-                "reply_num" => $reply_num,
+                "reply_num" => $fetched['reply_num']?$fetched['reply_num']:0,
             );
         }
         $result = array(
@@ -77,31 +66,19 @@ if($section == 2){
     mysqli_close($conn);
 }
 else{
-    $query_result = mysqli_query($conn, "select * from posts WHERE section = '$section' AND teacher_id = '$teacher_id';");
+    $query_result = mysqli_query($conn, "select * from posts LEFT JOIN (select COUNT(DISTINCT repost_id) as reply_num ,post_id from reply_post GROUP BY post_id) as temp ON temp.post_id = posts.post_id WHERE section = '$section' AND teacher_id = '$teacher_id';");
     if($query_result){
         $postList = array();        //post_id,title,content,author_id,author_name,publish_time,update_time,reply_num,attachment[String](resource_id,name,path,size)
         while($fetched = mysqli_fetch_array($query_result)){
-            $author_id = $fetched['author_id'];
-            $post_id = $fetched['post_id'];
-
-            $author_name=getAuthorName($conn,$author_id);
-
-            $getReplyNum_result = mysqli_query($conn, "select COUNT(DISTINCT repost_id) as reply_num from reply_post WHERE post_id = '$post_id';");
-            if($fetched_num = mysqli_fetch_array($getReplyNum_result)){
-                $reply_num = $fetched_num['reply_num'];
-            }
-            else $reply_num=0;
-
-
             $postList[] = array(
-                "post_id" => $post_id,
+                "post_id" => $fetched['post_id'],
                 "title" => $fetched['title'],
                 "content" => htmlspecialchars_decode($fetched['content']),
-                "author_id" => $author_id,
-                "author_name" => $author_name,
+                "author_id" => $fetched['author_id'],
+                "author_name" => getAuthorName($conn,$fetched['author_id']),
                 "publish_time" => $fetched['publish_time'],
                 "update_time" => $fetched['update_time'],
-                "reply_num" => $reply_num,
+                "reply_num" => $fetched['reply_num']?$fetched['reply_num']:0,
             );
         }
 

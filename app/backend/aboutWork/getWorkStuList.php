@@ -17,23 +17,24 @@ loginCheck($_SERVER['HTTP_X_ACCESS_TOKEN']);
 $ques_id = test_input(mysqli_escape_string($conn, $_POST['ques_id']));
 $type = test_input(mysqli_escape_string($conn, $_POST['type']));
 if($type == 0){
-    $count_num = mysqli_query($conn, "select student.student_id,student.name from questions JOIN homework JOIN student 
-                        on ques_id = '$ques_id' AND questions.hw_id = homework.hw_id AND homework.class_id = student.class_id;");
+    $count_num = mysqli_query($conn, "select student.student_id,student.name,temp.work_id from questions JOIN homework JOIN student LEFT JOIN (select * from works) as temp
+                        ON temp.uploader_id = student.student_id AND temp.ques_id = '$ques_id'
+                        WHERE questions.ques_id = '$ques_id' AND questions.hw_id = homework.hw_id AND homework.class_id = student.class_id;");
     if($count_num){
         $stuList = array();
         while($fetched = mysqli_fetch_array($count_num)){
-            $id = $fetched['student_id'];
-            $check = mysqli_query($conn, "select * from works WHERE uploader_id = '$id' AND ques_id = '$ques_id';");
-            if($fetched2 = mysqli_fetch_array($check)){
-                $status = 1;
-            }
-            else{
-                $status = 0;
-            }
+//            $id = $fetched['student_id'];
+//            $check = mysqli_query($conn, "select * from works WHERE uploader_id = '$id' AND ques_id = '$ques_id';");
+//            if($fetched2 = mysqli_fetch_array($check)){
+//                $status = 1;
+//            }
+//            else{
+//                $status = 0;
+//            }
             $stuList[] = array(
                 "id" => $fetched['student_id'],
                 "name" => $fetched['name'],
-                "status" => $status
+                "status" => $fetched['work_id']?1:0
             );
         }
         $result = array(
@@ -58,23 +59,24 @@ if($type == 0){
     }
 }
 elseif ($type == 1){
-    $count_num = mysqli_query($conn, "select student.student_id,student.name from questions JOIN homework JOIN student JOIN course_assist.group
-                        on ques_id = '$ques_id' AND questions.hw_id = homework.hw_id AND homework.class_id = student.class_id AND student.student_id = course_assist.group.leader_id;");
+    $count_num = mysqli_query($conn, "select student.student_id,student.name from questions JOIN homework JOIN student JOIN course_assist.group LEFT JOIN (select * from works) as temp
+                        ON temp.uploader_id = student.student_id AND temp.ques_id = '$ques_id'
+                        WHERE ques_id = '$ques_id' AND questions.hw_id = homework.hw_id AND homework.class_id = student.class_id AND student.student_id = course_assist.group.leader_id;");
     if($count_num){
         $stuList = array();
         while($fetched = mysqli_fetch_array($count_num)){
-            $id = $fetched['student_id'];
-            $check = mysqli_query($conn, "select * from works WHERE uploader_id = '$id' AND ques_id = '$ques_id';");
-            if($fetched2 = mysqli_fetch_array($check)){
-                $status = 1;
-            }
-            else{
-                $status = 0;
-            }
+//            $id = $fetched['student_id'];
+//            $check = mysqli_query($conn, "select * from works WHERE uploader_id = '$id' AND ques_id = '$ques_id';");
+//            if($fetched2 = mysqli_fetch_array($check)){
+//                $status = 1;
+//            }
+//            else{
+//                $status = 0;
+//            }
             $stuList[] = array(
                 "id" => $fetched['student_id'],
                 "name" => $fetched['name'],
-                "status" => $status
+                "status" => $fetched['work_id']?1:0
             );
         }
         $result = array(
