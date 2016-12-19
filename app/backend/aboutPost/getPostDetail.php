@@ -16,7 +16,7 @@ loginCheck($_SERVER['HTTP_X_ACCESS_TOKEN']);
 //Get information
 $post_id = test_input(mysqli_escape_string($conn, $_POST['post_id']));
 $query_result = mysqli_query($conn, "select * from posts 
-                                         where post_id ='$post_id'");
+                                         where post_id ='$post_id';");
 if($fetched = mysqli_fetch_array($query_result)){
     $query_resource = mysqli_query($conn,"select * from resource where type = 1 AND post_id = '$post_id';");
     $resource = array();

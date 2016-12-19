@@ -27,7 +27,10 @@ if($section == 2){
         echo json_encode($result);
         exit;
     }
-    $query_result = mysqli_query($conn, "select * from posts join course_assist.group LEFT JOIN (select COUNT(DISTINCT repost_id) as reply_num ,post_id from reply_post group by post_id) as temp ON temp.post_id = posts.post_id WHERE posts.group_id=course_assist.group.group_id AND section = '$section' AND teacher_id = '$teacher_id' AND posts.group_id = '$group_id';");
+    $query_result = mysqli_query($conn, "select * from posts join course_assist.group LEFT JOIN 
+                            (select COUNT(DISTINCT repost_id) as reply_num ,post_id as pid from reply_post group by post_id) as temp
+                             ON temp.pid = posts.post_id WHERE posts.group_id=course_assist.group.group_id AND section = '$section' 
+                             AND teacher_id = '$teacher_id' AND posts.group_id = '$group_id';");
     if($query_result){//当语句正确的时候
         $postList = array();
         while($fetched = mysqli_fetch_array($query_result)){//能查到数据的时候
@@ -66,7 +69,7 @@ if($section == 2){
     mysqli_close($conn);
 }
 else{
-    $query_result = mysqli_query($conn, "select * from posts LEFT JOIN (select COUNT(DISTINCT repost_id) as reply_num ,post_id from reply_post GROUP BY post_id) as temp ON temp.post_id = posts.post_id WHERE section = '$section' AND teacher_id = '$teacher_id';");
+    $query_result = mysqli_query($conn, "select * from posts LEFT JOIN (select COUNT(DISTINCT repost_id) as reply_num ,post_id as pid from reply_post GROUP BY post_id) as temp ON temp.pid = posts.post_id WHERE section = '$section' AND teacher_id = '$teacher_id';");
     if($query_result){
         $postList = array();        //post_id,title,content,author_id,author_name,publish_time,update_time,reply_num,attachment[String](resource_id,name,path,size)
         while($fetched = mysqli_fetch_array($query_result)){
