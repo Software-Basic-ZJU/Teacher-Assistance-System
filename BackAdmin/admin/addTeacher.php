@@ -1,7 +1,7 @@
 <?php
 
 header('Content-type: application/json');
-session_start();
+//session_start();
 // Connect database
 include '../login/_include.php';
 global $conn;
@@ -9,9 +9,9 @@ connectDB();
 //Verify token
 //loginCheck($_POST['token']);
 
-$teacher_id=$_GET['teacher_id'];
+$teacher_id=$_REQUEST['teacher_id'];
 //$password1=$_GET['password'];
-$name=$_GET['name'];
+$name=$_REQUEST['name'];
 $password=encrypt('123456');
 //echo "$password1";
 

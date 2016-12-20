@@ -1,7 +1,7 @@
 <?php
 
 header('Content-type: application/json');
-session_start();
+//session_start();
 // Connect database
 include '../login/_include.php';
 global $conn;
@@ -11,7 +11,7 @@ connectDB();
 
 //include 'connectDB.php';
 //connectDB();
-$teacher_id = test_input(mysqli_escape_string($conn, $_GET['teacher_id']));
+$teacher_id = test_input(mysqli_escape_string($conn, $_REQUEST['teacher_id']));
 //select *, count(distinct name) from table group by name
 $query_result = mysqli_query($conn, "select teacher_info from teacher 
                                         where teacher_id ='$teacher_id'");

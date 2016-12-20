@@ -63,7 +63,7 @@
 
                 }
             }
-            xmlhttp.open("GET","admin/deleteGroup.php?group_id="+str,true);
+            xmlhttp.open("POST","admin/deleteGroup.php?group_id="+str,true);
             xmlhttp.send();
         }
 
@@ -126,7 +126,7 @@
 
                 }
             }
-            xmlhttp.open("GET","admin/showGroup.php",true);
+            xmlhttp.open("POST","admin/showGroup.php",true);
             xmlhttp.send();
         }
 
