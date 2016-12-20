@@ -224,11 +224,14 @@ body {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
+
+
 .wrap {
     margin: 0 auto;
     max-width: 940px;
     padding: 0 30px;
 }
+
 a {
     color: #26a6d1;
     cursor: pointer;
@@ -1159,6 +1162,8 @@ a.btn:focus{outline: 0;}
 background-color: #6ecadc;
 border-color: #6ecadc;
 }
+
+
 
 .btn-2 {background: #333;border: 2px solid transparent;margin:20px 0 50px 0; color:#fff;}
 .btn-2:hover {color:#333;border:2px solid #333;background:transparent;}

@@ -875,8 +875,10 @@ figure {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
-  border-radius: 5px;
+  border-radius: 20px;
   height: 500px;
+box-shadow: 1px 1px 7px 1px #E0DFDF;
+background-color: #F8F8F8;
 }
 .services span {
   display: block;
@@ -899,6 +901,7 @@ figure {
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
+  box-shadow: 1px 1px 10px 1px #DEDEDE
 }
 
 .services h4{
@@ -913,7 +916,11 @@ figure {
 }
 .pagination>li>a, .pagination>li>span ,.pagination>.disabled>a, .pagination>.disabled>a:focus, .pagination>.disabled>a:hover, .pagination>.disabled>span, .pagination>.disabled>span:focus, .pagination>.disabled>span:hover .pagination>li:first-child>a, .pagination>li:first-child>span{
   opacity: 0.5;
-  background: #f0f0f0;
+background: #f0f0f0;
+box-shadow: 1px 1px 1px 2px #DDD;
+background-color: #F8F8F8;
+border-radius: 6px;
+color: #303030;
 }
 
 

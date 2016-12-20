@@ -20,6 +20,9 @@
 	<link rel="stylesheet" href="css/style2.css">
 	<!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <link rel="stylesheet" href="css/article.css">
 	
 	<!-- Js -->
 	<script src="js/modernizr.js"></script> <!-- Modernizr -->
@@ -102,12 +105,12 @@
 					
 						<div class="box-text fh5co-heading">
 							<h2 style="padding-top: 70px "><?php echo $title?></h2>
-							<h4 style="padding-top: 20px;padding-bottom: 20px"><?php 
+							<h4><?php 
 								echo $author;
 								echo "  ";
 								echo $time;
 							      ?></h4>
-							<p style="font-family: Microsoft YaHei;line-height:180%;text-align:left"><?php echo $content?></p>
+							<p><?php echo $content?></p>
 								
 						</div>
 					
