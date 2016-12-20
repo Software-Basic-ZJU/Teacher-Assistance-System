@@ -73,7 +73,7 @@ function uploadFile($file){
             return $result;
         }
     }
-    chmod($file["tmp_name"],0755);
+    chmod($file["tmp_name"],755);
 
     if(move_uploaded_file($file["tmp_name"], $path)){
         $result = array(
