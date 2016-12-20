@@ -1,7 +1,7 @@
 <?php
 
 header('Content-type: application/json');
-session_start();
+//session_start();
 // Connect database
 include '../login/_include.php';
 global $conn;
@@ -10,7 +10,7 @@ connectDB();
 //loginCheck($_POST['token']);
 
 $result=mysqli_query($conn,
-	"DELETE from posts WHERE post_id='" . $_GET['post_id'] . "';");
+	"DELETE from posts WHERE post_id='" . $_REQUEST['post_id'] . "';");
 
 if($result) {
 $result = array (

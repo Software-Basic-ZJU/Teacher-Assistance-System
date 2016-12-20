@@ -97,8 +97,12 @@
                 e2.value = "通过";
                 e2.className ="btn btn-primary";
                 e2.setAttribute("style"," width:70px; height:30px;");
-                e2.setAttribute("onclick", "javascript:PassMessage(MessageID[j])");
+                e2.onclick=function () {
+                    PassMessage(MessageID[j])
+                };
                 var object = board.append(e2);
+                console.log(MessageID[j]);
+
 
                 var e4 = document.createElement("input");
                 e4.type = "button btn-default";
@@ -114,7 +118,9 @@
                 e3.value = "拒绝";
                 e3.className ="btn btn-primary";
                 e3.setAttribute("style"," width:70px; height:30px;");
-                e3.setAttribute("onclick", "javascript:RejectMessage(MessageID[j])");
+                e3.onclick=function () {
+                    RejectMessage(MessageID[j])
+                    };
                 var object = board.append(e3);
 
             })(i)
@@ -136,7 +142,7 @@
 
                 }
             }
-            xmlhttp.open("GET","admin/selectMessage1.php",true);
+            xmlhttp.open("POST","admin/selectMessage1.php",true);
             xmlhttp.send();
 
 
@@ -147,6 +153,7 @@
 
         function PassMessage(messageID) {
 
+            console.log(messageID);
             var xmlhttp;
             var messageid=messageID;
             //messageid=1;
@@ -184,7 +191,7 @@
                     }
                 }
             }
-            xmlhttp.open("GET","admin/passMessage.php?msg_id="+messageid,true);
+            xmlhttp.open("POST","admin/passMessage.php?msg_id="+messageid,true);
             xmlhttp.send();
 
             //window.location.href="MessageWindow.html";
@@ -229,7 +236,7 @@
                     }
                 }
             }
-            xmlhttp.open("GET","admin/rufuseMessage.php?msg_id="+messageid,true);
+            xmlhttp.open("POST","admin/rufuseMessage.php?msg_id="+messageid,true);
             xmlhttp.send();
 
 
@@ -318,7 +325,9 @@
                 e2.value = "删除";
                 e2.className ="btn btn-primary";
                 e2.setAttribute("style"," width:70px; height:30px;");
-                e2.setAttribute("onclick", "javascript:DeleteMessage(MessageID[j])");
+                e2.onclick=function () {
+                        DeleteMessage(MessageID[j])
+                    };
                 var object = board.append(e2);
 
             })(i)
@@ -342,7 +351,7 @@
 
                 }
             }
-            xmlhttp.open("GET","admin/selectMessage2.php",true);
+            xmlhttp.open("POST","admin/selectMessage2.php",true);
             xmlhttp.send();
 
 
@@ -390,7 +399,7 @@
 
                 }
             }
-            xmlhttp.open("GET","admin/deleteMessage.php?msg_id="+messageid,true);
+            xmlhttp.open("POST","admin/deleteMessage.php?msg_id="+messageid,true);
             xmlhttp.send();
 
            // window.location.href="MessageWindow.html";

@@ -2,7 +2,7 @@
 error_reporting(E_ALL ^ E_NOTICE);
 header('Content-type: application/json');
 session_save_path("/tmp");
-session_start();
+//session_start();
 // Connect database
 include '../login/_include.php';
 global $conn;
@@ -10,16 +10,16 @@ connectDB();
 //Verify token
 
 
-function _get($str){
-    $val = !empty($_GET[$str]) ? $_GET[$str] : null;
-    return $val;
-}
+//function _get($str){
+//    $val = !empty($_GET[$str]) ? $_GET[$str] : null;
+//    return $val;
+//}
 
 
-loginCheck(_get('token'));
+//loginCheck(_get('token'));
 //Get information
-$password = test_input(mysqli_escape_string($conn, $_GET['password']));
-$admin_id = _get('admin_id');
+$password = test_input(mysqli_escape_string($conn, $_REQUEST['password']));
+$admin_id = $_REQUEST['admin_id'];
 //$password = _get('password');
 
 //echo $password;

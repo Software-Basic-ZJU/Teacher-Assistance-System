@@ -1,7 +1,7 @@
 <?php
 
 header('Content-type: application/json');
-session_start();
+//session_start();
 // Connect database
 include '../login/_include.php';
 global $conn;

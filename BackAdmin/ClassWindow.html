@@ -55,7 +55,7 @@
                     }
                 }
             }
-            xmlhttp.open("GET","admin/addClass.php?name="+str1+"&class_id="+str2+"&year="+str3+"&term="+str4,true);
+            xmlhttp.open("POST","admin/addClass.php?name="+str1+"&class_id="+str2+"&year="+str3+"&term="+str4,true);
             xmlhttp.send();
         }
 
@@ -101,7 +101,7 @@
                     }
                 }
             }
-            xmlhttp.open("GET","admin/deleteClass.php?class_id="+str,true);
+            xmlhttp.open("POST","admin/deleteClass.php?class_id="+str,true);
             xmlhttp.send();
         }
 
