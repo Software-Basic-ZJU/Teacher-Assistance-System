@@ -6,7 +6,6 @@
  * Time: 14:57
  */
 header('Content-type: application/json');
-session_save_path("/tmp");
 session_start();
 // Connect database
 include '_include.php';
