@@ -127,7 +127,9 @@ export const getQuesList=({commit},hwId)=>{
 };
 
 // 查看单个问题
-export const getQuesDetail=({commit},quesId)=>{
+export const getQuesDetail=({dispatch,commit},quesId)=>{
+    let userInfo=LS.getItem('userInfo');
+    if(!userInfo || !userInfo.token) return commit('logout');
     commit('isLoading',true);
     Vue.http.post('aboutQues/getQuesDetail.php',
         {
@@ -136,8 +138,17 @@ export const getQuesDetail=({commit},quesId)=>{
     ).then((response)=>{
         let resp=response.body;
         if(!resp.code){
-            console.log(resp.res);
+            // console.log(resp.res);
             commit('updateQuesDetail',resp.res);
+            if(userInfo.type==1) {
+                let sid = '';
+                if (resp.res.type == 0) sid = userInfo.id;   //个人作业
+                else sid = userInfo.group_id;     //小组作业
+                dispatch('getStuWork', {
+                    quesId: quesId,
+                    sid: sid
+                })
+            }
         }
     }).then(()=>{
         commit('isLoading',false);
@@ -175,7 +186,7 @@ export const editQues=({dispatch,commit},payload)=>{
     commit('editorLoading',true);
     Vue.http.post('aboutQues/addQues.php',
         {
-            ques_id:payload.ques_id,
+            ques_id:payload.data.ques_id,
             title:payload.data.title,
             content:payload.data.content,
             type:payload.data.type
@@ -241,7 +252,7 @@ export const submitHw=({commit},payload)=>{
     Vue.http.post('aboutWork/submitWork.php',
         {
             ques_id:payload.routeParams.quesId,
-            uploader_id:userInfo.id,
+            uploader_id:payload.workType==0?userInfo.id:userInfo.group_id,
             content:payload.data.content,
             resrc_id:payload.data.resrcId
         }

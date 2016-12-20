@@ -4,7 +4,9 @@
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item :to="{name:'homework'}">作业列表</el-breadcrumb-item>
                 <el-breadcrumb-item :to="{name:'hwDetail',params:{hwId:$route.params.hwId}}">{{hwName}}</el-breadcrumb-item>
-                <el-breadcrumb-item>{{question.title}} <span class="quesStatus" v-if="question.ques_finish==1">已结束</span>
+                <el-breadcrumb-item>{{question.title}}
+                    <el-tag :class="{'group':question.type==1}">{{question.type==1?'小组作业':'个人作业'}}</el-tag>
+                    <span class="quesStatus" v-if="question.ques_finish==1">已结束</span>
                 </el-breadcrumb-item>
             </el-breadcrumb>
             <div class="main" v-loading="loaded">
@@ -131,6 +133,13 @@
     .main .submitBox{
         margin-top:80px;
     }
+    .el-tag{
+        margin-left:10px;
+    }
+    .el-tag.group{
+        background-color: #6ECADC;
+        border-color:#6ECADC;
+    }
 </style>
 <script>
     import Editor from "../../Editor/Editor.vue";
@@ -142,19 +151,9 @@
         data(){
             let userInfo=LS.getItem("userInfo");
             this.$store.dispatch('getQuesDetail',this.$route.params.quesId);
-            if(userInfo.type==1){
-                this.$store.dispatch('getStuWork',{
-                    quesId:this.$route.params.quesId,
-                    sid:userInfo.id
-                })
-            }
             return{
                 idenType:userInfo.type,
-                hwName:'',
-                uploadInfo:{    //上传附件的额外参数
-                    uploader_id:userInfo.id,
-                    type:2
-                }
+                hwName:''
             }
         },
         beforeRouteLeave(to,from,next){
@@ -166,12 +165,16 @@
         computed:{
             ...mapState({
                 question(state){
-                    let question=state.homework.quesDetail
+                    let question=state.homework.quesDetail;
                     this.hwName=question.hw_title;
                     return question;
                 },
                 stuList:state=>state.homework.quesDetail.shouldList,
-                stuWork:state=>state.homework.stuWork,
+                stuWork(state){
+                    let stuWork=state.homework.stuWork;
+                    stuWork.workType=this.question.type;
+                    return stuWork;
+                },
                 isSubmitFile:state=>state.homework.isSubmitFile,
                 submitLoading:state=>state.homework.loading
             }),
@@ -191,6 +194,14 @@
                     }];
                 }
                 else return [];
+            },
+            uploadInfo(){    //上传附件的额外参数
+                let userInfo=LS.getItem('userInfo');
+                let uploadInfo = {
+                    uploader_id: this.question.type==0?userInfo.id:userInfo.group_id,
+                    type: 2
+                };
+                return uploadInfo;
             }
         },
         methods:{

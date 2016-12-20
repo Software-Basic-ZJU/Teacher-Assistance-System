@@ -8,8 +8,8 @@ module.exports={
     output:{
         path:'./build',
         filename:'[name].min.js',
-        // publicPath:'/app/build/',    server path
-        publicPath:'/build/',
+        publicPath:'/app/build/',    //server path
+        // publicPath:'/build/',
         chunkFilename:'[id].[chunkhash:5].chunk.js'
     },
     module:{
