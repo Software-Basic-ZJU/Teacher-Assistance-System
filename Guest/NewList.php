@@ -56,7 +56,7 @@
                         <a href="#page-top">t2</a>
                     </li>
 					<li>
-                        <a class="page-scroll" href="index.php">主页</a>
+                        <a class="page-scroll" href="../index.php">主页</a>
                     </li>
 					<li>
 						<a class="page-scroll" href="#fh5co-services-section">最新动态</a>
