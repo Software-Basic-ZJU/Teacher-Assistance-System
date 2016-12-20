@@ -7,7 +7,7 @@ export const getCourseInfo=({commit})=>{
     let userInfo=LS.getItem("userInfo");
     if(!userInfo || !userInfo.token) return commit('logout');
     commit('isLoading',true);
-    Vue.http.post('backend/aboutInfo/getCourseInfo.php',
+    Vue.http.post('aboutInfo/getCourseInfo.php',
         {
             teacher_id:userInfo.teacher_id
         }
@@ -26,7 +26,7 @@ export const editCourseInfo=({commit},payload)=>{
     let userInfo=LS.getItem("userInfo");
     if(!userInfo || !userInfo.token) return commit('logout');
     commit('isLoading',true);
-    Vue.http.post('backend/aboutInfo/editCourseInfo.php',
+    Vue.http.post('aboutInfo/editCourseInfo.php',
         {
             course_info:payload.data.content,
             teacher_id:userInfo.teacher_id
@@ -47,7 +47,7 @@ export const getTeacherInfo=({commit})=>{
     let userInfo=LS.getItem("userInfo");
     if(!userInfo || !userInfo.token) return commit('logout');
     commit('isLoading',true);
-    Vue.http.post('backend/aboutInfo/getTeacherInfo.php',
+    Vue.http.post('aboutInfo/getTeacherInfo.php',
         {
             teacher_id:userInfo.teacher_id
         }
@@ -66,7 +66,7 @@ export const editTeacherInfo=({commit},payload)=>{
     let userInfo=LS.getItem("userInfo");
     if(!userInfo || !userInfo.token) return commit('logout');
     commit('isLoading',true);
-    Vue.http.post('backend/aboutInfo/editTeacherInfo.php',
+    Vue.http.post('aboutInfo/editTeacherInfo.php',
         {
             teacher_info:payload.data.content,
             teacher_id:userInfo.teacher_id

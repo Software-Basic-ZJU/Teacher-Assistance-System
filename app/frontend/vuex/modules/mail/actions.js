@@ -21,7 +21,7 @@ export const getRecMail=({commit})=>{
     let userInfo=LS.getItem('userInfo');
     if(!userInfo || !userInfo.token) return commit('logout');
     commit('mailLoading',true);
-    Vue.http.post('backend/aboutMail/getRecMail.php',
+    Vue.http.post('aboutMail/getRecMail.php',
         {
             dest_id:userInfo.id
         }
@@ -40,7 +40,7 @@ export const getSendMail=({commit})=>{
     let userInfo=LS.getItem('userInfo');
     if(!userInfo || !userInfo.token) return commit('logout');
     commit('mailLoading',true);
-    Vue.http.post('backend/aboutMail/getSendMail.php',
+    Vue.http.post('aboutMail/getSendMail.php',
         {
             src_id:userInfo.id
         }
@@ -67,7 +67,7 @@ export const getCurrMail=({commit,state},mailId)=>{
     });
     if(!isRead && !isSended) {
         commit('mailLoading', true);
-        Vue.http.post('backend/aboutMail/readMail.php',
+        Vue.http.post('aboutMail/readMail.php',
             {
                 mail_id: mailId
             }
@@ -90,7 +90,7 @@ export const getCurrMail=({commit,state},mailId)=>{
 // 删除邮件
 export const removeMail=({dispatch,commit},mailId)=>{
     commit('mailLoading', true);
-    Vue.http.post('backend/aboutMail/deleteMail.php',
+    Vue.http.post('aboutMail/deleteMail.php',
         {
             mail_id: mailId
         }
@@ -117,7 +117,7 @@ export const sendMail=({commit},mail)=>{
     let userInfo=LS.getItem('userInfo');
     if(!userInfo || !userInfo.token) return commit('logout');
     commit('mailLoading', true);
-    Vue.http.post('backend/aboutMail/sendMail.php',
+    Vue.http.post('aboutMail/sendMail.php',
         {
             src_id:userInfo.id,
             dest_id:mail.destId,

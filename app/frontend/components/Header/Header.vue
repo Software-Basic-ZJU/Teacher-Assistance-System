@@ -14,7 +14,7 @@
                         <i class="iconfont icon-i-mail fl" @click="showMail = true" v-if="!hasUnRead && idenType!=3"></i>
                         <!--<i class="iconfont icon-setting fl" @click="goRoute"></i>-->
                         <i class="iconfont icon-user fl" v-if="idenType!=3"  @click="showUserInfo = true" ></i>
-                        <i class="iconfont icon-jiaoshixinxi fl" v-if="idenType!=3"  @click="showTAmanage = true"></i>
+                        <i class="iconfont icon-jiaoshixinxi fl" v-if="idenType==2"  @click="showTAmanage = true"></i>
                         <i class="iconfont icon-tuichudenglu fl" @click="logout"></i>
                         <div class="cl"></div>
                     </div>

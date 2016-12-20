@@ -17,7 +17,7 @@
                     </el-switch>
                 </el-form>
                 <el-upload
-                        action="http://localhost:8000/backend/aboutResource/addResource.php"
+                        action="backend/aboutResource/addResource.php"
                         type="drag"
                         :headers="header"
                         :data="uploadInfo"
