@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <script src="//cdn.bootcss.com/jquery/2.2.3/jquery.min.js">
+    </script>
+    <script src="//cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap/3.3.0/js/modal.js"></script>
+
+
+    <style type="text/css">
+        body { background-color: #F0F0F0; }
+    </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body >
+
+
+<ul class="nav nav-pills nav-stacked" role="tablist">
+    <li role="presentation" class="bg-info" style="background-color: black" ><a href="MainWindow.html" style=" width:350px"><h2>教学系统管理员中心</h2></a></li>
+    <li role="presentation" style=" width:150px"><a href="MessageWindow.html" style=" width:150px">管理留言板</a></li>
+    <li role="presentation"class="active" style=" width:150px"><a href="PostWindow.html" style=" width:150px">管理帖子</a></li>
+    <li role="presentation" style=" width:150px"><a href="ClassWindow.html" style=" width:150px">管理班级</a></li>
+
+    <li role="presentation" style=" width:150px"><a href="AccountWindow.html" style=" width:150px">账号导入</a></li>
+    <li role="presentation" style=" width:150px"><a href="TeaInsideWindow.html" style=" width:150px">管理教师介绍</a></li>
+    <li role="presentation"  style=" width:150px"><a href="CouInfoWindow.html" style=" width:150px">管理课程介绍</a></li>
+    <li role="presentation"  style=" width:150px"><a href="GroupWindow.html" style=" width:150px">管理小组</a></li>
+    <li role="presentation"  style=" width:150px"><a href="PWDWindow.html" style=" width:150px">管理账号</a></li>
+</ul>
+
+
+
+
+
+
+
+<!-- Large modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg1" style=" width:500px;height: 40px; margin-left:300px; margin-top:-540px; ">如何更改教师简介</button>
+
+<!-- Modal -->
+<div class="modal fade bs-example-modal-lg1" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel1">帮助内容</h4>
+            </div>
+            <div class="modal-body" id="content1">
+                点击左侧教师简介,输入教师编号,选择编辑按钮,跳转到教师简介编辑页面,输入好内容和教师编号后选择确认,收到更改成功信息后就完成了教师简介更改。
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Large modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg2" style=" width:500px;height: 40px; margin-left:300px; margin-top:-480px; ">如何更改课程简介</button>
+
+<!-- Modal -->
+<div class="modal fade bs-example-modal-lg2" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel2">帮助内容</h4>
+            </div>
+            <div class="modal-body" id="content2">
+                点击左侧课程简介,选择编辑按钮,跳转到课程简介编辑页面,输入好内容后选择确认,收到更改成功信息后就完成了课程简介更改。
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Large modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg3" style=" width:500px;height: 40px; margin-left:300px; margin-top:-420px; ">如何联系网站维护人员</button>
+
+<!-- Modal -->
+<div class="modal fade bs-example-modal-lg3" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel3">帮助内容</h4>
+            </div>
+            <div class="modal-body" id="content3">
+                本产品售后概不退款
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Large modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg4" style=" width:500px;height: 40px; margin-left:300px; margin-top:-360px; ">如何膜蛤</button>
+
+<!-- Modal -->
+<div class="modal fade bs-example-modal-lg4" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel4">帮助内容</h4>
+            </div>
+            <div class="modal-body" id="content4">
+                小小泽江大学里,竟然有你民这样的魔法师
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Large modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg5" style=" width:500px;height: 40px; margin-left:300px; margin-top:-300px; ">如何提高自己的姿势水平</button>
+
+<!-- Modal -->
+<div class="modal fade bs-example-modal-lg5" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel5">帮助内容</h4>
+            </div>
+            <div class="modal-body" id="content5">
+                胡搞瞎搞,江错就错,江信江疑
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Large modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg6" style=" width:500px;height: 40px; margin-left:300px; margin-top:-240px; ">如何跑得快</button>
+
+<!-- Modal -->
+<div class="modal fade bs-example-modal-lg6" id="myModal6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel6">帮助内容</h4>
+            </div>
+            <div class="modal-body" id="content6">
+                我的内心非常angry,甚至想批判你一番
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

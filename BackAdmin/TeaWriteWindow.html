@@ -63,13 +63,14 @@
                     if(json["code"]==0)
                     {
                         alert("修改成功");
-                        //location.href='MainWindow.html';
+                        location.href='TeaWriteWindow.html';
 
                     }
 
                     if(json["code"]==1)
                     {
                         alert("修改失败");
+                        location.href='TeaWriteWindow.html';
 
                     }
                 }
@@ -86,7 +87,7 @@
 <body>
 
 <ul class="nav nav-pills nav-stacked" role="tablist">
-    <li role="presentation" class="bg-info" style="background-color: black" ><a href="MainWindow.html" style=" width:150px">主页</a></li>
+    <li role="presentation" class="bg-info" style="background-color: black" ><a href="MainWindow.html" style=" width:350px"><h2>教学系统管理员中心</h2></a></li>
     <li role="presentation" style=" width:150px"><a href="MessageWindow.html" style=" width:150px">管理留言板</a></li>
     <li role="presentation" style=" width:150px"><a href="PostWindow.html" style=" width:150px">管理帖子</a></li>
     <li role="presentation" style=" width:150px"><a href="ClassWindow.html" style=" width:150px">管理班级</a></li>
@@ -94,6 +95,8 @@
     <li role="presentation" style=" width:150px"><a href="AccountWindow.html" style=" width:150px">账号导入</a></li>
     <li role="presentation" class="active" style=" width:150px"><a href="TeaInsideWindow.html" style=" width:150px">管理教师介绍</a></li>
     <li role="presentation"  style=" width:150px"><a href="CouInfoWindow.html" style=" width:150px">管理课程介绍</a></li>
+    <li role="presentation"  style=" width:150px"><a href="GroupWindow.html" style=" width:150px">管理小组</a></li>
+    <li role="presentation"  style=" width:150px"><a href="PWDWindow.html" style=" width:150px">管理账号</a></li>
 </ul>
 
 <div class="panel panel-success" style="margin-left:300px; margin-top:-280px; width:700px; height:78px;">
