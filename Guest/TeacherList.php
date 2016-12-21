@@ -108,7 +108,7 @@
 					<!--老师列表-->
 					<div id="one-teacher" class="col-sm-3 box-item">
 						<div class="wrap-img">
-							<img id="<?php echo $i?>_photo" src="images/Html.png" class="img-circle" style="height: 110px; width: 110px;">
+							<img id="<?php echo $i?>_photo" src="images/teacher/default.jpg" class="img-circle" style="height: 110px; width: 110px;">
 						</div>
 						<h3 id="<?php echo $i?>_name" class="blue"></h3>
 						<p id="<?php echo $i?>_intro"></p>
@@ -177,12 +177,11 @@
 	    		$("#" + i +"_intro").html("");
 	 	        $("#" + i +"_name").append(json.res[i].name);
 	        	$("#" + i +"_intro").append(json.res[i].brief_intro);
-	        	if(json.res[i].photo_path)
-	        	{
-	        		$("#" + i +"_photo").html("");
-	        		$("#" + i +"_photo").attr("src",json.res[i].photo_path);
-
-	        	}
+	        	//if(json.res[i].photo_path)
+	        	//{
+	        	//	$("#" + i +"_photo").html("");
+	        	//	$("#" + i +"_photo").attr("src",json.res[i].photo_path);
+	        	//}
 				
 				//获取教师详细介绍
 				$("#" + i +"_teacherInfo").html("");
