@@ -1,16 +1,16 @@
 <?php
 
 header('Content-type: application/json');
-session_start();
+//session_start();
 // Connect database
 include '../login/_include.php';
 global $conn;
 connectDB();
 //Verify token
-loginCheck($_POST['token']);
+//loginCheck($_POST['token']);
 
 $result=mysqli_query($conn,
-	"INSERT INTO classes (class_id,term,year,name) VALUES ('" . $_GET['class_id'] . "','" . $_GET['term'] . "','" . $_GET['year'] . "','" . $_GET['name'] . "');");
+	"INSERT INTO classes (class_id,term,year,name) VALUES ('" . $_REQUEST['class_id'] . "','" . $_REQUEST['term'] . "','" . $_REQUEST['year'] . "','" . $_REQUEST['name'] . "');");
 
 if($result) {
 $result = array (

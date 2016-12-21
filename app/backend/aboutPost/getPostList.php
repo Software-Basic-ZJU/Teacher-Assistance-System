@@ -22,24 +22,36 @@ if($section == 2){
         $result = array(
             "code" => 403,
             "msg" => "访问者身份非法",
-            "res" => null
+            "res" => array()
         );
         echo json_encode($result);
         exit;
     }
-    $query_result = mysqli_query($conn, "select * from posts join course_assist.group LEFT JOIN 
+    $group_query=mysqli_query($conn,"select group_name from course_assist.group where group_id='$group_id';");
+    if($groupFetch=mysqli_fetch_array($group_query)){
+        $groupName=$groupFetch['group_name'];
+    }
+    else{
+        $result = array(
+            "code" => -1,
+            "msg" => "没有该小组",
+            "res" => array()
+        );
+        echo json_encode($result);
+        exit;
+    }
+    $query_result = mysqli_query($conn, "select * from posts LEFT JOIN 
                             (select COUNT(DISTINCT repost_id) as reply_num ,post_id as pid from reply_post group by post_id) as temp
-                             ON temp.pid = posts.post_id WHERE posts.group_id=course_assist.group.group_id AND section = '$section' 
+                             ON temp.pid = posts.post_id WHERE section = '$section' 
                              AND teacher_id = '$teacher_id' AND posts.group_id = '$group_id';");
     if($query_result){//当语句正确的时候
         $postList = array();
         while($fetched = mysqli_fetch_array($query_result)){//能查到数据的时候
-            $groupName=$fetched['group_name'];
             $postList[] = array(
                 "post_id" => $fetched['post_id'],
                 "title" => $fetched['title'],
                 "author_id" => $fetched['author_id'],
-                "author_name" => getAuthorName($conn,$author_id),
+                "author_name" => getAuthorName($conn,$fetched['author_id']),
                 "publish_time" => $fetched['publish_time'],
                 "update_time" => $fetched['update_time'],
                 "reply_num" => $fetched['reply_num']?$fetched['reply_num']:0,

@@ -35,3 +35,7 @@ export const LS={
 //     return s;
 // }
 
+export function HTMLFilter(str){
+    return str.replace(/<\/?[^>]+>/g,"");
+}
+

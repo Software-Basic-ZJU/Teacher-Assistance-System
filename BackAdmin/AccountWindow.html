@@ -117,7 +117,7 @@
 
                 }
             }
-            xmlhttp.open("GET","admin/addTeacher.php?teacher_id="+str1+"&name="+str2,true);
+            xmlhttp.open("POST","admin/addTeacher.php?teacher_id="+str1+"&name="+str2,true);
             xmlhttp.send();
         }
 
@@ -166,7 +166,7 @@
 
                 }
             }
-            xmlhttp.open("GET","admin/addAssist.php?assist_id="+str1+"&name="+str2,true);
+            xmlhttp.open("POST","admin/addAssist.php?assist_id="+str1+"&name="+str2,true);
             xmlhttp.send();
         }
 

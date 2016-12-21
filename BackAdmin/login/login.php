@@ -6,22 +6,21 @@
  * Time: 14:57
  */
 header('Content-type: application/json');
-session_save_path("/tmp");
 session_start();
 // Connect database
 include '_include.php';
 global $conn;
 connectDB();
 
-function _get($str){
-    $val = !empty($_GET[$str]) ? $_GET[$str] : null;
-    return $val;
-}
+//function _get($str){
+//    $val = !empty($_GET[$str]) ? $_GET[$str] : null;
+//    return $val;
+//}
 
 
 // Get id and password and type
-$id = test_input(mysqli_escape_string($conn, $_GET['admin_id']));
-$password = md5(_get('password'));
+$id = test_input(mysqli_escape_string($conn, $_REQUEST ['admin_id']));
+$password = $_REQUEST ['password'];
 //echo $password;
 //echo $id;
 //echo "\n";

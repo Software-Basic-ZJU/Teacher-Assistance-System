@@ -75,7 +75,7 @@
                     }
                 }
             }
-            xmlhttp.open("GET","admin/editTeacherInfo.php?teacher_info="+html+"&teacher_id="+str,true);
+            xmlhttp.open("POST","admin/editTeacherInfo.php?teacher_info="+html+"&teacher_id="+str,true);
             xmlhttp.send();
         }
 

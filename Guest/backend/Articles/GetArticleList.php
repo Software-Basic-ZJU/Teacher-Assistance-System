@@ -5,8 +5,8 @@ global $conn;
 connectDB();
 
 $Page_size=9;  //一页文章数量
-
-$result=mysqli_query($conn,'select * from article');
+$teacher_upload=0;  //教师上传的文章
+$result=mysqli_query($conn,"SELECT * from article  where authority = '$teacher_upload'");
 $count = mysqli_num_rows($result);
 $page_count = ceil($count/$Page_size);  //总共多少页
 
@@ -24,7 +24,9 @@ else{
 }
 
 $offset=$Page_size*($page-1);  
-$sql="select * from article limit $offset,$Page_size";
+
+
+$sql="SELECT * from article where authority = '$teacher_upload' limit $offset,$Page_size";
 $result=mysqli_query($conn,$sql);
 $col = 1;  //用于判断一行三篇文章
 while ($row=mysqli_fetch_array($result)) {
@@ -46,7 +48,8 @@ while ($row=mysqli_fetch_array($result)) {
                 <p style="font-family:'Microsoft YaHei'">
                 <?php
                     $content = $row['content'];
-                    echo mb_substr($content,0,60,'utf-8');  //截取文章前61个字作简介       
+                    $htmlcontent = htmlspecialchars_decode(mb_substr($content,0,60,'utf-8'));  //截取文章前61个字作简介       
+                	echo strip_tags($htmlcontent);
                 ?>…
                 </p>
                

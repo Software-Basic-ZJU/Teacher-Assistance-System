@@ -1,7 +1,7 @@
 <?php
 
 header('Content-type: application/json');
-session_start();
+//session_start();
 // Connect database
 include '../login/_include.php';
 global $conn;
@@ -12,7 +12,7 @@ connectDB();
 
 //include 'connectDB.php';
 //connectDB();
-$info_id = test_input(mysqli_escape_string($conn, $_GET['info_id']));
+//$info_id = test_input(mysqli_escape_string($conn, $_REQUEST['info_id']));
 //select *, count(distinct name) from table group by name
 $query_result = mysqli_query($conn, "select * from course_info ");
 if($fetched = mysqli_fetch_array($query_result)){

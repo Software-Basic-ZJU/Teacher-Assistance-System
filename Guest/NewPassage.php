@@ -57,7 +57,7 @@
                         <a href="#page-top">t2</a>
                     </li>
 					<li>
-                        <a class="page-scroll" href="index.php">主页</a>
+                        <a class="page-scroll" href="../index.php">主页</a>
                     </li>
 					<li>
 						<a class="page-scroll" href="NewList.php">最新动态</a>
@@ -110,7 +110,11 @@
 								echo "  ";
 								echo $time;
 							      ?></h4>
-							<p><?php echo $content?></p>
+							<p><?php                     
+                   			$htmlcontent =  htmlspecialchars_decode($content); 
+                   			echo $htmlcontent;   
+                			//echo strip_tags($htmlcontent);
+							?></p>
 								
 						</div>
 					

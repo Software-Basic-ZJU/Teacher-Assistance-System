@@ -21,7 +21,7 @@ $section = test_input(mysqli_escape_string($conn, $_POST['section']));
 $resrc_id = test_input(mysqli_escape_string($conn, $_POST['resrc_id']));
 $group_id= test_input(mysqli_escape_string($conn, $_POST['group_id']));
 $time = date('Y-m-d H:i:s',time());
-$group_id = 0;
+if(!$group_id) $group_id = 0;
 if($_SESSION['type']==1){
     $author_id = $_SESSION['student_id'];
     if($section == 2){

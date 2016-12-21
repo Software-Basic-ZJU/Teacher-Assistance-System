@@ -7,7 +7,7 @@
  */
 
 header('Content-type: application/json');
-session_start();
+//session_start();
 // Connect database
 include '../login/_include.php';
 global $conn;
@@ -16,7 +16,7 @@ connectDB();
 //loginCheck($_POST['token']);
 
 $result=mysqli_query($conn,
-    "DELETE from BackAdmin.group WHERE group_id='" . $_GET['group_id'] . "';");
+    "DELETE from BackAdmin.group WHERE group_id='" . $_REQUEST['group_id'] . "';");
 
 if($result) {
     $result = array (

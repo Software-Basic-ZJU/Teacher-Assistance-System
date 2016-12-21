@@ -1,5 +1,5 @@
 import Vue from "vue";
-import {LS} from "../../../helpers/utils";
+import {LS,HTMLFilter} from "../../../helpers/utils";
 import router from "../../../routes";
 
 export const toggleAddNotice=({commit},signal)=>{
@@ -15,7 +15,7 @@ export const getContact=({commit})=>{
     let userInfo=LS.getItem("userInfo");
     if(!userInfo || !userInfo.token) return commit('logout');
     commit('isLoading',true);
-    Vue.http.post('backend/aboutInfo/getContact.php',
+    Vue.http.post('aboutInfo/getContact.php',
         {
             teacher_id:userInfo.teacher_id
         }
@@ -35,7 +35,7 @@ export const editContact=({commit},contact)=>{
     let userInfo=LS.getItem("userInfo");
     if(!userInfo || !userInfo.token) return commit('logout');
     commit('isLoading',true);
-    Vue.http.post('backend/aboutInfo/editContact.php',
+    Vue.http.post('aboutInfo/editContact.php',
         {
             teacher_id:userInfo.teacher_id,
             email:contact.email,
@@ -64,7 +64,7 @@ export const getNoticeList=({commit})=>{
     let userInfo=LS.getItem("userInfo");
     if(!userInfo || !userInfo.token) return commit('logout');
     commit('isLoading',true);
-    Vue.http.post('backend/aboutNotice/getNotices.php',
+    Vue.http.post('aboutNotice/getNotices.php',
         {
             teacher_id:userInfo.teacher_id
         }
@@ -81,7 +81,7 @@ export const getNoticeList=({commit})=>{
 // 获取单个通知
 export const getNotice=({commit},nid)=>{
     commit('isLoading',true);
-    Vue.http.post('backend/aboutNotice/getNoticeDetail.php',
+    Vue.http.post('aboutNotice/getNoticeDetail.php',
         {
             notice_id:nid
         }
@@ -113,7 +113,7 @@ export const addNotice=({commit},payload)=>{
         })
     }
     commit('editorLoading',true);
-    Vue.http.post('backend/aboutNotice/addNotice.php',
+    Vue.http.post('aboutNotice/addNotice.php',
         {
             title:newNotice.title,
             content:newNotice.content,
@@ -153,7 +153,7 @@ export const editNotice=({commit},payload)=>{
         })
     }
     commit('editorLoading',true);
-    Vue.http.post('backend/aboutNotice/editNotice.php',
+    Vue.http.post('aboutNotice/editNotice.php',
         {
             notice_id:payload.routeParams.nid,
             title:newNotice.title,
@@ -179,7 +179,7 @@ export const editNotice=({commit},payload)=>{
 // 删除通知
 export const removeNotice=({commit},nid)=>{
     commit('isLoading',true);
-    Vue.http.post('backend/aboutNotice/deleteNotice.php',
+    Vue.http.post('aboutNotice/deleteNotice.php',
         {
             notice_id:nid
         }
@@ -202,13 +202,16 @@ export const getArticleList=({commit})=>{
     let userInfo=LS.getItem("userInfo");
     if(!userInfo || !userInfo.token) return commit('logout');
     commit('isLoading',true);
-    Vue.http.post('backend/aboutArticle/getArticles.php',
+    Vue.http.post('aboutArticle/getArticles.php',
         {
             teacher_id:userInfo.teacher_id
         }
     ).then((response)=>{
         let resp=response.body;
         if(!resp.code){
+            resp.res.articles.forEach((item)=>{
+                item.content=HTMLFilter(item.content);
+            });
             commit('updateArticleList',resp.res.articles);
         }
     }).then(()=>{
@@ -219,7 +222,7 @@ export const getArticleList=({commit})=>{
 // 获取单个文章
 export const getArticle=({commit},artId)=>{
     commit('isLoading',true);
-    Vue.http.post('backend/aboutArticle/getArticleDetail.php',
+    Vue.http.post('aboutArticle/getArticleDetail.php',
         {
             article_id:artId
         }
@@ -257,7 +260,7 @@ export const addArticle=({commit},payload)=>{
         })
     }
     commit('isLoading',true);
-    Vue.http.post('backend/aboutArticle/addArticle.php',
+    Vue.http.post('aboutArticle/addArticle.php',
         {
             title:newArticle.title,
             content:newArticle.content,
@@ -299,7 +302,7 @@ export const editArticle=({commit},payload)=>{
         })
     }
     commit('isLoading',true);
-    Vue.http.post('backend/aboutArticle/editArticle.php',
+    Vue.http.post('aboutArticle/editArticle.php',
         {
             article_id:payload.routeParams.artId,
             title:newArticle.title,
@@ -321,7 +324,7 @@ export const editArticle=({commit},payload)=>{
 // 删除文章
 export const removeArticle=({commit},artId)=>{
     commit('isLoading',true);
-    Vue.http.post('backend/aboutArticle/deleteArticle.php',
+    Vue.http.post('aboutArticle/deleteArticle.php',
         {
             article_id:artId
         }
@@ -338,7 +341,7 @@ export const removeArticle=({commit},artId)=>{
 // 回复文章
 export const replyArticle=({commit},payload)=>{
     return new Promise((resolve,reject)=>{
-        Vue.http.post('backend/aboutComment/addComment.php',
+        Vue.http.post('aboutComment/addComment.php',
             {
                 target_id:payload.artId,
                 content:payload.content,
@@ -365,7 +368,7 @@ export const replyArticle=({commit},payload)=>{
 // 删除回复
 export const removeComment=({commit},comId)=>{
     return new Promise((resolve,reject)=>{
-        Vue.http.post('backend/aboutComment/deleteComment.php',
+        Vue.http.post('aboutComment/deleteComment.php',
             {
                 com_id:comId
             }

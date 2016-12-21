@@ -7,7 +7,7 @@ export const getForumInfo=({commit})=>{
     let userInfo=LS.getItem("userInfo");
     if(!userInfo || !userInfo.token) return commit('logout');
     commit('isLoading',true);
-    Vue.http.post("backend/aboutPost/getForumInfo.php",
+    Vue.http.post("aboutPost/getForumInfo.php",
         {
             teacher_id:userInfo.teacher_id,
             group_id:userInfo.group_id
@@ -28,7 +28,7 @@ export const getPostList=({commit},type)=>{
     if(!userInfo || !userInfo.token) return commit('logout');
     commit('isLoading', true);
     if(type==2) {       //小组讨论区，需要传group_id
-        Vue.http.post("backend/aboutPost/getPostList.php",
+        Vue.http.post("aboutPost/getPostList.php",
             {
                 section:type,
                 teacher_id: userInfo.teacher_id,
@@ -37,7 +37,6 @@ export const getPostList=({commit},type)=>{
         ).then((response)=> {
             let resp = response.body;
             if (!resp.code) {
-                console.log(resp.res)
                 commit('updatePostList', resp.res.postList);
                 commit('updateGroupName',resp.res.groupName);
             }
@@ -46,7 +45,7 @@ export const getPostList=({commit},type)=>{
         })
     }
     else{
-        Vue.http.post("backend/aboutPost/getPostList.php",
+        Vue.http.post("aboutPost/getPostList.php",
             {
                 section:type,
                 teacher_id: userInfo.teacher_id
@@ -65,7 +64,7 @@ export const getPostList=({commit},type)=>{
 //获取单个帖子
 export const getPostDetail=({commit},postId)=>{
     commit('isLoading', true);
-    Vue.http.post("backend/aboutPost/getPostDetail.php",
+    Vue.http.post("aboutPost/getPostDetail.php",
         {
             post_id:postId
         }
@@ -97,7 +96,7 @@ export const addPost=({commit},payload)=>{
         default:break;
     }
     commit('editorLoading',true);
-    Vue.http.post("backend/aboutPost/addPost.php",
+    Vue.http.post("aboutPost/addPost.php",
         {
             teacher_id:userInfo.teacher_id,
             title:payload.data.title,
@@ -126,7 +125,7 @@ export const addPost=({commit},payload)=>{
 // 编辑帖子
 export const editPost=({commit},payload)=>{
     commit('editorLoading',true);
-    Vue.http.post("backend/aboutPost/editPost.php",
+    Vue.http.post("aboutPost/editPost.php",
         {
             post_id:payload.routeParams.pid,
             title:payload.data.title,
@@ -153,7 +152,7 @@ export const editPost=({commit},payload)=>{
 // 删除帖子  参数成员有postId与section(用于跳转)
 export const removePost=({commit},payload)=>{
     commit('isLoading',true);
-    Vue.http.post("backend/aboutPost/removePost.php",
+    Vue.http.post("aboutPost/removePost.php",
         {
             post_id:payload.postId
         }
@@ -175,7 +174,7 @@ export const removePost=({commit},payload)=>{
 //获取回帖
 export const getReplyPost=({commit},postId)=>{
     commit('replyPostLoading',true);
-    Vue.http.post("backend/aboutReplyPost/getReplyPosts.php",
+    Vue.http.post("aboutReplyPost/getReplyPosts.php",
         {
             post_id:postId
         }
@@ -195,7 +194,7 @@ export const addReplyPost=({commit},payload)=>{
         let userInfo=LS.getItem('userInfo');
         if(!userInfo || !userInfo.token) return commit('logout');
         commit('postLoading',true);
-        Vue.http.post("backend/aboutReplyPost/addReplyPost.php",
+        Vue.http.post("aboutReplyPost/addReplyPost.php",
             {
                 post_id:payload.postId,
                 author_id:userInfo.id,
@@ -224,7 +223,7 @@ export const addReplyPost=({commit},payload)=>{
 //删除回帖
 export const removeRepost=({commit},rpid)=>{
     commit('postLoading',true);
-    Vue.http.post("backend/aboutReplyPost/removeReplyPost.php",
+    Vue.http.post("aboutReplyPost/removeReplyPost.php",
         {
             repost_id:rpid
         }
@@ -252,7 +251,7 @@ export const addPostComment=({commit},payload)=>{
     let userInfo=LS.getItem('userInfo');
     if(!userInfo || !userInfo.token) return commit('logout');
     return new Promise((resolve,reject)=>{
-        Vue.http.post("backend/aboutComment/addComment.php",
+        Vue.http.post("aboutComment/addComment.php",
             {
                 target_id:payload.repostId,
                 author_id:userInfo.id,
@@ -280,7 +279,7 @@ export const addPostComment=({commit},payload)=>{
 // 删除评论
 export const removePostComment=({commit},payload)=>{
     return new Promise((resolve,reject)=>{
-        Vue.http.post("backend/aboutComment/deleteComment.php",
+        Vue.http.post("aboutComment/deleteComment.php",
             {
                 com_id:payload.comId
             }
