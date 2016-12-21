@@ -44,7 +44,7 @@ while ($row=mysqli_fetch_array($result)) {
                 </br>
                 <h6 style="font-family:'Microsoft YaHei'"><?php echo $row['author']?></h6>
                 <?php echo $row['time']?>
-                <br></br>
+                <br>
                 <p style="font-family:'Microsoft YaHei'">
                 <?php
                     $content = $row['content'];
@@ -71,7 +71,7 @@ while ($row=mysqli_fetch_array($result)) {
 $page_len = ($page_len%2)?$page_len:$page_len+1;  //页码个数
 $pageoffset = ($page_len-1)/2;  //页码个数左右偏移量
 
-$key='<div class="col-md-12" 
+$key='<div class="col-md-12"
 align="center"><div class="pagination" >';
 $key.="<li class='disabled'style='background-color: black'><span>$page/$pages</span></li> "; //第几页,共几页
 if($page!=1){
