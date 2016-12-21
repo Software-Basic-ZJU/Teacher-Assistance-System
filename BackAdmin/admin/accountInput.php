@@ -43,9 +43,9 @@ exit(0);
 //获取上传表格的数据
 //$file_name = "d:/upload/".$_FILES["file"]["name"];//获取上传文件的地址名称
 $file_name = $_FILES["fileToUpload"]["name"];//获取上传文件的地址名称
-echo "------";
-echo $file_name;
-echo "------";
+//echo "------";
+//echo $file_name;
+//echo "------";
 include '../Excel/PHPExcel.php';
 //echo 'phpexcel success';
 require_once '../Excel/PHPExcel/IOFactory.php';

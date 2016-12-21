@@ -4,7 +4,7 @@
             <div class="header">
                 <el-breadcrumb separator="/">
                     <el-breadcrumb-item :to="{name:'forum'}">讨论区</el-breadcrumb-item>
-                    <el-breadcrumb-item>{{secName+' - '+groupName}}</el-breadcrumb-item>
+                    <el-breadcrumb-item>{{secName}}{{secType==2?' - '+groupName:""}}</el-breadcrumb-item>
                 </el-breadcrumb>
                 <el-button type="success" class="fr" @click="goAddPost">发布主题</el-button>
             </div>
@@ -86,7 +86,8 @@
             }
             this.$store.dispatch('getPostList',secType);
             return{
-                secName:section
+                secName:section,
+                secType:secType
             }
         },
         computed:{

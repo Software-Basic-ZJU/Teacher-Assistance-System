@@ -23,7 +23,7 @@ export const isFileUpload=({commit},signal)=>{
 
 export const login=({commit},loginForm)=>{
     commit('isLoading',true);
-    Vue.http.post("backend/login/login.php",
+    Vue.http.post("login/login.php",
         {
             id:loginForm.id,
             password:loginForm.password,
@@ -56,7 +56,7 @@ export const login=({commit},loginForm)=>{
 export const completeInfo=({state,commit},newInfo)=>{
     return new Promise((resolve,reject)=>{
         console.log(newInfo);
-        Vue.http.post("backend/login/completeInfo.php",
+        Vue.http.post("login/completeInfo.php",
             {
                 student_id:state.userInfo.id,
                 name:newInfo.name,
@@ -94,7 +94,7 @@ export const editUserInfo=({commit},newInfo)=>{
     return new Promise((resolve,reject)=>{
         let userInfo=LS.getItem('userInfo');
         if(!userInfo || !userInfo.token) return commit('logout');
-        Vue.http.post("backend/aboutInfo/editStuInfo.php",
+        Vue.http.post("aboutInfo/editStuInfo.php",
             {
                 id:newInfo.id,
                 name:newInfo.name,
@@ -123,7 +123,7 @@ export const showCompleteInfo=({commit},signal)=>{
 // 获取问题(用于找回密码)
 export const getIdenQues=({commit},userId)=>{
     return new Promise((resolve,reject)=>{
-        Vue.http.post("backend/aboutInfo/getIdenQues.php",
+        Vue.http.post("aboutInfo/getIdenQues.php",
             {
                 id:userId
             }
@@ -148,7 +148,7 @@ export const getIdenQues=({commit},userId)=>{
 // 验证密保信息(用于找回密码)
 export const checkQA=({state,commit},idenForm)=>{
     return new Promise((resolve,reject)=>{
-        Vue.http.post("backend/aboutInfo/checkQA.php",
+        Vue.http.post("aboutInfo/checkQA.php",
             {
                 student_id:state.userInfo.id,
                 question:idenForm.question,
@@ -168,7 +168,7 @@ export const checkQA=({state,commit},idenForm)=>{
 // 发送验证邮件(用于找回密码)
 export const getEmail=({state,commit})=>{
     return new Promise((resolve,reject)=>{
-        Vue.http.post("backend/aboutInfo/sendEmail.php",
+        Vue.http.post("aboutInfo/sendEmail.php",
             {
                 id:state.userInfo.id,
                 type:state.userInfo.type
@@ -192,7 +192,7 @@ export const getEmail=({state,commit})=>{
 export const checkWithEmail=({state,commit},idenForm)=>{
     return new Promise((resolve,reject)=>{
         console.log(idenForm)
-        Vue.http.post("backend/aboutInfo/checkWithEmail.php",
+        Vue.http.post("aboutInfo/checkWithEmail.php",
             {
                 id:state.userInfo.id,
                 type:state.userInfo.type,
@@ -212,7 +212,7 @@ export const checkWithEmail=({state,commit},idenForm)=>{
 // 设置新密码
 export const setNewPassword=({state,commit},editForm)=>{
     return new Promise((resolve,reject)=>{
-        Vue.http.post("backend/aboutInfo/changeForgetPassword.php",
+        Vue.http.post("aboutInfo/changeForgetPassword.php",
             {
                 id:state.userInfo.id,
                 type:state.userInfo.type,
@@ -244,7 +244,7 @@ export const changePswd=({commit},editForm)=>{
     return new Promise((resolve,reject)=>{
         let userInfo=LS.getItem('userInfo');
         if(!userInfo || !userInfo.token) return commit('logout');
-        Vue.http.post("backend/aboutInfo/changePassword.php",
+        Vue.http.post("aboutInfo/changePassword.php",
             {
                 id:userInfo.id,
                 type:userInfo.type,

@@ -44,7 +44,7 @@
                     var json=JSON.parse(json);
                     if(json["code"]==0)
                     {
-                        alert("查找成功");
+                        //alert("查找成功");
                         //location.href='MainWindow.html';
 
                         //console.log((json["res"])[1].post_id);
@@ -89,7 +89,7 @@
                 e1.value = mycontent[j];
                 e1.className ="panel panel-success";
                 e1.setAttribute("panel-heading","");
-                e1.setAttribute("style"," width:700px; height:90px;");
+                e1.setAttribute("style"," width:700px; height:90px; -webkit-box-shadow: #666 0px 0px 10px; -moz-box-shadow: #666 0px 0px 10px;box-shadow: #666 0px 0px 10px;background-color:#F2FFDF ");
                 var object = board.append(e1);
 
                 var e2 = document.createElement("input");
@@ -97,8 +97,12 @@
                 e2.value = "通过";
                 e2.className ="btn btn-primary";
                 e2.setAttribute("style"," width:70px; height:30px;");
-                e2.setAttribute("onclick", "javascript:PassMessage(MessageID[j])");
+                e2.onclick=function () {
+                    PassMessage(MessageID[j])
+                };
                 var object = board.append(e2);
+                console.log(MessageID[j]);
+
 
                 var e4 = document.createElement("input");
                 e4.type = "button btn-default";
@@ -114,7 +118,9 @@
                 e3.value = "拒绝";
                 e3.className ="btn btn-primary";
                 e3.setAttribute("style"," width:70px; height:30px;");
-                e3.setAttribute("onclick", "javascript:RejectMessage(MessageID[j])");
+                e3.onclick=function () {
+                    RejectMessage(MessageID[j])
+                    };
                 var object = board.append(e3);
 
             })(i)
@@ -129,13 +135,14 @@
                     if(json["code"]==1)
                     {
                         alert("查找失败");
+                        location.href='MessageWindow.html';
 
                     }
 
 
                 }
             }
-            xmlhttp.open("GET","admin/selectMessage1.php",true);
+            xmlhttp.open("POST","admin/selectMessage1.php",true);
             xmlhttp.send();
 
 
@@ -146,6 +153,7 @@
 
         function PassMessage(messageID) {
 
+            console.log(messageID);
             var xmlhttp;
             var messageid=messageID;
             //messageid=1;
@@ -171,17 +179,19 @@
                     {
                         alert("修改成功");
                         //location.href='MainWindow.html';
+                        location.href='MessageWindow.html';
 
                     }
 
                     if(json["code"]==1)
                     {
                         alert("修改失败");
+                        location.href='MessageWindow.html';
 
                     }
                 }
             }
-            xmlhttp.open("GET","admin/passMessage.php?msg_id="+messageid,true);
+            xmlhttp.open("POST","admin/passMessage.php?msg_id="+messageid,true);
             xmlhttp.send();
 
             //window.location.href="MessageWindow.html";
@@ -214,17 +224,19 @@
                     {
                         alert("修改成功");
                         //location.href='MainWindow.html';
+                        location.href='MessageWindow.html';
 
                     }
 
                     if(json["code"]==1)
                     {
                         alert("修改失败");
+                        location.href='MessageWindow.html';
 
                     }
                 }
             }
-            xmlhttp.open("GET","admin/rufuseMessage.php?msg_id="+messageid,true);
+            xmlhttp.open("POST","admin/rufuseMessage.php?msg_id="+messageid,true);
             xmlhttp.send();
 
 
@@ -258,7 +270,7 @@
                     var json=JSON.parse(json);
                     if(json["code"]==0)
                     {
-                        alert("查找成功");
+                        //alert("查找成功");
                         //location.href='MainWindow.html';
 
                         //console.log((json["res"])[1].post_id);
@@ -305,7 +317,7 @@
                 e1.value = mycontent[i];
                 e1.className ="panel panel-success";
                 e1.setAttribute("panel-heading","");
-                e1.setAttribute("style"," width:700px; height:90px;");
+                e1.setAttribute("style"," width:700px; height:90px;  -webkit-box-shadow: #666 0px 0px 10px; -moz-box-shadow: #666 0px 0px 10px;box-shadow: #666 0px 0px 10px;background-color:#F2FFDF ");
                 var object = board.append(e1);
 
                 var e2 = document.createElement("input");
@@ -313,7 +325,9 @@
                 e2.value = "删除";
                 e2.className ="btn btn-primary";
                 e2.setAttribute("style"," width:70px; height:30px;");
-                e2.setAttribute("onclick", "javascript:DeleteMessage(MessageID[j])");
+                e2.onclick=function () {
+                        DeleteMessage(MessageID[j])
+                    };
                 var object = board.append(e2);
 
             })(i)
@@ -330,13 +344,14 @@
                     if(json["code"]==1)
                     {
                         alert("查找失败");
+                        location.href='MessageWindow.html';
 
                     }
 
 
                 }
             }
-            xmlhttp.open("GET","admin/selectMessage2.php",true);
+            xmlhttp.open("POST","admin/selectMessage2.php",true);
             xmlhttp.send();
 
 
@@ -371,18 +386,20 @@
                     {
                         alert("删除成功");
                         //location.href='MainWindow.html';
+                        location.href='MessageWindow.html';
 
                     }
 
                     if(json["code"]==1)
                     {
                         alert("删除失败");
+                        location.href='MessageWindow.html';
 
                     }
 
                 }
             }
-            xmlhttp.open("GET","admin/deleteMessage.php?msg_id="+messageid,true);
+            xmlhttp.open("POST","admin/deleteMessage.php?msg_id="+messageid,true);
             xmlhttp.send();
 
            // window.location.href="MessageWindow.html";
@@ -405,7 +422,7 @@
 
 
 <ul class="nav nav-pills nav-stacked" role="tablist">
-    <li role="presentation" class="bg-info" style="background-color: black" ><a href="MainWindow.html" style=" width:150px">主页</a></li>
+    <li role="presentation" class="bg-info" style="background-color: black" ><a href="MainWindow.html" style=" width:350px"><h2>教学系统管理员中心</h2></a></li>
     <li role="presentation" class="active" style=" width:150px"><a href="MessageWindow.html" style=" width:150px">管理留言板</a></li>
     <li role="presentation" style=" width:150px"><a href="PostWindow.html" style=" width:150px">管理帖子</a></li>
     <li role="presentation" style=" width:150px"><a href="ClassWindow.html" style=" width:150px">管理班级</a></li>
@@ -413,18 +430,20 @@
     <li role="presentation" style=" width:150px"><a href="AccountWindow.html" style=" width:150px">账号导入</a></li>
     <li role="presentation" style=" width:150px"><a href="TeaInsideWindow.html" style=" width:150px">管理教师介绍</a></li>
     <li role="presentation"  style=" width:150px"><a href="CouInfoWindow.html" style=" width:150px">管理课程介绍</a></li>
+    <li role="presentation"  style=" width:150px"><a href="GroupWindow.html" style=" width:150px">管理小组</a></li>
+    <li role="presentation"  style=" width:150px"><a href="PWDWindow.html" style=" width:150px">管理账号</a></li>
 </ul>
 
 
 
 
-<button type="button"  onclick=" showText1()"  class="btn btn-info btn-lg"  style=" width:250px;height: 80px; margin-left:400px; margin-top:-420px; "><span class="glyphicon glyphicon-pencil"></span>审核留言</button>
+<button type="button"  onclick=" showText1()"  class="btn btn-info btn-lg"  style=" width:250px;height: 80px; margin-left:400px; margin-top:-540px; "><span class="glyphicon glyphicon-pencil"></span>审核留言</button>
 
-<button type="button"  onclick=" showText2() "  class="btn btn-info btn-lg"  style=" width:250px; height: 80px;margin-left:50px; margin-top:-420px; "><span class="glyphicon glyphicon-remove"></span>删除留言</button>
+<button type="button"  onclick=" showText2() "  class="btn btn-info btn-lg"  style=" width:250px; height: 80px;margin-left:50px; margin-top:-540px; "><span class="glyphicon glyphicon-remove"></span>删除留言</button>
 
 
 
-<div id="board" style="width:1000px; margin-left:300px; margin-top:-200px;"></div>
+<div id="board" style="width:1000px; margin-left:300px; margin-top:-180px;"></div>
 
 
 

@@ -17,7 +17,7 @@
                     </el-switch>
                 </el-form>
                 <el-upload
-                        action="http://localhost:8000/backend/aboutResource/addResource.php"
+                        action="backend/aboutResource/addResource.php"
                         type="drag"
                         :headers="header"
                         :data="uploadInfo"
@@ -108,6 +108,12 @@
             },
             finish(response){
                 console.log(response);
+                if(response.code==-1){
+                    return this.$message({
+                        type:'error',
+                        message:'上传失败，请重新上传'
+                    })
+                }
                 this.newResrc.resrcId=response.res.resource_id;
                 LS.setItem("resource",response.res);
                 this.$store.dispatch('isFileUpload',true);

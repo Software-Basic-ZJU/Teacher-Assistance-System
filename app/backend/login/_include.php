@@ -73,7 +73,7 @@ function uploadFile($file){
             return $result;
         }
     }
-    chmod($file["tmp_name"],0755);
+    chmod($file["tmp_name"],755);
 
     if(move_uploaded_file($file["tmp_name"], $path)){
         $result = array(
@@ -127,11 +127,11 @@ function getAuthorName($conn,$author_id){
         return "administrator";
     }
     $getName_result = mysqli_query($conn,"select * 
-                    from (select student_id as id, name as name from student 
+                    from (select student_id as id, name from student 
                           UNION 
-                          select teacher_id as id ,name as name from teacher
+                          select teacher_id as id ,name from teacher
                           UNION
-                          select assist_id as id,name as name from assists) as temp
+                          select assist_id as id,name from assists) as temp
                     WHERE temp.id = '$author_id';");
     if($fetched_name = mysqli_fetch_array($getName_result)){
         return $fetched_name['name'];
@@ -139,7 +139,7 @@ function getAuthorName($conn,$author_id){
     else{
         $result = array(
             "code" => 403,
-            "msg" => "发布者身份非法",
+            "msg" => "获取姓名失败，身份非法",
             "res" => null
         );
         echo json_encode($result);

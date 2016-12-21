@@ -12,7 +12,7 @@ export const getResrcList=({state,commit})=>{
     let userInfo=LS.getItem("userInfo");
     if(!userInfo || !userInfo.token) return commit('logout');
     commit('isLoading',true);
-    Vue.http.post('backend/aboutResource/getResourceList.php',
+    Vue.http.post('aboutResource/getResourceList.php',
         {
             teacher_id:userInfo.teacher_id,
             type:state.resrcFilter
@@ -31,7 +31,7 @@ export const getResrcList=({state,commit})=>{
 export const uploadResrc=({dispatch,commit},newResrc)=>{
     commit('resrcLoading',true);
     console.log(newResrc);
-    Vue.http.post('backend/aboutResource/resourceConfirm.php',
+    Vue.http.post('aboutResource/resourceConfirm.php',
         {
             resource_id:newResrc.resrcId,
             name:newResrc.name,
@@ -54,7 +54,7 @@ export const uploadResrc=({dispatch,commit},newResrc)=>{
 // 删除文件或资源
 export const removeResrc=({dispatch,commit},file)=>{
     commit('resrcLoading',true);
-    Vue.http.post('backend/aboutResource/removeResource.php',
+    Vue.http.post('aboutResource/removeResource.php',
         {
             resource_id:file.resrcId
         }

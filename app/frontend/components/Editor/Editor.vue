@@ -31,7 +31,7 @@
             </div>
             <el-upload
                 v-if="hasUpload"
-                action="http://localhost:8000/backend/aboutResource/addResource.php"
+                action="backend/aboutResource/addResource.php"
                 :data="uploadInfo"
                 :headers="header"
                 :multiple="false"

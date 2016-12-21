@@ -6,7 +6,7 @@ export const getTAlist=({commit})=>{
     return new Promise((resolve,reject)=>{
         let userInfo=LS.getItem('userInfo');
         if(!userInfo || !userInfo.token) return commit('logout');
-        Vue.http.post('backend/aboutTA/getTAList.php',
+        Vue.http.post('aboutTA/getTAList.php',
             {
                 teacher_id:userInfo.teacher_id
             }
@@ -34,7 +34,7 @@ export const addTA=({commit},TAform)=>{
     return new Promise((resolve,reject)=>{
         let userInfo=LS.getItem('userInfo');
         if(!userInfo || !userInfo.token) return commit('logout');
-        Vue.http.post('backend/aboutTA/addTA.php',
+        Vue.http.post('aboutTA/addTA.php',
             {
                 class_id:TAform.classId,
                 teacher_id:userInfo.teacher_id,
@@ -68,7 +68,7 @@ export const addTA=({commit},TAform)=>{
 export const removeTA=({commit},assistId)=>{
     let userInfo=LS.getItem('userInfo');
     if(!userInfo || !userInfo.token) return commit('logout');
-    Vue.http.post('backend/aboutTA/deleteTA.php',
+    Vue.http.post('aboutTA/deleteTA.php',
         {
             teacher_id:userInfo.teacher_id,
             assist_id:assistId

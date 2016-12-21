@@ -6,7 +6,7 @@
  * Time: 09:17
  */
 header('Content-type: application/json');
-session_start();
+//session_start();
 // Connect database
 include '../login/_include.php';
 global $conn;
@@ -15,20 +15,20 @@ connectDB();
 //loginCheck($_POST['token']);
 //Get information
 
-function _get($str){
-    $val = !empty($_GET[$str]) ? $_GET[$str] : null;
-    return $val;
-}
+//function _get($str){
+//    $val = !empty($_GET[$str]) ? $_GET[$str] : null;
+//    return $val;
+//}
 //include 'connectDB.php';
 //connectDB();
 
-$info_id = test_input(mysqli_escape_string($conn, _get('info_id')));
+//$info_id = test_input(mysqli_escape_string($conn, $_REQUEST['info_id']));
 
-$course_name = test_input(mysqli_escape_string($conn, $_GET['course_name']));
-$background = test_input(mysqli_escape_string($conn, $_GET['background']));
-$course_plan = test_input(mysqli_escape_string($conn, $_GET['course_plan']));
-$textbook_precourse = test_input(mysqli_escape_string($conn, $_GET['textbook_precourse']));
-$exam_homework = test_input(mysqli_escape_string($conn, $_GET['exam_homework']));
+$course_name = test_input(mysqli_escape_string($conn, $_REQUEST['course_name']));
+$background = test_input(mysqli_escape_string($conn, $_REQUEST['background']));
+$course_plan = test_input(mysqli_escape_string($conn, $_REQUEST['course_plan']));
+$textbook_precourse = test_input(mysqli_escape_string($conn, $_REQUEST['textbook_precourse']));
+$exam_homework = test_input(mysqli_escape_string($conn, $_REQUEST['exam_homework']));
 
 //select *, count(distinct name) from table group by name
 $query_result = mysqli_query($conn, "update course_info

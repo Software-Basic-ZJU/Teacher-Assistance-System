@@ -11,7 +11,7 @@
                 >
                     {{stuWork.ques_title}}
                 </el-breadcrumb-item>
-                <el-breadcrumb-item>[ {{stuWork.uploader_id}} ]的作业</el-breadcrumb-item>
+                <el-breadcrumb-item>[{{stuWork.uploader_id}}]的作业</el-breadcrumb-item>
             </el-breadcrumb>
             <div class="stuWork">
                 <h3>作业内容</h3>
@@ -29,7 +29,13 @@
                         <el-input placeholder="评分" v-model="markForm.score" :disabled="stuWork.finish==1"></el-input>
                     </el-form-item>
                     <el-form-item label="点评">
-                        <el-input placeholder="评价一下作业吧!" type="textarea" v-model="markForm.reply" :disabled="stuWork.finish==1"></el-input>
+                        <el-input
+                                placeholder="评价一下作业吧!"
+                                type="textarea"
+                                v-model="markForm.reply"
+                                :disabled="stuWork.finish==1"
+                                rows="4"
+                        ></el-input>
                     </el-form-item>
                     <p class="notice">只保留最后一次提交的评分</p>
                     <el-button type="primary" @click="submitReview" :loading="markLoading" :disabled="stuWork.finish==1">提交</el-button>

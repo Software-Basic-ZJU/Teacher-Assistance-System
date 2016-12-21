@@ -15,13 +15,13 @@
 
 
     <script type="text/javascript">
-        function Pass(str1,str2,str3)
+        function Pass(str1,str2)
         {
             var xmlhttp;
             //var myarray=new Array(str1,str2,str3);
             console.log(str1);
-            console.log(str3);
-            if ((str1.length==0)||(str2.length==0)||(str3.length==0))
+            console.log(str2);
+            if ((str1.length==0)||(str2.length==0))
             {
                 alert("信息填写不完整");
                 return;
@@ -43,6 +43,7 @@
                     //json=eval('('+json+')');
                     //document.write(json);
                     var json=JSON.parse(json);
+                    console.log(json);
                     if(json["code"]==0)
                     {
                         alert("修改成功");location.href='MainWindow.html';
@@ -54,12 +55,16 @@
                         alert("修改失败");location.href='MainWindow.html';
 
                     }
+                    if(json["code"]==2)
+                    {
+                        alert("修改成功");location.href='MainWindow.html';
 
+                    }
 
 
                 }
             }
-            xmlhttp.open("POST","admin/changePassword.php?admin_id="+str1+"&password="+str3,true);
+            xmlhttp.open("POST","admin/changeOtherPassword.php?admin_id="+str1+"&password="+str2,true);
             xmlhttp.send();
         }
 
@@ -80,26 +85,27 @@
     <li role="presentation"  style=" width:150px"><a href="TeaInsideWindow.html" style=" width:150px">管理教师介绍</a></li>
     <li role="presentation"  style=" width:150px"><a href="CouInfoWindow.html" style=" width:150px">管理课程介绍</a></li>
     <li role="presentation"  style=" width:150px"><a href="GroupWindow.html" style=" width:150px">管理小组</a></li>
-    <li role="presentation"  style=" width:150px"><a href="PWDWindow.html" style=" width:150px">管理账号</a></li>
+    <li role="presentation"  class="active"   style=" width:150px"><a href="PWDWindow.html" style=" width:150px">管理账号</a></li>
 </ul>
 
-<div class="input-group input-group-lg" style="width:400px; margin-left:500px; margin-top:-220px; ">
-    <span class="input-group-addon">账 . 号</span>
+<div class="input-group input-group-lg" style="width:400px; margin-left:500px; margin-top:-280px; ">
+    <span class="input-group-addon">账号</span>
     <input type="text"  id="text1" class="form-control" placeholder="ID" style="width:400px; ">
 </div>
 <p>
 </p>
-<div class="input-group input-group-lg" style="width:400px;  margin-left:500px; margin-top:0px; ">
-    <span class="input-group-addon">旧密码</span>
-    <input type="text"  id="text2" class="form-control" placeholder="oldPWD" style="width:400px;">
-</div>
+
 <p>
 </p>
 <div class="input-group input-group-lg" style="width:400px;  margin-left:500px; margin-top:0px; ">
-    <span class="input-group-addon">新密码</span>
-    <input type="text"  id="text3" class="form-control" placeholder="newPWD" style="width:400px;">
+    <span class="input-group-addon">密码</span>
+    <input type="text"  id="text3" class="form-control" placeholder="PWD" style="width:400px;">
 </div>
-<button type="button"  onclick="Pass(text1.value,text2.value,text3.value)" class="btn btn-default navbar-btn" style=" margin-left:900px; margin-top:20px; ">确认</button>
+
+
+
+
+<button type="button"  onclick="Pass(text1.value,text3.value)" class="btn btn-default navbar-btn" style=" margin-left:900px; margin-top:20px; ">确认</button>
 
 </body>
 </html>
