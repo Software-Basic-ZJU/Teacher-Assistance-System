@@ -22,7 +22,7 @@ while ($row=mysqli_fetch_array($result)) {
                 ?>…
                 </p>
                 </br>
-                <div class="cd-see-all"><a href="NewPassage.php?art_id=<?php echo $row['art_id']?>" target="_blank" class="btn btn-1" >详细</a></div>
+                <div class="cd-see-all"><a href="Guest/NewPassage.php?art_id=<?php echo $row['art_id']?>" target="_blank" class="btn btn-1" >详细</a></div>
            </div>
         </div>
     
