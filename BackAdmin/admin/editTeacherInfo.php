@@ -14,8 +14,8 @@ connectDB();
 //Verify token
 //loginCheck($_POST['token']);
 //Get information
-$teacher_info = test_input(mysqli_escape_string($conn, $_REQUEST['teacher_info']));
-$teacher_id = test_input(mysqli_escape_string($conn, $_REQUEST['teacher_id']));
+$teacher_info = test_input(mysqli_escape_string($conn, $_POST['teacher_info']));
+$teacher_id = test_input(mysqli_escape_string($conn, $_POST['teacher_id']));
 
 $query_result = mysqli_query($conn, "update teacher
                                      set teacher_info = '$teacher_info'

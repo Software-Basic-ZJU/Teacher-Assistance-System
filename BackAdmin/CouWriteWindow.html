@@ -91,8 +91,8 @@
 
                 }
             }
-            xmlhttp.open("POST","admin/editCourseInfo.php?course_name="+html1+"&background="+html2+"&course_plan="+html3+"&textbook_precourse="+html4+"&exam_homework="+html5,true);
-            xmlhttp.send();
+            xmlhttp.open("POST","admin/editCourseInfo.php",true);
+            xmlhttp.send("course_name="+encodeURIComponent(html1)+"&background="+encodeURIComponent(html2)+"&course_plan="+encodeURIComponent(html3)+"&textbook_precourse="+encodeURIComponent(html4)+"&exam_homework="+encodeURIComponent(html5));
         }
 
 

@@ -10,7 +10,7 @@ connectDB();
 //loginCheck($_POST['token']);
 
 $result=mysqli_query($conn,
-	"INSERT INTO classes (class_id,term,year,name) VALUES ('" . $_REQUEST['class_id'] . "','" . $_REQUEST['term'] . "','" . $_REQUEST['year'] . "','" . $_REQUEST['name'] . "');");
+	"INSERT INTO classes (class_id,term,year,name) VALUES ('" . $_POST['class_id'] . "','" . $_POST['term'] . "','" . $_POST['year'] . "','" . $_POST['name'] . "');");
 
 if($result) {
 $result = array (

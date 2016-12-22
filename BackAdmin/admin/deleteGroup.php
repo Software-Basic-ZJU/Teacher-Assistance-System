@@ -16,7 +16,7 @@ connectDB();
 //loginCheck($_POST['token']);
 
 $result=mysqli_query($conn,
-    "DELETE from BackAdmin.group WHERE group_id='" . $_REQUEST['group_id'] . "';");
+    "DELETE from course_assist.group WHERE group_id='" . $_POST['group_id'] . "';");
 
 if($result) {
     $result = array (

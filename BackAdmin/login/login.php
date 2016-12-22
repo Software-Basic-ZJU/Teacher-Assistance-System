@@ -19,8 +19,8 @@ connectDB();
 
 
 // Get id and password and type
-$id = test_input(mysqli_escape_string($conn, $_REQUEST ['admin_id']));
-$password = $_REQUEST ['password'];
+$id = test_input(mysqli_escape_string($conn, $_POST ['admin_id']));
+$password = $_POST ['password'];
 //echo $password;
 //echo $id;
 //echo "\n";
