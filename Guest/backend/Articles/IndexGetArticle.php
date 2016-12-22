@@ -4,7 +4,7 @@ include dirname(dirname(__FILE__)).'/connectDB.php';
 global $conn;
 connectDB();
 
-$result=mysqli_query($conn,'SELECT * FROM article LIMIT 3');
+$result=mysqli_query($conn,"SELECT * FROM article WHERE authority='0' LIMIT 3");
 $count = mysqli_num_rows($result);
 
 while ($row=mysqli_fetch_array($result)) {    
