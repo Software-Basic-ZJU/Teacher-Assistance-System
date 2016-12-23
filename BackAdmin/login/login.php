@@ -5,7 +5,6 @@
  * Date: 2016/11/20
  * Time: 14:57
  */
-header('Content-type: application/json');
 session_start();
 // Connect database
 include '_include.php';
