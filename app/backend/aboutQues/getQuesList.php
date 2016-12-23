@@ -19,7 +19,7 @@ $hw_id = test_input(mysqli_escape_string($conn, $_POST['hw_id']));
 $query_result=mysqli_query($conn,"select * from homework where hw_id='$hw_id'");
 if($fetched=mysqli_fetch_array($query_result)){
     $hwTitle=$fetched['title'];     //获取作业名称
-    $hwType=$fetched['type']==0?'个人作业':'小组作业';
+    $hwType=$fetched['type'];
     $hwPublishTime=$fetched['publish_time'];
     $hwDeadline=$fetched['deadline'];
 }

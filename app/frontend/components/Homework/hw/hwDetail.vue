@@ -4,7 +4,7 @@
             <div class="header">
                 <el-breadcrumb separator="/">
                     <el-breadcrumb-item :to="{name:'homework'}">{{className}}作业列表</el-breadcrumb-item>
-                    <el-breadcrumb-item>{{hwDetail.hwTitle}}<el-tag :class="{'group':hwDetail.hwType}">{{hwDetail.hwType?'小组作业':'个人作业'}}</el-tag></el-breadcrumb-item>
+                    <el-breadcrumb-item>{{hwDetail.hwTitle}}<el-tag :class="{'group':hwDetail.hwType==1}">{{hwDetail.hwType==1?'小组作业':'个人作业'}}</el-tag></el-breadcrumb-item>
                 </el-breadcrumb>
                 <el-button v-if="idenType==2" type="success" class="fr" @click="addQues">添加问题</el-button>
             </div>
