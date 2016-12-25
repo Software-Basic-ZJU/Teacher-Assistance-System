@@ -15,7 +15,7 @@
         width:250px;
         text-align: center;
         left:-260px;
-        top:350px;
+        top:405px;
         background-color:white;
         -webkit-box-shadow: 0 1px 5px 0 rgba(0,34,77,.1);
         -moz-box-shadow: 0 1px 5px 0 rgba(0,34,77,.1);

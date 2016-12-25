@@ -7,6 +7,11 @@
                     <el-menu-item v-for="item in menu" :index="item.root || item.path" :route="{path:item.path}">
                         <i class="iconfont" :class="item.icon"></i>{{item.linkName}}
                     </el-menu-item>
+                    <a href="/Guest/MessageBoard.php" target="_blank">
+                        <el-menu-item>
+                            <i class="iconfont icon-iconfontpinglunhou"></i>留言板
+                        </el-menu-item>
+                    </a>
                 </el-menu>
             </div>
             <div class="mainBox">
