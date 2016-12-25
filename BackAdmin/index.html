@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
 
-    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
     <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
@@ -17,14 +17,9 @@
     <script type="text/javascript">
         function Pass(str1,str2)
         {
-
-
-
             //e.preventDefault();
-
-
             var xmlhttp;
-            //var myarray=new Array(str1,str2);
+            var myarray=new Array(str1,str2);
             if ((str1.length==0)||(str2.length==0))
             {
                 alert("信息填写不完整");
@@ -47,50 +42,32 @@
             {
                 if (xmlhttp.readyState==4 && xmlhttp.status==200)
                 {
-
                     var json = xmlhttp.responseText;
                     console.log(json);
                     //json=eval('('+json+')');
                     var json=JSON.parse(json);
-
                     if(json["code"]==0)
                     {
                         alert("登录成功");
                         //location.href='MainWindow.html';
-
                         var index = str1;
                         var url = "MainWindow.html?index="+index;
                         window.location.href = url;
-
                     }
                     if(json["code"]==1)
                     {
                         alert("登录失败,用户名或密码或类型错误");
-
                     }
-
                     //document.write(json);
-
-
                 }
-            }
-//            console.log(str1,str2)
-//            xmlhttp.open("POST","login/login.php",true);
-//            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-//            xmlhttp.send("admin_id="+encodeURIComponent(str1)+"&password="+encodeURIComponent(str2));
-
+            };
 
             xmlhttp.open("POST","login/login.php?admin_id="+str1+"&password="+str2,true);
             xmlhttp.send();
 
-
-
-
-
-
-
-
-
+//            xmlhttp.open("POST","login/login.php",true);
+//            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+//            xmlhttp.send("admin_id="+encodeURIComponent(str1)+"&password="+encodeURIComponent(str2));
 //
 //
 //
@@ -138,27 +115,7 @@
 //                xmlobj.send(parm); //设置为发送给服务器数据
 //
 //
-
-
-
-
-
-
-
-
-
         }
-
-
-
-
-
-
-
-
-
-
-
     </script>
 
 
@@ -166,7 +123,7 @@
 <body >
 
 <div style="width:300px;  margin: 0 auto; margin-top:100px;">
-<h1><font  face="SimSun" color="#483d8b"><strong>教学管理系统后台</strong></font></h1>
+    <h1><font  face="SimSun" color="#483d8b"><strong>教学管理系统后台</strong></font></h1>
 </div>
 
 <div class="panel panel-primary"  style="width:700px; height:400px;margin: 0 auto;margin-top:100px; ">
@@ -176,23 +133,24 @@
     </div>
 </div>
 
-<div class="input-group"style="width:300px; margin: 0 auto;margin-top:-300px; ">
-    <span class="input-group-addon">AdminID</span>
-    <input type="text" id="text1" class="form-control" placeholder="ID">
-</div>
+<form>
+    <div class="input-group"style="width:300px; margin: 0 auto;margin-top:-300px; ">
+        <span class="input-group-addon">AdminID</span>
+        <input type="text" id="text1" class="form-control" placeholder="ID">
+    </div>
 
-<div class="input-group"style="width:300px; margin: 0 auto; margin-top:40px; ">
-    <span class="input-group-addon" style="width:80px;">pwd</span>
-    <input type="password" id="text2"  class="form-control" placeholder="password">
-</div>
+    <div class="input-group"style="width:300px; margin: 0 auto; margin-top:40px; ">
+        <span class="input-group-addon" style="width:80px;">pwd</span>
+        <input type="password" id="text2"  class="form-control" placeholder="password">
+    </div>
 
-<div style="width:140px;  margin: 0 auto; margin-top:40px;">
-<button type="button"  onclick="Pass(text1.value,text2.value)" class="btn btn-default btn-lg" >
-         <span class="glyphicon glyphicon-user"></span> login in
-</button>
+    <div style="width:140px;  margin: 0 auto; margin-top:40px;">
+        <button type="button"  onclick="Pass(text1.value,text2.value)" class="btn btn-default btn-lg" >
+            <span class="glyphicon glyphicon-user"></span> login in
+        </button>
 
-</div>
-
+    </div>
+</form>
 
 
 
