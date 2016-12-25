@@ -124,8 +124,8 @@
 
                 }
             }
-            xmlhttp.open("POST","admin/addTeacher.php?teacher_id="+str1+"&name="+str2,true);
-            xmlhttp.send();
+            xmlhttp.open("POST","admin/addTeacher.php",true);
+            xmlhttp.send("teacher_id="+encodeURIComponent(str1)+"&name="+encodeURIComponent(str2));
         }
 
 
