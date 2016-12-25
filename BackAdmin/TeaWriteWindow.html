@@ -36,10 +36,16 @@
             var xmlhttp;
 
             //var myarray=new Array(str,html);
-            if(html.length==0)
+            if((html.length==0)||(str.length==0))
             {
                 alert("数据为空！失败");
                 return;
+            }
+            if(isNaN(str))
+            {
+                alert("序号非数字");
+                return;
+
             }
             if (window.XMLHttpRequest)
             {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -69,7 +75,7 @@
 
                     if(json["code"]==1)
                     {
-                        alert("修改失败");
+                        alert("修改失败,教师编号不存在");
                         location.href='TeaWriteWindow.html';
 
                     }

@@ -20,13 +20,19 @@
 
 
 
+            //e.preventDefault();
 
 
             var xmlhttp;
-            var myarray=new Array(str1,str2);
+            //var myarray=new Array(str1,str2);
             if ((str1.length==0)||(str2.length==0))
             {
                 alert("信息填写不完整");
+                return;
+            }
+            if (str2.length>=30)
+            {
+                alert("密码过长");
                 return;
             }
             if (window.XMLHttpRequest)
@@ -68,11 +74,14 @@
 
                 }
             }
+//            console.log(str1,str2)
+//            xmlhttp.open("POST","login/login.php",true);
+//            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+//            xmlhttp.send("admin_id="+encodeURIComponent(str1)+"&password="+encodeURIComponent(str2));
+
+
             xmlhttp.open("POST","login/login.php?admin_id="+str1+"&password="+str2,true);
             xmlhttp.send();
-
-
-
 
 
 
@@ -174,7 +183,7 @@
 
 <div class="input-group"style="width:300px; margin: 0 auto; margin-top:40px; ">
     <span class="input-group-addon" style="width:80px;">pwd</span>
-    <input type="text" id="text2"  class="form-control" placeholder="password">
+    <input type="password" id="text2"  class="form-control" placeholder="password">
 </div>
 
 <div style="width:140px;  margin: 0 auto; margin-top:40px;">

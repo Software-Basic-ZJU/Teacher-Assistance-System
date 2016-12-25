@@ -83,6 +83,12 @@
                 alert("信息填写不完整");
                 return;
             }
+            if(isNaN(str1))
+            {
+                alert("教师编号非数字");
+                return;
+
+            }
             if (window.XMLHttpRequest)
             {// code for IE7+, Firefox, Chrome, Opera, Safari
                 xmlhttp=new XMLHttpRequest();
@@ -131,6 +137,12 @@
             {
                 alert("信息填写不完整");
                 return;
+            }
+            if(isNaN(str1))
+            {
+                alert("助教编号非数字");
+                return;
+
             }
             if (window.XMLHttpRequest)
             {// code for IE7+, Firefox, Chrome, Opera, Safari

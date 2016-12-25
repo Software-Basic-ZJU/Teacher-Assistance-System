@@ -34,6 +34,12 @@
                 alert("信息填写不完整");
                 return;
             }
+            if(isNaN(str))
+            {
+                alert("序号非数字");
+                return;
+
+            }
             if (window.XMLHttpRequest)
             {// code for IE7+, Firefox, Chrome, Opera, Safari
                 xmlhttp=new XMLHttpRequest();

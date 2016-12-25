@@ -26,6 +26,11 @@
                 alert("信息填写不完整");
                 return;
             }
+            if (str2.length>=30)
+            {
+                alert("密码过长");
+                return;
+            }
             if (window.XMLHttpRequest)
             {// code for IE7+, Firefox, Chrome, Opera, Safari
                 xmlhttp=new XMLHttpRequest();
@@ -52,7 +57,7 @@
 
                     if(json["code"]==1)
                     {
-                        alert("修改失败");location.href='MainWindow.html';
+                        alert("修改失败,账号不存在");location.href='MainWindow.html';
 
                     }
                     if(json["code"]==2)
@@ -99,7 +104,7 @@
 </p>
 <div class="input-group input-group-lg" style="width:400px;  margin-left:500px; margin-top:0px; ">
     <span class="input-group-addon">密码</span>
-    <input type="text"  id="text3" class="form-control" placeholder="PWD" style="width:400px;">
+    <input type= "password"  id="text3" class="form-control" placeholder="PWD" style="width:400px;">
 </div>
 
 

@@ -17,10 +17,17 @@
         {
             var xmlhttp;
             //var myarray=new Array(str1,str2);
-            if ((str1.length==0)|| (str2.length==0))
+            if ((str1.length==0)|| (str2.length==0)|| (str3.length==0)|| (str4.length==0))
             {
                 alert("信息填写不完整");
                 return;
+            }
+
+            if(!isNaN(str2) ||!isNaN(str3)|| !isNaN(str4))
+            {
+                alert("学期学年或班级序号非数字");
+                return;
+
             }
             if (window.XMLHttpRequest)
             {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -62,11 +69,18 @@
         function Pass2(str)
         {
             var xmlhttp;
+            console.log(str)
             //var myarray=new Array(str);
             if (str.length==0)
             {
                 alert("信息填写不完整");
                 return;
+            }
+            if(isNaN(str))
+            {
+                alert("班级序号非数字");
+                return;
+
             }
             if (window.XMLHttpRequest)
             {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -133,25 +147,25 @@
 <form>
 <div class="input-group input-group-lg" style="width:300px;  margin-left:280px; margin-top:0px; ">
     <span class="input-group-addon">班级名称</span>
-    <input type="text"  id="text1"  class="form-control" placeholder="Classname" style="width:300px; ">
+    <input type="text"  id="text1"  class="form-control" placeholder=" " style="width:300px; ">
 </div>
     <p>
     </p>
     <div class="input-group input-group-lg" style="width:300px; margin-left:280px; margin-top:0px; ">
         <span class="input-group-addon"> 班级学年</span>
-        <input type="text"  id="text3"  class="form-control" placeholder="Classyear" style="width:300px;">
+        <input type="text"  id="text3"  class="form-control" placeholder=" " style="width:300px;">
     </div>
     <p>
     </p>
     <div class="input-group input-group-lg" style="width:300px; margin-left:280px; margin-top:0px; ">
         <span class="input-group-addon"> 班级学期</span>
-        <input type="text"  id="text4"  class="form-control" placeholder="Classterm" style="width:300px;">
+        <input type="text"  id="text4"  class="form-control" placeholder="0:秋冬 1:春夏" style="width:300px;">
     </div>
 <p>
 </p>
 <div class="input-group input-group-lg" style="width:300px; margin-left:280px; margin-top:0px; ">
     <span class="input-group-addon">班级序号</span>
-    <input type="text"  id="text2"  class="form-control" placeholder="Classnumber" style="width:300px;">
+    <input type="text"  id="text2"  class="form-control" placeholder=" " style="width:300px;">
 </div>
 
 
@@ -170,7 +184,7 @@
 </p>
 <div class="input-group input-group-lg" style="width:300px;  margin-left:720px; margin-top:px; ">
     <span class="input-group-addon">班级序号</span>
-    <input type="text"  id="text5"  class="form-control" placeholder="Classnumber" style="width:300px; ">
+    <input type="text"  id="text5"  class="form-control" placeholder=" " style="width:300px; ">
 </div>
 <button type="button" onclick="Pass2(text5.value)"  class="btn btn-default navbar-btn"style="  margin-left:1020px; margin-top:20px; ">删除班级</button>
 
