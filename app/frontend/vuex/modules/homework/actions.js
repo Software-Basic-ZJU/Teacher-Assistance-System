@@ -252,7 +252,7 @@ export const submitHw=({commit},payload)=>{
     Vue.http.post('aboutWork/submitWork.php',
         {
             ques_id:payload.routeParams.quesId,
-            uploader_id:payload.workType==0?userInfo.id:userInfo.group_id,
+            uploader_id:payload.data.workType==0?userInfo.id:userInfo.group_id,
             content:payload.data.content,
             resrc_id:payload.data.resrcId
         }

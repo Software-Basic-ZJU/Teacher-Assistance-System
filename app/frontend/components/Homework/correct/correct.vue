@@ -16,7 +16,7 @@
             <div class="stuWork">
                 <h3>作业内容</h3>
                 <div class="stuContent" v-html="stuWork.content"></div>
-                <div class="stuAttach">
+                <div class="stuAttach" v-if="stuWork.resrc_id>0">
                     <a
                             :href="stuWork.path"
                             :download="stuWork.resrc_name"><i class="iconfont icon-xiazai"></i>附件</a>
@@ -51,11 +51,11 @@
     .stuWork,
     .markBox{
         padding:10px 20px;
+        border-bottom:1px solid #E5E9F2;
     }
     .stuWork>.stuAttach{
         margin-top:30px;
         padding-top:15px;
-        border-top:1px solid #E5E9F2;
     }
     .stuWork>.stuAttach i{
         font-size:18px;

@@ -101,7 +101,7 @@ if($query_result){
         default:{
             $result = array(
                 'code' => -1,
-                'msg' => "邮件发送失败,邮件不在用户列表",
+                'msg' => "您还未设置邮箱地址",
                 'res' => array()
             );
             echo json_encode($result);

@@ -161,7 +161,8 @@ function sendCodesEmail($email, $codes){
     global $conn;
     connectDB();
     $query = mysqli_query($conn,
-        "select name from student where email='$email' limit 1");
+        "select name from student where email='$email' limit 1 
+          union select name from teacher where email='$email' limit 1");
     $user_name = mysqli_fetch_array($query)['name'];
     if(!$user_name){
         return 1;   //邮件发送失败,邮箱地址不在用户列表

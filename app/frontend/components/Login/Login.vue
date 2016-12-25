@@ -17,7 +17,7 @@
                     </el-radio-group>
                     <el-form-item>
                         <el-button type="primary" @click="login" :loading="isLoading">登录</el-button>
-                        <el-button>返回首页</el-button>
+                        <a href="/"><el-button>返回首页</el-button></a>
                         <router-link to="/findPswd"><el-button type="text">忘记密码</el-button></router-link>
                     </el-form-item>
                 </el-form>
