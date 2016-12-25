@@ -1012,6 +1012,7 @@ POST——Teacher-Assistance-System/app/backend/aboutWork/getStuWork.php
             "ques_title"=>$fetched['ques_title'],
             "hw_title"=>$fetched['hw_title'],
             "work_id" => $fetched['work_id'],
+            "type"   作业类型
             "reply" => $fetched['reply'],
             "content" => $fetched['content'],
             "score" => $fetched['score'],

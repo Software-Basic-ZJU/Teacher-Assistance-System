@@ -12,10 +12,11 @@ connectDB();
 
 //include 'connectDB.php';
 //connectDB();
-//$info_id = test_input(mysqli_escape_string($conn, $_REQUEST['info_id']));
+//$info_id = test_input(mysqli_escape_string($conn, $_POST['info_id']));
 //select *, count(distinct name) from table group by name
 $query_result = mysqli_query($conn, "select * from course_info ");
-if($fetched = mysqli_fetch_array($query_result)){
+if($query_result){
+    $fetched = mysqli_fetch_array($query_result);
     $result = array(
         "code" => 0,
         "msg" => "查找成功",

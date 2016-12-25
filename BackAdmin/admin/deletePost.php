@@ -10,7 +10,7 @@ connectDB();
 //loginCheck($_POST['token']);
 
 $result=mysqli_query($conn,
-	"DELETE from posts WHERE post_id='" . $_REQUEST['post_id'] . "';");
+	"DELETE from posts WHERE post_id='" . $_POST['post_id'] . "';");
 
 if($result) {
 $result = array (

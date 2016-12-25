@@ -10,7 +10,7 @@ connectDB();
 //loginCheck($_POST['token']);
 //Get information
 
-$admin_id = test_input(mysqli_escape_string($conn, $_REQUEST['admin_id']));
+$admin_id = test_input(mysqli_escape_string($conn, $_POST['admin_id']));
 //$admin_id = $_GET['admin_id'];
 
 $query_mail = mysqli_query($conn, "select * from mail where dest_id = '$admin_id'");

@@ -17,7 +17,7 @@
             <div class="main">
                 <div class="content" v-html="hostPost.content"></div>
                 <div class="resource" v-if="hostPost.resrcId">
-                    <a :href="hostPost.resource.path" download="hostPost.resource.name">
+                    <a :href="hostPost.resource.path" :download="hostPost.resource.name">
                         {{hostPost.resource.name}}
                     </a>
                 </div>

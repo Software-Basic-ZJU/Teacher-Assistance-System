@@ -96,7 +96,7 @@
 						<div class="intro-lead-in">Teaching Assistant System</div>
 						<div class="intro-heading"></div>
 					</div>
-					<a class="btn btn-1 btn-sm" href="login.php">Log In</a>
+					<a class="btn btn-1 btn-sm" href="app">Log In</a>
 <!--					<a class="btn btn-1 btn-sm" href="#team">Our Team</a>-->
 				</div>
 			</div>

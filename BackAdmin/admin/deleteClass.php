@@ -10,7 +10,7 @@ connectDB();
 //loginCheck($_POST['token']);
 
 $result=mysqli_query($conn,
-	"DELETE from classes WHERE class_id='" . $_REQUEST['class_id'] . "';");
+	"DELETE from classes WHERE class_id='" . $_POST['class_id'] . "';");
 
 if($result) {
 $result = array (

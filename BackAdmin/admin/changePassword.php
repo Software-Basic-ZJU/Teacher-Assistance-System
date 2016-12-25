@@ -18,8 +18,8 @@ connectDB();
 
 //loginCheck(_get('token'));
 //Get information
-$password = test_input(mysqli_escape_string($conn, $_REQUEST['password']));
-$admin_id = $_REQUEST['admin_id'];
+$password = test_input(mysqli_escape_string($conn, $_POST['password']));
+$admin_id = $_POST['admin_id'];
 //$password = _get('password');
 
 //echo $password;

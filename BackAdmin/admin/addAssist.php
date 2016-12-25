@@ -9,9 +9,9 @@ connectDB();
 //Verify token
 //loginCheck($_POST['token']);
 
-$assist_id=$_REQUEST['assist_id'];
+$assist_id=$_POST['assist_id'];
 //$password1=$_GET['password'];
-$name=$_REQUEST['name'];
+$name=$_POST['name'];
 $password=encrypt('123456');
 //echo $password;
 

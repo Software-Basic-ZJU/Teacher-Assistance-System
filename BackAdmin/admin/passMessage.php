@@ -10,7 +10,7 @@ connectDB();
 //loginCheck($_POST['token']);
 
 $result=mysqli_query($conn,
-	"UPDATE message SET msg_state = 1 WHERE msg_id='" . $_REQUEST['msg_id'] . "';");
+	"UPDATE message SET msg_state = 1 WHERE msg_id='" . $_POST['msg_id'] . "';");
 
 if($result) {
 $result = array (

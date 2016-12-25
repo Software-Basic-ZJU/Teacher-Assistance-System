@@ -110,7 +110,11 @@
 								echo "  ";
 								echo $time;
 							      ?></h4>
-							<p><?php echo $content?></p>
+							<p><?php                     
+                   			$htmlcontent =  htmlspecialchars_decode($content); 
+                   			echo $htmlcontent;   
+                			//echo strip_tags($htmlcontent);
+							?></p>
 								
 						</div>
 					

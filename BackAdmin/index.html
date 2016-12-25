@@ -15,9 +15,11 @@
 
 
     <script type="text/javascript">
-        function Pass(str1,str2)
+        function Pass(str1,str2,e)
         {
-            //e.preventDefault();
+            e.preventDefault();
+
+
             var xmlhttp;
             var myarray=new Array(str1,str2);
             if ((str1.length==0)||(str2.length==0))
@@ -61,9 +63,9 @@
                     //document.write(json);
                 }
             };
-
-            xmlhttp.open("POST","login/login.php?admin_id="+str1+"&password="+str2,true);
-            xmlhttp.send();
+            xmlhttp.open("POST","login/login.php",true);
+            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xmlhttp.send("admin_id="+encodeURIComponent(str1)+"&password="+encodeURIComponent(str2));
 
 //            xmlhttp.open("POST","login/login.php",true);
 //            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
@@ -134,22 +136,22 @@
 </div>
 
 <form>
-    <div class="input-group"style="width:300px; margin: 0 auto;margin-top:-300px; ">
-        <span class="input-group-addon">AdminID</span>
-        <input type="text" id="text1" class="form-control" placeholder="ID">
-    </div>
+<div class="input-group"style="width:300px; margin: 0 auto;margin-top:-300px; ">
+    <span class="input-group-addon">AdminID</span>
+    <input type="text" id="text1" class="form-control" placeholder="ID">
+</div>
 
-    <div class="input-group"style="width:300px; margin: 0 auto; margin-top:40px; ">
-        <span class="input-group-addon" style="width:80px;">pwd</span>
-        <input type="password" id="text2"  class="form-control" placeholder="password">
-    </div>
+<div class="input-group"style="width:300px; margin: 0 auto; margin-top:40px; ">
+    <span class="input-group-addon" style="width:80px;">pwd</span>
+    <input type="text" id="text2"  class="form-control" placeholder="password">
+</div>
 
-    <div style="width:140px;  margin: 0 auto; margin-top:40px;">
-        <button type="button"  onclick="Pass(text1.value,text2.value)" class="btn btn-default btn-lg" >
-            <span class="glyphicon glyphicon-user"></span> login in
-        </button>
+<div style="width:140px;  margin: 0 auto; margin-top:40px;">
+<button type="submit"  onclick="Pass(text1.value,text2.value,event)" class="btn btn-default btn-lg" >
+         <span class="glyphicon glyphicon-user"></span> login in
+</button>
 
-    </div>
+</div>
 </form>
 
 

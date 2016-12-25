@@ -4,12 +4,11 @@
             <div class="header">
                 <el-breadcrumb separator="/">
                     <el-breadcrumb-item :to="{name:'homework'}">{{className}}作业列表</el-breadcrumb-item>
-                    <el-breadcrumb-item>{{hwDetail.hwTitle}}</el-breadcrumb-item>
+                    <el-breadcrumb-item>{{hwDetail.hwTitle}}<el-tag :class="{'group':hwDetail.hwType==1}">{{hwDetail.hwType==1?'小组作业':'个人作业'}}</el-tag></el-breadcrumb-item>
                 </el-breadcrumb>
                 <el-button v-if="idenType==2" type="success" class="fr" @click="addQues">添加问题</el-button>
             </div>
             <div class="infoBox">
-                <span class="type">作业类型：{{hwDetail.hwType?'小组作业':'个人作业'}}</span>
                 <span class="publish">发布时间：{{hwDetail.hwPublishTime}}</span>
                 <span class="ddl">截止时间：{{hwDetail.hwDeadline}}</span>
             </div>
@@ -52,6 +51,13 @@
     }
     .el-button--success{
         margin-top:-45px;
+    }
+    .el-tag{
+        margin-left:20px;
+    }
+    .el-tag.group{
+        background-color: #6ECADC;
+        border-color:#6ECADC;
     }
 </style>
 <script>
