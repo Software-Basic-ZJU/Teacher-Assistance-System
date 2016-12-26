@@ -100,8 +100,6 @@
 <?php
 	if(@$_COOKIE['teacher_num'])
 		$num=$_COOKIE['teacher_num'];
-	else
-		$num=4;
 	for($i=0; $i<$num; $i++)
 	{
 ?>				
