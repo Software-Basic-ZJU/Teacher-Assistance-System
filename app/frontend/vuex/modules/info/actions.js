@@ -10,6 +10,11 @@ export const toggleEditNotice=({commit},signal)=>{
     commit('toggleEditNotice',signal);
 };
 
+//更新搜索关键词
+export const updateKeywords=({commit},keywords)=>{
+    commit('updateKeywords',keywords);
+};
+
 //获取教师联系方式
 export const getContact=({commit})=>{
     let userInfo=LS.getItem("userInfo");

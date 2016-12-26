@@ -12,7 +12,8 @@ const state={
     noticeCurrPage:1,
     articleCurrPage:1,
     showAddNotice:false,                 //添加通知模态框显示变量
-    showEditNotice:false
+    showEditNotice:false,
+    keywords:''                         //搜索关键词
 }
 
 const mutations={
@@ -66,6 +67,9 @@ const mutations={
             }
         });
         state.noticeList.push(newNotice);
+    },
+    updateKeywords(state,keywords){
+        state.keywords=keywords;
     }
 }
 

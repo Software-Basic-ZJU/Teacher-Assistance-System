@@ -12,7 +12,10 @@ export const noticeList=state=> {
 
 // 获取文章列表，按时间排序
 export const articleList=(state)=> {
-    let articleList=state.info.articleList.sort((itemA, itemB)=> {
+    let articleList=state.info.articleList.filter((item)=>(
+        item.title.indexOf(state.info.keywords)>=0
+    ));
+    articleList=articleList.sort((itemA, itemB)=> {
         return moment(itemA.time).format('x') < moment(itemB.time).format('x')
     });
     return articleList.slice(8*(state.info.articleCurrPage-1),8*state.info.articleCurrPage);
