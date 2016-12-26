@@ -84,6 +84,7 @@
                 let resource=LS.getItem("resource");
                 if(resource) {
                     this.newResrc.resrcId=resource.resource_id;
+                    this.$store.dispatch('isFileUpload',true);
                     return [{
                         name: resource.name,
                         path: resource.path
