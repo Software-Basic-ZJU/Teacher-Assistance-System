@@ -24,7 +24,7 @@ if(!in_array($type,$fileType))
                         <img src="images/resource/<?php echo $type; ?>.png" class="ppticon" style="height: 160px;width: 160px;margin-bottom:10px; ">
                     
                     </br>
-                    <a href="<?php echo 'https://'.$_SERVER['HTTP_HOST'].'/app/backend/aboutResource/'.$fetched['path'] ?>" download="<?php echo $fetched['name'] ?>" style="font-family:'Microsoft YaHei'"><?php echo $fetched['name'] ?></a>
+                    <a href="<?php echo 'http://ohqv9jyy7.bkt.clouddn.com/'.$fetched['path'] ?>" download="<?php echo $fetched['name'] ?>" style="font-family:'Microsoft YaHei'"><?php echo $fetched['name'] ?></a>
                     <p><?php echo $fetched['time'] ?>
                     <br />
                     </p>
