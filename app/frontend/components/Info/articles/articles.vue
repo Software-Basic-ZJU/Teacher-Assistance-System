@@ -7,7 +7,7 @@
                 class="searchBox fr"
                 :class="{'offsetRight':idenType==2}"
                 v-model="keywords"
-                @input="goSearch"
+                @input="goSearch($event)"
         ></el-input>
         <div class="articleBox">
             <div class="noRes" v-if="articleList.length==0">还没有发表文章~</div>
@@ -75,13 +75,13 @@
             this.$store.dispatch('getArticleList');
             return{
                 idenType:userInfo.type,
-                keywords:''
             }
         },
         computed:{
             ...mapState({
                 articlesNum:state=>state.info.articleList.length,
-                currPage:state=>state.info.articleCurrPage
+                currPage:state=>state.info.articleCurrPage,
+                keywords:state=>state.info.keywords
             }),
             articleList(){
                 return this.$store.getters.articleList;
@@ -94,15 +94,16 @@
             changePage(val){
                 this.$store.dispatch('changeArtPage',val);
             },
-            goSearch(){
-                this.$store.dispatch('updateKeywords',this.keywords);
+            goSearch(keywords){
+                this.$store.dispatch('updateKeywords',keywords);
             },
 
+//          列表过渡效果方法
             beforeEnter: function (el) {
                 el.style.opacity = 0
             },
             enter: function (el, done) {
-                var delay = el.dataset.index * 100
+                var delay = el.dataset.index * 100;
                 setTimeout(function () {
                     Velocity(
                         el,
@@ -112,7 +113,7 @@
                 }, delay)
             },
             leave: function (el, done) {
-                var delay = el.dataset.index * 100
+                var delay = el.dataset.index * 100;
                 setTimeout(function () {
                     Velocity(
                         el,
