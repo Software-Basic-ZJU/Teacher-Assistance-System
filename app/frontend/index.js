@@ -14,8 +14,8 @@ Vue.use(ElementUI);
 Vue.config.debug=true;
 
 //ajax config
-// Vue.http.options.root='backend';         //server config
-Vue.http.options.root='http://localhost:8000/backend';  //local config
+Vue.http.options.root='backend';         //server config
+// Vue.http.options.root='http://localhost:8000/backend';  //local config
 Vue.http.options.timeout=12000;
 Vue.http.options.emulateJSON = true;        //php cannot resolve json directly.
 let userInfo=LS.getItem('userInfo');
