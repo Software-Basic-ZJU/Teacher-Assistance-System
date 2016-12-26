@@ -187,10 +187,10 @@
 				$("#" + i +"_teacherInfo").html("");
 				$("#" + i +"_teacherInfo").append(json.res[i].teacher_info);
 				//$("#" + i +"_teach-exp").html("");
-	    		//$("#" + i +"_profile").html("");
-	    		//$("#" + i +"_honor").html("");
-	        	//$("#" + i +"_teach-exp").append(json.res[i].teach_experience);
-	        	//$("#" + i +"_profile").append(json.res[i].profile);
+                //$("#" + i +"_profile").html("");
+                //$("#" + i +"_honor").html("");
+                //$("#" + i +"_teach-exp").append(json.res[i].teach_experience);
+                //$("#" + i +"_profile").append(json.res[i].profile);
 				//$("#" + i +"_honor").append(json.res[i].honor);
       		}
       		
