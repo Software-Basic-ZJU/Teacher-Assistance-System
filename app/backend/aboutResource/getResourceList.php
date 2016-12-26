@@ -25,7 +25,7 @@ if($type == 0) {
             $resourceList[] = array(
                 "resource_id" => $fetched['resrc_id'],
                 "name" => $fetched['resource_name'],
-                "path" => "https://" . $_SERVER['HTTP_HOST'] . "/app/backend/aboutResource/" . $fetched['path'],
+                "path" => "http://ohqv9jyy7.bkt.clouddn.com/" . $fetched['path'],
                 "upload_time" => $fetched['time'],
                 "uploader_name" => $fetched['uploader_name'],
                 "size" => $fetched['size'],
@@ -66,7 +66,7 @@ elseif($type == 1){
             $resourceList[] = array(
                 "resource_id" => $fetched['resrc_id'],
                 "name" => $fetched['resource_name'],
-                "path" => "https://" . $_SERVER['HTTP_HOST'] . "/app/backend/aboutResource/" . $fetched['path'],
+                "path" => "http://ohqv9jyy7.bkt.clouddn.com/" . $fetched['path'],
                 "upload_time" => $fetched['time'],
                 "uploader_name" => $fetched['uploader_name'],
                 "size" => $fetched['size'],

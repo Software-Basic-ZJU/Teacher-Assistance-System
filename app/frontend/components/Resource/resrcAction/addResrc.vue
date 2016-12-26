@@ -132,7 +132,7 @@
                     });
                     return;
                 }
-                if(this.newResrc=="") {
+                if(this.newResrc.name=="") {
                     this.$message({
                         type:'warning',
                         message:'请填写资源名称'

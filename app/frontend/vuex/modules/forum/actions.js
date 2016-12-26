@@ -150,7 +150,7 @@ export const editPost=({commit},payload)=>{
 };
 
 // 删除帖子  参数成员有postId与section(用于跳转)
-export const removePost=({commit},payload)=>{
+export const removePost=({dispatch,commit},payload)=>{
     commit('isLoading',true);
     Vue.http.post("aboutPost/removePost.php",
         {
@@ -159,6 +159,11 @@ export const removePost=({commit},payload)=>{
     ).then((response)=>{
         let resp=response.body;
         if(!resp.code){
+            //异步删除资源文件，以加快响应时间
+            dispatch('removeResrc',{
+                resrcId:resp.res.resrcId
+            });
+            
             router.replace({
                 name:'section',
                 params:{

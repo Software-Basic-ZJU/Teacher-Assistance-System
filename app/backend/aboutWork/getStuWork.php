@@ -38,7 +38,7 @@ if($query_result){
             "score" => $fetched['score'],
             "resrc_id" => $resrcFetch['resrc_id'],
             "resrc_name"=>$resrcFetch['name'],
-            "path"=>"https://".$_SERVER['HTTP_HOST']."/app/backend/aboutResource/".$resrcFetch['path'],
+            "path"=>"http://ohqv9jyy7.bkt.clouddn.com/".$resrcFetch['path'],
             "uploader_id" => $fetched['uploader_id'],
             "finish"=>$fetched['finish'],
             "token" => $_SESSION['token']

@@ -19,13 +19,28 @@ $post_id = test_input(mysqli_escape_string($conn, $_POST['post_id']));
 $query_result = mysqli_query($conn, "delete from posts WHERE post_id = '$post_id';");
 if($query_result){
     $delete_result = deleteReplyPost($conn,$post_id);
-    $deleteResource_result = deleteResource($conn,$post_id);
-    if($delete_result && $deleteResource_result){
+    $query_result=mysqli_query($conn,"select resrc_id from resource where type = 1 and post_id='$post_id';");
+    if($fetch=mysqli_fetch_array($query_result)) {
+        $resrc_id = $fetch['resrc_id'];
+    }
+    else {
+        $result = array(
+            "code" => 0,
+            "msg" => "没有找到该资源",
+            "res" => array(
+                "token" => $_SESSION['token']
+            )
+        );
+        echo json_encode($result);
+        exit;
+    }
+    if($delete_result && $resrc_id){
         $result = array(
             "code" => 0,
             "msg" => "删除成功",
             "res" => array(
-                "token" => $_SESSION['token']
+                "token" => $_SESSION['token'],
+                "resrcId"=>$resrc_id
             )
         );
     }
