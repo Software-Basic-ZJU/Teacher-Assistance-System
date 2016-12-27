@@ -8,7 +8,7 @@ module.exports={
     },
     output:{
         path:'./build',
-        // filename:'[name].js',
+        // filename:'[name].js',                //local debug
         filename:'[name].[chunkhash:5].js',     //use hash fingerprint
         publicPath:'',    //server path
         // publicPath:'/build/',
@@ -50,10 +50,10 @@ module.exports={
         }
     },
     plugins:[
-        // new webpack.optimize.CommonsChunkPlugin('vendor','commons.js')
+        // new webpack.optimize.CommonsChunkPlugin('vendor','commons.js')                //local debug
         new webpack.optimize.CommonsChunkPlugin('vendor','commons.[chunkhash:5].js'),    //use hash fingerprint
         new HtmlWebpackPlugin({
-            template:'main.html',
+            template:'index.html',
             inject:'body'
         })
     ]
