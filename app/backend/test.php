@@ -8,7 +8,7 @@
 <body>
 <!--,,,-->
 <h2>PHP 验证实例</h2>
-<form method="post" action="aboutArticle/getArticles.php">
+<form method="post" action="aboutWork/getWorkStuList.php">
     <br><br>
     teacher_id：<input type="text" name="teacher_id">
     <br><br>
@@ -22,7 +22,7 @@
     <br><br>
     password：<input type="text" name="password">
     <br><br>
-    code：<input type="text" name="code">
+    ques_id：<input type="text" name="ques_id">
     <br><br>
     <br><br>
     type：
