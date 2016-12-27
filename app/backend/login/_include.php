@@ -77,7 +77,7 @@ function sendCodesEmail($email, $codes){
      * 1. 用户名和密码是否正确；
      * 2. 检查邮箱设置是否启用了smtp服务；
      */
-    require_once "email.class.php";
+    require_once "../helpers/email.class.php";
 //******************** 配置变量 ********************************
     $smtpserver = "smtp.163.com";//SMTP服务器
     $smtpserverport =25;//SMTP服务器端口

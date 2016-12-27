@@ -8,9 +8,9 @@
                 </el-steps>
                 <div class="actionBox fr" >
                     <div class="firstStep" v-show="active==0">
-                        <el-form>
-                            <el-form-item label="学号/教工号">
-                                <el-input v-model="userId" place-holder="学号/教工号"></el-input>
+                        <el-form ref="userForm" :model="userForm" :rules="userRules">
+                            <el-form-item label="学号/教工号" prop="userId">
+                                <el-input v-model="userForm.userId" place-holder="学号/教工号"></el-input>
                             </el-form-item>
                             <el-form-item>
                                 <el-button type="primary" @click.prevent="firstSubmit" :loading="formLoading">下一步</el-button>
@@ -42,7 +42,7 @@
                             </div>
                             <el-form-item>
                                 <el-button @click="backStep">上一步</el-button>
-                                <el-button type="primary" @click="secondSubmit" :loading="formLoading">下一步</el-button>
+                                <el-button type="primary" @click.prevent="secondSubmit" :loading="formLoading">下一步</el-button>
                             </el-form-item>
                         </el-form>
                     </div>
@@ -121,7 +121,9 @@
                 countdown:5,
                 emailCount:60,
                 steps:['验证账号','验证信息','修改密码','修改结果'],
-                userId:'',                      //需要密保问题的id
+                userForm:{
+                    userId:'',                      //需要密保问题的id
+                },
                 idenForm:{
                     question:'',
                     answer:'',
@@ -129,6 +131,15 @@
                 },
                 actionType:false,              //false 为 密保问题, true 为邮箱找回
                 formLoading:false,             //表单提交loading
+                userRules:{
+                    userId:[
+                        {
+                            required:true,
+                            message:'请输入学号/教工号',
+                            trigger:'change'
+                        }
+                    ]
+                },
                 idenRules:{
                     answer:[
                         {
@@ -206,9 +217,13 @@
                 this.actionType=signal;
             },
             firstSubmit(){
-                this.formLoading=true;
-                this.$store.dispatch('getIdenQues',this.userId).then(()=>{
-                    this.formLoading=false;
+                this.$refs.userForm.validate((valid)=>{
+                    if(valid){
+                        this.formLoading=true;
+                        this.$store.dispatch('getIdenQues',this.userForm.userId).then(()=>{
+                            this.formLoading=false;
+                        })
+                    }
                 })
             },
             secondSubmit(){

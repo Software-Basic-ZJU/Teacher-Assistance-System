@@ -18,15 +18,14 @@ $teacher_id = test_input(mysqli_escape_string($conn, $_POST['teacher_id']));
 $group_id=test_input(mysqli_escape_string($conn, $_POST['group_id']));
 if($_SESSION['type']==1){
     if($group_id>0){
-        $query_result = mysqli_query($conn, "select * from 
-        (select section,count(post_id) as total_num,COUNT( CASE WHEN to_days(publish_time) = to_days(now()) THEN 1 ELSE NULL END ) as today_num 
+        $query_result = mysqli_query($conn, "select section,count(post_id) as total_num,COUNT( CASE WHEN to_days(publish_time) = to_days(now()) THEN 1 ELSE NULL END ) as today_num 
         from posts 
         where teacher_id = '$teacher_id' and section != 2 
-        group by section) as temp1 
+        group by section 
         union 
-        (select section,count(post_id) as total_num,COUNT( CASE WHEN to_days(publish_time) = to_days(now()) THEN 1 ELSE NULL END ) as today_num 
+        select section,count(post_id) as total_num,COUNT( CASE WHEN to_days(publish_time) = to_days(now()) THEN 1 ELSE NULL END ) as today_num 
         from posts 
-        where teacher_id = '$teacher_id' and section = 2 and group_id = '$group_id');");
+        where teacher_id = '$teacher_id' and section = 2 and group_id = '$group_id' group by section;");
     }
     else{
         $query_result = mysqli_query($conn, "select section,count(post_id) as total_num,COUNT( CASE WHEN to_days(publish_time) = to_days(now()) THEN 1 ELSE NULL END ) as today_num 

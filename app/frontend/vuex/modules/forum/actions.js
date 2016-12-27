@@ -73,6 +73,11 @@ export const getPostDetail=({commit},postId)=>{
         if (!resp.code) {
             commit('updateCurrPost', resp.res);
         }
+        else{
+            router.replace({
+                name:'forum'
+            })
+        }
     }).then(()=> {
         commit('isLoading', false);
     })
