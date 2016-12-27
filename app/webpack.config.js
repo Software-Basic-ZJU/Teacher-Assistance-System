@@ -1,4 +1,5 @@
 var webpack=require("webpack");
+var HtmlWebpackPlugin=require("html-webpack-plugin");
 
 module.exports={
     entry: {
@@ -7,8 +8,9 @@ module.exports={
     },
     output:{
         path:'./build',
-        filename:'[name].min.js',
-        publicPath:'/app/build/',    //server path
+        // filename:'[name].js',
+        filename:'[name].[chunkhash:5].js',     //use hash fingerprint
+        publicPath:'',    //server path
         // publicPath:'/build/',
         chunkFilename:'[id].[chunkhash:5].chunk.js'
     },
@@ -48,6 +50,11 @@ module.exports={
         }
     },
     plugins:[
-        new webpack.optimize.CommonsChunkPlugin('vendor','commons.js')
+        // new webpack.optimize.CommonsChunkPlugin('vendor','commons.js')
+        new webpack.optimize.CommonsChunkPlugin('vendor','commons.[chunkhash:5].js'),    //use hash fingerprint
+        new HtmlWebpackPlugin({
+            template:'main.html',
+            inject:'body'
+        })
     ]
 }
