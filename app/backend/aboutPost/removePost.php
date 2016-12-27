@@ -23,17 +23,8 @@ if($query_result){
     if($fetch=mysqli_fetch_array($query_result)) {
         $resrc_id = $fetch['resrc_id'];
     }
-    else {
-        $result = array(
-            "code" => 0,
-            "msg" => "没有找到该资源",
-            "res" => array(
-                "token" => $_SESSION['token']
-            )
-        );
-        echo json_encode($result);
-        exit;
-    }
+    else $resrc_id=null;
+    
     if($delete_result && $resrc_id){
         $result = array(
             "code" => 0,

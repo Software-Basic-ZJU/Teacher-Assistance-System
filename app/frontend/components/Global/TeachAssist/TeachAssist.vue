@@ -106,7 +106,7 @@
                     taName:[
                         {
                             required:true,
-                            message:'请输入助教ID',
+                            message:'请输入助教姓名',
                             trigger:'blur'
                         },
                         {

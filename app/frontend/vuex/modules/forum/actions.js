@@ -160,9 +160,11 @@ export const removePost=({dispatch,commit},payload)=>{
         let resp=response.body;
         if(!resp.code){
             //异步删除资源文件，以加快响应时间
-            dispatch('removeResrc',{
-                resrcId:resp.res.resrcId
-            });
+            if(resp.res.resrcId) {
+                dispatch('removeResrc', {
+                    resrcId: resp.res.resrcId
+                });
+            }
             
             router.replace({
                 name:'section',
