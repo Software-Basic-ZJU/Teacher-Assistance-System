@@ -42,6 +42,13 @@
         },
         components:{
             Editor
+        },
+        head:{
+            title(){
+                return {
+                    inner:'发表主题'
+                }
+            }
         }
     }
 </script>

@@ -49,6 +49,7 @@ if($_SESSION['type'] ==1){
         exit;
     }
 }
+
 /*
 //      TODO:异步删除七牛云上的文件
 $query_resrc=mysqli_query($conn,"select resrc_id from resource left join posts on resource.post_id=posts.post_id where posts.group_id='$group_id';");
@@ -60,6 +61,7 @@ while($fetched=mysqli_fetch_array($query_resrc)){
     async_request("https://".$_SERVER['HTTP_HOST']."/app/backend/aboutResource/removeResource.php",$postData);
 }
 */
+
 
 $update = mysqli_query($conn,"update student set group_id = -1 WHERE group_id = '$group_id';");
 $query_result = mysqli_query($conn, "delete t1,t2,t3 from course_assist.group as t1 left join posts as t2

@@ -34,6 +34,13 @@
         },
         components:{
             Editor
+        },
+        head:{
+            title(){
+                return {
+                    inner:'编辑教师介绍'
+                }
+            }
         }
     }
 </script>

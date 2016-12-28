@@ -18,6 +18,13 @@
         },
         components:{
             Editor
+        },
+        head:{
+            title(){
+                return {
+                    inner:'添加教师文章'
+                }
+            }
         }
     }
 </script>

@@ -34,6 +34,13 @@
         },
         components:{
             Editor
+        },
+        head:{
+            title(){
+                return {
+                    inner:'编辑课程介绍'
+                }
+            }
         }
     }
 </script>

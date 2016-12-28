@@ -84,6 +84,6 @@
             goArticle(artId){
                 router.push({name:'articleDetail',params:{artId:artId}});
             }
-        }
+        },
     }
 </script>

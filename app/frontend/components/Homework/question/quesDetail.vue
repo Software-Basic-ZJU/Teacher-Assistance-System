@@ -223,6 +223,13 @@
         },
         components:{
             Editor
+        },
+        head:{
+            title(){
+                return {
+                    inner:this.question.title
+                }
+            }
         }
     }
 </script>

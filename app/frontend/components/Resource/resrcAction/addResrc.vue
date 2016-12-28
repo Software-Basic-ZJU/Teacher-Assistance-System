@@ -145,6 +145,13 @@
             cancelAddResrc(){
                 router.go(-1);
             }
+        },
+        head:{
+            title(){
+                return {
+                    inner:'添加课件资源'
+                }
+            }
         }
     }
 </script>

@@ -22,6 +22,13 @@
             teacherInfo(){
                 return this.$store.state.intro.teacherInfo;
             }
+        },
+        head:{
+            title(){
+                return {
+                    inner:'教师介绍'
+                }
+            }
         }
     }
 </script>

@@ -97,6 +97,13 @@
         },
         components:{
             quesItem
+        },
+        head:{
+            title(){
+                return {
+                    inner:"作业问题列表"
+                }
+            }
         }
     }
 </script>

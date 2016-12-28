@@ -196,6 +196,13 @@
         },
         components:{
             replyPost
+        },
+        head:{
+            title(){
+                return {
+                    inner:this.secName
+                }
+            }
         }
     }
 </script>

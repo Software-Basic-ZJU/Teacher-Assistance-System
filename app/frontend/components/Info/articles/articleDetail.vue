@@ -147,6 +147,13 @@
         },
         components:{
             comment
+        },
+        head:{
+            title(){
+                return {
+                    inner:this.article.title
+                }
+            }
         }
     }
 </script>

@@ -188,6 +188,13 @@
         },
         components:{
             hwItem
+        },
+        head:{
+            title(){
+                return {
+                    inner:'作业'
+                }
+            }
         }
     }
 </script>

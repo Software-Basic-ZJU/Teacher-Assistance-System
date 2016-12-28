@@ -124,6 +124,13 @@
         },
         components:{
             Editor
+        },
+        head:{
+            title(){
+                return {
+                    inner:'批改作业'
+                }
+            }
         }
     }
 </script>

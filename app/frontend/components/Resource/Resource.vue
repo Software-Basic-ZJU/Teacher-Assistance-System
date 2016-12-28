@@ -14,6 +14,13 @@
         data(){
             return{
             }
+        },
+        head:{
+            title(){
+                return {
+                    inner:'课件资源'
+                }
+            }
         }
     }
 </script>
