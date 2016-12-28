@@ -14,10 +14,11 @@ global $conn;
 connectDB();
 //Verify token
 //loginCheck($_POST['token']);
-
+$group_id = test_input(mysqli_escape_string($conn, $_POST['group_id']));
 $result=mysqli_query($conn,
-    "DELETE from course_assist.group WHERE group_id='" . $_POST['group_id'] . "';");
+    "DELETE FROM course_assist.`group` WHERE `group_id`='$group_id';");
 
+//echo "DELETE FROM course_assist.`group` WHERE `group_id`='$group_id';";
 if($result) {
     $result = array (
         "code"=>"0",
