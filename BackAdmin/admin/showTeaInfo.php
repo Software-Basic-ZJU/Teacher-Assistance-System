@@ -16,9 +16,10 @@ $teacher_id = test_input(mysqli_escape_string($conn, $_POST['teacher_id']));
 $query_result = mysqli_query($conn, "select teacher_info from teacher 
                                         where teacher_id ='$teacher_id'");
 
-$fetched = mysqli_fetch_array($query_result);
+
 //echo $fetched['teacher_info'];
-    if ($fetched['teacher_info']) {
+//echo $fetched;
+    if ($fetched = mysqli_fetch_array($query_result)) {
         $result = array(
             "code" => 0,
             "msg" => "查找成功",
