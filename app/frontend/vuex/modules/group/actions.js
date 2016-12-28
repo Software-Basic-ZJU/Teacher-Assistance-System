@@ -111,6 +111,15 @@ export const deleteGroup=({commit},groupId)=>{
                 message: resp.msg
             });
             commit('deleteGroup',groupId);
+
+            // 循环发送删文件异步请求
+            resp.res.resrcList.forEach((item)=>{
+                Vue.http.post("aboutResource/removeResource.php",
+                    {
+                        resource_id:item.resrcId
+                    }
+                )
+            })
         }
     }).then(()=>{
         commit('isLoading',false);

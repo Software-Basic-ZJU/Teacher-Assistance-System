@@ -25,6 +25,13 @@
         },
         components:{
             Editor
+        },
+        head:{
+            title(){
+                return {
+                    inner:'编辑问题'
+                }
+            }
         }
     }
 </script>

@@ -99,6 +99,13 @@
             goPath(section){
                 router.push({name:'section',params:{section:section}});
             }
+        },
+        head:{
+            title(){
+                return {
+                    inner:'讨论区'
+                }
+            }
         }
     }
 </script>

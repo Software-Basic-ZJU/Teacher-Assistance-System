@@ -70,12 +70,16 @@
             let userInfo=LS.getItem('userInfo');
             this.$store.dispatch('getQuesList',this.$route.params.hwId);
             return{
-                idenType:userInfo.type
+                idenType:userInfo.type,
+                hwTitle:'题目清单'
             }
         },
         computed:{
             hwDetail(){
-                return this.$store.state.homework.hwDetail;
+                let hwDetail=this.$store.state.homework.hwDetail;
+                this.hwTitle=hwDetail.hwTitle;
+                this.$emit('updateHead');
+                return hwDetail;
             },
             className(){        //班级名称
                 let className="";
@@ -97,6 +101,13 @@
         },
         components:{
             quesItem
+        },
+        head:{
+            title(){
+                return {
+                    inner:this.hwTitle
+                }
+            }
         }
     }
 </script>

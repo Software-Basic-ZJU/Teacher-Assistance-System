@@ -92,6 +92,13 @@
         },
         components:{
             Editor
+        },
+        head:{
+            title(){
+                return {
+                    inner:'通知'
+                }
+            }
         }
     }
 </script>

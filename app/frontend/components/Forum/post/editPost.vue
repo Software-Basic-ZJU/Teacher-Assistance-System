@@ -47,6 +47,13 @@
         },
         components:{
             Editor
+        },
+        head:{
+            title(){
+                return {
+                    inner:'编辑帖子'
+                }
+            }
         }
     }
 </script>

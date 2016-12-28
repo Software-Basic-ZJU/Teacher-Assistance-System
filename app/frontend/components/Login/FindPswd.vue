@@ -283,6 +283,13 @@
         },
         components:{
             Header
+        },
+        head:{
+            title(){
+                return {
+                    inner:'找回密码'
+                }
+            }
         }
     }
 </script>

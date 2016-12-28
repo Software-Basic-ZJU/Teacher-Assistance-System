@@ -153,7 +153,8 @@
             this.$store.dispatch('getQuesDetail',this.$route.params.quesId);
             return{
                 idenType:userInfo.type,
-                hwName:''
+                hwName:'',
+                quesTitle:'题目'
             }
         },
         beforeRouteLeave(to,from,next){
@@ -167,6 +168,8 @@
                 question(state){
                     let question=state.homework.quesDetail;
                     this.hwName=question.hw_title;
+                    this.quesTitle=question.title;
+                    this.$emit('updateHead');
                     return question;
                 },
                 stuList:state=>state.homework.quesDetail.shouldList,
@@ -202,7 +205,7 @@
                     type: 2
                 };
                 return uploadInfo;
-            }
+            },
         },
         methods:{
             checkHw(index,row){
@@ -223,6 +226,13 @@
         },
         components:{
             Editor
+        },
+        head:{
+            title(){
+                return {
+                    inner:this.quesTitle
+                }
+            }
         }
     }
 </script>

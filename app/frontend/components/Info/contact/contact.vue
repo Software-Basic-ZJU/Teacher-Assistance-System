@@ -48,6 +48,13 @@
             editContact(){
                 router.push({name:'editContact'})
             }
+        },
+        head:{
+            title(){
+                return {
+                    inner:'教师联系方式'
+                }
+            }
         }
     }
 </script>

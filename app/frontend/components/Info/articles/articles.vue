@@ -125,6 +125,13 @@
         },
         components:{
             articleItem
+        },
+        head:{
+            title(){
+                return {
+                    inner:'教师文章'
+                }
+            }
         }
     }
 </script>

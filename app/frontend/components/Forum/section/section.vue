@@ -111,6 +111,13 @@
         },
         components:{
             postItem
+        },
+        head:{
+            title(){
+                return {
+                    inner:this.secName
+                }
+            }
         }
     }
 </script>

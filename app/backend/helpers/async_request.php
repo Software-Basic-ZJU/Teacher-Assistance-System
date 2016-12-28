@@ -8,17 +8,17 @@
 function async_request($url, $post_data = array(), $token=""){
     $method = "GET";  //通过POST或者GET传递一些参数给要触发的脚本
     $url_array = parse_url($url); //获取URL信息
-    $port = isset($url_array['port'])? $url_array['port'] : 80;
-    $fp = fsockopen($url_array['host'], $port, $errno, $errstr, 30);
+//    $port = isset($url_array['port'])? $url_array['port'] : 80;
+    $fp = fsockopen("ssl://".$url_array['host'], 443, $errno, $errstr, 30);
     if (!$fp) {
         return FALSE;
     }
-    $getPath = $url_array['host'] ."?". $url_array['query'];
+//    $getPath = $url_array['scheme']."://".$url_array['path'] ."?". $url_array['query'];
 //    echo $getPath;
     if(!empty($post_data)){
         $method = "POST";
     }
-    $header = $method . " " . $getPath;
+    $header = $method . " " . $url;
     $header .= " HTTP/1.1\r\n";
     $header .= "Host: ". $url_array['host'] . "\r\n "; //HTTP 1.1 Host域不能省略
     /*以下头信息域可以省略
@@ -45,4 +45,4 @@ function async_request($url, $post_data = array(), $token=""){
     fclose($fp);
     return true;
 }
-//if(async_request("http://127.0.0.1:8000/app/backend/aboutResource/removeResource.php",array("resource_id"=>"10015"))) echo "yes";
+//if(async_request("https://127.0.0.1/app/backend/aboutResource/removeResource.php",array("resource_id"=>"10015"))) echo "yes";

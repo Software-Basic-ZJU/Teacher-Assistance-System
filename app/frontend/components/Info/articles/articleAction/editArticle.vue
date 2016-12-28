@@ -20,6 +20,13 @@
         },
         components:{
             Editor
+        },
+        head:{
+            title(){
+                return {
+                    inner:'编辑教师文章'
+                }
+            }
         }
     }
 </script>

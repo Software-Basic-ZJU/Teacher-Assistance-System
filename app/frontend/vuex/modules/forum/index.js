@@ -47,6 +47,11 @@ const mutations={
         state.loading=signal;
     },
     updateForumInfo(state,sectionList){
+        if(sectionList.length==0){
+            state.sectionList.forEach((item)=>{
+                item.postNum=item.todayNum=0;
+            })
+        }
         sectionList.forEach((item,index)=>{
             state.sectionList[item.section].postNum=item.total_num;
             state.sectionList[item.section].todayNum=item.today_num;

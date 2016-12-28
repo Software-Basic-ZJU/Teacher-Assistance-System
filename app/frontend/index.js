@@ -11,6 +11,7 @@ import {LS} from "./helpers/utils";
 Vue.use(VueResource);
 Vue.use(VueHead);
 Vue.use(ElementUI);
+Vue.use(VueHead);
 
 Vue.config.debug=true;
 

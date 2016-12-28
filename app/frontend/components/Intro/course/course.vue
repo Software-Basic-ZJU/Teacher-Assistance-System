@@ -24,6 +24,13 @@
             courseInfo(){
                 return this.$store.state.intro.courseInfo
             }
+        },
+        head:{
+            title(){
+                return {
+                    inner:'课程介绍'
+                }
+            }
         }
     }
 </script>

@@ -195,6 +195,13 @@
                 LS.setItem('userInfo',userInfo);
                 router.push({name: 'section', params: {section: 'group'}});
             }
+        },
+        head:{
+            title(){
+                return {
+                    inner:'小组名单'
+                }
+            }
         }
     }
 </script>
