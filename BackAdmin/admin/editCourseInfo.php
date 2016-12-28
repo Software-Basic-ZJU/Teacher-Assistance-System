@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Wu
- * Date: 2016/11/28
- * Time: 09:17
- */
 header('Content-type: application/json');
 //session_start();
 // Connect database
@@ -21,16 +15,15 @@ connectDB();
 //}
 //include 'connectDB.php';
 //connectDB();
-
-//$info_id = test_input(mysqli_escape_string($conn, $_POST['info_id']));
+//echo
+$info_id = test_input(mysqli_escape_string($conn, $_POST['info_id']));
 
 $course_name = test_input(mysqli_escape_string($conn, $_POST['course_name']));
 $background = test_input(mysqli_escape_string($conn, $_POST['background']));
 $course_plan = test_input(mysqli_escape_string($conn, $_POST['course_plan']));
 $textbook_precourse = test_input(mysqli_escape_string($conn, $_POST['textbook_precourse']));
 $exam_homework = test_input(mysqli_escape_string($conn, $_POST['exam_homework']));
-
-//select *, count(distinct name) from table group by name
+//echo $info_id;
 $query_result = mysqli_query($conn, "update course_info
                                      set
                                      course_name = '$course_name',
@@ -38,8 +31,13 @@ $query_result = mysqli_query($conn, "update course_info
                                      course_plan = '$course_plan',
                                      textbook_precourse = '$textbook_precourse',
                                      exam_homework = '$exam_homework'
+                                     where info_id='$info_id';
                                      ");
-if($query_result){
+
+$query_result1 = mysqli_query($conn, "select * from course_info
+                                        where info_id ='$info_id'");
+
+if($fetched = mysqli_fetch_array($query_result1)){
     $result = array(
         "code" => 0,
         "msg" => "修改成功"
