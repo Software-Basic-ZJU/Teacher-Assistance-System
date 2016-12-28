@@ -78,7 +78,8 @@
             let userInfo=LS.getItem('userInfo');
             this.$store.dispatch('getNotice',this.$route.params.nid);
             return{
-                idenType:userInfo.type
+                idenType:userInfo.type,
+                noticeTitle:'通知'
             }
         },
         computed:{
@@ -87,6 +88,8 @@
                 notice(state){
                     let notice=state.info.notice;
                     notice.level=notice.level==0?false:true;
+                    this.noticeTitle=notice.title;
+                    this.$emit('updateHead');
                     return notice;
                 }
             })
@@ -107,6 +110,13 @@
         },
         components:{
             Editor
+        },
+        head:{
+            title(){
+                return {
+                    inner:this.noticeTitle+" - 通知"
+                }
+            }
         }
     }
 </script>

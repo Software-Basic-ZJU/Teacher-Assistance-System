@@ -148,12 +148,18 @@
                     content:''
                 },
                 replyBtn:'回复',
-                idenType:userInfo.type
+                idenType:userInfo.type,
+                postTitle:'帖子'
             }
         },
         computed:{
             ...mapState({
-                hostPost:state=>state.forum.currPost,
+                hostPost(state){
+                    let currPost=state.forum.currPost;
+                    this.postTitle=currPost.title;
+                    this.$emit('updateHead');
+                    return currPost;
+                },
                 repostList:state=>state.forum.repostList,
                 isReplyShow:state=>state.forum.isReplyShow,
                 replyLoading:state=>state.forum.replyPostLoading,
@@ -200,7 +206,7 @@
         head:{
             title(){
                 return {
-                    inner:this.secName
+                    inner:this.postTitle+" - "+this.secName
                 }
             }
         }

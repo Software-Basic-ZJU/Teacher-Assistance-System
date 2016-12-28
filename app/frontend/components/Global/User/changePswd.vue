@@ -109,6 +109,13 @@
         },
         components:{
             Header
+        },
+        head:{
+            title(){
+                return {
+                    inner:'修改密码'
+                }
+            }
         }
     }
 </script>

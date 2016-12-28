@@ -108,13 +108,19 @@
                     content:'',
                     authorId:userInfo.id,
                 },
-                idenType:userInfo.type
+                idenType:userInfo.type,
+                articleTitle:'教师文章'
             }
         },
         computed:{
             ...mapState({
-                article:state=>state.info.article,
-                isReplyShow:state=>state.info.isReplyShow,
+                article(state){
+                    let article=state.info.article;
+                    this.articleTitle=article.title;
+                    this.$emit('updateHead');
+                    return state.info.article
+                },
+                isReplyShow:state=>state.info.isReplyShow
             })
         },
         methods:{
@@ -151,7 +157,7 @@
         head:{
             title(){
                 return {
-                    inner:this.article.title
+                    inner:this.articleTitle+" - 教师文章"
                 }
             }
         }
