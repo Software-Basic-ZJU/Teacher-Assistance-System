@@ -21,7 +21,10 @@ if($fetched = mysqli_fetch_array($query_result)){
     //Article_id,title,content,author,time
     $query_comment = mysqli_query($conn,"select * from comment JOIN (select student_id as id, name as name from student 
                           UNION 
-                          select teacher_id as id ,name as name from teacher) as temp
+                          select teacher_id as id ,name as name from teacher
+                          UNION 
+                          select assist_id as id,name as name from assists
+                          ) as temp
          WHERE comment.author_id = temp.id AND comment.target_id = '$article_id' AND type = 0;");
 
     if($query_comment){

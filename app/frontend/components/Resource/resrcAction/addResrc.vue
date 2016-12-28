@@ -84,6 +84,7 @@
                 let resource=LS.getItem("resource");
                 if(resource) {
                     this.newResrc.resrcId=resource.resource_id;
+                    this.$store.dispatch('isFileUpload',true);
                     return [{
                         name: resource.name,
                         path: resource.path
@@ -132,7 +133,7 @@
                     });
                     return;
                 }
-                if(this.newResrc=="") {
+                if(this.newResrc.name=="") {
                     this.$message({
                         type:'warning',
                         message:'请填写资源名称'

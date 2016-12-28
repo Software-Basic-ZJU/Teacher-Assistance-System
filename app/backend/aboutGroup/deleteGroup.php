@@ -9,6 +9,7 @@ header('Content-type: application/json');
 session_start();
 // Connect database
 include '../login/_include.php';
+require_once '../helpers/async_request.php';
 global $conn;
 connectDB();
 //Verify token
@@ -48,9 +49,21 @@ if($_SESSION['type'] ==1){
         exit;
     }
 }
+/*
+//      TODO:异步删除七牛云上的文件
+$query_resrc=mysqli_query($conn,"select resrc_id from resource left join posts on resource.post_id=posts.post_id where posts.group_id='$group_id';");
+while($fetched=mysqli_fetch_array($query_resrc)){
+    $resrcId=$fetched['resrc_id'];
+    $postData=array(
+        'resource_id'=>$resrcId
+    );
+    async_request("https://".$_SERVER['HTTP_HOST']."/app/backend/aboutResource/removeResource.php",$postData);
+}
+*/
 
 $update = mysqli_query($conn,"update student set group_id = -1 WHERE group_id = '$group_id';");
-$query_result = mysqli_query($conn, "delete from course_assist.group WHERE group_id = '$group_id';");
+$query_result = mysqli_query($conn, "delete t1,t2,t3 from course_assist.group as t1 left join posts as t2
+                                    on t1.group_id=t2.group_id left join resource as t3 on t2.post_id=t3.post_id WHERE t1.group_id = '$group_id';");
 if($query_result){
     $result = array(
         "code" => 0,

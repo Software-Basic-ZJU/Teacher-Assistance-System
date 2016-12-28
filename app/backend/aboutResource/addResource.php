@@ -11,6 +11,7 @@ session_start();
 //Connect database
 global $conn;
 include('../login/_include.php');
+include('uploadFile.php');
 connectDB();
 
 //Verify token
