@@ -15,17 +15,20 @@ connectDB();
 //Verify token
 //loginCheck($_POST['token']);
 $group_id = test_input(mysqli_escape_string($conn, $_POST['group_id']));
-$result=mysqli_query($conn,
+
+$result1 = mysqli_query($conn, "select * from course_assist.`group`
+                                        where `group_id`='$group_id'");
+$result = mysqli_query($conn,
     "DELETE FROM course_assist.`group` WHERE `group_id`='$group_id';");
 
 //echo "DELETE FROM course_assist.`group` WHERE `group_id`='$group_id';";
-if($result) {
+if($fetched = mysqli_fetch_array($result1)) {
     $result = array (
         "code"=>"0",
-        "msg"=>"删除成功！");}
+        "msg"=>"删除成功");}
 else $result = array (
     "code"=>"1",
-    "msg"=>"删除失败！");
+    "msg"=>"删除失败");
 
 echo json_encode($result);
 
