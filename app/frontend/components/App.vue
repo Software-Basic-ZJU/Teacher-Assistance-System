@@ -19,7 +19,9 @@
                     <router-view></router-view>
                 </div>
             </div>
+            <div class="cl"></div>
         </div>
+        <Footer></Footer>
     </div>
 </template>
 <style scoped>
@@ -29,13 +31,16 @@
         min-width:960px;
     }
     .container{
+        min-height:calc(100% - 110px);
         max-width:1400px;
         margin:0px auto;
+        margin-bottom:-85px;
     }
     .menuBox{
         width:250px;
         height:460px;
         padding:10px;
+        padding-bottom:155px;
         text-align:center;
     }
     .menuBox .el-menu-item{
@@ -52,7 +57,7 @@
         box-shadow: 0 1px 5px 0 rgba(0,34,77,.1);
     }
     .mainBox{
-        padding:10px 10px 10px 270px;
+        padding:10px 10px 120px 270px;
     }
     .mainBox>div{
         position: relative;
@@ -94,6 +99,7 @@
 </style>
 <script>
     import Header from "./Header/Header.vue";
+    import Footer from "./Footer/Footer.vue";
     import router from "../routes";
     import {LS} from "../helpers/utils";
 
@@ -157,7 +163,8 @@
             }
         },
         components:{
-            Header
+            Header,
+            Footer
         }
     }
 </script>

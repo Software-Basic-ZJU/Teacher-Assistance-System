@@ -3,8 +3,8 @@
         <div class="AppHeader">
             <div class="main">
                 <div class="logo fl">
-                    <!--<img src="./static/zjulogo.png"/>-->
-                    <div class="name" >课程辅助系统</div>
+                    <img src="./static/zjulogo.png"/>
+                    <div class="name" >教学辅助管理系统@软件工程</div>
                 </div>
                 <div class="actionBox fr" v-if="idenType">
                     <div class="topBox">
@@ -56,16 +56,14 @@
     }
     .main .logo>img{
         margin-top:5px;
-        width:230px;
-        margin-left:5px;
+        width:220px;
+        margin-left:10px;
     }
     .main .logo .name{
         font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
-        font-size:32px;
-        margin-left:20px;
-        margin-top:20px;
-        font-weight: bold;
+        margin-left:10px;
         color:snow ;
+        font-size:24px;
     }
     .actionBox .topBox{
         height:30px;

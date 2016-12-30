@@ -1,5 +1,6 @@
 var webpack=require("webpack");
 var HtmlWebpackPlugin=require("html-webpack-plugin");
+var debug=false;         //debug switch
 
 module.exports={
     entry: {
@@ -8,10 +9,8 @@ module.exports={
     },
     output:{
         path:'./build',
-        // filename:'[name].min.js',                //local debug
-        filename:'[name].[chunkhash:5].js',     //use hash fingerprint
-        publicPath:'',    //server path
-        // publicPath:'/build/',
+        filename:debug?'[name].min.js':'[name].[chunkhash:5].js',
+        publicPath:debug?'/build/':'',
         chunkFilename:'[id].[chunkhash:5].chunk.js'
     },
     module:{
@@ -50,8 +49,7 @@ module.exports={
         }
     },
     plugins:[
-        // new webpack.optimize.CommonsChunkPlugin('vendor','commons.js'),                //local debug
-        new webpack.optimize.CommonsChunkPlugin('vendor','commons.[chunkhash:5].js'),    //use hash fingerprint
+        new webpack.optimize.CommonsChunkPlugin('vendor',debug?'commons.js':'commons.[chunkhash:5].js'),
         new HtmlWebpackPlugin({
             template:'index.html',
             inject:'body'
