@@ -142,10 +142,12 @@
 
                 }
             }
+//            xmlhttp.open("POST","admin/selectMessage1.php",true);
+//            xmlhttp.send();
+
             xmlhttp.open("POST","admin/selectMessage1.php",true);
+            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
             xmlhttp.send();
-
-
 
 
         }
@@ -191,9 +193,11 @@
                     }
                 }
             }
-            xmlhttp.open("POST","admin/passMessage.php?msg_id="+messageid,true);
-            xmlhttp.send();
-
+//            xmlhttp.open("POST","admin/passMessage.php?msg_id="+messageid,true);
+//            xmlhttp.send();
+            xmlhttp.open("POST","admin/passMessage.php",true);
+            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xmlhttp.send("msg_id="+encodeURIComponent(messageid));
             //window.location.href="MessageWindow.html";
         }
 
@@ -236,10 +240,12 @@
                     }
                 }
             }
-            xmlhttp.open("POST","admin/rufuseMessage.php?msg_id="+messageid,true);
-            xmlhttp.send();
+//            xmlhttp.open("POST","admin/rufuseMessage.php?msg_id="+messageid,true);
+//            xmlhttp.send();
 
-
+            xmlhttp.open("POST","admin/rufuseMessage.php",true);
+            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xmlhttp.send("msg_id="+encodeURIComponent(messageid));
             //window.location.href="MessageWindow.html";
 
         }
@@ -351,9 +357,11 @@
 
                 }
             }
+//            xmlhttp.open("POST","admin/selectMessage2.php",true);
+//            xmlhttp.send();
             xmlhttp.open("POST","admin/selectMessage2.php",true);
+            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
             xmlhttp.send();
-
 
 
 
@@ -399,9 +407,11 @@
 
                 }
             }
-            xmlhttp.open("POST","admin/deleteMessage.php?msg_id="+messageid,true);
-            xmlhttp.send();
-
+//            xmlhttp.open("POST","admin/deleteMessage.php?msg_id="+messageid,true);
+//            xmlhttp.send();
+            xmlhttp.open("POST","admin/deleteMessage.php",true);
+            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xmlhttp.send("msg_id="+encodeURIComponent(messageid));
            // window.location.href="MessageWindow.html";
         }
 

@@ -91,7 +91,10 @@
 
                 }
             }
+//            xmlhttp.open("POST","admin/editCourseInfo.php",true);
+//            xmlhttp.send("course_name="+encodeURIComponent(html1)+"&background="+encodeURIComponent(html2)+"&course_plan="+encodeURIComponent(html3)+"&textbook_precourse="+encodeURIComponent(html4)+"&exam_homework="+encodeURIComponent(html5));
             xmlhttp.open("POST","admin/editCourseInfo.php",true);
+            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
             xmlhttp.send("course_name="+encodeURIComponent(html1)+"&background="+encodeURIComponent(html2)+"&course_plan="+encodeURIComponent(html3)+"&textbook_precourse="+encodeURIComponent(html4)+"&exam_homework="+encodeURIComponent(html5));
         }
 

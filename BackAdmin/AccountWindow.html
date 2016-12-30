@@ -124,7 +124,10 @@
 
                 }
             }
+//            xmlhttp.open("POST","admin/addTeacher.php",true);
+//            xmlhttp.send("teacher_id="+encodeURIComponent(str1)+"&name="+encodeURIComponent(str2));
             xmlhttp.open("POST","admin/addTeacher.php",true);
+            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
             xmlhttp.send("teacher_id="+encodeURIComponent(str1)+"&name="+encodeURIComponent(str2));
         }
 
@@ -179,8 +182,11 @@
 
                 }
             }
-            xmlhttp.open("POST","admin/addAssist.php?assist_id="+str1+"&name="+str2,true);
-            xmlhttp.send();
+//            xmlhttp.open("POST","admin/addAssist.php?assist_id="+str1+"&name="+str2,true);
+//            xmlhttp.send();
+            xmlhttp.open("POST","admin/addAssist.php",true);
+            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xmlhttp.send("assist_id="+encodeURIComponent(str1)+"&name="+encodeURIComponent(str2));
         }
 
 
