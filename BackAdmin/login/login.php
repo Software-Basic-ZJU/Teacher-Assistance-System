@@ -5,7 +5,7 @@
  * Date: 2016/11/20
  * Time: 14:57
  *///session_start();
-session_start();
+//session_start();
 // Connect database
 include '_include.php';
 global $conn;
@@ -15,10 +15,13 @@ connectDB();
 //    return $val;
 //}
 // Get id and password and type
+
 $id = test_input(mysqli_escape_string($conn, $_POST ['admin_id']));
 $password = $_POST ['password'];
-//echo $password;
+
+
 //echo $id;
+//echo $password;
 //echo "\n";
 //echo $password;
 //$type = test_input(mysqli_escape_string($conn, $_POST['type']));

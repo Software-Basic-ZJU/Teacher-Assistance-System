@@ -69,8 +69,11 @@
 
                 }
             }
-            xmlhttp.open("POST","admin/deleteGroup.php?group_id="+str,true);
-            xmlhttp.send();
+//            xmlhttp.open("POST","admin/deleteGroup.php?group_id="+str,true);
+//            xmlhttp.send();
+            xmlhttp.open("POST","admin/deleteGroup.php",true);
+            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xmlhttp.send("group_id="+encodeURIComponent(str));
         }
 
 
@@ -132,7 +135,10 @@
 
                 }
             }
+//            xmlhttp.open("POST","admin/showGroup.php",true);
+//            xmlhttp.send();
             xmlhttp.open("POST","admin/showGroup.php",true);
+            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
             xmlhttp.send();
         }
 

@@ -137,8 +137,11 @@
 
                 }
             }
-            xmlhttp.open("POST","admin/getMail.php?admin_id="+id,true);
-            xmlhttp.send();
+//            xmlhttp.open("POST","admin/getMail.php?admin_id="+id,true);
+//            xmlhttp.send();
+            xmlhttp.open("POST","admin/getMail.php",true);
+            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xmlhttp.send("admin_id="+encodeURIComponent(id));
 
 
         }

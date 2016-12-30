@@ -81,8 +81,11 @@
                     }
                 }
             }
-            xmlhttp.open("POST","admin/editTeacherInfo.php?teacher_info="+html+"&teacher_id="+str,true);
-            xmlhttp.send();
+//            xmlhttp.open("POST","admin/editTeacherInfo.php?teacher_info="+html+"&teacher_id="+str,true);
+//            xmlhttp.send();
+            xmlhttp.open("POST","admin/editTeacherInfo.php",true);
+            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xmlhttp.send("teacher_info="+encodeURIComponent(html)+"&teacher_id="+encodeURIComponent(str));
         }
 
 

@@ -23,7 +23,7 @@
                 return;
             }
 
-            if(!isNaN(str2) ||!isNaN(str3)|| !isNaN(str4))
+            if(isNaN(str2) ||isNaN(str3)|| isNaN(str4))
             {
                 alert("学期学年或班级序号非数字");
                 return;
@@ -62,8 +62,11 @@
                     }
                 }
             }
-            xmlhttp.open("POST","admin/addClass.php?name="+str1+"&class_id="+str2+"&year="+str3+"&term="+str4,true);
-            xmlhttp.send();
+//            xmlhttp.open("POST","admin/addClass.php?name="+str1+"&class_id="+str2+"&year="+str3+"&term="+str4,true);
+//            xmlhttp.send();
+            xmlhttp.open("POST","admin/addClass.php",true);
+            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xmlhttp.send("name="+encodeURIComponent(str1)+"&class_id="+encodeURIComponent(str2)+"&year="+encodeURIComponent(str3)+"&term="+encodeURIComponent(str4));
         }
 
         function Pass2(str)
@@ -115,8 +118,11 @@
                     }
                 }
             }
-            xmlhttp.open("POST","admin/deleteClass.php?class_id="+str,true);
-            xmlhttp.send();
+//            xmlhttp.open("POST","admin/deleteClass.php?class_id="+str,true);
+//            xmlhttp.send();
+            xmlhttp.open("POST","admin/deleteClass.php",true);
+            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xmlhttp.send("class_id="+encodeURIComponent(str1));
         }
 
     </script>

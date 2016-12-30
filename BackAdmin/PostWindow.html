@@ -164,7 +164,10 @@
 
                 }
             }
+//            xmlhttp.open("POST","admin/selectPost1.php",true);
+//            xmlhttp.send();
             xmlhttp.open("POST","admin/selectPost1.php",true);
+            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
             xmlhttp.send();
 
 
@@ -298,7 +301,10 @@
 
                 }
             }
+//            xmlhttp.open("POST","admin/selectPost3.php",true);
+//            xmlhttp.send();
             xmlhttp.open("POST","admin/selectPost3.php",true);
+            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
             xmlhttp.send();
 
 
@@ -442,7 +448,10 @@
 
                 }
             }
+//            xmlhttp.open("POST","admin/selectPost2.php",true);
+//            xmlhttp.send();
             xmlhttp.open("POST","admin/selectPost2.php",true);
+            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
             xmlhttp.send();
 
 
@@ -516,8 +525,11 @@
 
                 }
             }
-            xmlhttp.open("POST","admin/deletePost.php?post_id="+messageid,true);
-            xmlhttp.send();
+//            xmlhttp.open("POST","admin/deletePost.php?post_id="+messageid,true);
+//            xmlhttp.send();
+            xmlhttp.open("POST","admin/deletePost.php",true);
+            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xmlhttp.send("post_id="+encodeURIComponent(messageid));
 
         }
 
