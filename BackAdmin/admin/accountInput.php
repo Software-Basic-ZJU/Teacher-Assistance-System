@@ -13,7 +13,7 @@ connectDB();
 //loginCheck($_POST['token']);
 
 
-
+/*
 if (file_exists("../upload/" . $_FILES["file"]["name"]))
       {
       echo $_FILES["file"]["name"] . " already exists. ";
@@ -26,7 +26,7 @@ else
       //echo"success";
       //echo "Stored in: " . "upload/" . $_FILES["file"]["name"];
       }
-
+*/
 //move_uploaded_file($_FILES["file"]["tmp_name"],
 //      "../accountupload/" . $_FILES["file"]["name"]);
 
@@ -42,7 +42,8 @@ exit(0);
 
 //获取上传表格的数据
 //$file_name = "d:/upload/".$_FILES["file"]["name"];//获取上传文件的地址名称
-$file_name = $_FILES["fileToUpload"]["name"];//获取上传文件的地址名称
+//echo $_FILES["file"]["tmp_name"];
+$file_name =  $_FILES["file"]["tmp_name"];//获取上传文件的地址名称
 //echo "------";
 //echo $file_name;
 //echo "------";
@@ -53,7 +54,7 @@ require_once '../Excel/PHPExcel/Cell.php';
 
 $objReader = PHPExcel_IOFactory::createReader('excel5'); //建立reader对象
 
-$objPHPExcel = $objReader->load("../upload/" . $file_name);
+$objPHPExcel = $objReader->load($file_name);
 $sheet = $objPHPExcel->getSheet();
 $highestRow = $sheet->getHighestDataRow(); // 取得总行数
 $highestColumn = $sheet->getHighestColumn();
@@ -69,10 +70,11 @@ for($j=2;$j<=$highestRow;$j++)
         $arr_result  .= $objPHPExcel->getActiveSheet()->getCell("$k$j")->getValue().',';
     }
     $strs=explode(",",$arr_result);
-    $sql="insert into student (student_id,name,class_id,password) values ('$strs[0]','$strs[1]',$strs[2],'123456');";
+    //$sql="insert into student (student_id,name,class_id,password) values ('$strs[0]','$strs[1]',$strs[2],'123456');";
     //echo $sql."<br/>";
+    $password=encrypt('123456');
     $result=mysqli_query($conn,
-        "INSERT INTO student (student_id,name,class_id,password) VALUES ('$strs[0]','$strs[1]',$strs[2],'123456');");
+        "INSERT INTO student (student_id,name,class_id,password) VALUES ('$strs[0]','$strs[1]',$strs[2],'$password');");
 
     if(!$result) {
         $result = array (
