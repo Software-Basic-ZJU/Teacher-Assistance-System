@@ -47,10 +47,10 @@
                         //alert("操作成功");
                         //location.href='MainWindow.html';
                         //console.log((json["res"]).length);
-                        //document.getElementById("txt1").innerHTML = " <h5> 小组编号  组长编号 成员数量 小组名称</h5>"
+                        //document.getElementById("classlist").innerHTML = " <h5> 班级编号  学期 学年 班级名称</h5>"
                         for(k=0;k<(json["res"]).length; k++) {
 
-                            document.getElementById("classlist").innerHTML =document.getElementById("classlist").innerHTML + "<h5> "+ "   " + (json["res"])[k].class_id + "   " +(json["res"])[k].term+ "   " +(json["res"])[k].year+ "   " +(json["res"])[k].name +"</h5>";
+                            document.getElementById("classlist").innerHTML =document.getElementById("classlist").innerHTML + "<h4> "+ "   " + (json["res"])[k].class_id + "   " +(json["res"])[k].term+ "   " +(json["res"])[k].year+ "   " +(json["res"])[k].name +"</h4>";
 
 //                            (json["res"])[k].group_id
 //                            (json["res"])[k].member_num
@@ -270,7 +270,7 @@
 
 
 <div class="panel panel-warning" style="width:400px; height:600px;margin-left:720px; margin-top:-627px; ">
-    <div class="panel-heading"><h4> 班级列表 </h4></div>
+    <div class="panel-heading"><h4> 班级列表 </h4><h5> 班级编号  学期 学年 班级名称</h5></div>
     <div span id="classlist" class="panel-body">
         </span>
     </div>
