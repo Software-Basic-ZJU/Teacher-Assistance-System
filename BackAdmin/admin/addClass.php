@@ -8,9 +8,17 @@ global $conn;
 connectDB();
 //Verify token
 //loginCheck($_POST['token']);
+$class_id = test_input(mysqli_escape_string($conn, $_POST['class_id']));
+$term = test_input(mysqli_escape_string($conn, $_POST['term']));
+$year = test_input(mysqli_escape_string($conn, $_POST['year']));
+$name = test_input(mysqli_escape_string($conn, $_POST['name']));
 
 $result=mysqli_query($conn,
-	"INSERT INTO classes (class_id,term,year,name) VALUES ('" . $_POST['class_id'] . "','" . $_POST['term'] . "','" . $_POST['year'] . "','" . $_POST['name'] . "');");
+	"INSERT INTO classes (class_id,term,year,name) VALUES ('$class_id',$term,'$year','$name');");
+
+//echo "INSERT INTO classes (class_id,term,year,name) VALUES ('$class_id',$term,'$year','$name');";
+$t=mysqli_affected_rows($conn);
+//echo $t;
 
 if($result) {
 $result = array (
