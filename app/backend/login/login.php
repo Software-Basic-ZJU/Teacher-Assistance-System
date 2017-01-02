@@ -48,6 +48,8 @@ if($type == 1){
 }
 else if ($type == 2){
     $year=(int)date('Y');
+    $month=(int)date('m');
+    if($month<7) $year-=1;  //如果在第二年的前半年，仍然属于前一年的学年
     $query_result = mysqli_query($conn, "select * from teacher 
                                          where teacher_id ='$id' and password='$password' limit 1");
     if($fetched = mysqli_fetch_array($query_result)){
@@ -55,28 +57,38 @@ else if ($type == 2){
         $token = encrypt($token);
         $class_query=mysqli_query($conn,"select class_teacher.class_id,name from classes join class_teacher on classes.class_id=class_teacher.class_id
                                           where teacher_id='$id' and ((year='$year' and term=0) or (year='$year'+1 and term=1));");
-        $class=[];$i=0;
+        $class=[];
         while($class_fetch=mysqli_fetch_array($class_query)){
-            $class[$i++]=array(
+            $class[]=array(
                 "class_id"=>$class_fetch['class_id'],
                 "class_name"=>$class_fetch['name']
             );
         }
-        $result = array(
-            "code" => 2,
-            "msg" => "登陆成功",
-            "res" => array(
-                "token" => $token,
-                "id" => $id,
-                'class_id'=>$class,
-                'teacher_id'=> $id,
-                'email'=>$fetched['email'],
-                'name'=>$fetched['name'],
-                'type'=>$type,
-                'group_id'=>null
-            )
-        );
-        echo json_encode($result);
+        if(count($class)==0){
+            $result = array(
+                "code" => -1,
+                "msg" => "该教师还未分配班级",
+                "res" => array()
+            );
+            echo json_encode($result);
+        }
+        else {
+            $result = array(
+                "code" => 2,
+                "msg" => "登陆成功",
+                "res" => array(
+                    "token" => $token,
+                    "id" => $id,
+                    'class_id' => $class,
+                    'teacher_id' => $id,
+                    'email' => $fetched['email'],
+                    'name' => $fetched['name'],
+                    'type' => $type,
+                    'group_id' => null
+                )
+            );
+            echo json_encode($result);
+        }
     }
     else{
         $result = array(
