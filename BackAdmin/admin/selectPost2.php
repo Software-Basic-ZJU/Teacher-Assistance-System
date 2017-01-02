@@ -33,13 +33,19 @@ connectDB();
                     $author_name = $fetched_name['name'];
                 }
                 else{
-                    $result = array(
-                        "code" => 2,
-                        "msg" => "无此上传人",
-                        "res" => null
-                    );
-                    echo json_encode($result);
-                    exit;
+                    $getName_result = mysqli_query($conn, "select * from assists WHERE assist_id = '$author_id';");
+                    if($fetched_name = mysqli_fetch_array($getName_result)){
+                        $author_name = $fetched_name['name'];
+                    }
+                    else {
+                        $result = array(
+                            "code" => 2,
+                            "msg" => "无此上传人",
+                            "res" => null
+                        );
+                        echo json_encode($result);
+                        exit;
+                    }
                 }
             }
             $getReplyNum_result = mysqli_query($conn, "select COUNT(DISTINCT repost_id) as reply_num from reply_post WHERE post_id = '$post_id';");

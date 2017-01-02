@@ -17,10 +17,12 @@ if (!$query_result) {
 if($fetched = mysqli_fetch_array($query_result))
 {
     $class = array();
+    if($fetched['term']==0) $term = '秋冬';
+    else $term = '春夏';
     do{
         $class[] = array(
             "class_id" => $fetched['class_id'],
-            "term" => $fetched['term'],
+            "term" => $term,
             "year" => $fetched['year'],
             "name" => $fetched['name']
 

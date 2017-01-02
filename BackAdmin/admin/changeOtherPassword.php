@@ -29,7 +29,7 @@ if($type == 1){//学生
     }
     else{
         $result = array(
-            "code" => -1,
+            "code" => 1,
             "msg" => "无此用户",
             "res" => array()
         );
@@ -53,7 +53,7 @@ else if($type == 2){             //教师
     }
     else{
         $result = array(
-            "code" => -1,
+            "code" => 1,
             "msg" => "无此用户",
             "res" => array()
         );
@@ -77,7 +77,7 @@ else if($type == 3){
     }
     else{
         $result = array(
-            "code" => -1,
+            "code" => 1,
             "msg" => "无此用户",
             "res" => array()
         );
