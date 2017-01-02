@@ -19,7 +19,8 @@
         {
             //console.log(str3);
 
-            var choose
+            var choose = 100
+            var type
             for (var i = 0;i < obj.elements.length;i++) {
                 if (obj.elements[i].checked == true) {
                     //alert(i + "被选中");
@@ -27,7 +28,11 @@
                     choose =i;
                 }
             }
-
+            if (choose==100)
+            {
+                alert("信息填写不完整");
+                return;
+            }
 
 
             var xmlhttp;
@@ -89,25 +94,24 @@
 
             if(choose==0){
 
-                xmlhttp.open("POST","admin/changeStuPassword.php",true);
-                xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-                xmlhttp.send("admin_id="+encodeURIComponent(str1)+"&password="+encodeURIComponent(str2));
+                type = 1
+
             }
             if(choose==1){
 
-                xmlhttp.open("POST","admin/changeTeaPassword.php",true);
-                xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-                xmlhttp.send("admin_id="+encodeURIComponent(str1)+"&password="+encodeURIComponent(str2));
+                type = 2
+
             }
             if(choose==2){
 
-                xmlhttp.open("POST","admin/changeAssPassword.php",true);
-                xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-                xmlhttp.send("admin_id="+encodeURIComponent(str1)+"&password="+encodeURIComponent(str2));
+                type = 3
+
             }
 
 
-
+            xmlhttp.open("POST","admin/changeOtherPassword.php",true);
+            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xmlhttp.send("id="+encodeURIComponent(str1)+"&newPassword="+encodeURIComponent(str2)+"&type="+encodeURIComponent(type));
 
 
 
