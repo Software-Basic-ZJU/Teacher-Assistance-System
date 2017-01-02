@@ -8,7 +8,7 @@ global $conn;
 connectDB();
 //Verify token
 //loginCheck($_POST['token']);
-
+//echo
 $query_result = mysqli_query($conn, "select * from course_assist.classes");
 if (!$query_result) {
     printf("Error: %s\n", mysqli_error($conn));
