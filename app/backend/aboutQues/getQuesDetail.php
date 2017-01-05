@@ -39,7 +39,7 @@ if($fetched = mysqli_fetch_array($query_result)){
             }
             $getUnsubmittedList = mysqli_query($conn, "select name,student_id from student 
                                 WHERE class_id = '$class_id' and student_id NOT in (select uploader_id from works join questions
-                                on works.ques_id=questions.ques_id where ques_id ='$ques_id' and type='$type');");
+                                on works.ques_id=questions.ques_id where works.ques_id ='$ques_id' and type='$type');");
             if ($getUnsubmittedList) {
                 while ($fetched2 = mysqli_fetch_array($getUnsubmittedList)) {
                     $shouldList[] = array(

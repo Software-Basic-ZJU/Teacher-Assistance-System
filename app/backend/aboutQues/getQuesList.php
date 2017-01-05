@@ -54,7 +54,8 @@ if($query_result){
         }
         elseif ($fetched['type'] == 1){
             if($groupNum==0) {
-                $count_num = mysqli_query($conn, "select COUNT(DISTINCT group_id ) AS num from homework JOIN student on homework.class_id = student.class_id  WHERE homework.hw_id = '$hw_id';");
+                $count_num = mysqli_query($conn, "select COUNT(DISTINCT group_id ) AS num from homework JOIN student on homework.class_id = student.class_id 
+                                        WHERE homework.hw_id = '$hw_id' and student.group_id !=-1;");
                 if ($fetched2 = mysqli_fetch_array($count_num)) {
                     $should_num = $fetched2['num'];
                 }
