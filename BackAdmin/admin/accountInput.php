@@ -42,24 +42,38 @@ exit(0);
 
 //获取上传表格的数据
 //$file_name = "d:/upload/".$_FILES["file"]["name"];//获取上传文件的地址名称
-//echo $_FILES["file"]["tmp_name"];
 $file_name =  $_FILES["file"]["tmp_name"];//获取上传文件的地址名称
+$fileArr=explode(".",$_FILES["file"]["name"]);
+$type=$fileArr[count($fileArr)-1];
+//chmod($file_name,0777);
 //echo "------";
 //echo $file_name;
 //echo "------";
-include '../Excel/PHPExcel.php';
+require_once '../Excel/PHPExcel.php';
 //echo 'phpexcel success';
 require_once '../Excel/PHPExcel/IOFactory.php';
 require_once '../Excel/PHPExcel/Cell.php';
-
-$objReader = PHPExcel_IOFactory::createReader('excel5'); //建立reader对象
+if($type=="xls"){
+    $objReader = PHPExcel_IOFactory::createReader('Excel5'); //建立reader对象
+}
+else if($type=="xlsx") {
+    $objReader = PHPExcel_IOFactory::createReader('Excel2007'); //建立reader对象
+}
+else{
+    $result = array (
+        "code"=>"1",
+        "msg"=>"上传文件格式错误",
+        "type"=>$type
+    );
+    echo json_encode($result);
+    exit;
+}
 
 $objPHPExcel = $objReader->load($file_name);
 $sheet = $objPHPExcel->getSheet();
 $highestRow = $sheet->getHighestDataRow(); // 取得总行数
 $highestColumn = $sheet->getHighestColumn();
 
-$flag=0;
 for($j=2;$j<=$highestRow;$j++)
 {
     unset($arr_result);
@@ -79,19 +93,17 @@ for($j=2;$j<=$highestRow;$j++)
     if(!$result) {
         $result = array (
             "code"=>"1",
-            "msg"=>"增加失败");
-        $flag=1;
+            "msg"=>"导入名单过程出现错误");
         echo json_encode($result);
+        exit;
     }
 
 }
 
-if(!$flag){
-    $result = array (
-        "code"=>"0",
-        "msg"=>"增加成功");
-    echo json_encode($result);
-}
+$result = array (
+    "code"=>"0",
+    "msg"=>"增加成功");
+echo json_encode($result);
 mysqli_close($conn);
 
 ?>
