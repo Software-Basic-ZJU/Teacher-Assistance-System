@@ -1,8 +1,9 @@
 <template>
-    <div>
-        <div>
-            <div class="loginBox">
-                <h2>教学辅助系统</h2>
+    <div class="box">
+        <div class="title">教学辅助管理系统@软件工程</div>
+        <div class="container">
+            <div class="loginBox fr">
+                <h2>登录</h2>
                 <el-form ref="loginForm" :model="loginForm" :rules="rules" @keyup.enter="login">
                     <el-form-item label="教工号/学号" prop="id">
                         <el-input v-model="loginForm.id" placeholder="教工号/学号"></el-input>
@@ -36,9 +37,41 @@
     </div>
 </template>
 <style scoped>
+    .box{
+        position:relative;
+        min-height:600px;
+        height:100vh;
+    }
+    .box .title{
+        font-size:28px;
+        padding-left:20px;
+        padding-top:1%;
+    }
+    .container{
+        position: absolute;
+        min-width:960px;
+        width:100%;
+        height:82%;
+        margin:auto;
+        top:0;
+        bottom:0;
+        background:url("./static/background.png") center center no-repeat;
+        background-size:cover;
+    }
     .loginBox{
-        width:400px;
-        margin:20px auto;
+        position:absolute;
+        margin:auto;
+        bottom:0;
+        top:0;
+        right:100px;
+        background-color:white;
+        padding:10px 30px;
+        width:350px;
+        height:400px;
+        opacity:0.95;
+        -webkit-box-shadow: 0 1px 5px 0 rgba(0,34,77,.1);
+        -moz-box-shadow: 0 1px 5px 0 rgba(0,34,77,.1);
+        box-shadow: 0 1px 5px 0 rgba(0,34,77,.1);
     }
     .loginBox>h2{
         text-align: center;
@@ -48,6 +81,7 @@
     }
     .el-button--primary{
         margin-top:20px;
+        margin-right:10px;
     }
     .el-button--text{
         margin-left:10px;
