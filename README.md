@@ -1,13 +1,29 @@
-# Teacher-Assistance-System
-A teacher-assistance-system for courses in ZJU
+# Teaching-Assistance-Application
+The subsystem of Teaching-Assistance-System by Vue.js
 
-## 目录结构
-- app：课程辅助系统
-- Guest：网站展示型首页
-- sql：数据库sql文件以及数据表文档
+## Technology stack
+- Frontend:
+  - Element-ui
+  - Vue 2.0 + Vuex + Vue-router
+  - Webpack
+- Backend:
+  - PHP
+  - MySQL
 
-## notice
-- 关于数据库
-  - 添加数据表请直接添加，更改已有数据表的字段，请务必跟相关小组事先商讨一下。
-  - 更改数据库并git push之后，请务必在群里annouce。
-  
+## Features
+- Notices and teaching articles publishment.
+- Course and teacher information.
+- Upload and download resources.
+- Homework publishment and submiting with correcting modules.
+- Forum.
+- Group management.
+- Mail modules.
+- Account management.
+- Assistance management.(By teacher)
+
+## Demo
+- url
+  - [TP](https://se.zhelishi.cn/app)
+- Teacher account for testing
+  - userName:1234567
+  - password:123456
