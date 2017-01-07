@@ -57,6 +57,7 @@
     }
     .searchBox{
         margin-top:-62px;
+        width:300px;
     }
     .offsetRight{
         margin-right:60px;

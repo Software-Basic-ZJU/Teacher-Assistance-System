@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-tabs @tab-click="handleClick" :active-name="$route.name">
+        <el-tabs @tab-click="handleClick" :value="$route.name">
             <el-tab-pane label="课程介绍" name="course"></el-tab-pane>
             <el-tab-pane label="教师介绍" name="teacher"></el-tab-pane>
         </el-tabs>
@@ -9,6 +9,7 @@
             <div>
                 <router-view></router-view>
             </div>
+        </div>
     </div>
 </template>
 <style scoped>
@@ -39,15 +40,9 @@
                 idenType:userInfo.type
             }
         },
-        created(){
-            //initial tabs' active item
-            let route=this.$route.name;
-            if(route=='course') this.currIndex="1";
-            else if(route=='teacher') this.currIndex="2";
-        },
         methods:{
             handleClick(tabs){
-                switch(tabs.index){
+                switch(tabs.name){
                     case "course":
                         router.push({name:'course'});
                         break;
