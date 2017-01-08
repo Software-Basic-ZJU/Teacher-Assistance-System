@@ -2,7 +2,7 @@
     <div>
         <div>
             <div class="header">
-                <el-tabs :active-name="currIndex" @tab-click="resrcFilter">
+                <el-tabs :value="currIndex" @tab-click="resrcFilter">
                     <el-tab-pane label="教师资源" name="0"></el-tab-pane>
                     <el-tab-pane label="学生资源" name="1"></el-tab-pane>
                 </el-tabs>

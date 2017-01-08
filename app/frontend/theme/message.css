@@ -116,6 +116,7 @@
 .el-message__group{
     margin-left: 38px;
     position: relative;
+    height: 20px;
 }
 
 .el-message__group p{
@@ -125,14 +126,25 @@
     white-space: nowrap;
     color: #8492a6;
     text-align: justify;
+    display: inline-block;
+    vertical-align: middle;
 }
 
-.el-message__icon{
+.el-message__group.is-with-icon{
+    margin-left: 0;
+}
+
+.el-message__img{
     width: 40px;
     height: 40px;
     position: absolute;
     left: 0;
     top: 0;
+}
+
+.el-message__icon{
+    vertical-align: middle;
+    margin-right: 8px;
 }
 
 .el-message__closeBtn{

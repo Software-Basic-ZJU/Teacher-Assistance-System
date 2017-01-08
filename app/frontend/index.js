@@ -13,7 +13,7 @@ Vue.use(VueHead);
 Vue.use(ElementUI);
 Vue.use(VueHead);
 
-Vue.config.debug=false;  //debug switch
+Vue.config.debug=true;  //debug switch
 
 //ajax config
 Vue.http.options.root=Vue.config.debug?'http://localhost:8000/backend':'backend';

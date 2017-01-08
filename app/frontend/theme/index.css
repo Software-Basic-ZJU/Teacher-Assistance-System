@@ -907,20 +907,23 @@
     border-color: #6ECADC;
 }
 .el-input__inner {
-    display: block;
-    padding: 3px 10px;
-    box-sizing: border-box;
-    width: 100%;
-    height: 36px;
-    color: #1f2d3d;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
     background-color: #fff;
     background-image: none;
-    border: 1px solid #dddddd;
     border-radius: 4px;
-    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
-    outline: none;
+    border: 1px solid #dddddd;
+    box-sizing: border-box;
+    color: #1f2d3d;
+    display: block;
     font-size: inherit;
+    height: 36px;
     line-height: normal;
+    outline: none;
+    padding: 3px 10px;
+    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+    width: 100%;
 }
 .el-input__inner::-webkit-input-placeholder {
     color: #99a9bf;
@@ -1406,20 +1409,23 @@
     border-color: #6ECADC;
 }
 .el-input__inner {
-    display: block;
-    padding: 3px 10px;
-    box-sizing: border-box;
-    width: 100%;
-    height: 36px;
-    color: #1f2d3d;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
     background-color: #fff;
     background-image: none;
-    border: 1px solid #dddddd;
     border-radius: 4px;
-    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
-    outline: none;
+    border: 1px solid #dddddd;
+    box-sizing: border-box;
+    color: #1f2d3d;
+    display: block;
     font-size: inherit;
+    height: 36px;
     line-height: normal;
+    outline: none;
+    padding: 3px 10px;
+    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+    width: 100%;
 }
 .el-input__inner::-webkit-input-placeholder {
     color: #99a9bf;
@@ -1670,12 +1676,13 @@
     background-color: #8492a6;
     display: inline-block;
     padding: 0 5px;
-    height: 22px;
+    height: 24px;
     line-height: 22px;
     font-size: 12px;
     color: #fff;
     border-radius: 4px;
-    border: 1px solid #8492a6;
+    box-sizing: border-box;
+    border: 1px solid transparent;
 }
 .el-tag .el-icon-close {
     border-radius: 50%;
@@ -2028,13 +2035,13 @@
     height: 24px;
     line-height: 24px;
     box-sizing: border-box;
-    margin: 6px 0 0 6px;
+    margin: 3px 0 3px 6px;
 }
 .el-select__input {
     border: none;
     outline: none;
     padding: 0;
-    margin: 4px 0 -3px 10px;
+    margin-left: 10px;
     color: #666;
     font-size: 14px;
     vertical-align: baseline;
@@ -2043,6 +2050,9 @@
             appearance: none;
     height: 28px;
     background-color: transparent;
+}
+.el-select__input.is-mini {
+    height: 14px;
 }
 .el-select__close {
     cursor: pointer;
@@ -2062,6 +2072,8 @@
     line-height: normal;
     white-space: normal;
     z-index: 1000;
+    top: 50%;
+    transform: translateY(-50%);
 }
 .el-select__tag {
     display: inline-block;
@@ -2335,7 +2347,9 @@
 .el-notification .el-icon-warning {
     color: #f7ba2a;
 }
-.el-notification__group {}
+.el-notification__group {
+    margin-left: 0;
+}
 .el-notification__group span {
     font-size: 16px;
     color: #1f2d3d;
@@ -2346,6 +2360,9 @@
     margin: 10px 0 0 0;
     color: #8492a6;
     text-align: justify;
+}
+.el-notification__group.is-with-icon {
+    margin-left: 55px;
 }
 .el-notification__icon {
     width: 40px;
@@ -2485,20 +2502,23 @@
     border-color: #6ECADC;
 }
 .el-input__inner {
-    display: block;
-    padding: 3px 10px;
-    box-sizing: border-box;
-    width: 100%;
-    height: 36px;
-    color: #1f2d3d;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
     background-color: #fff;
     background-image: none;
-    border: 1px solid #dddddd;
     border-radius: 4px;
-    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
-    outline: none;
+    border: 1px solid #dddddd;
+    box-sizing: border-box;
+    color: #1f2d3d;
+    display: block;
     font-size: inherit;
+    height: 36px;
     line-height: normal;
+    outline: none;
+    padding: 3px 10px;
+    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+    width: 100%;
 }
 .el-input__inner::-webkit-input-placeholder {
     color: #99a9bf;
@@ -3169,6 +3189,10 @@
     transform: translateX(-50%);
     background-color: transparent;
     text-align: center;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
 }
 .el-slider__button-wrapper .el-tooltip {
     line-height: 1;
@@ -3199,6 +3223,10 @@
     background-color: #6ECADC;
     border-radius: 50%;
     transition: .2s;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
 }
 .el-slider__button:hover, .el-slider__button.hover, .el-slider__button.dragging {
     transform: scale(1.5);
@@ -3777,14 +3805,14 @@
     opacity: 0;
 }
 .el-switch.is-disabled .el-switch__core {
-    border-color: #E5E9F3;
-    background: #E5E9F3;
+    border-color: #E5E9F3 !important;
+    background: #E5E9F3 !important;
 }
 .el-switch.is-disabled .el-switch__core span {
-    background-color: #F9FAFC;
+    background-color: #F9FAFC !important;
 }
 .el-switch.is-disabled .el-switch__core ~ .el-switch__label * {
-    color: #F9FAFC;
+    color: #F9FAFC !important;
 }
 .el-switch.is-disabled .el-switch__input:checked + .el-switch__core {
     border-color: #E5E9F3;
@@ -5105,12 +5133,13 @@
     background-color: #8492a6;
     display: inline-block;
     padding: 0 5px;
-    height: 22px;
+    height: 24px;
     line-height: 22px;
     font-size: 12px;
     color: #fff;
     border-radius: 4px;
-    border: 1px solid #8492a6;
+    box-sizing: border-box;
+    border: 1px solid transparent;
 }
 .el-tag .el-icon-close {
     border-radius: 50%;
@@ -5495,6 +5524,13 @@
     background-color: #e0e6ed;
     z-index: 4;
 }
+.el-table__fixed-right-patch {
+    position: absolute;
+    top: -1px;
+    right: 0;
+    background-color: #EFF2F7;
+    border-bottom: 1px solid #e0e6ed;
+}
 .el-table__fixed-right {
     top: 0;
     left: auto;
@@ -5576,6 +5612,10 @@
 }
 .el-table--enable-row-hover tr:hover > td {
     background-color: #eff2f7;
+}
+.el-table--fluid-height .el-table__fixed, .el-table--fluid-height .el-table__fixed-right {
+    bottom: 0;
+    overflow: hidden;
 }
 @charset "UTF-8";
 @charset "UTF-8";
@@ -5865,12 +5905,13 @@
     background-color: #8492a6;
     display: inline-block;
     padding: 0 5px;
-    height: 22px;
+    height: 24px;
     line-height: 22px;
     font-size: 12px;
     color: #fff;
     border-radius: 4px;
-    border: 1px solid #8492a6;
+    box-sizing: border-box;
+    border: 1px solid transparent;
 }
 .el-tag .el-icon-close {
     border-radius: 50%;
@@ -6031,6 +6072,11 @@
   --------------------------*/
     /* Loading
   --------------------------*/
+}
+.el-table-column {}
+.el-table-column--selection .cell {
+    padding-left: 14px;
+    padding-right: 14px;
 }
 .el-table-filter {
     border: solid 1px #d3dce6;
@@ -6420,20 +6466,23 @@
     border-color: #6ECADC;
 }
 .el-input__inner {
-    display: block;
-    padding: 3px 10px;
-    box-sizing: border-box;
-    width: 100%;
-    height: 36px;
-    color: #1f2d3d;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
     background-color: #fff;
     background-image: none;
-    border: 1px solid #dddddd;
     border-radius: 4px;
-    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
-    outline: none;
+    border: 1px solid #dddddd;
+    box-sizing: border-box;
+    color: #1f2d3d;
+    display: block;
     font-size: inherit;
+    height: 36px;
     line-height: normal;
+    outline: none;
+    padding: 3px 10px;
+    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+    width: 100%;
 }
 .el-input__inner::-webkit-input-placeholder {
     color: #99a9bf;
@@ -6684,12 +6733,13 @@
     background-color: #8492a6;
     display: inline-block;
     padding: 0 5px;
-    height: 22px;
+    height: 24px;
     line-height: 22px;
     font-size: 12px;
     color: #fff;
     border-radius: 4px;
-    border: 1px solid #8492a6;
+    box-sizing: border-box;
+    border: 1px solid transparent;
 }
 .el-tag .el-icon-close {
     border-radius: 50%;
@@ -7042,13 +7092,13 @@
     height: 24px;
     line-height: 24px;
     box-sizing: border-box;
-    margin: 6px 0 0 6px;
+    margin: 3px 0 3px 6px;
 }
 .el-select__input {
     border: none;
     outline: none;
     padding: 0;
-    margin: 4px 0 -3px 10px;
+    margin-left: 10px;
     color: #666;
     font-size: 14px;
     vertical-align: baseline;
@@ -7057,6 +7107,9 @@
             appearance: none;
     height: 28px;
     background-color: transparent;
+}
+.el-select__input.is-mini {
+    height: 14px;
 }
 .el-select__close {
     cursor: pointer;
@@ -7076,6 +7129,8 @@
     line-height: normal;
     white-space: normal;
     z-index: 1000;
+    top: 50%;
+    transform: translateY(-50%);
 }
 .el-select__tag {
     display: inline-block;
@@ -7827,20 +7882,23 @@
     border-color: #6ECADC;
 }
 .el-input__inner {
-    display: block;
-    padding: 3px 10px;
-    box-sizing: border-box;
-    width: 100%;
-    height: 36px;
-    color: #1f2d3d;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
     background-color: #fff;
     background-image: none;
-    border: 1px solid #dddddd;
     border-radius: 4px;
-    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
-    outline: none;
+    border: 1px solid #dddddd;
+    box-sizing: border-box;
+    color: #1f2d3d;
+    display: block;
     font-size: inherit;
+    height: 36px;
     line-height: normal;
+    outline: none;
+    padding: 3px 10px;
+    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+    width: 100%;
 }
 .el-input__inner::-webkit-input-placeholder {
     color: #99a9bf;
@@ -8259,6 +8317,7 @@
 .el-message__group {
     margin-left: 38px;
     position: relative;
+    height: 20px;
 }
 .el-message__group p {
     font-size: 14px;
@@ -8267,13 +8326,22 @@
     white-space: nowrap;
     color: #8492a6;
     text-align: justify;
+    display: inline-block;
+    vertical-align: middle;
 }
-.el-message__icon {
+.el-message__group.is-with-icon {
+    margin-left: 0;
+}
+.el-message__img {
     width: 40px;
     height: 40px;
     position: absolute;
     left: 0;
     top: 0;
+}
+.el-message__icon {
+    vertical-align: middle;
+    margin-right: 8px;
 }
 .el-message__closeBtn {
     top: 3px;
@@ -8952,20 +9020,23 @@
     border-color: #6ECADC;
 }
 .el-input__inner {
-    display: block;
-    padding: 3px 10px;
-    box-sizing: border-box;
-    width: 100%;
-    height: 36px;
-    color: #1f2d3d;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
     background-color: #fff;
     background-image: none;
-    border: 1px solid #dddddd;
     border-radius: 4px;
-    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
-    outline: none;
+    border: 1px solid #dddddd;
+    box-sizing: border-box;
+    color: #1f2d3d;
+    display: block;
     font-size: inherit;
+    height: 36px;
     line-height: normal;
+    outline: none;
+    padding: 3px 10px;
+    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+    width: 100%;
 }
 .el-input__inner::-webkit-input-placeholder {
     color: #99a9bf;
@@ -9736,11 +9807,14 @@
   --------------------------*/
 }
 .el-time-spinner {}
+.el-time-spinner.has-seconds .el-time-spinner__wrapper {
+    width: 33.33333%;
+}
 .el-time-spinner__wrapper {
     height: 190px;
     overflow: hidden;
     display: inline-block;
-    width: 33.33333%;
+    width: 50%;
     vertical-align: top;
     position: relative;
     -ms-overflow-style: none;
@@ -9766,7 +9840,7 @@
     font-size: 12px;
 }
 .el-time-spinner__item:hover:not(.disabled):not(.active) {
-    background: #E5E9F2;
+    background: #e5e9f2;
     cursor: pointer;
 }
 .el-time-spinner__item.active:not(.disabled) {
@@ -9983,9 +10057,6 @@
 .el-date-editor {
     position: relative;
     display: inline-block;
-    box-sizing: border-box;
-    height: 36px;
-    width: 182px;
 }
 .el-date-editor .el-picker-panel {
     position: absolute;
@@ -9995,100 +10066,6 @@
     background: #fff;
     z-index: 10;
     top: 41px;
-}
-.el-date-editor.lg .el-date-editor__editor {
-    padding: 6px 4px;
-}
-.el-date-editor.sm .el-date-editor__editor {
-    padding: 1px 1px;
-}
-.el-date-editor.is-have-trigger .el-date-editor__editor {
-    padding-right: 20px;
-}
-.el-date-editor.is-have-trigger .el-date-editor__clear {
-    right: 22px;
-}
-.el-date-editor__editor {
-    border: 1px solid #c0ccda;
-    border-radius: 4px;
-    line-height: 18px;
-    height: 36px;
-    padding: 3px 10px;
-    width: 100%;
-    box-sizing: border-box;
-    transition: border 0.3s;
-    color: #666;
-    font-size: 14px;
-}
-.el-date-editor__editor::-webkit-input-placeholder {
-    color: #bbb;
-    font-size: 14px;
-}
-.el-date-editor__editor::-moz-placeholder {
-    color: #bbb;
-    font-size: 14px;
-}
-.el-date-editor__editor:-ms-input-placeholder {
-    color: #bbb;
-    font-size: 14px;
-}
-.el-date-editor__editor::placeholder {
-    color: #bbb;
-    font-size: 14px;
-}
-.el-date-editor__editor.is-disabled {
-    background-color: #EFF2F7;
-    border-color: #D3DCE6;
-    color: #bbb;
-    cursor: not-allowed;
-}
-.el-date-editor__editor.is-disabled::-webkit-input-placeholder {
-    color: #C0CCDA;
-}
-.el-date-editor__editor.is-disabled::-moz-placeholder {
-    color: #C0CCDA;
-}
-.el-date-editor__editor.is-disabled:-ms-input-placeholder {
-    color: #C0CCDA;
-}
-.el-date-editor__editor.is-disabled::placeholder {
-    color: #C0CCDA;
-}
-.el-date-editor__trigger {}
-.el-date-editor__trigger.el-icon {
-    cursor: pointer;
-    position: absolute;
-    display: inline-block;
-    width: 16px;
-    right: 10px;
-    top: 0;
-    bottom: 0;
-    color: #c0ccda;
-    font-size: 16px;
-    line-height: 38px;
-}
-.el-date-editor__clear {
-    cursor: pointer;
-    position: absolute;
-    width: 20px;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    line-height: 36px;
-    color: #99a9bf;
-}
-.el-date-editor__clear:hover {
-    color: #20a0ff;
-}
-.el-date-editor__editor:focus, .el-date-editor:hover > .el-date-editor__editor, .el-date-editor.is-active > .el-date-editor__editor {
-    outline: none;
-    border-color: #6ECADC;
-}
-.el-date-editor .el-date-editor__clear {
-    display: none;
-}
-.el-date-editor.is-filled:hover .el-date-editor__clear, .el-date-editor.is-filled.is-active > .el-date-editor__clear {
-    display: inline-block;
 }
 :root {
     /* Transition
@@ -10329,7 +10306,7 @@
 }
 .el-picker-panel__link-btn {
     cursor: pointer;
-    color: #55a4ff;
+    color: #6ECADC;
     text-decoration: none;
     padding: 15px;
     font-size: 12px;
@@ -10370,23 +10347,6 @@
     position: relative;
     display: table-cell;
     padding: 0 5px;
-}
-.el-date-picker__editor {
-    position: relative;
-    border: 1px solid #c0ccda;
-    border-radius: 4px;
-    padding: 5px 10px;
-    box-sizing: border-box;
-    height: 28px;
-    outline: none;
-    -webkit-appearance: none;
-       -moz-appearance: none;
-            appearance: none;
-    transition: border 0.3s;
-    width: 100%;
-}
-.el-date-picker__editor:hover {
-    border-color: #20a0ff;
 }
 .el-date-picker__time-header {
     position: relative;
@@ -10533,23 +10493,6 @@
 }
 .el-date-range-picker.has-time {
     min-width: 660px;
-}
-.el-date-range-picker__editor {
-    position: relative;
-    border: 1px solid #c0ccda;
-    border-radius: 4px;
-    padding: 5px 10px;
-    box-sizing: border-box;
-    height: 28px;
-    outline: none;
-    -webkit-appearance: none;
-       -moz-appearance: none;
-            appearance: none;
-    transition: border 0.3s;
-    width: 100%;
-}
-.el-date-range-picker__editor:hover {
-    border-color: #20a0ff;
 }
 .el-date-range-picker__header {
     position: relative;
@@ -10928,9 +10871,6 @@
 .el-date-editor {
     position: relative;
     display: inline-block;
-    box-sizing: border-box;
-    height: 36px;
-    width: 182px;
 }
 .el-date-editor .el-picker-panel {
     position: absolute;
@@ -10940,100 +10880,6 @@
     background: #fff;
     z-index: 10;
     top: 41px;
-}
-.el-date-editor.lg .el-date-editor__editor {
-    padding: 6px 4px;
-}
-.el-date-editor.sm .el-date-editor__editor {
-    padding: 1px 1px;
-}
-.el-date-editor.is-have-trigger .el-date-editor__editor {
-    padding-right: 20px;
-}
-.el-date-editor.is-have-trigger .el-date-editor__clear {
-    right: 22px;
-}
-.el-date-editor__editor {
-    border: 1px solid #c0ccda;
-    border-radius: 4px;
-    line-height: 18px;
-    height: 36px;
-    padding: 3px 10px;
-    width: 100%;
-    box-sizing: border-box;
-    transition: border 0.3s;
-    color: #666;
-    font-size: 14px;
-}
-.el-date-editor__editor::-webkit-input-placeholder {
-    color: #bbb;
-    font-size: 14px;
-}
-.el-date-editor__editor::-moz-placeholder {
-    color: #bbb;
-    font-size: 14px;
-}
-.el-date-editor__editor:-ms-input-placeholder {
-    color: #bbb;
-    font-size: 14px;
-}
-.el-date-editor__editor::placeholder {
-    color: #bbb;
-    font-size: 14px;
-}
-.el-date-editor__editor.is-disabled {
-    background-color: #EFF2F7;
-    border-color: #D3DCE6;
-    color: #bbb;
-    cursor: not-allowed;
-}
-.el-date-editor__editor.is-disabled::-webkit-input-placeholder {
-    color: #C0CCDA;
-}
-.el-date-editor__editor.is-disabled::-moz-placeholder {
-    color: #C0CCDA;
-}
-.el-date-editor__editor.is-disabled:-ms-input-placeholder {
-    color: #C0CCDA;
-}
-.el-date-editor__editor.is-disabled::placeholder {
-    color: #C0CCDA;
-}
-.el-date-editor__trigger {}
-.el-date-editor__trigger.el-icon {
-    cursor: pointer;
-    position: absolute;
-    display: inline-block;
-    width: 16px;
-    right: 10px;
-    top: 0;
-    bottom: 0;
-    color: #c0ccda;
-    font-size: 16px;
-    line-height: 38px;
-}
-.el-date-editor__clear {
-    cursor: pointer;
-    position: absolute;
-    width: 20px;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    line-height: 36px;
-    color: #99a9bf;
-}
-.el-date-editor__clear:hover {
-    color: #20a0ff;
-}
-.el-date-editor__editor:focus, .el-date-editor:hover > .el-date-editor__editor, .el-date-editor.is-active > .el-date-editor__editor {
-    outline: none;
-    border-color: #6ECADC;
-}
-.el-date-editor .el-date-editor__clear {
-    display: none;
-}
-.el-date-editor.is-filled:hover .el-date-editor__clear, .el-date-editor.is-filled.is-active > .el-date-editor__clear {
-    display: inline-block;
 }
 :root {
     /* Transition
@@ -11118,11 +10964,14 @@
   --------------------------*/
 }
 .el-time-spinner {}
+.el-time-spinner.has-seconds .el-time-spinner__wrapper {
+    width: 33.33333%;
+}
 .el-time-spinner__wrapper {
     height: 190px;
     overflow: hidden;
     display: inline-block;
-    width: 33.33333%;
+    width: 50%;
     vertical-align: top;
     position: relative;
     -ms-overflow-style: none;
@@ -11148,7 +10997,7 @@
     font-size: 12px;
 }
 .el-time-spinner__item:hover:not(.disabled):not(.active) {
-    background: #E5E9F2;
+    background: #e5e9f2;
     cursor: pointer;
 }
 .el-time-spinner__item.active:not(.disabled) {
@@ -11244,7 +11093,7 @@
     margin: 5px 0;
     border: solid 1px #d3dce6;
     background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px 0 rgba(0, 0, 0, .04);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
     border-radius: 2px;
     position: absolute;
     width: 180px;
@@ -11268,7 +11117,7 @@
     font-size: 14px;
     margin-top: -15px;
     line-height: 16px;
-    background-color: #20a0ff;
+    background-color: #6ECADC;
     height: 32px;
     z-index: -1;
     left: 0;
@@ -11278,12 +11127,19 @@
     text-align: left;
 }
 .el-time-panel__content::after {
-    left: 66.66667%;
+    left: 50%;
     margin-left: -2px;
 }
 .el-time-panel__content::before {
-    padding-left: 33.33333%;
+    padding-left: 50%;
     margin-right: -2px;
+}
+.el-time-panel__content.has-seconds {}
+.el-time-panel__content.has-seconds::after {
+    left: 66.66667%;
+}
+.el-time-panel__content.has-seconds::before {
+    padding-left: 33.33333%;
 }
 .el-time-panel__footer {
     border-top: 1px solid #e4e4e4;
@@ -11306,7 +11162,7 @@
 }
 .el-time-panel__btn.confirm {
     font-weight: 800;
-    color: #20a0ff;
+    color: #6ECADC;
 }
 :root {
     /* Transition
@@ -11515,9 +11371,6 @@
 .el-date-editor {
     position: relative;
     display: inline-block;
-    box-sizing: border-box;
-    height: 36px;
-    width: 182px;
 }
 .el-date-editor .el-picker-panel {
     position: absolute;
@@ -11527,100 +11380,6 @@
     background: #fff;
     z-index: 10;
     top: 41px;
-}
-.el-date-editor.lg .el-date-editor__editor {
-    padding: 6px 4px;
-}
-.el-date-editor.sm .el-date-editor__editor {
-    padding: 1px 1px;
-}
-.el-date-editor.is-have-trigger .el-date-editor__editor {
-    padding-right: 20px;
-}
-.el-date-editor.is-have-trigger .el-date-editor__clear {
-    right: 22px;
-}
-.el-date-editor__editor {
-    border: 1px solid #c0ccda;
-    border-radius: 4px;
-    line-height: 18px;
-    height: 36px;
-    padding: 3px 10px;
-    width: 100%;
-    box-sizing: border-box;
-    transition: border 0.3s;
-    color: #666;
-    font-size: 14px;
-}
-.el-date-editor__editor::-webkit-input-placeholder {
-    color: #bbb;
-    font-size: 14px;
-}
-.el-date-editor__editor::-moz-placeholder {
-    color: #bbb;
-    font-size: 14px;
-}
-.el-date-editor__editor:-ms-input-placeholder {
-    color: #bbb;
-    font-size: 14px;
-}
-.el-date-editor__editor::placeholder {
-    color: #bbb;
-    font-size: 14px;
-}
-.el-date-editor__editor.is-disabled {
-    background-color: #EFF2F7;
-    border-color: #D3DCE6;
-    color: #bbb;
-    cursor: not-allowed;
-}
-.el-date-editor__editor.is-disabled::-webkit-input-placeholder {
-    color: #C0CCDA;
-}
-.el-date-editor__editor.is-disabled::-moz-placeholder {
-    color: #C0CCDA;
-}
-.el-date-editor__editor.is-disabled:-ms-input-placeholder {
-    color: #C0CCDA;
-}
-.el-date-editor__editor.is-disabled::placeholder {
-    color: #C0CCDA;
-}
-.el-date-editor__trigger {}
-.el-date-editor__trigger.el-icon {
-    cursor: pointer;
-    position: absolute;
-    display: inline-block;
-    width: 16px;
-    right: 10px;
-    top: 0;
-    bottom: 0;
-    color: #c0ccda;
-    font-size: 16px;
-    line-height: 38px;
-}
-.el-date-editor__clear {
-    cursor: pointer;
-    position: absolute;
-    width: 20px;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    line-height: 36px;
-    color: #99a9bf;
-}
-.el-date-editor__clear:hover {
-    color: #20a0ff;
-}
-.el-date-editor__editor:focus, .el-date-editor:hover > .el-date-editor__editor, .el-date-editor.is-active > .el-date-editor__editor {
-    outline: none;
-    border-color: #6ECADC;
-}
-.el-date-editor .el-date-editor__clear {
-    display: none;
-}
-.el-date-editor.is-filled:hover .el-date-editor__clear, .el-date-editor.is-filled.is-active > .el-date-editor__clear {
-    display: inline-block;
 }
 :root {
     /* Transition
@@ -11861,7 +11620,7 @@
 }
 .el-picker-panel__link-btn {
     cursor: pointer;
-    color: #55a4ff;
+    color: #6ECADC;
     text-decoration: none;
     padding: 15px;
     font-size: 12px;
@@ -11902,23 +11661,6 @@
     position: relative;
     display: table-cell;
     padding: 0 5px;
-}
-.el-date-picker__editor {
-    position: relative;
-    border: 1px solid #c0ccda;
-    border-radius: 4px;
-    padding: 5px 10px;
-    box-sizing: border-box;
-    height: 28px;
-    outline: none;
-    -webkit-appearance: none;
-       -moz-appearance: none;
-            appearance: none;
-    transition: border 0.3s;
-    width: 100%;
-}
-.el-date-picker__editor:hover {
-    border-color: #20a0ff;
 }
 .el-date-picker__time-header {
     position: relative;
@@ -12065,7 +11807,7 @@
     color: #fff;
 }
 .time-select-item.selected:not(.disabled):hover {
-    background-color: #1d8ce0;
+    background-color: #6ECADC;
 }
 .time-select-item.disabled {
     color: #d3dce6;
@@ -12186,20 +11928,23 @@
     border-color: #6ECADC;
 }
 .el-input__inner {
-    display: block;
-    padding: 3px 10px;
-    box-sizing: border-box;
-    width: 100%;
-    height: 36px;
-    color: #1f2d3d;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
     background-color: #fff;
     background-image: none;
-    border: 1px solid #dddddd;
     border-radius: 4px;
-    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
-    outline: none;
+    border: 1px solid #dddddd;
+    box-sizing: border-box;
+    color: #1f2d3d;
+    display: block;
     font-size: inherit;
+    height: 36px;
     line-height: normal;
+    outline: none;
+    padding: 3px 10px;
+    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+    width: 100%;
 }
 .el-input__inner::-webkit-input-placeholder {
     color: #99a9bf;
@@ -12608,12 +12353,13 @@
     background-color: #8492a6;
     display: inline-block;
     padding: 0 5px;
-    height: 22px;
+    height: 24px;
     line-height: 22px;
     font-size: 12px;
     color: #fff;
     border-radius: 4px;
-    border: 1px solid #8492a6;
+    box-sizing: border-box;
+    border: 1px solid transparent;
 }
 .el-tag .el-icon-close {
     border-radius: 50%;
@@ -13085,6 +12831,10 @@
 .el-tabs__item:hover {
     color: #1f2d3d;
     cursor: pointer;
+}
+.el-tabs__item.is-disabled {
+    color: #bbb;
+    cursor: default;
 }
 .el-tabs__item.is-active {
     color: #6ECADC;
@@ -14151,15 +13901,17 @@
     box-sizing: border-box;
     border-radius: 4px;
     width: 100%;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
     position: relative;
 }
 .el-upload__file a {
     color: #475669;
-    transition: color .3s;
+    display: block;
+    margin-right: 40px;
+    overflow: hidden;
     padding-left: 4px;
+    text-overflow: ellipsis;
+    transition: color .3s;
+    white-space: nowrap;
 }
 .el-upload__file a [class^="el-icon"] {
     color: #99a9bf;

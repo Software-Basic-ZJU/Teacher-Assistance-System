@@ -43,9 +43,14 @@
         height:100vh;
     }
     .box .title{
-        font-size:28px;
+        font-size:32px;
         padding-left:20px;
-        padding-top:1%;
+        padding-top:calc(3.1vh - 10px);
+    }
+    @media screen and (min-height: 1200px){
+        .box .title{
+            font-size:36px;
+        }
     }
     .container{
         position: absolute;

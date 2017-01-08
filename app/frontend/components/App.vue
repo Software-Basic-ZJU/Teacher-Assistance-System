@@ -96,7 +96,6 @@
         -moz-box-shadow: 0 0px 0px 0 rgba(0,34,77,.1);
         box-shadow: 0 0px 0px 0 rgba(0,34,77,.1);
     }
-
     /* important!!! 防止tabs下多一条空的div*/
     .el-tabs__content{
         display: none;

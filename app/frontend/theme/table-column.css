@@ -286,12 +286,13 @@
     background-color: #8492a6;
     display: inline-block;
     padding: 0 5px;
-    height: 22px;
+    height: 24px;
     line-height: 22px;
     font-size: 12px;
     color: #fff;
     border-radius: 4px;
-    border: 1px solid #8492a6;
+    box-sizing: border-box;
+    border: 1px solid transparent;
 }
 .el-tag .el-icon-close{
     border-radius: 50%;
@@ -452,6 +453,13 @@
   --------------------------*/
     /* Loading
   --------------------------*/
+}
+
+.el-table-column{}
+
+.el-table-column--selection .cell{
+    padding-left: 14px;
+    padding-right: 14px;
 }
 
 .el-table-filter{

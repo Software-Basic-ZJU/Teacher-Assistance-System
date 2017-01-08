@@ -434,6 +434,10 @@ textarea {
     min-width:300px;
     max-width:800px;
 }
+.el-radio__input.is-checked .el-radio__inner{
+    background:#6ECADC;
+    border-color:#6ECADC;
+}
 .el-icon-d-arrow-left,.el-icon-d-arrow-right{
     margin-top:-3px;
 }

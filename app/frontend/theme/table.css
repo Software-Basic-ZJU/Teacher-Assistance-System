@@ -286,12 +286,13 @@
     background-color: #8492a6;
     display: inline-block;
     padding: 0 5px;
-    height: 22px;
+    height: 24px;
     line-height: 22px;
     font-size: 12px;
     color: #fff;
     border-radius: 4px;
-    border: 1px solid #8492a6;
+    box-sizing: border-box;
+    border: 1px solid transparent;
 }
 .el-tag .el-icon-close{
     border-radius: 50%;
@@ -716,6 +717,14 @@
     z-index: 4;
 }
 
+.el-table__fixed-right-patch{
+    position: absolute;
+    top: -1px;
+    right: 0;
+    background-color: #EFF2F7;
+    border-bottom: 1px solid #e0e6ed;
+}
+
 .el-table__fixed-right{
     top: 0;
     left: auto;
@@ -817,4 +826,9 @@
 
 .el-table--enable-row-hover tr:hover > td {
     background-color: #eff2f7;
+}
+
+.el-table--fluid-height .el-table__fixed, .el-table--fluid-height .el-table__fixed-right {
+    bottom: 0;
+    overflow: hidden;
 }

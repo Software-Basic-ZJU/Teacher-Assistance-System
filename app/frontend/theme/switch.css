@@ -94,16 +94,16 @@
 }
 
 .el-switch.is-disabled .el-switch__core{
-    border-color: #E5E9F3;
-    background: #E5E9F3
+    border-color: #E5E9F3 !important;
+    background: #E5E9F3 !important
 }
 
 .el-switch.is-disabled .el-switch__core span{
-    background-color: #F9FAFC
+    background-color: #F9FAFC !important
 }
 
 .el-switch.is-disabled .el-switch__core ~ .el-switch__label *{
-    color: #F9FAFC
+    color: #F9FAFC !important
 }
 
 .el-switch.is-disabled .el-switch__input:checked + .el-switch__core{

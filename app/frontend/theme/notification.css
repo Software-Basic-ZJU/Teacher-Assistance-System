@@ -111,7 +111,9 @@
     color: #f7ba2a;
 }
 
-.el-notification__group{}
+.el-notification__group{
+    margin-left: 0;
+}
 
 .el-notification__group span{
     font-size: 16px;
@@ -124,6 +126,10 @@
     margin: 10px 0 0 0;
     color: #8492a6;
     text-align: justify;
+}
+
+.el-notification__group.is-with-icon{
+    margin-left: 55px;
 }
 
 .el-notification__icon{

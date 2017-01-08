@@ -312,16 +312,18 @@
     box-sizing: border-box;
     border-radius: 4px;
     width: 100%;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
     position: relative;
 }
 
 .el-upload__file a {
     color: #475669;
-    transition: color .3s;
+    display: block;
+    margin-right: 40px;
+    overflow: hidden;
     padding-left: 4px;
+    text-overflow: ellipsis;
+    transition: color .3s;
+    white-space: nowrap;
 }
 
 .el-upload__file a [class^="el-icon"] {

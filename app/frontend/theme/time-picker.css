@@ -205,9 +205,6 @@
 .el-date-editor {
     position: relative;
     display: inline-block;
-    box-sizing: border-box;
-    height: 36px;
-    width: 182px;
 }
 .el-date-editor .el-picker-panel {
     position: absolute;
@@ -217,100 +214,6 @@
     background: #fff;
     z-index: 10;
     top: 41px;
-}
-.el-date-editor.lg .el-date-editor__editor {
-    padding: 6px 4px;
-}
-.el-date-editor.sm .el-date-editor__editor {
-    padding: 1px 1px;
-}
-.el-date-editor.is-have-trigger .el-date-editor__editor {
-    padding-right: 20px;
-}
-.el-date-editor.is-have-trigger .el-date-editor__clear {
-    right: 22px;
-}
-.el-date-editor__editor {
-    border: 1px solid #c0ccda;
-    border-radius: 4px;
-    line-height: 18px;
-    height: 36px;
-    padding: 3px 10px;
-    width: 100%;
-    box-sizing: border-box;
-    transition: border 0.3s;
-    color: #666;
-    font-size: 14px;
-}
-.el-date-editor__editor::-webkit-input-placeholder {
-    color: #bbb;
-    font-size: 14px;
-}
-.el-date-editor__editor::-moz-placeholder {
-    color: #bbb;
-    font-size: 14px;
-}
-.el-date-editor__editor:-ms-input-placeholder {
-    color: #bbb;
-    font-size: 14px;
-}
-.el-date-editor__editor::placeholder {
-    color: #bbb;
-    font-size: 14px;
-}
-.el-date-editor__editor.is-disabled {
-    background-color: #EFF2F7;
-    border-color: #D3DCE6;
-    color: #bbb;
-    cursor: not-allowed;
-}
-.el-date-editor__editor.is-disabled::-webkit-input-placeholder {
-    color: #C0CCDA;
-}
-.el-date-editor__editor.is-disabled::-moz-placeholder {
-    color: #C0CCDA;
-}
-.el-date-editor__editor.is-disabled:-ms-input-placeholder {
-    color: #C0CCDA;
-}
-.el-date-editor__editor.is-disabled::placeholder {
-    color: #C0CCDA;
-}
-.el-date-editor__trigger {}
-.el-date-editor__trigger.el-icon {
-    cursor: pointer;
-    position: absolute;
-    display: inline-block;
-    width: 16px;
-    right: 10px;
-    top: 0;
-    bottom: 0;
-    color: #c0ccda;
-    font-size: 16px;
-    line-height: 38px;
-}
-.el-date-editor__clear {
-    cursor: pointer;
-    position: absolute;
-    width: 20px;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    line-height: 36px;
-    color: #99a9bf;
-}
-.el-date-editor__clear:hover {
-    color: #20a0ff;
-}
-.el-date-editor__editor:focus, .el-date-editor:hover > .el-date-editor__editor, .el-date-editor.is-active > .el-date-editor__editor {
-    outline: none;
-    border-color: #6ECADC;
-}
-.el-date-editor .el-date-editor__clear {
-    display: none;
-}
-.el-date-editor.is-filled:hover .el-date-editor__clear, .el-date-editor.is-filled.is-active > .el-date-editor__clear {
-    display: inline-block;
 }
 :root {
     /* Transition
@@ -395,11 +298,14 @@
   --------------------------*/
 }
 .el-time-spinner {}
+.el-time-spinner.has-seconds .el-time-spinner__wrapper {
+    width: 33.33333%;
+}
 .el-time-spinner__wrapper {
     height: 190px;
     overflow: hidden;
     display: inline-block;
-    width: 33.33333%;
+    width: 50%;
     vertical-align: top;
     position: relative;
     -ms-overflow-style: none;
@@ -425,7 +331,7 @@
     font-size: 12px;
 }
 .el-time-spinner__item:hover:not(.disabled):not(.active) {
-    background: #E5E9F2;
+    background: #e5e9f2;
     cursor: pointer;
 }
 .el-time-spinner__item.active:not(.disabled) {
@@ -521,7 +427,7 @@
     margin: 5px 0;
     border: solid 1px #d3dce6;
     background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px 0 rgba(0, 0, 0, .04);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
     border-radius: 2px;
     position: absolute;
     width: 180px;
@@ -545,7 +451,7 @@
     font-size: 14px;
     margin-top: -15px;
     line-height: 16px;
-    background-color: #20a0ff;
+    background-color: #6ECADC;
     height: 32px;
     z-index: -1;
     left: 0;
@@ -555,12 +461,19 @@
     text-align: left;
 }
 .el-time-panel__content::after {
-    left: 66.66667%;
+    left: 50%;
     margin-left: -2px;
 }
 .el-time-panel__content::before {
-    padding-left: 33.33333%;
+    padding-left: 50%;
     margin-right: -2px;
+}
+.el-time-panel__content.has-seconds {}
+.el-time-panel__content.has-seconds::after {
+    left: 66.66667%;
+}
+.el-time-panel__content.has-seconds::before {
+    padding-left: 33.33333%;
 }
 .el-time-panel__footer {
     border-top: 1px solid #e4e4e4;
@@ -583,5 +496,5 @@
 }
 .el-time-panel__btn.confirm {
     font-weight: 800;
-    color: #20a0ff;
+    color: #6ECADC;
 }
