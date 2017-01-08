@@ -47,6 +47,11 @@
         padding-left:20px;
         padding-top:calc(3.1vh - 10px);
     }
+    @media screen and (max-height:800px){
+        .box .title{
+            font-size:28px;
+        }
+    }
     @media screen and (min-height: 1200px){
         .box .title{
             font-size:36px;
