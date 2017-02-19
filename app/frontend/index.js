@@ -13,7 +13,8 @@ Vue.use(VueHead);
 Vue.use(ElementUI);
 Vue.use(VueHead);
 
-Vue.config.debug=false;  //debug switch
+Vue.config.debug=true;  //debug switch
+Vue.config.devtools=true;   //devtool switch
 
 //ajax config
 Vue.http.options.root=Vue.config.debug?'http://localhost:8000/backend':'backend';
@@ -42,20 +43,21 @@ Vue.http.interceptors.push((req,next)=>{
                 type:'error',
                 message:'请检查网络配置'
             });
-            return;
         }
         if(response.status==408){      //超时回调
             Vue.prototype.$message({
                 type:'error',
                 message:'请求超时，请稍后重试'
             });
-            return;
         }
         if(!response.body){
             Vue.prototype.$message({
                 type:'error',
                 message:'系统错误，返回体为null值'
             })
+            response.body={
+                code:-1
+            }
         }
         else if(response.body.code== -1){       //请求错误码统一处理
             Vue.prototype.$message({
@@ -71,7 +73,9 @@ Vue.http.interceptors.push((req,next)=>{
             LS.clear();
             router.push({name:'login'});
             store.dispatch('logout');
-            return;
+            return response.body={
+                code:-1
+            }
         }
         else{
             if(response.body.res && response.body.res.token) {      //更新token

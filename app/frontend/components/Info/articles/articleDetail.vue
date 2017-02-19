@@ -109,7 +109,8 @@
                     authorId:userInfo.id,
                 },
                 idenType:userInfo.type,
-                articleTitle:'教师文章'
+                articleTitle:'教师文章',
+                isReplyShow:false
             }
         },
         computed:{
@@ -119,8 +120,7 @@
                     this.articleTitle=article.title;
                     this.$emit('updateHead');
                     return state.info.article
-                },
-                isReplyShow:state=>state.info.isReplyShow
+                }
             })
         },
         methods:{
@@ -131,15 +131,22 @@
             },
             reply(artId){
                 this.newReply.artId=artId;
+                if(this.newReply.content=='') {
+                    return this.$message({
+                        type:'warning',
+                        message:'回复内容不能为空!'
+                    })
+                }
                 this.replyLoading=true;
                 this.$store.dispatch('replyArticle',this.newReply).then(()=>{
                     this.newReply.content='';
+                    this.isReplyShow=false;
                 },()=>{}).then(()=>{
                     this.replyLoading=false;
                 });
             },
             toggleReplyShow(){
-                this.$store.dispatch('isReplyShow',!this.isReplyShow);
+                this.isReplyShow=!this.isReplyShow;
             },
             remove(artId){
                 this.$confirm('确认要删除该文章吗？','提示',{

@@ -3,8 +3,8 @@
         <div>
             <div class="header">
                 <el-tabs :value="currIndex" @tab-click="resrcFilter">
-                    <el-tab-pane label="教师资源" name="0"></el-tab-pane>
-                    <el-tab-pane label="学生资源" name="1"></el-tab-pane>
+                    <el-tab-pane label="教师资源" value="0"></el-tab-pane>
+                    <el-tab-pane label="学生资源" value="1"></el-tab-pane>
                 </el-tabs>
                 <el-button type="success" class="fr" @click="addResrc" v-show="currIndex!=1 && idenType==2" icon="plus"></el-button>
             </div>

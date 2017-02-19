@@ -11,10 +11,6 @@
 </style>
 <script>
     export default{
-        data(){
-            return{
-            }
-        },
         head:{
             title(){
                 return {

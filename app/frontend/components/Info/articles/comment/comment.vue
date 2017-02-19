@@ -70,7 +70,7 @@
                     this.deleteLoading=true;
                     this.$store.dispatch('removeComment',commentId).then(()=>{
                         this.deleteLoading=false;
-            });
+                    });
                 }).catch(() => {});
             }
         }

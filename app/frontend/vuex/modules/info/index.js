@@ -3,7 +3,6 @@ import * as actions from './actions';
 import {LS} from "../../../helpers/utils";
 
 const state={
-    isReplyShow:false,                  //回复框显示状态
     contact:{},
     noticeList:[],
     notice:{},
@@ -17,9 +16,6 @@ const state={
 }
 
 const mutations={
-    isReplyShow(state,signal){
-        state.isReplyShow=signal;
-    },
     toggleAddNotice(state,signal){
         state.showAddNotice=signal;
     },
@@ -45,12 +41,10 @@ const mutations={
         state.article.comment.push(newCom);
     },
     removeComment(state,comId){
-        state.article.comment.forEach((item,index)=>{
-            if(item.com_id==comId){
-                state.article.comment.splice(index,1);
-                return;
-            }
-        })
+        let target=state.article.comment.find((item)=>(
+            item.com_id==comId
+        ))
+        state.article.comment.splice(target,1);
     },
     changeArtPage(state,val){
         state.articleCurrPage=val;
@@ -59,13 +53,6 @@ const mutations={
         state.noticeCurrPage=val;
     },
     addNotice(state,newNotice){
-        let userInfo=LS.getItem("userInfo");
-        userInfo.class_id.forEach((item)=>{
-            if(item.class_id==newNotice.class_id){
-                newNotice.class_name=item.class_name;
-                return;
-            }
-        });
         state.noticeList.push(newNotice);
     },
     updateKeywords(state,keywords){

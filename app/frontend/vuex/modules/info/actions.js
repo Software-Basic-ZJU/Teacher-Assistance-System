@@ -360,7 +360,6 @@ export const replyArticle=({commit},payload)=>{
                     type:'success',
                     message:resp.msg
                 });
-                commit('isReplyShow',false);
                 commit('addComment',resp.res);
                 resolve();
             }
